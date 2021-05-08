@@ -1,0 +1,16 @@
+# Look for 'source'd files relative to the checked script,
+# and also look for absolute paths in /mnt/chroot
+# source-path=SCRIPTDIR
+# source-path=/mnt/chroot
+source=/dev/null
+# Turn on warnings for unquoted variables with safe values
+# enable=quote-safe-variables
+
+# Turn on warnings for unassigned uppercase variables
+# enable=check-unassigned-uppercase
+
+# Allow [ ! -z foo ] instead of suggesting -n
+disable=SC2236
+disable=SC2034
+# disable=w2034
+
