@@ -16,7 +16,7 @@
 * Vim Airline theme
 * Vim LeaderF theme
 * Vim LeaderGuide theme
-* Vimium (chromium extention)
+* Vimium (chromium extension)
 * Spotify
 * Slack
 * GTK Theme
