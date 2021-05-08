@@ -8,7 +8,7 @@
 * [spicetify-cli](https://github.com/khanhas/spicetify-cli)
 * [ffmpeg](https://github.com/FFmpeg/FFmpeg)
 
-## currently supporting requirements
+## currently supporting
 * Xresource scheme
 * Kitty terminal
 * Alacritty terminal
