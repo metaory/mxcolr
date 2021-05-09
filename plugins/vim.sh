@@ -26,22 +26,22 @@ cp "$Z_VIM4" "$M_VIM4"
 cp "$Z_VIM5" "$M_VIM5"
 
 sed -r -i \
+  -e "/^hi Title/s/guifg=.\w+/guifg=$C07/" \
   -e "/^hi Normal/s/guibg=.\w+/guibg=$XBG/" \
   -e "/^hi Normal/s/guifg=.\w+/guifg=$XFG/" \
   -e "/^hi Visual/s/guibg=.\w+/guibg=$OBG/" \
   -e "/^hi Visual/s/guifg=.\w+/guifg=$OFG/" \
   -e "/^hi CursorLineNr/s/guifg=.\w+/guifg=$WBX/" \
   -e "/^hi LineNr/s/guifg=.\w+/guifg=$DK4/" \
-  -e "/^hi Title/s/guifg=.\w+/guifg=$DK5/" \
-  -e "/^hi EndOfBuffer/s/guifg=.\w+/guifg=$DK5/" \
+  -e "/^hi Title/s/guifg=.\w+/guifg=$SBG/" \
   -e "/^hi EndOfBuffer/s/guibg=.\w+/guibg=$DK0/" \
   -e "/^hi CursorColumn/s/guibg=.\w+/guibg=$DK2/" \
   -e "/^hi CursorLine/s/guibg=.\w+/guibg=$DK2/" \
   -e "/^hi ColorColumn/s/guibg=.\w+/guibg=$WBG/" \
   -e "/^hi Comment/s/guifg=.\w+/guifg=$DK4/" \
   \
-  -e "/^let g:indentLine_color_gui/s/=.+$/= '${C07}'/" \
-  -e "/^let g:indentLine_color_term /s/=.+$/= '${T07}'/" \
+  -e "/^let g:indentLine_color_gui/s/=.+$/= '${C08}'/" \
+  -e "/^let g:indentLine_color_term /s/=.+$/= '${T08}'/" \
   "$M_VIM1"
 InfoSourced "VIM-Patch"
   
@@ -115,9 +115,9 @@ InfoSourced 'VIM-Airline'
 # sed -r -e "/^let s:guiWhite /s/\".+$/\"$C15\"/" $M_VIM5
 sed -r -i \
   -e "/^let s:guiBlack/s/=.+$/= '${DK0}'/" \
+  -e "/^let s:ctermBlack/s/=.+$/= '${TK0}'/" \
   -e "/^let s:guiWhite/s/=.+$/= '${C15}'/" \
-  -e "/^let s:ctermWhite/s/=.+$/= '${TK0}'/" \
-  -e "/^let s:ctermBlack/s/=.+$/= '${T15}'/" \
+  -e "/^let s:ctermWhite/s/=.+$/= '${T15}'/" \
   \
   -e "/^let s:ctermChangedColor/s/=.+$/= '${TWB}'/" \
   -e "/^let s:guiChangedColor/s/=.+$/= '${WBG}'/" \
@@ -159,16 +159,18 @@ let s:colors = {
       \ "sfg": get(s:overrides            , "red"            , { "gui": "${SFG}" , "cterm": "${TSF}" , "cterm16": "9" })  ,
       \ "wbg": get(s:overrides            , "red"            , { "gui": "${WBG}" , "cterm": "${TWB}" , "cterm16": "9" })  ,
       \ "wfg": get(s:overrides            , "red"            , { "gui": "${WFG}" , "cterm": "${TWF}" , "cterm16": "9" })  ,
+      \ "ebg": get(s:overrides            , "blue"           , { "gui": "${EBG}" , "cterm": "${TEB}" , "cterm16": "9" })  ,
+      \ "efg": get(s:overrides            , "blue"           , { "gui": "${EFG}" , "cterm": "${TEF}" , "cterm16": "9" })  ,
       \ "red": get(s:overrides            , "red"            , { "gui": "${C01}" , "cterm": "${TX1}" , "cterm16": "9" })  ,
       \ "light_red": get(s:overrides      , "light_red"      , { "gui": "${C09}" , "cterm": "${T09}" , "cterm16": "9" })  ,
       \ "dark_red": get(s:overrides       , "dark_red"       , { "gui": "${CX1}" , "cterm": "${TX1}" , "cterm16": "1" })  ,
       \ "green": get(s:overrides          , "green"          , { "gui": "${C02}" , "cterm": "${T02}" , "cterm16": "6" })  ,
-      \ "dark_green": get(s:overrides     , "green"          , { "gui": "${CX2}" , "cterm": "${TX2}" , "cterm16": "2" })  ,
+      \ "dark_green": get(s:overrides     , "green"          , { "gui": "${C10}" , "cterm": "${T10}" , "cterm16": "2" })  ,
       \ "light_yellow": get(s:overrides   , "yellow"         , { "gui": "${C11}" , "cterm": "${T11}" , "cterm16": "3" })  ,
       \ "yellow": get(s:overrides         , "light_yellow"   , { "gui": "${C03}" , "cterm": "${T03}" , "cterm16": "3" })  ,
       \ "dark_yellow": get(s:overrides    , "dark_yellow"    , { "gui": "${CX3}" , "cterm": "${TX3}" , "cterm16": "13" }) ,
       \ "blue": get(s:overrides           , "blue"           , { "gui": "${CX4}" , "cterm": "${TX4}" , "cterm16": "4" })  ,
-      \ "purple": get(s:overrides         , "purple"         , { "gui": "${CX5}" , "cterm": "${TX4}" , "cterm16": "5" })  ,
+      \ "purple": get(s:overrides         , "purple"         , { "gui": "${WBG}" , "cterm": "${TWB}" , "cterm16": "5" })  ,
       \ "blue_purple": get(s:overrides    , "blue_purple"    , { "gui": "${SBG}" , "cterm": "${TSB}" , "cterm16": "4"})   ,
       \ "cyan": get(s:overrides           , "cyan"           , { "gui": "${C06}" , "cterm": "${T06}" , "cterm16": "14" }) ,
       \ "white": get(s:overrides          , "white"          , { "gui": "${C15}" , "cterm": "${T15}" , "cterm16": "7" })  ,
@@ -180,7 +182,7 @@ let s:colors = {
       \ "visual_grey": get(s:overrides    , "visual_grey"    , { "gui": "${DK4}" , "cterm": "${TK4}" , "cterm16": "15" }) ,
       \ "menu_grey": get(s:overrides      , "menu_grey"      , { "gui": "${DK0}" , "cterm": "${TK0}" , "cterm16": "8" })  ,
       \ "special_grey": get(s:overrides   , "special_grey"   , { "gui": "${DK7}" , "cterm": "${TK7}" , "cterm16": "15" }) ,
-      \ "vertsplit": get(s:overrides      , "vertsplit"      , { "gui": "${DK0}" , "cterm": "${TK0}" , "cterm16": "15" }) ,
+      \ "vertsplit": get(s:overrides      , "vertsplit"      , { "gui": "${EBG}" , "cterm": "${TEB}" , "cterm16": "15" }) ,
       \ "white_mask_1": get(s:overrides   , "white_mask_1"   , { "gui": "${DK1}" , "cterm": "${TK1}" , "cterm16": "15" }) ,
       \ "white_mask_3": get(s:overrides   , "white_mask_3"   , { "gui": "${DK2}" , "cterm": "${TK2}" , "cterm16": "8" })  ,
       \ "white_mask_11": get(s:overrides  , "white_mask_11"  , { "gui": "${DK3}" , "cterm": "${TK3}" , "cterm16": "4" })
@@ -326,7 +328,7 @@ EOF
 InfoSourced "VIM-LeaderF"
 
 
-ApplyVim () {
+apply_vim () {
   cp "$M_VIM1" "$O_VIM1"
   cp "$M_VIM2" "$O_VIM2"
   cp "$M_VIM3" "$O_VIM3"

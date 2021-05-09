@@ -130,3 +130,8 @@ ApplyGTKSpt () {
   sleep 1
   Info "Done" 0
 }
+
+apply_gtk () {
+  ApplyGTKTheme
+  ApplyGTKIcon
+}

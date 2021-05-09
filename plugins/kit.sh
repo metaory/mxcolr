@@ -35,7 +35,7 @@ EOF
 
 InfoSourced
 
-ApplyKit () {
+apply_kitty () {
   cp "$M_KIT" "$O_KIT"
   # kitty @ "$KSOCK" set-colors "$KFLAG" "$MXKIT" 2>/dev/null
   Info "Done" 0

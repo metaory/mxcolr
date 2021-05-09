@@ -25,7 +25,7 @@ export sp_block_c_middl=''
 export sp_block_c_close='█'
 
 export sp_block_d_begin='█'
-export sp_block_d_middl='█'
+export sp_block_d_middl='██'
 export sp_block_d_close='█'
 
 export sp_block_e_begin='▆ '
@@ -121,28 +121,25 @@ pl () {
 fill () {
   local cols;cols=$(tput cols)
 
-  local o          ; o="${1:-1}"
-  local l          ; l="${2:-12}"
-  # local start    ;
-  local n          ; n=$((( (cols/2)-l)+o))
-  if (( n < 0 )) ; then
-    n="$o"
-  fi
+  local o       ; o="${1:-1}"
+  local l       ; l="${2:-10}"
   local s       ; s="${3:- }"
   local c       ; c="${4:-grey}"
   local b       ; b="${5:-$XBG}"
-  local _filler ; _filler=$(printf "%0.s$s" $(seq 1 "$n"))
+  local n       ; n=$((( (cols/2-${#3})-l)+o)); (( n < 0 )) && n="$o"
+  local _filler ; _filler=$(printf "%0.s$s" $(seq 1 "$((n/${#s}))"))
+
   pastel paint "${c}" -o "${b}" -n "$_filler"
 }
 fillHead () { 
   local s=" ${1:-} "
   local slen=$((${#s}))
+  local sep='╺╸·╺╸'
   local cols;  cols=$(tput cols)
-  local space; space=$((cols/2 - slen/2))
-  fill $space "$cols" '' "$C08"
-  pastel paint -n -o "$C08" -b "${WFG}" "$s"
-  fill $space "$cols" '' "$C08"
-  pl '-'
+  local space; space=$((( cols/2 - slen/2 ) + ${#sep}))
+  fill $space "$cols" "$sep" "$XFG"
+  pastel paint -n -o "$XBG" -b "${XFG}" "$s"
+  fill $space "$cols" "$sep" "$XFG"; pl '-'
 }
 fillCols () { fill $(($(tput cols)/2)) 0 '' "$C08"; pl '-'; } # "$(tput cols)" "${1:-·}" "${2:-$C00}"; }
 # fillCols () { pl "$(tput cols)" "${1:-·}" "${2:-$C00}"; }

@@ -4,7 +4,7 @@
 # ## >>> ##########
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\  
 
-ApplyTmux () {
+apply_tmux () {
 
 
   local TSOCK=''; # KSOCK='';KFLAG='';  # KSOCK='--to unix:/tmp/kitty-mtx' # KFLAG='-a -c'

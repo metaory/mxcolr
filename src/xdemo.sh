@@ -19,7 +19,7 @@ dk=(DK0 DK1 DK2 DK3 DK4 DK5 DK6 DK7 DL8 DL9)
 dl=(DL0 DK1 DK2 DK3 DL4 DL5 DL6 DL7 DL8 DL9)
 # ////////////////////////////  
 Demo_block () {
-  fill 6 ; pl "${tx[0]}" " ▄▄" ; prntlist 'prnt:sp_block_d' "${tx[@]}" ; pl "${tx[-1]}" '▀▀' ; pl '-'
+  fill 5 ; pl "${tx[0]}" " ▄▄" ; prntlist 'prnt:sp_block_d' "${tx[@]}" ; pl "${tx[-1]}" '▀▀' ; pl '-'
 }
 Demo_full_block () {
   local head="${1:-}"
@@ -113,9 +113,12 @@ Demo_dot_slant () {
 
 # ##############################
 Demo_dot () {
-  fill 1; prntlist 'prnt:sp_dot' "${cx[@]}"; pl '-'
-  fill 1; prntlist 'prnt:sp_dot' "${ca[@]}"; pl '-'
-  fill 1; prntlist 'prnt:sp_dot' "${cb[@]}"; pl '-'
+  fill 9; prntlist 'prnt:sp_dot' "${tx[@]}"; pl '-'
+  fill 6;  prntlist 'prnt:sp_dot' "${cx[@]}"; pl '-'
+  fill 4;  prntlist 'prnt:sp_dot' "${ca[@]}"; pl '-'
+  fill 4;  prntlist 'prnt:sp_dot' "${cb[@]}"; pl '-'
+  fill 2;  prntlist 'prnt:sp_dot' "${dk[@]}"; pl '-'
+  fill 2;  prntlist 'prnt:sp_dot' "${dl[@]}"; pl '-'
 }
 # ////////////////////////////  
 # ##############################

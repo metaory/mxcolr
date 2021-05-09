@@ -85,21 +85,22 @@ gen_shades () {
   DL9="$(pastel lighten 0.70 "$XBG" | pastel   saturate 0.40 | pastel format hex)"
 
   DK0="$(pastel darken  0.14 "$DKB" | pastel   saturate 0.20 | pastel format hex)"                                                            
-  DK1="$(pastel darken  0.10 "$DKB" | pastel   saturate 0.16 | pastel format hex)"                                                            
+  DK1="$(pastel darken  0.08 "$DKB" | pastel   saturate 0.16 | pastel format hex)"                                                            
   DK2="$(pastel darken  0.06 "$DKB" | pastel   saturate 0.12 | pastel format hex)"                                                            
-  DK3="$(pastel darken  0.02 "$DKB" | pastel   saturate 0.08 | pastel format hex)"                                                            
-  DK4="$(pastel lighten 0.06 "$DKB" | pastel   saturate 0.06 | pastel format hex)"                                                            
-  DK5="$(pastel lighten 0.12 "$DKB" | pastel   saturate 0.04 | pastel format hex)"                                                            
-  DK6="$(pastel lighten 0.18 "$DKB" | pastel   saturate 0.02 | pastel format hex)"                                                            
-  DK7="$(pastel lighten 0.26 "$DKB" | pastel   saturate 0.02 | pastel format hex)"                                                            
-  DK8="$(pastel lighten 0.32 "$DKB" | pastel   saturate 0.02 | pastel format hex)"                                                            
+  DK3="$(pastel darken  0.00 "$DKB" | pastel   saturate 0.04 | pastel format hex)"                                                            
+  DK4="$(pastel lighten 0.06 "$DKB" | pastel   saturate 0.07 | pastel format hex)"                                                            
+  DK5="$(pastel lighten 0.12 "$DKB" | pastel   saturate 0.06 | pastel format hex)"                                                            
+  DK6="$(pastel lighten 0.18 "$DKB" | pastel   saturate 0.05 | pastel format hex)"                                                            
+  DK7="$(pastel lighten 0.26 "$DKB" | pastel   saturate 0.04 | pastel format hex)"                                                            
+  DK8="$(pastel lighten 0.32 "$DKB" | pastel   saturate 0.03 | pastel format hex)"                                                            
   DK9="$(pastel lighten 0.38 "$DKB" | pastel   saturate 0.02 | pastel format hex)"                                                            
-  XFG="$(pastel lighten 0.20 "$DKB" | pastel desaturate 0.02 | pastel format hex)"                                                            
+  # XFG="$(pastel lighten 0.20 "$DKB" | pastel desaturate 0.02 | pastel format hex)"
 
-  C00="$DK3"
+  C00="$DK1"
   C08="$DK4"
+  XFG="$DL5"
   C07="$DL5"
-  C15="$DL9"
+  C15="$DL8"
 
   Info "Done" 0
 }

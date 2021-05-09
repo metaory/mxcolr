@@ -1,12 +1,7 @@
 #!/usr/bin/env bash
 
 ################################
-notify () { 
-  awesome-client "require('naughty')
-  .notify({ icon='/home/metaory/.icons/oomox-root_2021_beta/status/scalable/warning_fade.svg',
-  bg='$WBG', fg='$WFG',  timeout=3, opacity = 0.8,
-  text='${1}'})" 2>/dev/null
-}
+notify () { awesome-client "require('naughty').notify({ bg='$WBG', fg='$WFG',  timeout=3, opacity = 0.8, text='${1}'})" 2>/dev/null; }
 ################################
 ApplyWallpaper () {
   if [[ "$XOPT" == *"noawm"* ]]; then InfoIgnore; return; fi
@@ -54,4 +49,10 @@ RestartAWM () {
   killall nm-applet
   nm-applet & disown
   Info "Done" 0
+}
+
+apply_awm () {
+  ApplyWallpaper
+  ApplyIcons
+  RestartAWM
 }

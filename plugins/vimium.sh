@@ -26,7 +26,7 @@ __update () {
     -e "s/--purple-dark:.+$/--purple-dark: ${EBG};/" \
     "$target"
 
-  Info "Done" 0
+  InfoSourced
 }
 
 __update "$M_CHR1"
@@ -34,7 +34,7 @@ __update "$M_CHR2"
 
 InfoSourced
 
-ApplyChrVimium () {
+apply_vimium () {
   if [[ "$XOPT" == *"nochr"* ]]; then InfoIgnore; return; fi
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
 
