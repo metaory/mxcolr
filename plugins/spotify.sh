@@ -43,7 +43,7 @@ EOF
 
 InfoSourced
 
-ApplySpt () {
+apply_spotify () {
   if [[ "$XOPT" == *"nospt"* ]]; then InfoIgnore; return; fi
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
 

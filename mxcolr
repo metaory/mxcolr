@@ -22,7 +22,6 @@ mkdir "$MXTEMP" -p 2>/dev/null || true
 mkdir "$MXSNAP" -p 2>/dev/null || true 
 
 XSEED=$MXBASE/src/xseed.sh
-X_OUT=$MXBASE/src/x_out.sh
 XANSI=$MXBASE/src/xansi.sh
 
 PAINT=$MXBASE/src/paint.sh
@@ -32,22 +31,23 @@ XGENC=$MXBASE/src/xgenc.sh
 CALIB=$MXBASE/src/calib.sh
 XSNAP=$MXBASE/src/snaps.sh
 
-X_AWM=$MXBASE/src/plugins/mx-awm.sh
-X_TMX=$MXBASE/src/plugins/mx-tmx.sh
-X_KIT=$MXBASE/src/plugins/mx-kit.sh
-X_XRS=$MXBASE/src/plugins/mx-xrs.sh
-X_VIM=$MXBASE/src/plugins/mx-vim.sh
-X_SPT=$MXBASE/src/plugins/mx-spt.sh
-X_GTK=$MXBASE/src/plugins/mx-gtk.sh
-X_CHR=$MXBASE/src/plugins/mx-chr.sh
+X_OUT=$MXBASE/src/x_out.sh
+
+# X_KIT=$MXBASE/src/plugins/mx-kit.sh
+# X_XRS=$MXBASE/src/plugins/mx-xrs.sh
+# X_VIM=$MXBASE/src/plugins/mx-vim.sh
+# X_SPT=$MXBASE/src/plugins/mx-spt.sh
+# X_GTK=$MXBASE/src/plugins/mx-gtk.sh
+# X_CHR=$MXBASE/src/plugins/mx-chr.sh
+# X_FZF=$MXBASE/src/plugins/mx-fzf.sh
 
 ##########
 . "$PAINT"
 . "$XDEMO"
 . "$XMENU"
 # .........
-. "$X_AWM"
-. "$X_TMX"
+. "$MXBASE/plugins/awm.sh "
+. "$MXBASE/plugins/tmux.sh"
 ###########
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\  
 ################################
@@ -79,14 +79,7 @@ BackupDist    () { Info ' Backup Prod Dist ··'
 . "$CALIB"
 . "$XSNAP"
 # .........
-SaveAllPlugs () {
-  . "$X_KIT"
-  . "$X_XRS"
-  . "$X_VIM"
-  . "$X_SPT"
-  . "$X_GTK"
-  . "$X_CHR"
-}
+SourcePlugs () { for plug in "$MXBASE"/plugins/*.sh; do . "$plug"; done; }
 # ............................  
 # ............................  
 # ##############################
@@ -97,7 +90,7 @@ Demo () {
   # Demo_slant
   # Demo_shades3
   Demo_block
-  # Demo_dot_slant
+  Demo_dot
   MXDotLine
   fillCols
 }
@@ -112,8 +105,8 @@ DemoAll () {
   fillCols
 }
 
-LoadPreview () { CopyTempSeed ; LoadTempTheme ; ApplyTmux ; }
-DemoLive    () { ApplyTmux ; Demo ; }
+LoadPreview () { CopyTempSeed ; LoadTempTheme ; apply_tmux ; }
+DemoLive    () { apply_tmux ; Demo ; }
 Revert () {
   ClearTemp
   CopyTempSeed
@@ -121,7 +114,7 @@ Revert () {
   DemoLive
 }
 
-ApplyAll () {
+ApplyPlugs () {
   BackupDist
 
   Demo
@@ -129,27 +122,18 @@ ApplyAll () {
 
   ReleaseSeed
   ReleaseTheme
-  
-  ApplyTmux
-  ApplyKit
-  ApplyXrs
-  ApplyVim
-  ApplySpt
-  ApplyChrVimium
-  
-  ApplyGTKTheme
-  ApplyGTKIcon
 
-  ApplyWallpaper
-  ApplyIcons
-  RestartAWM
+  for plug_path in "$MXBASE"/plugins/*.sh; do
+    local apply_plug; apply_plug="$(basename "$plug_path")"; apply_plug="apply_${apply_plug::(-3)}"
+    "$apply_plug"
+  done
 }
 
 ReGenerate () {
   UpdatePalette 
 
-  SaveAllPlugs
-  ApplyAll
+  SourcePlugs
+  ApplyPlugs
 } # ............................ #
 Randomize () {
   GeneratePalette

@@ -71,7 +71,7 @@ EOF
 
 InfoSourced
 
-ApplyXrs() {
+apply_xresources() {
   cp "$M_XRS" "$O_XRS"
   xrdb "$HOME/.Xresources"
   Info "Done" 0
