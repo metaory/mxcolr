@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-XP () {
+experimental () {
   Info "(XP) XOPT $XOPT"
   local cx=(WBG SBG EBG)
 

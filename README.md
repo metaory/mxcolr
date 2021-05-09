@@ -1,5 +1,16 @@
 # mxcolr
 
+## demos
+![generate](data/generate_210510015619.gif)
+![update](data/update_210510015713.gif)
+
+
+## usage
+    mxcolr --init
+    mxcolr --demo
+    mxcolr --generate
+    mxcolr --update
+
 ## requirements
 * [pastel](https://github.com/sharkdp/pastel)
 

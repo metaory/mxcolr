@@ -136,10 +136,10 @@ fillHead () {
   local slen=$((${#s}))
   local sep='╺╸·╺╸'
   local cols;  cols=$(tput cols)
-  local space; space=$((( cols/2 - slen/2 ) + ${#sep}))
+  local space; space=$((( cols/2 - slen/2 )))
   fill $space "$cols" "$sep" "$XFG"
   pastel paint -n -o "$XBG" -b "${XFG}" "$s"
-  fill $space "$cols" "$sep" "$XFG"; pl '-'
+  fill $space "$(( cols + ${#sep} ))" "$sep" "$XFG"; pl '-'
 }
 fillCols () { fill $(($(tput cols)/2)) 0 '' "$C08"; pl '-'; } # "$(tput cols)" "${1:-·}" "${2:-$C00}"; }
 # fillCols () { pl "$(tput cols)" "${1:-·}" "${2:-$C00}"; }
