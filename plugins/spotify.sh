@@ -15,8 +15,8 @@ cat <<  EOF > "$M_SPOT"
 [Base]
 main_bg                               =${XBG:1}
 main_fg                               =${XFG:1}
-dark_fg                               =${DK3:1}
-light_fg                              =${DK7:1}
+dark_fg                               =${C08:1}
+light_fg                              =${C07:1}
 meta_1                                =${WBG:1}
 meta_2                                =${SBG:1}
 meta_3                                =${EBG:1}

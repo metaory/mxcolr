@@ -96,10 +96,10 @@ gen_shades () {
   # XFG="$(pastel lighten 0.20 "$DKB" | pastel desaturate 0.02 | pastel format hex)"
 
   C00="$DK1"
-  C08="$DK6"
-  XFG="$DL6"
-  C07="$DL7"
-  C15="$DL8"
+  C08="$DK7"
+  XFG="$DL7"
+  C07="$DL8"
+  C15="$DL9"
 
   Info "Done" 0
 }
