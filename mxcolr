@@ -1,6 +1,7 @@
 #!/usr/bin/env bash
 
-source /home/metaory/dev/meta/configs/scripts/m.lib/lib.mxtrap.sh
+# TODO move me
+source "$HOME"/dev/meta/configs/scripts/m.lib/lib.mxtrap.sh
 
 # if tty -s; then mlg interactive; else mlg none-intreractive;fi
 
@@ -46,8 +47,8 @@ X_OUT=$MXBASE/src/x_out.sh
 . "$XDEMO"
 . "$XMENU"
 # .........
-. "$MXBASE/plugins/awm.sh "
-. "$MXBASE/plugins/tmux.sh"
+. "$MXBASE"/plugins/awm.sh
+. "$MXBASE"/plugins/tmux.sh
 ###########
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\  
 ################################
@@ -138,7 +139,7 @@ ReGenerate () {
 Randomize () {
   GeneratePalette
 
-  ApplyTmux
+  apply_tmux
   Demo
 
   PrompRand
@@ -161,7 +162,7 @@ Randomize () {
 {
   mlg "━━━━<MENU>━━┓"
   case $menu in
-    -r | random        ) Randomize     ;;
+    -r | --generate    ) Randomize     ;;
     -u | --update      ) ReGenerate      ;;
     -U | --update-full ) XOPT+='full'; ReGenerate      ;;
     -d | --demo        ) Demo ;;

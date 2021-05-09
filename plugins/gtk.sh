@@ -132,6 +132,8 @@ ApplyGTKSpt () {
 }
 
 apply_gtk () {
+  if [[ "$XOPT" == *"nogtk"* ]]; then InfoIgnore; return; fi
+  PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   ApplyGTKTheme
   ApplyGTKIcon
 }

@@ -4,7 +4,6 @@
 notify () { awesome-client "require('naughty').notify({ bg='$WBG', fg='$WFG',  timeout=3, opacity = 0.8, text='${1}'})" 2>/dev/null; }
 ################################
 ApplyWallpaper () {
-  if [[ "$XOPT" == *"noawm"* ]]; then InfoIgnore; return; fi
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   local stamp; stamp=$(date +%s); stamp="${stamp:(-8)}"
   convert "$HOME"/pics/wall/BASE.png -fill "${WBG}" -tint 100%  "$HOME"/pics/wall/curr.png
@@ -15,7 +14,7 @@ ApplyWallpaper () {
 # ////////////////////////////  
 ################################
 ApplyIcons () {
-  if [[ "$XOPT" == *"noico"* ]] || [[ "$XOPT" == *"noawm"* ]]; then InfoIgnore; return; fi
+  if [[ "$XOPT" == *"noico"* ]]; then InfoIgnore; return; fi
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
 
   local LAYOUT_ICONS=("$XDG_CONFIG_HOME"/awesome/themes/metaory/icons/layout/*.png)
@@ -40,9 +39,7 @@ ApplyIcons () {
 # ////////////////////////////  
 # ////////////////////////////  
 RestartAWM () {
-  if [[ "$XOPT" == *"noawm"* ]]; then InfoIgnore; return; fi
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
-
   notify "restarting AWM in 3s ⏲" ; sleep 3
   (awesome-client 'awesome.restart()' &>/dev/null || true)
   # awesome --replace & disown
@@ -52,6 +49,8 @@ RestartAWM () {
 }
 
 apply_awm () {
+  if [[ "$XOPT" == *"noawm"* ]]; then InfoIgnore; return; fi
+  PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   ApplyWallpaper
   ApplyIcons
   RestartAWM

@@ -5,7 +5,7 @@ abs_diff () {
 }
 ################################
 GEN_MIN_DISTANCE=40
-ATTMP_WARN_THRESHOLD=5
+ATTMP_WARN_THRESHOLD=10
 
 # shellcheck disable=SC2034
 gen_random () {
@@ -23,15 +23,14 @@ gen_random () {
   local E_distance;E_distance="$(abs_diff "$WBG_HUE" "$EBG_HUE")"
   local X_distance;X_distance="$(abs_diff "$SBG_HUE" "$EBG_HUE")"
 
-  Info "ATTP X $attmp"
-
-  Info "ATTMP ${attmp} >> WH:${WBG_HUE} :: [SH:${SBG_HUE} SD:${S_distance}] [EH:${EBG_HUE} ED:${E_distance}]"
+  mlg "ATTP X $attmp"
+  mlg "ATTMP ${attmp} >> WH:${WBG_HUE} :: [SH:${SBG_HUE} SD:${S_distance}] [EH:${EBG_HUE} ED:${E_distance}]"
   if (( S_distance < GEN_MIN_DISTANCE || E_distance < GEN_MIN_DISTANCE || X_distance < GEN_MIN_DISTANCE )); then
     # pastel format hex "$WBG"; pastel format hex "$SBG"; pastel format hex "$EBG"
     if ! (( attmp % ATTMP_WARN_THRESHOLD )); then PressToContinue "failed $attmp attempts, still continue?"; fi
     gen_random $((++attmp))
   else
-    Info "attempt $attmp succeeded, proceeding" 0; return
+    mlg "attempt $attmp succeeded, proceeding"; return
   fi
 }
 
@@ -97,9 +96,9 @@ gen_shades () {
   # XFG="$(pastel lighten 0.20 "$DKB" | pastel desaturate 0.02 | pastel format hex)"
 
   C00="$DK1"
-  C08="$DK4"
-  XFG="$DL5"
-  C07="$DL5"
+  C08="$DK6"
+  XFG="$DL6"
+  C07="$DL7"
   C15="$DL8"
 
   Info "Done" 0

@@ -72,6 +72,7 @@ EOF
 InfoSourced
 
 apply_xresources() {
+  PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   cp "$M_XRS" "$O_XRS"
   xrdb "$HOME/.Xresources"
   Info "Done" 0

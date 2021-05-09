@@ -5,7 +5,7 @@
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\  
 
 apply_tmux () {
-
+  # PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
 
   local TSOCK=''; # KSOCK='';KFLAG='';  # KSOCK='--to unix:/tmp/kitty-mtx' # KFLAG='-a -c'
   if [ -n "$TMUX" ]             ; then 
