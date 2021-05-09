@@ -47,8 +47,8 @@ X_OUT=$MXBASE/src/x_out.sh
 . "$XDEMO"
 . "$XMENU"
 # .........
-. "$MXBASE"/plugins/awm.sh
-. "$MXBASE"/plugins/tmux.sh
+. "$MXBASE"/plugins/9-awm.sh
+. "$MXBASE"/plugins/2-tmux.sh
 ###########
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\  
 ################################
@@ -125,7 +125,7 @@ ApplyPlugs () {
   ReleaseTheme
 
   for plug_path in "$MXBASE"/plugins/*.sh; do
-    local apply_plug; apply_plug="$(basename "$plug_path")"; apply_plug="apply_${apply_plug::(-3)}"
+    local apply_plug; apply_plug="apply_$(basename "$plug_path" | cut -d'-' -f2 | cut -d'.' -f1)"
     "$apply_plug"
   done
 }

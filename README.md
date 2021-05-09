@@ -37,6 +37,8 @@
 * Vimium (chromium extension)
 * Spotify
 * Slack
+* Ranger
+* P10k
 * GTK Theme
 * GTK Icon Theme
 * Wallpaper tint
