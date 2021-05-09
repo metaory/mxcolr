@@ -1,15 +1,22 @@
 # mxcolr
 
-## demos
-![generate](data/generate_210510015619.gif)
-![update](data/update_210510015713.gif)
-
-
 ## usage
     mxcolr --init
     mxcolr --demo
     mxcolr --generate
     mxcolr --update
+
+## demos
+  ![screenshot](data/2021-05-10-021854_1920x1080_scrot.png)
+
+  ***
+  
+  generate
+  ![generate](data/generate_210510015619.gif)
+  ***
+  update
+  ![update](data/update_210510015713.gif)
+
 
 ## requirements
 * [pastel](https://github.com/sharkdp/pastel)
