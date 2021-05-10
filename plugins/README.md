@@ -2,7 +2,7 @@
 
 ### each `sh` file presents in `./plugins` folder is treated as a plugin and is sourced
 ### its expected to follow these patterns:
-* filename: `[0-9]-[a-z].sh`
+* filename: `[0-9]-[a-z_].sh` _`1-vim_airline.sh`_
   * prefix number is the `order` its loaded 
   _(for plugins that depends on other plugins)_
   * suffix the `plugin_name`
