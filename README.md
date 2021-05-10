@@ -32,12 +32,13 @@
 ## currently supporting
 * Xresource scheme
 * Kitty terminal
-* Alacritty terminal
+* ~~Alacritty terminal~~
 * Vim colorscheme
 * Vim Airline theme
 * Vim LeaderF theme
 * Vim LeaderGuide theme
 * Vimium (chromium extension)
+* FZF
 * Spotify
 * Slack
 * Ranger
@@ -47,7 +48,3 @@
 * Wallpaper tint
 * Tmux
 * AwesomeWM
-
-
-
-
