@@ -10,7 +10,7 @@
     mxcolr --update
 
 ## primary output file: `$XDG_CONFIG_HOME/mxc/theme.mx `
-### **sample** [theme.mx](data/sample_theme.mx)
+### **sample output** [theme.mx](data/sample_theme.mx)
 
 ***
 
