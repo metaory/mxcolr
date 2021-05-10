@@ -4,7 +4,7 @@ abs_diff () {
   echo $(($1 >= $2 ? $1 - $2 : $2 - $1))
 }
 ################################
-GEN_MIN_DISTANCE=40
+GEN_MIN_DISTANCE=20
 ATTMP_WARN_THRESHOLD=10
 
 # shellcheck disable=SC2034
@@ -85,7 +85,7 @@ gen_shades () {
 
   DK0="$(pastel darken  0.14 "$DKB" | pastel   saturate 0.20 | pastel format hex)"                                                            
   DK1="$(pastel darken  0.08 "$DKB" | pastel   saturate 0.16 | pastel format hex)"                                                            
-  DK2="$(pastel darken  0.06 "$DKB" | pastel   saturate 0.12 | pastel format hex)"                                                            
+  DK2="$(pastel darken  0.04 "$DKB" | pastel   saturate 0.12 | pastel format hex)"                                                            
   DK3="$(pastel darken  0.00 "$DKB" | pastel   saturate 0.04 | pastel format hex)"                                                            
   DK4="$(pastel lighten 0.06 "$DKB" | pastel   saturate 0.07 | pastel format hex)"                                                            
   DK5="$(pastel lighten 0.12 "$DKB" | pastel   saturate 0.06 | pastel format hex)"                                                            
@@ -97,8 +97,8 @@ gen_shades () {
 
   C00="$DK1"
   C08="$DK7"
-  XFG="$DL7"
-  C07="$DL8"
+  XFG="$DL6"
+  C07="$DL7"
   C15="$DL9"
 
   Info "Done" 0

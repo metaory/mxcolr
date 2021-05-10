@@ -125,7 +125,7 @@ ApplyGTKSpt () {
   if [[ "$XOPT" == *"noxsp"* ]]; then InfoIgnore; return; fi
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
 
-  Info "Useless .. " 1; return
+  # Info "Useless .. " 1; return
   oomoxify-cli -s /opt/spotify/Apps "$M_GTK"
   sleep 1
   Info "Done" 0
@@ -136,4 +136,5 @@ apply_gtk () {
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   ApplyGTKTheme
   ApplyGTKIcon
+  # ApplyGTKSpt
 }
