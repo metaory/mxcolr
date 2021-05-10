@@ -1,5 +1,8 @@
 # mxcolr
 
+#### :construction: NOT READY FOR PUBLIC USE :construction:
+#### :rotating_light: DO NOT RUN WITHOUT READING THE SOURCE FIRST :rotating_light:
+
 ## usage
     mxcolr --init
     mxcolr --demo
