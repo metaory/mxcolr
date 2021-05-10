@@ -12,7 +12,7 @@
 ### primary output file: `$XDG_CONFIG_HOME/mxc/theme.mx `
 ### **sample output** [theme.mx](data/sample_theme.mx)
 
-### **Plugins wiki** [Plugin Structure](plugins/README.md)
+### **Plugins Structure** [plugins-readme](plugins)
 
 ***
 
