@@ -8,7 +8,7 @@
   this function will be called with confirmation prompt
 
 ### the current active loaded theme variables are available to plugin
-#### ** sample variable** [theme.mx](data/sample_theme.mx)
+#### ** sample variable** [theme.mx](../data/sample_theme.mx)
 
 *** 
 
