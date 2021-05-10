@@ -21,9 +21,13 @@ color13                $C13
 color6                 $C06
 color14                $C14
 
-color21                $SBG
-color22                $WBG
-color23                $EBG
+color20                $SBG
+color21                $SFG
+color30                $WBG
+color31                $WFG
+color40                $EBG
+color41                $EFG
+
 background             $XBG
 foreground             $XFG
 selection_background   $OBG
