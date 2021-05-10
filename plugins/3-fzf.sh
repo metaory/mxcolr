@@ -18,5 +18,5 @@ InfoSourced
 apply_fzf () {
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   cp "$M_FZF" "$O_FZF"
-  Info "Done" 0
+  Info "" 0
 }

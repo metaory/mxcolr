@@ -13,10 +13,10 @@ Info () {
   local sf; sf="${4:-$(basename "${BASH_SOURCE[1]}")}"; sf="${sf::(-3)}"
   sf="${sf:0:6}"
   local fn; fn="${3:-${FUNCNAME[1]}}"
-  fn="${fn:0:10}"
+  fn="${fn:0:12}"
   local src="${sf} ${fn}"
 
-  local fill_len; fill_len=$((18-${#src}))
+  local fill_len; fill_len=$((19-${#src}))
   local fill; fill="$(printf '%0.s ' $(seq 1 ${fill_len}))"
 
   pastel paint -b -n -o 'black' "${fc}" "[${src}]"
@@ -29,7 +29,7 @@ InfoIgnore () {
 }
 
 InfoSourced () {
-  Info "  ${1:-_} $(basename "${BASH_SOURCE[1]}") " 2 "${FUNCNAME[1]}" "$(basename "${BASH_SOURCE[1]}")"
+  Info "   $1" 2 "${FUNCNAME[1]}" "$(basename "${BASH_SOURCE[1]}")"
 }
 
 PressToContinue () {
@@ -38,12 +38,9 @@ PressToContinue () {
   local fn; fn="${FUNCNAME[1]}"
   pastel paint -b -n -o 'black' "$WBX" "[${fn}]"
   pastel paint -b -n "$C03"   " continue"
-  pastel paint -b -n "$C01"   "  "
-
-  
-  MXSep; MXDots; MXSep; pl
+  pastel paint -b -n "$C01"   "  "; MXDots; MXSep; pl
   if [[ "$XOPT" = full ]]; then REPLY='y'; pl '-'; return; fi
-  read -n 1 -r
+  read -n 1 -r -s
   pl '-'
 }
 
@@ -69,13 +66,13 @@ PromptConfirm () {
   pastel paint "$WBG" -n "${msg^} "
   pastel paint "$SBG" -n -b "[y/N] "
   read -n 1 -r; pl; if [[ "$REPLY" =~ ^[Yy]$ ]]; then
-  pastel paint -o "$CX2" "black" -b "  Accepted  ···  "; else
-  pastel paint -o "$CX3" "black" -b "  Rejected  ···  "; fi
+  pastel paint -o "$C00" "$CX2" -b "  ·  "; else
+  pastel paint -o "$C00" "$CX3" -b "  ·  "; fi
 }
 PromptContinue () {
   local fn; fn="${FUNCNAME[1]}"
 
-  local fill_len; fill_len=$((17-${#fn}))
+  local fill_len; fill_len=$((20-${#fn}))
   local fill; fill="$(printf '%0.s ' $(seq 1 ${fill_len}))"
 
   pastel paint -b -n -o 'black' "$EBG" "[${fn}]"

@@ -101,7 +101,7 @@ ApplyGTKTheme () {
   notify "╸頋━  ━  ${MXC_V} in 3s ⏲" ; sleep 1
   oomox-cli --make-opts all -o "$MXC_V" -t "$HOME"/.themes -m all "$O_GTK"
   cp "$M_GTK" /opt/oomox/plugins/import_random/colors/random3
-  Info "Done" 0
+  Info "" 0
   sleep 1
 }
 # ............................ #
@@ -117,7 +117,7 @@ ApplyGTKIcon () {
     -e "/^gtk-cursor-theme-name/s/=.+$/=${CURSOR_THEME}/" \
     "$XDG_CONFIG_HOME"/gtk-3.0/settings.ini
 
-  Info "Done" 0
+  Info "" 0
   sleep 1
 }
 # ............................ #
@@ -128,7 +128,7 @@ ApplyGTKSpt () {
   # Info "Useless .. " 1; return
   oomoxify-cli -s /opt/spotify/Apps "$M_GTK"
   sleep 1
-  Info "Done" 0
+  Info "" 0
 }
 
 apply_gtk () {

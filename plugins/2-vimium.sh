@@ -26,7 +26,7 @@ __update () {
     -e "s/--purple-dark:.+$/--purple-dark: ${EBG};/" \
     "$target"
 
-  InfoSourced
+  Info "$(basename "$2")" 0
 }
 
 __update "$M_CHR1"
@@ -40,6 +40,6 @@ apply_vimium () {
 
   cp "$M_CHR1" "$O_CHR1"
   cp "$M_CHR2" "$O_CHR2"
-  Info "Done" 0
+  Info "" 0
 }
 

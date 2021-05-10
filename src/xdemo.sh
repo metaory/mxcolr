@@ -18,8 +18,21 @@ tx=(SBG WBG EBG)
 dk=(DK0 DK1 DK2 DK3 DK4 DK5 DK6 DK7 DL8 DL9)
 dl=(DL0 DK1 DK2 DK3 DL4 DL5 DL6 DL7 DL8 DL9)
 # ////////////////////////////  
+Demo_large_block () {
+  
+  pl '-'; pl '-'; pl '-'; pl '-'
+  sp_block_d_middl='████'
+  fill 5 ; pl "${tx[0]}" "▄▄▄" ; prntlist 'pl:sp_block_d' "${tx[@]}" ; pl "${tx[-1]}" '▀▀▀' ; pl '-'
+  pl '-'; pl '-'; pl '-'; pl '-'
+}
+# ////////////////////////////  
 Demo_block () {
-  fill 5 ; pl "${tx[0]}" " ▄▄" ; prntlist 'prnt:sp_block_d' "${tx[@]}" ; pl "${tx[-1]}" '▀▀' ; pl '-'
+  pl '-' 
+  if [[ -z $2 ]]; then
+    fill 6 ; pl "${tx[0]}" "   " ; pl "${tx[0]}" "${1-·}" ; pl "${tx[1]}"  "${MXNAME}" ;pl "${tx[2]}" "·"; pl '-'
+  fi
+  fill 5 ; pl "${tx[0]}"   " ▄▄" ; prntlist 'prnt:sp_block_d' "${tx[@]}" ; pl "${tx[-1]}" '▀▀' ; pl '-'
+  pl '-'
 }
 Demo_full_block () {
   local head="${1:-}"
@@ -30,7 +43,7 @@ Demo_full_block () {
 Demo_slant () {
   # ########################################
   # echo "DEMO SLANT, ${cb[*]}"
-  Demo_block
+  Demo_block 1
   # fill 1 ; pl                  ; prntlist 'pl:sp_line'  "${tx[@]}"  ; pl '-'
   # ........................................
   # ########################################
@@ -132,7 +145,6 @@ MXDotLine () {
 }
 MXDotLine-full () {
   local cols;cols=$(tput cols); fill 0
-  # pl 'C08' '·╺╺╺╸╺━╸⏽'; MXDots-full; pl 'C08' '⏽╺━╸╺╸╸╸·'; pl '-'
   pl 'C08' '·╺╺╺╸━╸╺━╸⏽'; MXDots-full; pl 'C08' '⏽╺━╸╺━╺╸╸╸·'; pl '-'
 }
 # shellcheck disable=SC2046
@@ -140,7 +152,7 @@ __randmico () { shuf -n 1 -e $(cat ~/mxx/mico/uni-etc); }
 
 MXMico () { ( (( RANDOM % 2 )) &&  MXDots ) || __randmico; }
 
-MXIntro () { ( (( RANDOM % 2 )) &&  MXDotLine ) || Demo_block; }
+MXIntro () { ( (( RANDOM % 2 )) &&  MXDotLine ) || Demo_block 0 0; }
 MYIntro () { 
   case $(( RANDOM % 3 )) in
     0 ) MXDotLine ;;

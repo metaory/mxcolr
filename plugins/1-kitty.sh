@@ -43,5 +43,5 @@ apply_kitty () {
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   cp "$M_KIT" "$O_KIT"
   # kitty @ "$KSOCK" set-colors "$KFLAG" "$MXKIT" 2>/dev/null
-  Info "Done" 0
+  Info '' 0
 }
