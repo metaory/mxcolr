@@ -9,7 +9,9 @@ ListSnapshots () {
     . "$snap"/theme.mx
     local slabel; slabel="$(basename "$snap" | cut -d'_' -f2-3)"
     # Demo_card "$slabel" "$((sid+1))" "$total"
-    Demo_full_block "$((sid+1))/$total [$slabel]"
+    # prnt "WBG" "$((sid+1))"
+    Demo_block "[$((sid+1))] "
+    # Demo_full_block "$((sid+1))/$total [$slabel]"
   done
   pastel paint "$XFG" -n "select "
   pastel paint "$XFG" -b -n "(0-$total): "
@@ -83,7 +85,7 @@ SaveSnapshot () {
   local sname; sname="${stamp}_${ccount}_${MXNAME}"
   local spath="$MXSNAP"/"$sname"
   cp "$MXDIST" "$spath" -r
-  pastel paint "$C02" -n " created. "
+  Info '' 0
   pastel paint "$C02" -o "$DK0" -b "$spath"
     # local slabel; slabel="$(basename "$snap" | cut -d'_' -f2-3)"
 }

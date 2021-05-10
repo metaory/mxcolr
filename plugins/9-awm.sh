@@ -9,7 +9,7 @@ ApplyWallpaper () {
   convert "$HOME"/pics/wall/BASE.png -fill "${WBG}" -tint 100%  "$HOME"/pics/wall/curr.png
   # convert "$HOME"/pics/wall/curr.png -fill "${WBG}" -tint 100%  "$HOME"/pics/wall/curr.png
   cp "$HOME"/pics/wall/curr.png "$HOME"/pics/wall/hist/"${stamp}".png
-  Info "Done" 0
+  Info "" 0
 }
 # ////////////////////////////  
 ################################
@@ -34,7 +34,7 @@ ApplyIcons () {
   # sudo cp ~mtheme/icons/steam/steam_tray_mono.png /usr/share/pixmaps/steam_tray_mono.png
   # cp /usr/share/pixmaps/steam_tray_mono.png /tmp/mx__steam_tray_mono.png
   convert /usr/share/pixmaps/steam_tray_mono.png -fill "${DL6}" -colorize 100%  /usr/share/pixmaps/steam_tray_mono.png
-  Info "Done" 0
+  Info "" 0
 }
 # ////////////////////////////  
 # ////////////////////////////  
@@ -45,7 +45,7 @@ RestartAWM () {
   # awesome --replace & disown
   killall nm-applet
   nm-applet & disown
-  Info "Done" 0
+  Info "" 0
 }
 
 apply_awm () {

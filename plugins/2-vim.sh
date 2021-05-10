@@ -341,5 +341,5 @@ apply_vim () {
   cp "$O_VIM3" "$Z_VIM3"
   cp "$O_VIM4" "$Z_VIM4"
   cp "$O_VIM5" "$Z_VIM5"
-  Info "Done" 0
+  Info "" 0
 }

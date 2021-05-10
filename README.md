@@ -9,17 +9,21 @@
     mxcolr --generate
     mxcolr --update
 
+## primary output file: `$XDG_CONFIG_HOME/mxc/theme.mx `
+### **sample** [theme.mx](data/sample_theme.mx)
+
+***
+
 ## demos
   ![screenshot](data/2021-05-10-021854_1920x1080_scrot.png)
 
   ***
   
-  #### generate
-  ![generate](data/generate_210510015619.gif)
-  ***
-  #### update
-  ![update](data/update_210510015713.gif)
-
+#### generate
+![generate](data/generate_210510015619.gif)
+***
+#### update
+![update](data/update_210510015713.gif)
 
 ## requirements
 * [pastel](https://github.com/sharkdp/pastel)

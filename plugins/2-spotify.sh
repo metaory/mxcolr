@@ -30,7 +30,7 @@ preserve_1                            =${EBG:1}
 selected_button                       =${DK4:1}
 slider_bg                             =${DK4:1}
 miscellaneous_bg                      =${DK4:1}
-secondary_fg                          =${DK5:1}
+secondary_fg                          =${DL6:1}
 indicator_fg_and_button_bg            =${SBG:1}
 pressing_fg                           =${SBG:1}
 cover_overlay_and_shadow              =${XBG:1}
@@ -78,7 +78,7 @@ temporary_legacy_spotify_hack () {
     -e "s/${PRE_GLUE}/${NEW_GLUE}/g" \
     "$SPICETIFY_PATH"/Extracted/Themed/glue-resources/css/glue.css
 
-  Info "Legacy Hack Done" 0
+  Info '' 0
 }
 
 apply_spotify () {
@@ -91,6 +91,6 @@ apply_spotify () {
 
   spicetify update
   spicetify apply -n
-  Info "Done" 0
+  Info "" 0
 }
 

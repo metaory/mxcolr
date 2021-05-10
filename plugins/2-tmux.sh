@@ -44,7 +44,7 @@ apply_tmux () {
     set-option  -gw  "@OBG" "$OBG"
 
   tmux -L "$TSOCK"  run-shell "tmux source-file $M_THEME"
-  Info "Done" 0
+  Info "" 0
 }
 
 

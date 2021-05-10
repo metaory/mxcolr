@@ -61,4 +61,6 @@ gen_ansi () {
   TK7="$(_ansi DK7)"
   TK8="$(_ansi DK8)"
   TK9="$(_ansi DK9)"
+
+  Info '' 0
 }

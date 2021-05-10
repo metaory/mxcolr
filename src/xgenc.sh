@@ -62,7 +62,7 @@ gen_idiomatic () {
   WFG="$(pastel textcolor      "$WBG" | pastel darken 0.2           | pastel format hex)"
   EFG="$(pastel textcolor      "$EBG" | pastel darken 0.2   | pastel saturate 0.20 | pastel format hex)"
   SFG="$(pastel textcolor      "$SBG" | pastel darken 0.2   | pastel saturate 0.20 | pastel format hex)"
-  Info "Done" 0
+  Info '' 0
 } 
 
 # shellcheck disable=SC2034
@@ -97,11 +97,11 @@ gen_shades () {
 
   C00="$DK1"
   C08="$DK7"
-  XFG="$DL6"
+  XFG="$DL8"
   C07="$DL7"
   C15="$DL9"
 
-  Info "Done" 0
+  Info '' 0
 }
 # ## <<< ##########
 # #################
@@ -116,7 +116,7 @@ GeneratePalette () {
   SaveSeed
   SaveTheme
   LoadTempTheme
-  Info "Done" 0
+  Info '' 0
 }
 ################################
 ################################
@@ -128,7 +128,7 @@ UpdatePalette () {
 
   SaveTheme
   LoadTempTheme
-  Info "Done" 0
+  Info '' 0
 }
 ################################
 
