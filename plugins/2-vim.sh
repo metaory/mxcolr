@@ -34,7 +34,7 @@ sed -r -i \
   -e "/^hi CursorLineNr/s/guifg=.\w+/guifg=$WBX/" \
   -e "/^hi LineNr/s/guifg=.\w+/guifg=$DK4/" \
   -e "/^hi Title/s/guifg=.\w+/guifg=$SBG/" \
-  -e "/^hi EndOfBuffer/s/guibg=.\w+/guibg=$DK0/" \
+  -e "/^hi EndOfBuffer/s/guibg=.\w+/guibg=$DK1/" \
   -e "/^hi CursorColumn/s/guibg=.\w+/guibg=$DK2/" \
   -e "/^hi CursorLine/s/guibg=.\w+/guibg=$DK2/" \
   -e "/^hi ColorColumn/s/guibg=.\w+/guibg=$WBG/" \
@@ -336,10 +336,11 @@ apply_vim () {
   cp "$M_VIM4" "$O_VIM4"
   cp "$M_VIM5" "$O_VIM5"
 
-  cp "$O_VIM1" "$Z_VIM1"
-  cp "$O_VIM2" "$Z_VIM2"
-  cp "$O_VIM3" "$Z_VIM3"
-  cp "$O_VIM4" "$Z_VIM4"
-  cp "$O_VIM5" "$Z_VIM5"
+  cp "$O_VIM1" "$Z_VIM1"; Info "...${Z_VIM1:(-20)}" 0
+  cp "$O_VIM2" "$Z_VIM2"; Info "...${Z_VIM2:(-20)}" 0
+  cp "$O_VIM3" "$Z_VIM3"; Info "...${Z_VIM3:(-20)}" 0
+  cp "$O_VIM4" "$Z_VIM4"; Info "...${Z_VIM4:(-20)}" 0
+  cp "$O_VIM5" "$Z_VIM5"; Info "...${Z_VIM5:(-20)}" 0
+  
   Info "" 0
 }

@@ -27,12 +27,10 @@ Demo_large_block () {
 }
 # ////////////////////////////  
 Demo_block () {
-  pl '-' 
   if [[ -z $2 ]]; then
     fill 6 ; pl "${tx[0]}" "   " ; pl "${tx[0]}" "${1-·}" ; pl "${tx[1]}"  "${MXNAME}" ;pl "${tx[2]}" "·"; pl '-'
   fi
   fill 5 ; pl "${tx[0]}"   " ▄▄" ; prntlist 'prnt:sp_block_d' "${tx[@]}" ; pl "${tx[-1]}" '▀▀' ; pl '-'
-  pl '-'
 }
 Demo_full_block () {
   local head="${1:-}"
