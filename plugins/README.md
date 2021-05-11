@@ -1,14 +1,16 @@
 # mxcolr plugin structure
 
-### each `sh` file presents in `./plugins` folder is treated as a plugin and sourced
+### each `sh` file presents in `./plugins` folder is treated as a plugin and is sourced
 ### its expected to follow these patterns:
-* filename: [0-9]-[a-z].sh
-  the prefix number is the order it loads
-* a function named `apply_{plugin_name}`
+* filename: `[0-9]-[a-z_].sh` _`1-vim_airline.sh`_
+  * prefix number is the `order` its loaded 
+  _(for plugins that depends on other plugins)_
+  * suffix the `plugin_name`
+* plugin file is expected to have a function named `apply_{plugin_name}`
   this function will be called with confirmation prompt
 
-### the current active loaded theme variables are available to plugin
-#### ** sample variable** [theme.mx](../data/sample_theme.mx)
+### current active loaded theme variables are available to plugin
+#### **sample variable** [theme.mx](../data/sample_theme.mx)
 
 *** 
 
