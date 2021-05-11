@@ -30,12 +30,15 @@ flags
 lch strategy
 ------------
 ![lch](data/lch_210511171753.gif)
+
 vivid strategy
 --------------
 ![vivid](data/vivid_210511172635.gif)
+
 update
 ------
 ![update](data/update_210511172824.gif)
+
 snapshot list
 -------------
 ![list](data/list_210511173612.gif)
