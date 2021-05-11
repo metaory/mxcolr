@@ -1,13 +1,24 @@
 # mxcolr
 
-#### :construction: NOT READY FOR PUBLIC USE :construction:
-#### :rotating_light: DO NOT RUN WITHOUT READING THE SOURCE FIRST :rotating_light:
+## :construction: NOT READY FOR PUBLIC USE :construction:
 
-## usage
+usage
+=====
     mxcolr --init
+    mxcolr --generate <strategy>
     mxcolr --demo
-    mxcolr --generate
     mxcolr --update
+
+flags
+=====
+    -i, --init                | initial bootstrap
+    -g, --generate <strategy> | vivid, lch (Pastel randomization strategy) default is vivid 
+    -u, --update              | apply to all plugins
+    -U, --update-force        | force apply to all plugins without any prompts
+    -d, --demo                | basic demo
+    -D, --demo-all            | complete demo
+    -l, --list                | list all saved snapshots
+    -s, --save                | save snapshot
 
 ### primary output file: `$XDG_CONFIG_HOME/mxc/theme.mx `
 ### **sample output** [theme.mx](data/sample_theme.mx)
@@ -16,42 +27,53 @@
 
 ***
 
-## demos
-  ![screenshot](data/2021-05-10-021854_1920x1080_scrot.png)
-
-  ***
+lch strategy
+------------
+![lch](data/lch_210511171753.gif)
+vivid strategy
+--------------
+![vivid](data/vivid_210511172635.gif)
+update
+------
+![update](data/update_210511172824.gif)
+snapshot list
+-------------
+![list](data/list_210511173612.gif)
   
-#### generate
-![generate](data/generate_210510015619.gif)
 ***
-#### update
-![update](data/update_210510015713.gif)
+  
+![screenshot](data/2021-05-10-021854_1920x1080_scrot.png)
 
-## requirements
-* [pastel](https://github.com/sharkdp/pastel)
+***
 
-## optional requirements
-* [oomox](https://github.com/themix-project/oomox)
-* [spicetify-cli](https://github.com/khanhas/spicetify-cli)
-* [ffmpeg](https://github.com/FFmpeg/FFmpeg)
+Requirements
+------------
+- [pastel](https://github.com/sharkdp/pastel)
 
-## currently supporting
-* Xresource scheme
-* Kitty terminal
-* ~~Alacritty terminal~~
-* Vim colorscheme
-* Vim Airline theme
-* Vim LeaderF theme
-* Vim LeaderGuide theme
-* Vimium (chromium extension)
-* FZF
-* Spotify
-* Slack
-* Ranger
-* P10k
-* GTK Theme
-* GTK Icon Theme
-* Wallpaper tint
-* Tmux
-* AwesomeWM
+Optional Requirements
+---------------------
+- [oomox](https://github.com/themix-project/oomox)
+- [spicetify-cli](https://github.com/khanhas/spicetify-cli)
+- [ffmpeg](https://github.com/FFmpeg/FFmpeg)
+
+Plugins
+-------
+- Xresource scheme
+- Kitty terminal
+- ~~Alacritty terminal~~
+- Vim colorscheme
+- Vim Airline theme
+- Vim LeaderF theme
+- Vim LeaderGuide theme
+- Vimium (chromium extension)
+- FZF
+- Spotify
+- Slack
+- Ranger
+- P10k
+- GTK Theme
+- GTK Icon Theme
+- Wallpaper tint
+- Tmux
+- AwesomeWM
 

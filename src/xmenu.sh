@@ -37,7 +37,7 @@ PressToContinue () {
   [ -n "$1" ] && pastel paint "${C03:-yellow}" -b " [ $1 ] "
   local fn; fn="${FUNCNAME[1]}"
   pastel paint -b -n -o 'black' "$WBX" "[${fn}]"
-  pastel paint -b -n "$C03"   " continue"
+  pastel paint -b -n "$C03"   " press any key to continue"
   pastel paint -b -n "$C01"   "  "; MXDots; MXSep; pl
   if [[ "$XOPT" = full ]]; then REPLY='y'; pl '-'; return; fi
   read -n 1 -r -s
@@ -47,17 +47,19 @@ PressToContinue () {
 BG_Sep () { 
 local s; s=''
 [[ -n "$1" ]] && s='█'
-pastel paint -n -o "${2:-$DK0}" "${1:-$XBG}" "$s"
+pastel paint -n -o "${2:-black}" "${1:-$XBG}" "$s"
 }
 PrompRand () {
-  pastel paint -n    -o "$WBG" "$C00" "  "  ; BG_Sep "$WBG"                              ; BG_Sep
-  pastel paint -n -b -o "$DK0" "$C05" " [k]" ; pastel paint -n -o "$DK0" "$C07" "eep "    ; BG_Sep
-  pastel paint -n -b -o "$DK0" "$C02" " [R]" ; pastel paint -n -o "$DK0" "$C07" "evert "  ; BG_Sep
-  pastel paint -n -b -o "$DK0" "$C01" " [u]" ; pastel paint -n -o "$DK0" "$C07" "update " ; BG_Sep
-  pastel paint -n -b -o "$DK0" "$C03" " [n]" ; pastel paint -n -o "$DK0" "$C07" "ext "    ; BG_Sep
-  pastel paint -n -b -o "$DK0" "$C06" " [d]" ; pastel paint -n -o "$DK0" "$C07" "emo"     ; BG_Sep "$DK0" "$XBG"
+  pastel paint -n    -o "$WBG" "$WFG" "  "  ; BG_Sep "$WBG"                              ; BG_Sep
+  pastel paint -n -b -o "black" "$C05" " [k]" ; pastel paint -n -o "black" "$C07" "eep "    ; BG_Sep
+  pastel paint -n -b -o "black" "$C02" " [R]" ; pastel paint -n -o "black" "$C07" "evert "  ; BG_Sep
+  pastel paint -n -b -o "black" "$C01" " [u]" ; pastel paint -n -o "black" "$C07" "update " ; BG_Sep
+  pastel paint -n -b -o "black" "$C03" " [n]" ; pastel paint -n -o "black" "$C07" "ext "    ; BG_Sep
+  pastel paint -n -b -o "black" "$C06" " [d]" ; pastel paint -n -o "black" "$C07" "emo"     ; BG_Sep "black" "$XBG"
   read -n 1 -r -s
-  pastel paint -o "$SBG" "$SFG" -b " $REPLY "
+  pastel paint -o "$XBG" "$SBG" -b -n "█"
+  pastel paint -o "$SBG"  "$SFG" -b -n "$REPLY"
+  pastel paint -o "$XBG" "$SBG" -b    "█"
 }
 
 PromptConfirm () {
@@ -67,7 +69,7 @@ PromptConfirm () {
   pastel paint "$SBG" -n -b "[y/N] "
   read -n 1 -r; pl; if [[ "$REPLY" =~ ^[Yy]$ ]]; then
   pastel paint -o "$C00" "$CX2" -b "  ·  "; else
-  pastel paint -o "$C00" "$CX3" -b "  ·  "; fi
+  pastel paint -o "$C00" "$CX3" -b "  ·  "; fi
 }
 PromptContinue () {
   local fn; fn="${FUNCNAME[1]}"

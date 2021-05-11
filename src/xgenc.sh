@@ -4,16 +4,44 @@ abs_diff () {
   echo $(($1 >= $2 ? $1 - $2 : $2 - $1))
 }
 ################################
-GEN_MIN_DISTANCE=20
+GEN_MIN_DISTANCE=30
 ATTMP_WARN_THRESHOLD=10
 
 # shellcheck disable=SC2034
 gen_random () {
 
   local attmp="${1:-1}"
-  WBG="$(pastel random -n 1 -s lch_hue | pastel saturate        0.40 | pastel darken   0.10 | pastel format hex)"
-  SBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel saturate 0.30 | pastel format hex)"
-  EBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel saturate 0.30 | pastel format hex)"
+  # XBG="$(pastel set hsl-saturation   0.14 "$WBG" | pastel set hsl-lightness 0.08 | pastel format hex)"
+
+
+  # -- [[
+  # SBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel saturate 0.30 | pastel format hex)"
+  # EBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel saturate 0.30 | pastel format hex)"
+  # --]
+  # WBG="$(pastel random -n 1 -s lch_hue | pastel saturate        0.40 | pastel darken   0.10 | pastel format hex)"
+  # SBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel format hex)"
+  # EBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel format hex)"
+
+  # PressToContinue "XOPT $XOPT"
+  local strategy="${XOPT:-lch}"; [[ "$strategy" == 'lch' ]] && strategy='lch_hue'
+  local darken='0.10'; [[ "$strategy" == 'vivid' ]] && darken='0.2'
+  # PressToContinue "strategy $strategy"
+  mlg "strategy $strategy"
+
+  WBG="$(pastel random -n 1 -s lch_hue     | pastel saturate        0.40 | pastel darken 0.10      | pastel format hex)"
+  SBG="$(pastel random -n 1 -s "$strategy" | pastel mix - "$WBG" -f 0.70 | pastel darken "$darken" | pastel format hex)"
+  EBG="$(pastel random -n 1 -s "$strategy" | pastel mix - "$WBG" -f 0.70 | pastel darken "$darken" | pastel format hex)"
+
+  local WBG_SAT; WBG_SAT="$(pastel format hsl-saturation "$WBG")"; WBG_SAT="${WBG_SAT:2:2}"
+  local SBG_SAT; SBG_SAT="$(pastel format hsl-saturation "$SBG")"; SBG_SAT="${SBG_SAT:2:2}"
+  local EBG_SAT; EBG_SAT="$(pastel format hsl-saturation "$EBG")"; EBG_SAT="${EBG_SAT:2:2}"
+
+  mlg "$(pastel format hsl-saturation "$SBG") $(pastel format hsl-saturation "$EBG")"
+  (( SBG_SAT < 75 )) && SBG="$(pastel saturate 0.25 "$SBG" | pastel format hex)"
+  (( EBG_SAT < 75 )) && EBG="$(pastel saturate 0.25 "$EBG" | pastel format hex)"
+  mlg "$(pastel format hsl-saturation "$SBG") $(pastel format hsl-saturation "$EBG")"
+  # pastel format hsl-saturation "$SBG"; pastel format hsl-saturation "$EBG"
+
 
   local WBG_HUE; WBG_HUE="$(pastel format lch-hue "$WBG")"; WBG_HUE="${WBG_HUE::(-3)}"
   local SBG_HUE; SBG_HUE="$(pastel format lch-hue "$SBG")"; SBG_HUE="${SBG_HUE::(-3)}"
@@ -27,7 +55,7 @@ gen_random () {
   mlg "ATTMP ${attmp} >> WH:${WBG_HUE} :: [SH:${SBG_HUE} SD:${S_distance}] [EH:${EBG_HUE} ED:${E_distance}]"
   if (( S_distance < GEN_MIN_DISTANCE || E_distance < GEN_MIN_DISTANCE || X_distance < GEN_MIN_DISTANCE )); then
     # pastel format hex "$WBG"; pastel format hex "$SBG"; pastel format hex "$EBG"
-    if ! (( attmp % ATTMP_WARN_THRESHOLD )); then PressToContinue "failed $attmp attempts, still continue?"; fi
+    ! (( attmp % ATTMP_WARN_THRESHOLD )) && PressToContinue "failed $attmp attempts, still continue?"
     gen_random $((++attmp))
   else
     mlg "attempt $attmp succeeded, proceeding"; return
@@ -59,9 +87,9 @@ gen_idiomatic () {
   CX5="$(pastel saturate  0.25 "$C05" | pastel darken  0.02  | pastel format hex)" ; # C05
   CX6="$(pastel saturate  0.25 "$C06" | pastel darken  0.02  | pastel format hex)" ; # C06
 
-  WFG="$(pastel textcolor      "$WBG" | pastel darken 0.2           | pastel format hex)"
-  EFG="$(pastel textcolor      "$EBG" | pastel darken 0.2   | pastel saturate 0.20 | pastel format hex)"
-  SFG="$(pastel textcolor      "$SBG" | pastel darken 0.2   | pastel saturate 0.20 | pastel format hex)"
+  WFG="$(pastel textcolor      "$WBG" | pastel darken 0.2 | pastel format hex)"
+  EFG="$(pastel textcolor      "$EBG" | pastel darken 0.2 | pastel saturate 0.20 | pastel format hex)"
+  SFG="$(pastel textcolor      "$SBG" | pastel darken 0.2 | pastel saturate 0.20 | pastel format hex)"
   Info '' 0
 } 
 

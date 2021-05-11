@@ -43,3 +43,4 @@ apply_vimium () {
   Info "" 0
 }
 
+

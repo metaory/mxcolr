@@ -1,6 +1,24 @@
 #!/usr/bin/env bash
 
-experimental () {
+XP_2 () {
+
+  gen_random
+  gen_idiomatic
+  gen_shades
+  DemoLive
+  PrompRand
+  case $REPLY in
+    k ) Info 'nope ·';;
+    u ) Info 'nope··';;
+    n ) Info 'Again ·········'; XP_2  ;;
+    d ) Info 'Full Demo ·····'; DemoAll    ;;
+    * ) Info 'Reverting ·····'; Revert     ;;
+  esac
+}
+
+# ///////////////////////////////////////////
+
+XP_1 () {
   Info "(XP) XOPT $XOPT"
   local cx=(WBG SBG EBG)
 
@@ -102,11 +120,6 @@ experimental () {
  # fill 4; prntlist 'prnt:sp_block_l' "${ca[@]}"; printf 'EXP-3'; pl '-'
   exit
 }
-
-XP_2 () {
-
- a=$(pastel random -n 1 -s lch_hue| pastel format hex )
-echo "$a" | pastel format hex
 # echo "$a" | pastel rotate 20    | pastel format hex
 # echo --
 # echo "$a" | pastel set red 100  | pastel format hex
@@ -115,7 +128,6 @@ echo "$a" | pastel format hex
 # echo "$a" | pastel set red 1000 | pastel format hex
 # echo "$a" | pastel set red 9000 | pastel format hex
 
-}
 
   # local strategy
   # # strategy="${XOPT:-alpha}"

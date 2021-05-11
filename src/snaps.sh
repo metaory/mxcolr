@@ -4,17 +4,25 @@ ListSnapshots () {
   local snapshots=("$MXSNAP"/*)
 
   total="${#snapshots[@]}"
+  local slen;slen="$(MXDots)";slen="${#slen}"
   for sid in "${!snapshots[@]}"; do
     local snap=${snapshots[$sid]}; mlg "$snap"
     . "$snap"/theme.mx
     local slabel; slabel="$(basename "$snap" | cut -d'_' -f2-3)"
     # Demo_card "$slabel" "$((sid+1))" "$total"
     # prnt "WBG" "$((sid+1))"
-    Demo_block "[$((sid+1))] "
+    # Demo_block "[$((sid+1))] "
+    local brk; brk=$(tput cols);brk=$((brk/(slen * 2)))
+    ! (( sid % brk )) && echo
+    printf ' '
+    MXSep
+    pastel paint -o "$XBG" -b -n "$XFG" "$(printf '%#2d\n' "$sid")"
+    MXDots
+    MXSep
+
     # Demo_full_block "$((sid+1))/$total [$slabel]"
   done
-  pastel paint "$XFG" -n "select "
-  pastel paint "$XFG" -b -n "(0-$total): "
+  echo;echo; pastel paint "$XFG" -n "select "; pastel paint "$XFG" -b -n "(0-$total): "
   read -r choice
   if ! [[ "$choice" =~ ^[0-9]+$ ]]; then 
     pastel paint "$C01" -b "($choice) numbers only "
