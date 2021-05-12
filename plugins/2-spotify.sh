@@ -46,7 +46,7 @@ meta_high                             =${C11:1}
 meta_amber                            =${EBG:1}
 EOF
 
-InfoSourced
+InfoDone "$SPOTIFY_TEMP"
 
   # TODO remove me 
   # NOT NEEDED
@@ -79,7 +79,7 @@ temporary_legacy_spotify_hack () {
     -e "s/${PRE_GLUE}/${NEW_GLUE}/g" \
     "$SPICETIFY_PATH"/Extracted/Themed/glue-resources/css/glue.css
 
-  Info '' 0
+  InfoDone
 }
 
   # TODO remove me 
@@ -92,11 +92,12 @@ patch_all_css () {
     -e "s/$1\;/var\(--modspotify_$2\)\;/g" \
     -e "s/$1\}/var\(--modspotify_$2\)\}/g" \
       "$3"
-  Info "$1>$2" 2; echo "==> ${3:(-40)}"
+  Info "$1>$2" 0 "${3}"
 }
 # TODO remove me 
 # NOT NEEDED
 patch_legacy_spotify () {
+  PressToContinue "PATCHING LEGACY CSS BROKEN BY [oomoxify-cli:$MXBASE/plugins/4-gtk.sh@ApplyGTKSpt] "
   patch_all_css '#110d0f' 'scrollbar_fg_and_selected_row_bg' "$SPICETIFY_PATH"/Extracted/Themed/glue-resources/css/glue.css
   patch_all_css '#12131e' 'sidebar_and_player_bg'            "$SPICETIFY_PATH"/Extracted/Themed/glue-resources/css/glue.css
   patch_all_css '#0d0609' 'sidebar_and_player_bg'            "$SPICETIFY_PATH"/Extracted/Themed/glue-resources/css/glue.css
@@ -126,6 +127,6 @@ apply_spotify () {
 
   spicetify update
   spicetify apply -n
-  Info "" 0
+  InfoDone "$SPICETIFY_PATH/Themes/Metafy/color.ini"
 }
 

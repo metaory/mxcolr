@@ -13,10 +13,10 @@ sed -r \
   -e "s/^export FZF_DEFAULT_OPTS=.+$/export FZF_DEFAULT_OPTS=\"$FZF_COLOR_OPTS\"/" \
   "$O_FZF" > "$M_FZF"
 
-InfoSourced
+InfoDone "$M_FZF"
 
 apply_fzf () {
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   cp "$M_FZF" "$O_FZF"
-  Info "" 0
+  InfoDone "$O_FZF"
 }

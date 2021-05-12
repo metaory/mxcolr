@@ -58,11 +58,11 @@ X_OUT=$MXBASE/src/x_out.sh
 #  ............................ .........................................#
 ClearTemp     () { Info ' Cleaning temp'           ; rm "$MXTEMP"/*         || { Info "empty dir    " 2 && echo "$MXTEMP"            ; } }
 #  ............................ .........................................#
-SaveSeed      () { Info " Save Temp Seed"  ; echo "==> ${XSEED:(-40)}"  ; . "$XSEED"             || { Info "missing file " 1 && echo "$XSEED"   && exit 1 ; } }
-SaveTheme     () { Info " Save Temp Theme" ; echo "==> ${X_OUT:(-40)}"  ; . "$X_OUT"             || { Info "missing file " 1 && echo "$X_OUT"   && exit 1 ; } }
+SaveSeed      () { Info " Save Temp Seed"  ; InfoDone "$XSEED" ; . "$XSEED" || { Info "missing file " 1 && echo "$XSEED"   && exit 1 ; } }
+SaveTheme     () { Info " Save Temp Theme" ; InfoDone "$X_OUT" ; . "$X_OUT" || { Info "missing file " 1 && echo "$X_OUT"   && exit 1 ; } }
 #  ............................ .........................................#
-ReleaseSeed   () { Info " Release Seed"  0 ; echo "==> ${O_SEED}"       ; cp "$M_SEED" "$O_SEED" || { Info "missing file " 1 && echo "$M_SEED"  && exit 1 ; } }
-ReleaseTheme  () { Info " Release Theme" 0 ; echo "==> ${OTHEME}"       ; cp "$MTHEME" "$OTHEME" || { Info "missing file " 1 && echo "$MTHEME"  && exit 1 ; } }
+ReleaseSeed   () { Info " Release Seed"  0 ; InfoDone "$O_SEED"       ; cp "$M_SEED" "$O_SEED" || { Info "missing file " 1 && echo "$M_SEED"  && exit 1 ; } }
+ReleaseTheme  () { Info " Release Theme" 0 ; InfoDone "$OTHEME"       ; cp "$MTHEME" "$OTHEME" || { Info "missing file " 1 && echo "$MTHEME"  && exit 1 ; } }
 #  ............................ .........................................#
 LoadTempTheme () { Info ' Load Temp Theme'         ; . "$MTHEME"            || { Info "missing file " 1 && echo "$MTHEME"  && exit 1 ; } }
 LoadProdTheme () { Info ' Load Prod Theme'         ; . "$OTHEME"            || { Info "missing file " 1 && echo "$OTHEME"  && exit 1 ; } }
