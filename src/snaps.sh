@@ -22,7 +22,7 @@ ListSnapshots () {
 
     # Demo_full_block "$((sid+1))/$total [$slabel]"
   done
-  echo;echo; pastel paint "$XFG" -n "select "; pastel paint "$XFG" -b -n "(0-$total): "
+  echo;echo; pastel paint "$XFG" -n "select "; pastel paint "$XFG" -b -n "(0-$((total-1))): "
   read -r choice
   if ! [[ "$choice" =~ ^[0-9]+$ ]]; then 
     pastel paint "$C01" -b "($choice) numbers only "

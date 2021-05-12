@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
 ################################
-GEN_MIN_DISTANCE=30
-ATTMP_WARN_THRESHOLD=10
+GEN_MIN_DISTANCE=25
+ATTMP_WARN_THRESHOLD=7
 ################################
 abs_diff () { echo "df=($1 - $2); if (df < 0) { df=df* -1}; print df" | bc -l; }
 diff_under () {
@@ -28,7 +28,7 @@ gen_random () {
 
   # PressToContinue "XOPT $XOPT"
   local strategy="${XOPT:-lch}"; [[ "$strategy" == 'lch' ]] && strategy='lch_hue'
-  local darken='0.10'; [[ "$strategy" == 'vivid' ]] && darken='0.05'
+  local darken='0.16'; [[ "$strategy" == 'vivid' ]] && darken='0.08'
   # PressToContinue "strategy $strategy"
   mlg "strategy $strategy"
 
@@ -62,7 +62,7 @@ gen_random () {
     ! (( attmp % ATTMP_WARN_THRESHOLD )) && PressToContinue "failed $attmp attempts, still continue?"
     gen_random $((++attmp))
   else
-    Info "${strategy^^} generated, after $attmp attempts,proceeding"; return
+    Info "${strategy^^} generated, after $attmp attempts,proceeding" 2; return
   fi
 }
 

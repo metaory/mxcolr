@@ -3,7 +3,7 @@
 mlg 'XP_MAIN'
 
 # :>"$MTHEME"
-rm "$MTHEME"
+rm "$MTHEME" &>/dev/null
 
 cat <<  EOF > "$MTHEME"
 export MXNAME="$MXNAME"
