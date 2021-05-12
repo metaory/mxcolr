@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
 
-# TODO move me
-source "$HOME"/dev/meta/configs/scripts/m.lib/lib.mxtrap.sh
+# source $HOME/dev/meta/configs/scripts/m.lib/lib.mxtrap.sh
+set -o pipefail
+set -o errtrace
 
+if [ -e "$HOME"/dev/meta/configs/scripts/m.lib/lib.common.sh ]; then source "$HOME"/dev/meta/configs/scripts/m.lib/lib.common.sh 
+else mlg () { echo "${FUNCNAME[1]}:${BASH_LINENO[1]} => ${*}" >> /tmp/mxsh.log; }; fi
 # if tty -s; then mlg interactive; else mlg none-intreractive;fi
 
  MXC_V='mxc-v1.3'                         ; export MXC_V

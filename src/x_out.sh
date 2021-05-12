@@ -2,7 +2,8 @@
 
 mlg 'XP_MAIN'
 
-# :>"$MXDIST/theme.mx"
+# :>"$MTHEME"
+rm "$MTHEME"
 
 cat <<  EOF > "$MTHEME"
 export MXNAME="$MXNAME"
