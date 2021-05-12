@@ -5,7 +5,7 @@ GEN_MIN_DISTANCE=30
 ATTMP_WARN_THRESHOLD=10
 ################################
 abs_diff () { echo "df=($1 - $2); if (df < 0) { df=df* -1}; print df" | bc -l; }
-diff_limit_check () {
+diff_under () {
   local diff; diff=$(echo "df=($1 - $2); if (df < 0) { df=df* -1}; print df" | bc -l)
   echo "$diff < $GEN_MIN_DISTANCE" | bc -l
 }
@@ -53,9 +53,9 @@ gen_random () {
   local SBG_HUE; SBG_HUE="$(pastel format lch-hue "$SBG")"
   local EBG_HUE; EBG_HUE="$(pastel format lch-hue "$EBG")"
 
-  local SOver;SOver="$(diff_limit_check "$WBG_HUE" "$SBG_HUE")"
-  local EOver;EOver="$(diff_limit_check "$WBG_HUE" "$EBG_HUE")"
-  local XOver;XOver="$(diff_limit_check "$SBG_HUE" "$EBG_HUE")"
+  local SOver;SOver="$(diff_under "$WBG_HUE" "$SBG_HUE")"
+  local EOver;EOver="$(diff_under "$WBG_HUE" "$EBG_HUE")"
+  local XOver;XOver="$(diff_under "$SBG_HUE" "$EBG_HUE")"
 
   mlg "ATTMP ${attmp} >> WH:${WBG_HUE} :: [SH:${SBG_HUE} SD:$SOver] [SH:${SBG_HUE} SD:$SOver] [WH:${WBG_HUE} XD:$XOver]"
   if (( SOver || EOver || XOver )); then
