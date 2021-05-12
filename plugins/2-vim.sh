@@ -26,6 +26,26 @@ cp "$Z_VIM4" "$M_VIM4"
 cp "$Z_VIM5" "$M_VIM5"
 
 sed -r -i \
+  -e "/^let g:mxc_g_obg /s/=.+$/='$OBG'/" \
+  -e "/^let g:mxc_g_ofg /s/=.+$/='$OFG'/" \
+  -e "/^let g:mxc_c_obg /s/=.+$/='$TOB'/" \
+  -e "/^let g:mxc_c_ofg /s/=.+$/='$TOF'/" \
+  \
+  -e "/^let g:mxc_g_sbg /s/=.+$/='$SBG'/" \
+  -e "/^let g:mxc_g_sfg /s/=.+$/='$SFG'/" \
+  -e "/^let g:mxc_c_sbg /s/=.+$/='$TSB'/" \
+  -e "/^let g:mxc_c_sfg /s/=.+$/='$TSF'/" \
+  \
+  -e "/^let g:mxc_g_wbg /s/=.+$/='$WBG'/" \
+  -e "/^let g:mxc_g_wfg /s/=.+$/='$WFG'/" \
+  -e "/^let g:mxc_c_wbg /s/=.+$/='$TWB'/" \
+  -e "/^let g:mxc_c_wfg /s/=.+$/='$TWF'/" \
+  \
+  -e "/^let g:mxc_g_ebg /s/=.+$/='$EBG'/" \
+  -e "/^let g:mxc_g_efg /s/=.+$/='$EFG'/" \
+  -e "/^let g:mxc_c_ebg /s/=.+$/='$TEB'/" \
+  -e "/^let g:mxc_c_efg /s/=.+$/='$TEF'/" \
+  \
   -e "/^hi Title/s/guifg=.\w+/guifg=$C07/" \
   -e "/^hi Normal/s/guibg=.\w+/guibg=$XBG/" \
   -e "/^hi Normal/s/guifg=.\w+/guifg=$XFG/" \
@@ -34,7 +54,7 @@ sed -r -i \
   -e "/^hi CursorLineNr/s/guifg=.\w+/guifg=$WBX/" \
   -e "/^hi LineNr/s/guifg=.\w+/guifg=$DK4/" \
   -e "/^hi Title/s/guifg=.\w+/guifg=$SBG/" \
-  -e "/^hi EndOfBuffer/s/guibg=.\w+/guibg=$DK1/" \
+  -e "/^hi EndOfBuffer/s/guibg=.\w+/guibg=$DK0/" \
   -e "/^hi CursorColumn/s/guibg=.\w+/guibg=$DK2/" \
   -e "/^hi CursorLine/s/guibg=.\w+/guibg=$DK2/" \
   -e "/^hi ColorColumn/s/guibg=.\w+/guibg=$WBG/" \

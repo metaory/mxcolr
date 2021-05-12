@@ -5,7 +5,7 @@ Info () {
   case "$2" in
     0) ico=''; fc="$DK7" ; cc="$C02" ;;
     1) ico=''; fc="$DK6" ; cc="$C01" ;;
-    2) ico=''; fc="$DL5" ; cc="$DL8" ;;
+    2) ico=''; fc="$DL5" ; cc="$C03" ;;
     3) ico=''; fc="$DK5" ; cc="$DL5" ;;
     *) ico=''; fc="$DK6" ; cc="$DL5" ;;
   esac

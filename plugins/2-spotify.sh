@@ -32,11 +32,11 @@ slider_bg                             =${DK4:1}
 miscellaneous_bg                      =${DK4:1}
 secondary_fg                          =${DL6:1}
 indicator_fg_and_button_bg            =${SBG:1}
-pressing_fg                           =${SBG:1}
+pressing_fg                           =${DL4:1}
 cover_overlay_and_shadow              =${XBG:1}
 sidebar_indicator_and_hover_button_bg =${DK1:1}
 sidebar_and_player_bg                 =${DK0:1}
-scrollbar_fg_and_selected_row_bg      =${DK0:1}
+scrollbar_fg_and_selected_row_bg      =${DL0:1}
 pressing_button_fg                    =${DK0:1}
 hover_selected                        =${DK2:1}
 pressing_button_bg                    =${WBG:1}
@@ -48,12 +48,13 @@ EOF
 
 InfoSourced
 
-  # TODO remove me
+  # TODO remove me 
+  # NOT NEEDED
 temporary_legacy_spotify_hack () {
   Info "Temporary hack"
+  Info 'deprecated' 1; return
 
   NEW_ZLINK="${DK0}"; NEW_GLUE="${DL0}"
-
   if [[ -e "$SPICETIFY_PATH"/Themes/Metafy/legacy ]]; then
     . "$SPICETIFY_PATH"/Themes/Metafy/legacy
   else 
@@ -81,13 +82,47 @@ temporary_legacy_spotify_hack () {
   Info '' 0
 }
 
+  # TODO remove me 
+  # NOT NEEDED
+patch_all_css () {
+  sed -r -i \
+    -e "s/$1\,/var\(--modspotify_$2\)\,/g" \
+    -e "s/$1\)/var\(--modspotify_$2\)\)/g" \
+    -e "s/$1\ /var\(--modspotify_$2\)\ /g" \
+    -e "s/$1\;/var\(--modspotify_$2\)\;/g" \
+    -e "s/$1\}/var\(--modspotify_$2\)\}/g" \
+      "$3"
+  Info "$1>$2" 2; echo "==> ${3:(-40)}"
+}
+# TODO remove me 
+# NOT NEEDED
+patch_legacy_spotify () {
+  patch_all_css '#110d0f' 'scrollbar_fg_and_selected_row_bg' "$SPICETIFY_PATH"/Extracted/Themed/glue-resources/css/glue.css
+  patch_all_css '#12131e' 'sidebar_and_player_bg'            "$SPICETIFY_PATH"/Extracted/Themed/glue-resources/css/glue.css
+  patch_all_css '#0d0609' 'sidebar_and_player_bg'            "$SPICETIFY_PATH"/Extracted/Themed/glue-resources/css/glue.css
+  patch_all_css '#555d82' 'pressing_fg'                      "$SPICETIFY_PATH"/Extracted/Themed/glue-resources/css/glue.css
+  patch_all_css '#a7afd4' 'light_fg'                         "$SPICETIFY_PATH"/Extracted/Themed/glue-resources/css/glue.css
+  patch_all_css '#16A085' 'meta_1'                           "$SPICETIFY_PATH"/Extracted/Themed/glue-resources/css/glue.css
+
+  patch_all_css '#110d0f' 'scrollbar_fg_and_selected_row_bg' "$SPICETIFY_PATH"/Extracted/Themed/zlink/css/zlink.css
+  patch_all_css '#12131e' 'sidebar_and_player_bg'            "$SPICETIFY_PATH"/Extracted/Themed/zlink/css/zlink.css
+  patch_all_css '#0d0609' 'sidebar_and_player_bg'            "$SPICETIFY_PATH"/Extracted/Themed/zlink/css/zlink.css
+  patch_all_css '#555d82' 'pressing_fg'                      "$SPICETIFY_PATH"/Extracted/Themed/zlink/css/zlink.css
+  patch_all_css '#a7afd4' 'light_fg'                         "$SPICETIFY_PATH"/Extracted/Themed/zlink/css/zlink.css
+  patch_all_css '#16A085' 'meta_1'                           "$SPICETIFY_PATH"/Extracted/Themed/zlink/css/zlink.css
+}
+
 apply_spotify () {
   if [[ "$XOPT" == *"nospt"* ]]; then InfoIgnore; return; fi
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
 
   cp "$SPOTIFY_TEMP" "$SPICETIFY_PATH"/Themes/Metafy/color.ini
+  echo "==> $SPICETIFY_PATH/Themes/Metafy/color.ini"
 
-  temporary_legacy_spotify_hack
+  # TODO remove me 
+  # NOT NEEDED
+  # patch_legacy_spotify
+  # temporary_legacy_spotify_hack
 
   spicetify update
   spicetify apply -n
