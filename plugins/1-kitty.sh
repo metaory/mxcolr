@@ -37,11 +37,11 @@ cursor                 $WBX
 EOF
 
 
-InfoSourced
+InfoDone "$M_KIT"
 
 apply_kitty () {
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   cp "$M_KIT" "$O_KIT"
   # kitty @ "$KSOCK" set-colors "$KFLAG" "$MXKIT" 2>/dev/null
-  Info '' 0
+  InfoDone "$O_KIT"
 }

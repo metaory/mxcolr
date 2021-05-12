@@ -63,7 +63,7 @@ sed -r -i \
   -e "/^let g:indentLine_color_gui/s/=.+$/= '${C08}'/" \
   -e "/^let g:indentLine_color_term /s/=.+$/= '${T08}'/" \
   "$M_VIM1"
-InfoSourced "VIM-Patch"
+InfoDone "$M_VIM1 VIM-Patch"
   
 
 sed -r -i \
@@ -129,7 +129,7 @@ sed -r -i \
   -e "/^let s:c_white /s/=.+$/ = $T15/" \
   -e "/^let s:c_black /s/=.+$/ = $TK0/" \
   "$M_VIM2"
-InfoSourced 'VIM-Airline'
+InfoDone "$M_VIM2 VIM-Airline"
 
 
 # sed -r -e "/^let s:guiWhite /s/\".+$/\"$C15\"/" $M_VIM5
@@ -170,7 +170,7 @@ sed -r -i \
   -e "/^let s:gui09/s/=.+$/= '${C09}'/" \
   "$M_VIM5"
 
-InfoSourced 'VIM-Mapping'
+InfoDone "$M_VIM5 VIM-Mapping"
 
 cat <<  EOF > "$M_VIM3"
 let s:overrides = get(g:, "palenight_color_overrides", {})
@@ -211,7 +211,7 @@ function! palenight#GetColors()
   return s:colors
 endfunction
 EOF
-InfoSourced "VIM-Palenight"
+InfoDone "$M_VIM3 VIM-Palenight"
 
 cat <<  EOF > "$M_VIM4"
 " ============================================================================
@@ -345,7 +345,7 @@ let s:palette = {
 
 let g:leaderf#colorscheme#meta#palette = leaderf#colorscheme#mergePalette(s:palette)
 EOF
-InfoSourced "VIM-LeaderF"
+InfoDone "$M_VIM4 VIM-LeaderF"
 
 
 apply_vim () {
@@ -356,11 +356,11 @@ apply_vim () {
   cp "$M_VIM4" "$O_VIM4"
   cp "$M_VIM5" "$O_VIM5"
 
-  cp "$O_VIM1" "$Z_VIM1"; Info "...${Z_VIM1:(-20)}" 0
-  cp "$O_VIM2" "$Z_VIM2"; Info "...${Z_VIM2:(-20)}" 0
-  cp "$O_VIM3" "$Z_VIM3"; Info "...${Z_VIM3:(-20)}" 0
-  cp "$O_VIM4" "$Z_VIM4"; Info "...${Z_VIM4:(-20)}" 0
-  cp "$O_VIM5" "$Z_VIM5"; Info "...${Z_VIM5:(-20)}" 0
+  cp "$O_VIM1" "$Z_VIM1"; InfoDone "${Z_VIM1}"
+  cp "$O_VIM2" "$Z_VIM2"; InfoDone "${Z_VIM2}"
+  cp "$O_VIM3" "$Z_VIM3"; InfoDone "${Z_VIM3}"
+  cp "$O_VIM4" "$Z_VIM4"; InfoDone "${Z_VIM4}"
+  cp "$O_VIM5" "$Z_VIM5"; InfoDone "${Z_VIM5}"
   
-  Info "" 0
+  InfoDone
 }

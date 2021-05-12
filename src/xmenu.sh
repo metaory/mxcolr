@@ -1,35 +1,35 @@
 #!/usr/bin/env bash
 
 Info () {
-  local ico; local fc; local cc
-  case "$2" in
-    0) ico=''; fc="$DK7" ; cc="$C02" ;;
-    1) ico=''; fc="$DK6" ; cc="$C01" ;;
-    2) ico=''; fc="$DL5" ; cc="$C03" ;;
-    3) ico=''; fc="$DK5" ; cc="$DL5" ;;
-    *) ico=''; fc="$DK6" ; cc="$DL5" ;;
-  esac
-  local s="$1"
-  local sf; sf="${4:-$(basename "${BASH_SOURCE[1]}")}"; sf="${sf::(-3)}"
-  sf="${sf:0:6}"
-  local fn; fn="${3:-${FUNCNAME[1]}}"
-  fn="${fn:0:12}"
+  local ico; local cf; local cc; # ; local lvl=$1 # ; local on
+  # ! [[ $2 =~ ^[0-9]+$ ]] && lvl=0
+  case "${1:-0}" in
+    0) ico='' ; cf="$C02" ; cc="$C02" ;; # ; on="${3:-}" ; shift ;  ;
+    1) ico='' ; cf="$C01" ; cc="$C01" ;;
+    2) ico='' ; cf="$SBG" ; cc="$C08" ;;
+    3) ico='' ; cf="$WBG" ; cc="$C00" ;;
+    *) ico='' ; cf="$EBG" ; cc="$C15" ;;
+  esac; shift
+
+  local in="${1:-${BASH_SOURCE[1]}}" ; ! [[ "$in" =~ ^[0-9]+$ ]] && [[ -n "$in" ]] && pastel paint "$C07" " => ${in}"
+  local fn="${2:-${FUNCNAME[1]}}"    ; #fn="${fn:(-8)}"
+  local sf="${3:-${BASH_SOURCE[1]}}" ; sf="${sf:(-8)}" ; #sf="${sf:(-8)}"
+
   local src="${sf} ${fn}"
+  local fill_len ; fill_len=$((19-${#src}))
+  local fill     ; fill="$(printf '%0.s ' $(seq 1 ${fill_len}))"
 
-  local fill_len; fill_len=$((19-${#src}))
-  local fill; fill="$(printf '%0.s ' $(seq 1 ${fill_len}))"
-
-  pastel paint -b -n -o 'black' "${fc}" "[${src}]"
-  pastel paint -b -n    "$cc"   "${fill}${s}"
+  pastel paint -b -n -o 'black' "${cf}" "[${src}]"
+  pastel paint -b -n    "$cc"   "${fill}${s:(-16)}"
   pastel paint -b       "$cc"   " ${ico} "
 }
 
 InfoIgnore () {
-  Info " Ignoring·" 3 "${FUNCNAME[1]}" "$(basename "${BASH_SOURCE[1]}")"
+  Info 3 " Ignoring·" "${FUNCNAME[1]}" "$(basename "${BASH_SOURCE[1]}")"
 }
 
-InfoSourced () {
-  Info "   $1" 2 "${FUNCNAME[1]}" "$(basename "${BASH_SOURCE[1]}")"
+InfoDone () {
+  Info 0 "${1:-${BASH_SOURCE[1]}} " "${FUNCNAME[1]}" "$(basename "${BASH_SOURCE[1]}")"
 }
 
 PressToContinue () {

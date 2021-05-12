@@ -91,7 +91,7 @@ TERMINAL_COLOR15=${C15:1}
 
 EOF
 
-InfoSourced
+InfoDone "$M_GTK"
 
 ApplyGTKTheme () {
   if [[ "$XOPT" == *"nogtk"* ]]; then InfoIgnore; return; fi
@@ -100,9 +100,9 @@ ApplyGTKTheme () {
   cp "$M_GTK" "$O_GTK"
   notify "╸頋━  ━  ${MXC_V} in 3s ⏲" ; sleep 1
   oomox-cli --make-opts all -o "$MXC_V" -t "$HOME"/.themes -m all "$O_GTK"
-  cp "$M_GTK" /opt/oomox/plugins/import_random/colors/random3
-  Info "" 0
-  sleep 1
+
+  # useless 
+  [[ -n "$OOMOX_GUI_PREVIEW_ENABLED" ]] && cp "$M_GTK" /opt/oomox/plugins/import_random/colors/random3 
 }
 # ............................ #
 ApplyGTKIcon () {
@@ -113,22 +113,22 @@ ApplyGTKIcon () {
 
   notify "  ${MXNAME}.${MXC_V} in 3s ⏲" ; sleep 1
   /opt/oomox/plugins/icons_archdroid/archdroid-icon-theme/change_color.sh -o "$MXC_V"  "$M_GTK"
+  InfoDone "$M_GTK"
+
   sed -r -i \
     -e "/^gtk-cursor-theme-name/s/=.+$/=${CURSOR_THEME}/" \
     "$XDG_CONFIG_HOME"/gtk-3.0/settings.ini
 
-  Info "" 0
-  sleep 1
+  InfoDone
 }
 # ............................ #
 ApplyGTKSpt () {
   if [[ "$XOPT" == *"noxsp"* ]]; then InfoIgnore; return; fi
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
 
-  # Info "Useless .. " 1; return
   oomoxify-cli -s /opt/spotify/Apps "$M_GTK"
-  sleep 1
-  Info "" 0
+  
+  InfoDone
 }
 
 apply_gtk () {
@@ -136,5 +136,6 @@ apply_gtk () {
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   ApplyGTKTheme
   ApplyGTKIcon
+  InfoDone
   # ApplyGTKSpt
 }
