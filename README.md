@@ -55,20 +55,21 @@ Requirements
 
 Optional Requirements
 ---------------------
+- [tmux](https://github.com/tmux/tmux)
 - [oomox](https://github.com/themix-project/oomox)
 - [spicetify-cli](https://github.com/khanhas/spicetify-cli)
 - [ffmpeg](https://github.com/FFmpeg/FFmpeg)
 
 Plugins
 -------
-- Xresource scheme
-- Kitty terminal
-- ~~Alacritty terminal~~
+- Xresources
+- Kitty
+- ~~Alacritty~~
 - Vim colorscheme
 - Vim Airline theme
 - Vim LeaderF theme
 - Vim LeaderGuide theme
-- Vimium (chromium extension)
+- Vimium
 - FZF
 - Spotify
 - Slack
