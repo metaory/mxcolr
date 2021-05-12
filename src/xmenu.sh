@@ -11,7 +11,7 @@ Info () {
     *) ico='' ; cf="$EBG" ; cc="$C15" ;;
   esac; shift
 
-  local in="${1:-${BASH_SOURCE[1]}}" ; ! [[ "$in" =~ ^[0-9]+$ ]] && [[ -n "$in" ]] && pastel paint "$C07" " => ${in}"
+  local in="${1:-${BASH_SOURCE[1]}}" ; [[ "$VERBOSE" ]] && ! [[ "$in" =~ ^[0-9]+$ ]] && [[ -n "$in" ]] && pastel paint "$C07" " => ${in}"
   local fn="${2:-${FUNCNAME[1]}}"    ; #fn="${fn:(-8)}"
   local sf="${3:-${BASH_SOURCE[1]}}" ; sf="${sf:(-8)}" ; #sf="${sf:(-8)}"
 

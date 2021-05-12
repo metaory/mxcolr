@@ -1,8 +1,8 @@
 #!/usr/bin/env bash
 
-# source $HOME/dev/meta/configs/scripts/m.lib/lib.mxtrap.sh
-set -o pipefail
-set -o errtrace
+# set -o pipefail
+# set -o errtrace
+source "$HOME"/dev/meta/configs/scripts/m.lib/lib.mxtrap.sh
 
 if [ -e "$HOME"/dev/meta/configs/scripts/m.lib/lib.common.sh ]; then source "$HOME"/dev/meta/configs/scripts/m.lib/lib.common.sh 
 else mlg () { echo "${FUNCNAME[1]}:${BASH_LINENO[1]} => ${*}" >> /tmp/mxsh.log; }; fi
@@ -109,7 +109,7 @@ DemoAll () {
 }
 
 LoadPreview () { CopyTempSeed ; LoadTempTheme ; apply_tmux ; }
-DemoLive    () { apply_tmux ; Demo ; }
+DemoLive    () { apply_tmux   ; Demo          ; }
 Revert () {
   ClearTemp
   CopyTempSeed
@@ -157,7 +157,8 @@ Generate () {
 } # ............................ #
 {
   mlg "━━━━<XOPT>━━┓"
-  menu="$1"; shift; XOPT="$*"; export XOPT
+  menu="$1" ; shift ; XOPT="$*"
+  [[ "$XOPT" == *"verbose"* ]] && VERBOSE=1
   mlg "━✔━━<XOPT>━━ ${XOPT}"
 }
 # ............................ #
