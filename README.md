@@ -19,6 +19,7 @@ flags
     -D, --demo-all            | complete demo
     -l, --list                | list all saved snapshots
     -s, --save                | save snapshot
+    --verbose                 | verbose logs
 
 ### primary output file: `$XDG_CONFIG_HOME/mxc/theme.mx `
 ### **sample output** [theme.mx](data/sample_theme.mx)
