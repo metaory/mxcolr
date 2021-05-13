@@ -26,33 +26,24 @@ mkdir "$MXTEMP" -p 2>/dev/null || true
 mkdir "$MXSNAP" -p 2>/dev/null || true 
 
 XSEED=$MXBASE/src/xseed.sh
-XANSI=$MXBASE/src/xansi.sh
-
-PAINT=$MXBASE/src/paint.sh
-XDEMO=$MXBASE/src/xdemo.sh
-XMENU=$MXBASE/src/xmenu.sh
-XGENC=$MXBASE/src/xgenc.sh
-CALIB=$MXBASE/src/calib.sh
-XSNAP=$MXBASE/src/snaps.sh
 
 X_OUT=$MXBASE/src/x_out.sh
 
-# X_KIT=$MXBASE/src/plugins/mx-kit.sh
-# X_XRS=$MXBASE/src/plugins/mx-xrs.sh
-# X_VIM=$MXBASE/src/plugins/mx-vim.sh
-# X_SPT=$MXBASE/src/plugins/mx-spt.sh
-# X_GTK=$MXBASE/src/plugins/mx-gtk.sh
-# X_CHR=$MXBASE/src/plugins/mx-chr.sh
-# X_FZF=$MXBASE/src/plugins/mx-fzf.sh
-
 ##########
-. "$PAINT"
-. "$XDEMO"
-. "$XMENU"
+. "$MXBASE"/src/paint.sh
+. "$MXBASE"/src/xdemo.sh
+. "$MXBASE"/src/xmenu.sh
 # .........
+# .........
+. "$MXBASE"/src/xansi.sh
+. "$MXBASE"/src/xgenc.sh
+. "$MXBASE"/src/calib.sh
+. "$MXBASE"/src/snaps.sh
+
 . "$MXBASE"/plugins/9-awm.sh
 . "$MXBASE"/plugins/2-tmux.sh
 ###########
+
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\  
 ################################
 #  ............................ .........................................#
@@ -76,12 +67,6 @@ BackupDist    () { Info ' Backup Prod Dist ··'
 #  ............................ .........................................#
 ################################
 # ////////////////////////////  
-# .........
-. "$XANSI"
-. "$XGENC"
-. "$CALIB"
-. "$XSNAP"
-# .........
 SourcePlugs () { for plug in "$MXBASE"/plugins/*.sh; do . "$plug"; done; }
 # ............................  
 # ............................  

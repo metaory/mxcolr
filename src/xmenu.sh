@@ -11,7 +11,7 @@ Info () {
     *) ico='' ; cf="$EBG" ; cc="$C15" ;;
   esac; shift
 
-  local in="${1:-${BASH_SOURCE[1]}}" ; [[ "$VERBOSE" ]] && ! [[ "$in" =~ ^[0-9]+$ ]] && [[ -n "$in" ]] && pastel paint "$C07" " => ${in}"
+  local in="${1:-${BASH_SOURCE[1]}}" ; [[ "$VERBOSE" ]] || ! [[ "$in" =~ ^[0-9]+$ ]] && [[ -n "$in" ]] && pastel paint "$C07" " => ${in}"
   local fn="${2:-${FUNCNAME[1]}}"    ; #fn="${fn:(-8)}"
   local sf="${3:-${BASH_SOURCE[1]}}" ; sf="${sf:(-8)}" ; #sf="${sf:(-8)}"
 
@@ -20,7 +20,7 @@ Info () {
   local fill     ; fill="$(printf '%0.s ' $(seq 1 ${fill_len}))"
 
   pastel paint -b -n -o 'black' "${cf}" "[${src}]"
-  pastel paint -b -n    "$cc"   "${fill}${s:(-16)}"
+  pastel paint -b -n    "$cc"   "${fill}${1:(-16)}"
   pastel paint -b       "$cc"   " ${ico} "
 }
 
@@ -29,6 +29,8 @@ InfoIgnore () {
 }
 
 InfoDone () {
+  mlg "1 $1"
+  mlg "BASH_SOURCE ${BASH_SOURCE[1]}"
   Info 0 "${1:-${BASH_SOURCE[1]}} " "${FUNCNAME[1]}" "$(basename "${BASH_SOURCE[1]}")"
 }
 

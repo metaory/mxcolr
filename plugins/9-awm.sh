@@ -24,21 +24,20 @@ ApplyIcons () {
   for layoutico in "${LAYOUT_ICONS[@]}"; do
     convert "$layoutico" -fill "${DL6}" -colorize 100%  "$layoutico"
   done
-  info "  ━━ updated ${#LAYOUT_ICONS[@]} layout icons"
+  info "━  ━━ updated ${#LAYOUT_ICONS[@]} layout icons" 0
 
-  zz="$(find  icons/apps/*.png -print)"; for appico in "${zz[@]}"; do echo "====  $appico"; done
-  return
-  exit
+  info "━  ━ app icons" 2
+  # zz="$(find  icons/apps/*.png -print)"; for appico in "${zz[@]}"; do echo "====  $appico"; done
   local APP_ICONS=("$XDG_CONFIG_HOME"/awesome/themes/metaory/icons/apps/*.png)
   info "APP_ICONS-Count: ${APP_ICONS[*]}" 2
   for appico in "${APP_ICONS[@]}"; do
     convert "$appico" -fill "${DL6}" -colorize 100%  "$appico"
   done
-  Info "  ━━ updated ${#APP_ICONS[@]} app icons"
+  Info "━  ━━ updated ${#APP_ICONS[@]} app icons" 0
   # sudo cp ~mtheme/icons/steam/steam_tray_mono.png /usr/share/pixmaps/steam_tray_mono.png
   # cp /usr/share/pixmaps/steam_tray_mono.png /tmp/mx__steam_tray_mono.png
   convert /usr/share/pixmaps/steam_tray_mono.png -fill "${DL6}" -colorize 100%  /usr/share/pixmaps/steam_tray_mono.png
-  InfoDone
+  Info "" 0
 }
 # ////////////////////////////  
 # ////////////////////////////  
@@ -49,7 +48,7 @@ RestartAWM () {
   # awesome --replace & disown
   killall nm-applet
   nm-applet & disown
-  InfoDone
+  Info "" 0
 }
 
 apply_awm () {
@@ -58,5 +57,4 @@ apply_awm () {
   ApplyWallpaper
   ApplyIcons
   RestartAWM
-  Info "" 0
 }

@@ -76,7 +76,7 @@ SaveSnapshot () {
     # if [ "$csum" = "$ssum" ]; then
     if (diff "$OTHEME" "$snap"/theme.mx 1>/dev/null); then
       mlg "snap exists $snap"
-      pastel paint "$C01" -b " Already exists "
+      pastel paint "$C01" -b " duplicate "
       pastel paint "$C09" -i "$snap"; Info "         "
 
 
@@ -86,14 +86,10 @@ SaveSnapshot () {
       PromptConfirm " Create anyway "; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
     fi
   done
-  # LoadProdTheme
-  pastel paint "$C04" " no match found. creating new snapshot"
-  PressToContinue
+  PressToContinue "no match found. creating new snapshot"
   local stamp; stamp=$(date +%s); stamp="${stamp:(-8)}"
   local sname; sname="${stamp}_${ccount}_${MXNAME}"
   local spath="$MXSNAP"/"$sname"
   cp "$MXDIST" "$spath" -r
-  Info '' 0
-  pastel paint "$C02" -o "$DK0" -b "$spath"
-    # local slabel; slabel="$(basename "$snap" | cut -d'_' -f2-3)"
+  InfoDone "$spath"
 }

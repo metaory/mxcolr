@@ -12,7 +12,7 @@ usage
 flags
 =====
     -i, --init                | initial bootstrap
-    -g, --generate <strategy> | vivid, lch (Pastel randomization strategy) default is vivid 
+    -g, --generate <strategy> | <vivid, lch> (Pastel randomization strategy) default is vivid 
     -u, --update              | apply to all plugins
     -U, --update-force        | force apply to all plugins without any prompts
     -d, --demo                | basic demo
@@ -21,8 +21,12 @@ flags
     -s, --save                | save snapshot
     --verbose                 | verbose logs
 
-### primary output file: `$XDG_CONFIG_HOME/mxc/theme.mx `
-### **sample output** [theme.mx](data/sample_theme.mx)
+### primary output file without any plugins:
+#### `$XDG_CONFIG_HOME/mxc/theme.mx `
+#### **sample output** [theme.mx](data/sample_theme.mx)
+
+#### intended to be sourced in `.profile` or `bashrc` and have apps that can directly access system env read system scheme from it
+### other apps can have a plugin to do the necessarily replace / steps,
 
 ### **Plugins Structure** [plugins-readme](plugins)
 
@@ -47,6 +51,10 @@ snapshot list
 ***
   
 ![screenshot](data/2021-05-10-021854_1920x1080_scrot.png)
+
+![screenshot](data/2021-05-13-155549_1920x1080_scrot.png)
+
+![screenshot](data/2021-05-13-170224_1920x1080_scrot.png)
 
 ***
 
