@@ -54,7 +54,7 @@ snapshot list
 
 ![screenshot](data/2021-05-13-155549_1920x1080_scrot.png)
 
-![screenshot](data/2021-05-13-170224_1920x1080_scrot.png)
+![screenshot](data/2021-05-13-172453_1920x1080_scrot.png)
 
 ***
 
