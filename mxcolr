@@ -41,7 +41,7 @@ X_OUT=$MXBASE/src/x_out.sh
 . "$MXBASE"/src/snaps.sh
 
 . "$MXBASE"/plugins/9-awm.sh
-. "$MXBASE"/plugins/2-tmux.sh
+# . "$MXBASE"/plugins/2-tmux.sh
 ###########
 
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\  
@@ -93,12 +93,16 @@ DemoAll () {
 }
 
 LoadPreview () { CopyTempSeed ; LoadTempTheme ; apply_tmux ; }
-DemoLive    () { apply_tmux   ; Demo          ; }
+RestoreTmux   () {
+  [ -e "$MXDIST/tmuxpre" ] && cp "$MXDIST/tmuxpre" "$MXDIST/tmux.mx"
+  [ "$TMUX" ] && apply_tmux
+}
 Revert () {
   ClearTemp
   CopyTempSeed
   UpdatePalette
-  DemoLive
+  RestoreTmux
+  Demo
 }
 
 ApplyPlugs () {
@@ -111,32 +115,32 @@ ApplyPlugs () {
   ReleaseTheme
 
   for plug_path in "$MXBASE"/plugins/*.sh; do
-    local apply_plug; apply_plug="apply_$(basename "$plug_path" | cut -d'-' -f2 | cut -d'.' -f1)"
-    "$apply_plug"
+    local plugname; plugname="$(basename "$plug_path" | cut -d'-' -f2 | cut -d'.' -f1)"
+    ! [[ "$XOPT" == *"full"* ]] && PromptContinue "$plugname"; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then continue; fi
+    local applyfn="apply_${plugname}"; "$applyfn"
   done
 }
 
 ReGenerate () {
   UpdatePalette 
-
   SourcePlugs
   ApplyPlugs
 } # ............................ #
 Generate () {
   GeneratePalette
 
-  apply_tmux
+  [[ -n "$TMUX" ]] && . "$MXBASE"/plugins/2-tmux.sh
+
   Demo
 
   PrompRand
   case $REPLY in
-    k ) Info 'Keeping draft ·'; SaveAll    ;;
+    k ) Info 'Keeping draft ·'; SourcePlugs    ;;
     u ) Info 'Proceeding ····'; ReGenerate ;;
     n ) Info 'Again ·········'; Generate  ;;
     d ) Info 'Full Demo ·····'; DemoAll    ;;
     * ) Info 'Reverting ·····'; Revert     ;;
   esac
-
   mlg "━✔━━━┛"
 } # ............................ #
 {
@@ -149,23 +153,23 @@ Generate () {
 {
   mlg "━━━━<MENU>━━┓"
   case $menu in
-    -g | --generate     ) Generate     ;;
-    -u | --update       ) ReGenerate      ;;
-    -U | --update-force ) XOPT+='full'; ReGenerate      ;;
-    -d | --demo         ) Demo ;;
-    -D | --demo-all     ) DemoAll ;;
-    -i | --init         ) LoadPreview; Demo_block ;;
+    -g | --generate     ) Generate      ;;
+    -u | --update       ) ReGenerate    ;;
+    -U | --update-force ) XOPT+='full'  ; ReGenerate ;;
+    -d | --demo         ) Demo          ;;
+    -D | --demo-all     ) DemoAll       ;;
+    -i | --init         ) LoadPreview   ; Demo_block ;;
     -l | --list         ) ListSnapshots ;;
-    -s | --save         ) SaveSnapshot ;;
-    -x1                 ) XP_1 ;;
-    -x2                 ) XP_2 ;;
-    *                   ) MXIntro;  exit ;;
+    -s | --save         ) SaveSnapshot  ;;
+    -x1                 ) XP_1          ;;
+    -x2                 ) XP_2          ;;
+    *                   ) MXIntro       ;;
   esac
   mlg "━✔━━<MENU>━━┛"
 }
 # ............................ #
 
-MXDotLine
+# MXDotLine
 exit 0
 
 # //////////////////////////// #

@@ -16,7 +16,6 @@ sed -r \
 InfoDone "$M_FZF"
 
 apply_fzf () {
-  PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   cp "$M_FZF" "$O_FZF"
   InfoDone "$O_FZF"
 }

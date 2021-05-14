@@ -115,9 +115,8 @@ patch_legacy_spotify () {
 
 apply_spotify () {
   if [[ "$XOPT" == *"nospt"* ]]; then InfoIgnore; return; fi
-  PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
 
-  cp "$SPOTIFY_TEMP" "$SPICETIFY_PATH"/Themes/Metafy/color.ini
+  cp -v "$SPOTIFY_TEMP" "$SPICETIFY_PATH"/Themes/Metafy/color.ini
   echo "==> $SPICETIFY_PATH/Themes/Metafy/color.ini"
 
   # TODO remove me 
