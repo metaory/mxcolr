@@ -17,3 +17,15 @@
 _todo_
 - [ ] _add template_
 
+***
+
+Related Projects
+----------------
+- [X] [fzf-chromium-history](https://github.com/metaory/fzf-chromium-history) (mfz-web)
+- [ ] meta-tmux
+- [ ] meta-vim
+- [ ] meta-vimium
+- [ ] meta-chromium
+- [ ] meta-slack
+- [ ] meta-spotify
+- [ ] meta-awm
