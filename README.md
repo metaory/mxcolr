@@ -68,10 +68,6 @@ snapshot list
 
 ***
 
-Related Projects
-----------------
-- [fzf-chromium-history](https://github.com/metaory/fzf-chromium-history) (mfz-web)
-
 Requirements
 ------------
 - [pastel](https://github.com/sharkdp/pastel)
@@ -104,3 +100,15 @@ Plugins
 - Tmux
 - AwesomeWM
 
+***
+
+Related Projects
+----------------
+- [X] [fzf-chromium-history](https://github.com/metaory/fzf-chromium-history) (mfz-web)
+- [ ] meta-tmux
+- [ ] meta-vim
+- [ ] meta-vimium
+- [ ] meta-chromium
+- [ ] meta-slack
+- [ ] meta-spotify
+- [ ] meta-awm
