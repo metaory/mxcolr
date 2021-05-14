@@ -38,7 +38,7 @@ outputs
 
 #### other apps can have a plugin to make the necessarily steps,
 
-### **Plugins Structure** [plugins-readme](plugins)
+### **Plugins Structure** [plugins-readme](./plugins)
 
 ***
 
