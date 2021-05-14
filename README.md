@@ -1,6 +1,8 @@
-# mxcolr
+# mxcolr :construction:
 
-## :construction: NOT READY FOR PUBLIC USE :construction:
+<p align="center">
+  <img width="193" height="64" src="./data/seed_2021-05-14-123246_193x64_scrot.png">
+</p>
 
 usage
 =====
@@ -25,12 +27,12 @@ outputs
 =======
 ### `mxseed` is a trio of randomely generated colors, it's the core of the palette
 - `$XDG_CONFIG_HOME/mxc/mx-seed`  [sample_generated_seed](./data/sample_mx-seed)
-![seed](./data/seed_2021-05-14-123246_197x67_scrot.png) the entire palette is drived from this generated `seed` file 
+> the entire palette is drived from this generated `seed` file 
 
 ### `theme.mx` is the primary output scheme file
 - `$XDG_CONFIG_HOME/mxc/theme.mx` [sample_generated_theme.mx](./data/sample_theme.mx)
-given the same `seed` file, its guaranteed the same `theme.mx` will be produced.
-allowing post generation calibrations.
+> given the same `seed` file, its guaranteed the same `theme.mx` will be produced.
+> _allowing post generation calibrations._
 
 ### `theme.mx` is intended to be sourced in `.profile` or `bashrc` and have apps that can directly access system env read system scheme from it
 
