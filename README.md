@@ -14,7 +14,7 @@ usage
 flags
 =====
     -i, --init                | initial bootstrap
-    -g, --generate <strategy> | <vivid, lch> (Pastel randomization strategy) default is vivid 
+    -g, --generate <strategy> | <vivid, lch> (Pastel randomization strategy) default is lch
     -u, --update              | apply to all plugins
     -U, --update-force        | force apply to all plugins without any prompts
     -d, --demo                | basic demo
@@ -32,11 +32,11 @@ outputs
 ### `theme.mx` is the primary output scheme file
 - `$XDG_CONFIG_HOME/mxc/theme.mx` [sample_generated_theme.mx](./data/sample_theme.mx)
 > given the same `seed` file, its guaranteed the same `theme.mx` will be produced.
-> _allowing post generation calibrations._
+> _allowing for post generation calibrations._
 
 ### `theme.mx` is intended to be sourced in `.profile` or `bashrc` and have apps that can directly access system env read system scheme from it
 
-#### other apps can have a plugin to make the necessarily steps,
+#### other apps can have a plugin to make the necessarily changes,
 
 ### **Plugins Structure** [plugins-readme](./plugins)
 
@@ -67,6 +67,10 @@ snapshot list
 ![screenshot](./data/2021-05-13-172453_1920x1080_scrot.png)
 
 ***
+
+Related Projects
+----------------
+- [fzf-chromium-history](https://github.com/metaory/fzf-chromium-history) (mfz-web)
 
 Requirements
 ------------
