@@ -74,14 +74,15 @@ SaveSnapshot () {
 
     # ssum=$(md5sum "$snap"/* | awk '{print $1}')||true;
     # if [ "$csum" = "$ssum" ]; then
-    if (diff "$OTHEME" "$snap"/theme.mx 1>/dev/null); then
+    # if (diff "$OTHEME" "$snap"/theme.mx 1>/dev/null); then
+    if (diff "$O_SEED" "$snap"/mx-seed 1>/dev/null); then
       mlg "snap exists $snap"
-      pastel paint "$C01" -b " duplicate "
-      pastel paint "$C09" -i "$snap"; Info "         "
-
 
       . "$snap"/theme.mx
       Demo_card "${MXNAME}" "$total" "$total"; Demo
+
+      pastel paint "$C01" -b " duplicate "
+      pastel paint "$C09" -i "$snap"; Info "         "
 
       PromptConfirm " Create anyway "; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
     fi

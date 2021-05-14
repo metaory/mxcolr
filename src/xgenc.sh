@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ################################
-GEN_MIN_DISTANCE=25
+GEN_MIN_DISTANCE=20
 ATTMP_WARN_THRESHOLD=7
 ################################
 abs_diff () { echo "df=($1 - $2); if (df < 0) { df=df* -1}; print df" | bc -l; }
@@ -32,9 +32,9 @@ gen_random () {
   # PressToContinue "strategy $strategy"
   mlg "strategy $strategy"
 
-  WBG="$(pastel random -n 1 -s lch_hue     | pastel saturate        0.40 | pastel darken 0.10      | pastel format hex)"
-  SBG="$(pastel random -n 1 -s "$strategy" | pastel mix - "$WBG" -f 0.70 | pastel darken "$darken" | pastel format hex)"
-  EBG="$(pastel random -n 1 -s "$strategy" | pastel mix - "$WBG" -f 0.70 | pastel darken "$darken" | pastel format hex)"
+  WBG="$(pastel random -n 1 -s lch_hue     | pastel saturate        0.20 | pastel darken "$darken" | pastel format hex)"
+  SBG="$(pastel random -n 1 -s "$strategy" | pastel mix - "$WBG" -f 0.80 | pastel darken "$darken" | pastel format hex)"
+  EBG="$(pastel random -n 1 -s "$strategy" | pastel mix - "$WBG" -f 0.80 | pastel darken "$darken" | pastel format hex)"
 
   local WBG_SAT; WBG_SAT="$(pastel format hsl-saturation "$WBG")"
   local SBG_SAT; SBG_SAT="$(pastel format hsl-saturation "$SBG")"
@@ -43,15 +43,11 @@ gen_random () {
   mlg "$(pastel format hsl-saturation "$SBG") $(pastel format hsl-saturation "$EBG")"
    # echo "$(pastel format hsl-saturation "$EBG") < $(pastel format hsl-saturation "$SBG")" | bc
 
-   (( $(echo "$SBG < 0.65" | bc) )) && SBG="$(pastel saturate 0.25 "$SBG" | pastel format hex)"
-   (( $(echo "$EBG < 0.65" | bc) )) && EBG="$(pastel saturate 0.25 "$EBG" | pastel format hex)"
+   (( $(echo "$SBG_SAT < 0.65" | bc) )) && SBG="$(pastel saturate 0.25 "$SBG" | pastel format hex)"
+   (( $(echo "$EBG_SAT < 0.65" | bc) )) && EBG="$(pastel saturate 0.25 "$EBG" | pastel format hex)"
 
   mlg "$(pastel format hsl-saturation "$SBG") $(pastel format hsl-saturation "$EBG")"
 
-
-  local WBG_HUE; WBG_HUE="$(pastel format lch-hue "$WBG")"
-  local SBG_HUE; SBG_HUE="$(pastel format lch-hue "$SBG")"
-  local EBG_HUE; EBG_HUE="$(pastel format lch-hue "$EBG")"
 
   local SOver;SOver="$(diff_under "$WBG_HUE" "$SBG_HUE")"
   local EOver;EOver="$(diff_under "$WBG_HUE" "$EBG_HUE")"
@@ -62,11 +58,11 @@ gen_random () {
     ! (( attmp % ATTMP_WARN_THRESHOLD )) && PressToContinue "failed $attmp attempts, still continue?"
     gen_random $((++attmp))
   else
-    Info "${strategy^^} generated, after $attmp attempts,proceeding" 2; return
+    InfoDone "${strategy^^} generated, after $attmp attempts,proceeding"; return
   fi
 }
-
-gen_idiomatic () {
+# well almost!
+gen_idempotents () {
   C01="$(pastel mix "$WBG" "$(pastel random -n 1 -s lch_hue)" -f 0.7 | pastel mix - crimson       -f 0.6 | pastel mix - deeppink          -f 0.5 | pastel saturate 0.06 | pastel format hex)"
   C02="$(pastel mix "$WBG" "$(pastel random -n 1 -s lch_hue)" -f 0.7 | pastel mix - darkseagreen  -f 0.6 | pastel mix - mediumspringgreen -f 0.5 | pastel saturate 0.06 | pastel format hex)"
   C03="$(pastel mix "$WBG" "$(pastel random -n 1 -s lch_hue)" -f 0.7 | pastel mix - orangered     -f 0.6 | pastel mix - orange            -f 0.5 | pastel saturate 0.06 | pastel format hex)"
@@ -116,8 +112,8 @@ gen_shades () {
   DL9="$(pastel lighten 0.70 "$XBG" | pastel   saturate 0.40 | pastel format hex)"
 
   DK0="$(pastel darken  0.14 "$DKB" | pastel   saturate 0.20 | pastel format hex)"                                                            
-  DK1="$(pastel darken  0.08 "$DKB" | pastel   saturate 0.16 | pastel format hex)"                                                            
-  DK2="$(pastel darken  0.04 "$DKB" | pastel   saturate 0.12 | pastel format hex)"                                                            
+  DK1="$(pastel darken  0.10 "$DKB" | pastel   saturate 0.16 | pastel format hex)"                                                            
+  DK2="$(pastel darken  0.06 "$DKB" | pastel   saturate 0.12 | pastel format hex)"                                                            
   DK3="$(pastel darken  0.00 "$DKB" | pastel   saturate 0.04 | pastel format hex)"                                                            
   DK4="$(pastel lighten 0.06 "$DKB" | pastel   saturate 0.07 | pastel format hex)"                                                            
   DK5="$(pastel lighten 0.12 "$DKB" | pastel   saturate 0.06 | pastel format hex)"                                                            
@@ -127,11 +123,11 @@ gen_shades () {
   DK9="$(pastel lighten 0.38 "$DKB" | pastel   saturate 0.02 | pastel format hex)"                                                            
   # XFG="$(pastel lighten 0.20 "$DKB" | pastel desaturate 0.02 | pastel format hex)"
 
-  C00="$DK1"
-  C08="$DK7"
-  XFG="$DL8"
-  C07="$DL7"
-  C15="$DL9"
+  C00="$DK2"
+  C08="$DK4"
+  C07="$DL5"
+  XFG="$DL7"
+  C15="$DL8"
 
   Info '' 0
 }
@@ -141,7 +137,7 @@ gen_shades () {
 GeneratePalette () { 
   ClearTemp
   gen_random
-  gen_idiomatic
+  gen_idempotents
   gen_shades
   gen_ansi
 
@@ -154,7 +150,7 @@ GeneratePalette () {
 ################################
 UpdatePalette () {
   LoadTempSeed
-  gen_idiomatic
+  gen_idempotents
   gen_shades
   gen_ansi
 

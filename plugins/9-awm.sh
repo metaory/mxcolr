@@ -46,7 +46,8 @@ RestartAWM () {
   notify "restarting AWM in 3s ⏲" ; sleep 3
   (awesome-client 'awesome.restart()' &>/dev/null || true)
   # awesome --replace & disown
-  killall nm-applet
+  killall steam &>/dev/null
+  killall nm-applet &>/dev/null
   nm-applet & disown
   Info "" 0
 }

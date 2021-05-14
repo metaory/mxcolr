@@ -4,14 +4,14 @@ Info () {
   local ico; local cf; local cc; # ; local lvl=$1 # ; local on
   # ! [[ $2 =~ ^[0-9]+$ ]] && lvl=0
   case "${1:-0}" in
-    0) ico='' ; cf="$C02" ; cc="$C02" ;; # ; on="${3:-}" ; shift ;  ;
+    0) ico='' ; cf="$SBG" ; cc="$C02" ;; # ; on="${3:-}" ; shift ;  ;
     1) ico='' ; cf="$C01" ; cc="$C01" ;;
-    2) ico='' ; cf="$SBG" ; cc="$C08" ;;
-    3) ico='' ; cf="$WBG" ; cc="$C00" ;;
+    2) ico='' ; cf="$SBG" ; cc="$C07" ;;
+    3) ico='' ; cf="$WBG" ; cc="$C08" ;;
     *) ico='' ; cf="$EBG" ; cc="$C15" ;;
   esac; shift
 
-  local in="${1:-${BASH_SOURCE[1]}}" ; [[ "$VERBOSE" ]] || ! [[ "$in" =~ ^[0-9]+$ ]] && [[ -n "$in" ]] && pastel paint "$C07" " => ${in}"
+  local in="${1:-${BASH_SOURCE[1]}}" ; [[ "$VERBOSE" ]] && ! [[ "$in" =~ ^[0-9]+$ ]] && [[ -n "$in" ]] && pastel paint "$C07" " => ${in}"
   local fn="${2:-${FUNCNAME[1]}}"    ; #fn="${fn:(-8)}"
   local sf="${3:-${BASH_SOURCE[1]}}" ; sf="${sf:(-8)}" ; #sf="${sf:(-8)}"
 
@@ -20,7 +20,7 @@ Info () {
   local fill     ; fill="$(printf '%0.s ' $(seq 1 ${fill_len}))"
 
   pastel paint -b -n -o 'black' "${cf}" "[${src}]"
-  pastel paint -b -n    "$cc"   "${fill}${1:(-16)}"
+  pastel paint -b -n    "$cc"   "${fill}${1##*/}"
   pastel paint -b       "$cc"   " ${ico} "
 }
 
@@ -29,8 +29,8 @@ InfoIgnore () {
 }
 
 InfoDone () {
-  mlg "1 $1"
-  mlg "BASH_SOURCE ${BASH_SOURCE[1]}"
+  # mlg "1 $1"
+  # mlg "BASH_SOURCE ${BASH_SOURCE[1]}"
   Info 0 "${1:-${BASH_SOURCE[1]}} " "${FUNCNAME[1]}" "$(basename "${BASH_SOURCE[1]}")"
 }
 
