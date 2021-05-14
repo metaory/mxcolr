@@ -72,14 +72,12 @@ EOF
 InfoDone "$M_XRS"
 
 apply_xresources() {
-  PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
-
   if ! grep "mxc" "$HOME"/.Xresources; then 
     Info "${O_XRS} is not included in $HOME/.Xresources"
     Info 'appent include?'; PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
     echo "#include '$XDG_CONFIG_HOMR/mxc/mx-xrs.xdefaults'" >> "$HOME"/.Xresources; InfoDone 'added'
   fi
 
-  cp "$M_XRS" "$O_XRS"; InfoDone "$O_XRS coppied"
+  cp -v "$M_XRS" "$O_XRS"; InfoDone "$O_XRS coppied"
   xrdb "$HOME/.Xresources"; Info "refreshed xrdb with $HOME/.Xresources"
 }

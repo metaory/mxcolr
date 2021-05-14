@@ -3,6 +3,7 @@
 Info () {
   local ico; local cf; local cc; # ; local lvl=$1 # ; local on
   # ! [[ $2 =~ ^[0-9]+$ ]] && lvl=0
+  mlg "$*"
   case "${1:-0}" in
     0) ico='' ; cf="$SBG" ; cc="$C02" ;; # ; on="${3:-}" ; shift ;  ;
     1) ico='' ; cf="$C01" ; cc="$C01" ;;
@@ -10,6 +11,8 @@ Info () {
     3) ico='' ; cf="$WBG" ; cc="$C08" ;;
     *) ico='' ; cf="$EBG" ; cc="$C15" ;;
   esac; shift
+  cf="${cf:-#f00}"
+  cc="${cc:-#ff0}"
 
   local in="${1:-${BASH_SOURCE[1]}}" ; [[ "$VERBOSE" ]] && ! [[ "$in" =~ ^[0-9]+$ ]] && [[ -n "$in" ]] && pastel paint "$C07" " => ${in}"
   local fn="${2:-${FUNCNAME[1]}}"    ; #fn="${fn:(-8)}"
@@ -29,8 +32,6 @@ InfoIgnore () {
 }
 
 InfoDone () {
-  # mlg "1 $1"
-  # mlg "BASH_SOURCE ${BASH_SOURCE[1]}"
   Info 0 "${1:-${BASH_SOURCE[1]}} " "${FUNCNAME[1]}" "$(basename "${BASH_SOURCE[1]}")"
 }
 
@@ -74,12 +75,6 @@ PromptConfirm () {
   pastel paint -o "$C00" "$CX3" -b "  ·  "; fi
 }
 PromptContinue () {
-  local fn; fn="${FUNCNAME[1]}"
-
-  local fill_len; fill_len=$((20-${#fn}))
-  local fill; fill="$(printf '%0.s ' $(seq 1 ${fill_len}))"
-
-  pastel paint -b -n -o 'black' "$EBG" "[${fn}]"
-  pl 'C01' "${fill}"
-  PromptConfirm "   "
+  pastel paint -b -n "$C07" "[ ${1:-${FUNCNAME[1]}} ] ==> "
+  PromptConfirm "   continue $1 "
 }

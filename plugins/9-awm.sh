@@ -54,7 +54,6 @@ RestartAWM () {
 
 apply_awm () {
   if [[ "$XOPT" == *"noawm"* ]]; then InfoIgnore; return; fi
-  PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   ApplyWallpaper
   ApplyIcons
   RestartAWM

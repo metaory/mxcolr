@@ -148,7 +148,7 @@ __randmico () { shuf -n 1 -e $(cat ~/mxx/mico/uni-etc); }
 
 MXMico () { ( (( RANDOM % 2 )) &&  MXDots ) || __randmico; }
 
-MXIntro () { ( (( RANDOM % 2 )) &&  MXDotLine ) || ( pl '-' && Demo_block 0 0 ); }
+MXIntro () { ( (( RANDOM % 2 )) &&  MXDotLine ) || ( pl '-' ; Demo_block 0 0 ); }
 MYIntro () { 
   case $(( RANDOM % 3 )) in
     0 ) MXDotLine ;;

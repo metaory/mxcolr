@@ -349,7 +349,6 @@ InfoDone "$M_VIM4 VIM-LeaderF"
 
 
 apply_vim () {
-  PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   cp "$M_VIM1" "$O_VIM1"
   cp "$M_VIM2" "$O_VIM2"
   cp "$M_VIM3" "$O_VIM3"

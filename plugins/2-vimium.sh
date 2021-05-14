@@ -36,7 +36,6 @@ InfoDone
 
 apply_vimium () {
   if [[ "$XOPT" == *"nochr"* ]]; then InfoIgnore; return; fi
-  PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
 
   cp "$M_CHR1" "$O_CHR1"
   cp "$M_CHR2" "$O_CHR2"
