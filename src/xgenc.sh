@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ################################
-GEN_MIN_DISTANCE=20
+GEN_MIN_DISTANCE=30
 ATTMP_WARN_THRESHOLD=7
 ################################
 abs_diff () { echo "df=($1 - $2); if (df < 0) { df=df* -1}; print df" | bc -l; }
@@ -27,33 +27,37 @@ gen_random () {
   # EBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel format hex)"
 
   # PressToContinue "XOPT $XOPT"
-  local strategy="${XOPT:-lch}"; [[ "$strategy" == 'lch' ]] && strategy='lch_hue'
-  local darken='0.16'; [[ "$strategy" == 'vivid' ]] && darken='0.08'
+  local strategy="${XOPT:-lch}" ; [[ "$strategy" == 'lch' ]]   && strategy='lch_hue'
+  local xcal='0.16'             ; [[ "$strategy" == 'vivid' ]] && xcal='0.08'
   # PressToContinue "strategy $strategy"
   mlg "strategy $strategy"
 
-  WBG="$(pastel random -n 1 -s lch_hue     | pastel saturate        0.20 | pastel darken "$darken" | pastel format hex)"
-  SBG="$(pastel random -n 1 -s "$strategy" | pastel mix - "$WBG" -f 0.80 | pastel darken "$darken" | pastel format hex)"
-  EBG="$(pastel random -n 1 -s "$strategy" | pastel mix - "$WBG" -f 0.80 | pastel darken "$darken" | pastel format hex)"
+  WBG="$(pastel random -n 1 -s lch_hue     | pastel saturate     "$xcal" | pastel darken "$xcal" | pastel format hex)"
+  SBG="$(pastel random -n 1 -s "$strategy" | pastel mix - "$WBG" -f 0.80 | pastel darken "$xcal" | pastel format hex)"
+  EBG="$(pastel random -n 1 -s "$strategy" | pastel mix - "$WBG" -f 0.80 | pastel darken "$xcal" | pastel format hex)"
 
   local WBG_SAT; WBG_SAT="$(pastel format hsl-saturation "$WBG")"
   local SBG_SAT; SBG_SAT="$(pastel format hsl-saturation "$SBG")"
   local EBG_SAT; EBG_SAT="$(pastel format hsl-saturation "$EBG")"
 
+  mlg "S1:: S $SBG_SAT - W $WBG_SAT - E $EBG_SAT"
+  (( $(echo "$SBG_SAT < 0.60" | bc) )) && SBG="$(pastel saturate 0.20 "$SBG" | pastel format hex)"
+  (( $(echo "$EBG_SAT < 0.60" | bc) )) && EBG="$(pastel saturate 0.20 "$EBG" | pastel format hex)"
+  mlg "S2:: S $SBG_SAT - W $WBG_SAT - E $EBG_SAT"
+
   mlg "$(pastel format hsl-saturation "$SBG") $(pastel format hsl-saturation "$EBG")"
-   # echo "$(pastel format hsl-saturation "$EBG") < $(pastel format hsl-saturation "$SBG")" | bc
 
-   (( $(echo "$SBG_SAT < 0.65" | bc) )) && SBG="$(pastel saturate 0.25 "$SBG" | pastel format hex)"
-   (( $(echo "$EBG_SAT < 0.65" | bc) )) && EBG="$(pastel saturate 0.25 "$EBG" | pastel format hex)"
-
-  mlg "$(pastel format hsl-saturation "$SBG") $(pastel format hsl-saturation "$EBG")"
-
+  local WBG_HUE; WBG_HUE="$(pastel format hsl-hue "$WBG")"
+  local SBG_HUE; SBG_HUE="$(pastel format hsl-hue "$SBG")"
+  local EBG_HUE; EBG_HUE="$(pastel format hsl-hue "$EBG")"
 
   local SOver;SOver="$(diff_under "$WBG_HUE" "$SBG_HUE")"
   local EOver;EOver="$(diff_under "$WBG_HUE" "$EBG_HUE")"
   local XOver;XOver="$(diff_under "$SBG_HUE" "$EBG_HUE")"
+  mlg "HU:: S $SBG_HUE - W $WBG_HUE - E $EBG_HUE"
+  mlg "HX:: S $SOver - E $EOver - X $XOver"
 
-  mlg "ATTMP ${attmp} >> WH:${WBG_HUE} :: [SH:${SBG_HUE} SD:$SOver] [SH:${SBG_HUE} SD:$SOver] [WH:${WBG_HUE} XD:$XOver]"
+
   if (( SOver || EOver || XOver )); then
     ! (( attmp % ATTMP_WARN_THRESHOLD )) && PressToContinue "failed $attmp attempts, still continue?"
     gen_random $((++attmp))
