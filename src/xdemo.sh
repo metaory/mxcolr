@@ -157,19 +157,4 @@ MYIntro () {
   esac
 }
   # if (( RANDOM % 2 )); then MXDotLine; else Demo_block; fi
-# ━
-
 # ////////////////////////////  
-# ca=(C00 C01 C02 C03 C04 C05 C06 C07)
-# cb=(C08 C09 C10 C11 C12 C13 C14 C15)
-# cx=(CX1 CX2 CX3 CX4 CX5 CX6)
-# dk=(DK0 DK1 DK2 DK3 DK4 DK5 DK6 DK7 DL8 DL9)
-# dl=(DL0 DK1 DK2 DK3 DL4 DL5 DL6 DL7 DL8 DL9)
-
-# ca=(C{00..07})
-# cb=(C{08..15})
-# cx=(CX{1..6})
-# tx=(SBG WBG EBG)
-# tt=(SBG WBG EBG SFG WFG EFG WBX TSB TWB TEB TSF TWF TEF TWX)
-# dk=(DK{0..9})
-# dl=(DL{0..9})
