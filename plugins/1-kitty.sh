@@ -1,26 +1,9 @@
 #!/usr/bin/env bash
+BS="$(GetPlugName)-theme.conf"
+MXC_KITTY_TMP=/tmp/mxc/"$BS"
+MXC_KITTY_OUT="${MXC_KITTY_OUT:-"$MXDIST/$BS"}"
 
-M_KIT=$MXTEMP/mx-kit.conf
-O_KIT=$MXDIST/mx-kit.conf
-
-cat <<  EOF > "$M_KIT"
-color0                 $C00
-color8                 $C08
-color7                 $C07
-color15                $C15
-color1                 $C01
-color9                 $C09
-color2                 $C02
-color10                $C10
-color3                 $C03
-color11                $C11
-color4                 $C04
-color12                $C12
-color5                 $C05
-color13                $C13
-color6                 $C06
-color14                $C14
-
+cat <<  EOF > "$MXC_KITTY_TMP"
 color20                $SBG
 color21                $SFG
 color30                $WBG
@@ -37,10 +20,19 @@ cursor                 $WBX
 EOF
 
 
-InfoDone "$M_KIT"
+PopulateFileWith "$MXC_KITTY_TMP" 'APPEND' \
+  "\${c/C0/color} \${!c}" \
+  C{00..09}
+PopulateFileWith "$MXC_KITTY_TMP" 'APPEND' \
+  "\${c/C/color} \${!c}" \
+  C{10..15}
+
 
 apply_kitty () {
-  cp -v "$M_KIT" "$O_KIT"
-  # kitty @ "$KSOCK" set-colors "$KFLAG" "$MXKIT" 2>/dev/null
-  InfoDone "$O_KIT"
+  cp -v "$MXC_KITTY_TMP" "$MXC_KITTY_OUT"
+  InfoDone "$MXC_KITTY_OUT"
 }
+
+# TODO for preview without tmux
+# kitty @ "$KSOCK" set-colors "$KFLAG" "$MXKIT" 2>/dev/null
+

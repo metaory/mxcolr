@@ -1,14 +1,18 @@
 #!/usr/bin/env bash
 
-MXNAME="$(bullshit | cut -d' ' -f1 | cut -d'-' -f1)" ; export MXNAME
+SaveSeed () {
+  Info " Save Temp Seed"  
 
-cat <<  EOF > "$M_SEED"
-export MXNAME="$MXNAME"
+  MXNAME="$(bullshit | cut -d' ' -f1 | cut -d'-' -f1)" ; export MXNAME
 
-##---SOF-MXORG--#
-export WBG="$WBG"
-export SBG="$SBG"
-export EBG="$EBG"
-##---EOF-MXORG--#
-EOF
+  PopulateFileWith "$M_SEED"  'FLUSH' \
+    "export \${c}=\'\${!c}\'" \
+    MXNAME MXC_V WBG SBG EBG
 
+  InfoDone "$XSEED"
+}
+
+ReleaseSeed   () {
+  cp -v "$M_SEED" "$O_SEED"
+  InfoDone "$O_SEED"
+}

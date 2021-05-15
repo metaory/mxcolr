@@ -1,18 +1,20 @@
 #!/usr/bin/env bash
 
 
-M_CHR1=$MXTEMP/mx-chr1.css
-M_CHR2=$MXTEMP/mx-chr2.css
 
-O_CHR1=$XDG_CONFIG_HOME/chromium/Default/Extensions/dbepggeogbaibhgnhhndojpepiihcmeb/1.66_0/content_scripts/vimium.css
-O_CHR2=$XDG_CONFIG_HOME/chromium/Default/Extensions/dbepggeogbaibhgnhhndojpepiihcmeb/1.66_0/pages/vomnibar.css
+BS="$(GetPlugName)"
+MXC_FZF_TMP=/tmp/mxc/"$BS"
+MXC_VIMIUM_EXTENSION_PATH=$XDG_CONFIG_HOME/chromium/Default/Extensions/dbepggeogbaibhgnhhndojpepiihcmeb/1.66_0
+MXC_VIMIUM_OUT="${MXC_FZF_OUT:-"$HOME/.profile"}"
 
-cp "$O_CHR1" "$M_CHR1"
-cp "$O_CHR2" "$M_CHR2"
+! [ -d "$MXC_VIMIUM_EXTENSION_PATH" ] && Info 1 "MXC_VIMIUM_EXTENSION_PATH $MXC_VIMIUM_EXTENSION_PATH not directory" && exit 1
 
-__update () {
+# cp "$O_CHR1" "$M_CHR1"
+# cecho file.txt{,.bak}p "$MXC_VIMIUM_OUT" "$M_CHR2"
+
+__prep () {
   local target="${1}"
-  sed -r -i \
+  sed -r \
     -e "s/--fg:.+$/--fg: ${XFG};/" \
     -e "s/--bg:.+$/--bg: ${XBG};/" \
     -e "s/--border:.+$/--border: ${DK3};/" \
@@ -24,21 +26,22 @@ __update () {
     -e "s/--amber-fg:.+$/--amber-fg: ${WBG};/" \
     -e "s/--accent-fg:.+$/--accent-fg: ${SBG};/" \
     -e "s/--purple-dark:.+$/--purple-dark: ${EBG};/" \
-    "$target"
+    "$target" > "/tmp/mxc/${MXC_FZF_TMP}_${target##*/}"
 
   InfoDone "$1"
 }
 
-__update "$M_CHR1"
-__update "$M_CHR2"
+__prep "$MXC_VIMIUM_EXTENSION_PATH/content_scripts/vimium.css"
+__prep "$MXC_VIMIUM_EXTENSION_PATH/pages/vomnibar.css"
 
 InfoDone
 
 apply_vimium () {
   if [[ "$XOPT" == *"nochr"* ]]; then InfoIgnore; return; fi
 
-  cp "$M_CHR1" "$O_CHR1"
-  cp "$M_CHR2" "$O_CHR2"
+  cp -v --backup "/tmp/mxc/${MXC_FZF_TMP}_vimium.css"   "$MXC_VIMIUM_EXTENSION_PATH/content_scripts/vimium.css"
+  cp -v --backup "/tmp/mxc/${MXC_FZF_TMP}_vomnibar.css" "$MXC_VIMIUM_EXTENSION_PATH/pages/vomnibar.css"        
+
   InfoDone
 }
 

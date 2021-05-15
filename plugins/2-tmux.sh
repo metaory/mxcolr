@@ -1,47 +1,27 @@
 #!/usr/bin/env bash
 # #################
 
-# ## >>> ##########
-# \\\\\\\\\\\\\\\\\\\\\\\\\\\\  
+BS="$(GetPlugName).mx"
+MXC_TMUX_TMP=/tmp/mxc/"$BS"
+MXC_TMUX_OUT="${MXC_TMUX_OUT:-"$MXDIST/$BS"}"
 
-temp="${MXTEMP}"/tmux.mx
-dist="${MXDIST}"/tmux.mx
+# shellcheck disable=SC2046
+PopulateFileWith "$MXC_TMUX_TMP"  'FLUSH' \
+  "\${c}=\'\${!c}\'" \
+  $(eval echo \$\{MX_Z{C,X,M,K,L}\[\@\]\})
 
-cat <<  EOF > "$temp"
-WBG="${WBG}"
-WFG="${WFG}"
-EBG="${EBG}"
-EFG="${EFG}"
-SBG="${SBG}"
-SFG="${SFG}"
-OBG="${OBG}"
-OFG="${OFG}"
-XBG="${XBG}"
-XFG="${XFG}"
-DK0="${DK0}"
-DK1="${DK1}"
-DK2="${DK2}"
-DK3="${DK3}"
-DK4="${DK4}"
-DK5="${DK5}"
-DK6="${DK6}"
-DK7="${DK7}"
-EOF
-
-[ "$TMUX" ] && tmux run-shell "tmux source-file $temp"
-[ "$TMUX" ] && tmux run-shell "tmux source-file $M_THEME"
+[ "$TMUX" ] && tmux run-shell "tmux source-file $MXC_TMUX_TMP"
+[ "$TMUX" ] && [ "$M_THEME" ] && tmux run-shell "tmux source-file $M_THEME"
 
 apply_tmux () {
   local TSOCK=''; # KSOCK='';KFLAG='';  # KSOCK='--to unix:/tmp/kitty-mtx' # KFLAG='-a -c'
   if [ "$TMUX" ]; then TSOCK="$(tmux display -p "#{b:socket_path}")"; else TSOCK="${MX_DEFAULT_TMUX_SOCKET:-master}"; fi
 
-  cp -v "$temp" "$dist"
+  cp -v "$MXC_TMUX_TMP" "$MXC_TMUX_OUT"
 
-  Info "○ ${TSOCK}"
-  Info "○ $(basename "$M_THEME")"
-  
-  tmux -L "$TSOCK"  run-shell "tmux source-file $dist"
-  tmux -L "$TSOCK"  run-shell "tmux source-file $M_THEME"
+  tmux -L "$TSOCK"  run-shell "tmux source-file $MXC_TMUX_OUT"
+  [ "$M_THEME" ] && tmux -L "$TSOCK" run-shell "tmux source-file $M_THEME"
+
   InfoDone
 }
 

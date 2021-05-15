@@ -1,22 +1,12 @@
 #!/usr/bin/env bash
 
-# PL="$(basename "${BASH_SOURCE[0]}")"
-# TMP="$MXTEMP"/spotify.mx
-
 SPICETIFY_PATH=$XDG_CONFIG_HOME/spicetify
-# SPICETIFY_COLOR_FILE=$XDG_CONFIG_HOME/spicetify/Themes/Metafy/color.ini
-# /home/metaory/.config/spicetify/Themes/Metafy/color.ini
 
+BS="$(GetPlugName).mx"
+MXC_SPOTIFY_TMP=/tmp/mxc/"$BS"
+MXC_SPOTIFY_OUT="${MXC_SPOTIFY_OUT:-"$MXDIST/$BS"}"
 
-# Z_SPT1="$XDG_CONFIG_HOME"/spicetify/Extracted/Themed/zlink/css/zlink.css
-# Z_SPT2="$XDG_CONFIG_HOME"/spicetify/Extracted/Themed/glue-resources/css/glue.css
-
-# SPICETIFY_PATH="$XDG_CONFIG_HOME"/spicetify/Extracted/Themed/zlink/css/zlink.css
-# Z_SPT2="$XDG_CONFIG_HOME"/spicetify/Extracted/Themed/glue-resources/css/glue.css
-
-SPOTIFY_TEMP="$MXTEMP"/mx-spt.mx
-
-cat <<  EOF > "$SPOTIFY_TEMP"
+cat <<  EOF > "$MXC_SPOTIFY_TMP"
 [Base]
 main_bg                               =${XBG:1}
 main_fg                               =${XFG:1}
@@ -46,7 +36,7 @@ meta_high                             =${C11:1}
 meta_amber                            =${EBG:1}
 EOF
 
-InfoDone "$SPOTIFY_TEMP"
+InfoDone "$MXC_SPOTIFY_TMP"
 
   # TODO remove me 
   # NOT NEEDED
@@ -116,7 +106,7 @@ patch_legacy_spotify () {
 apply_spotify () {
   if [[ "$XOPT" == *"nospt"* ]]; then InfoIgnore; return; fi
 
-  cp -v "$SPOTIFY_TEMP" "$SPICETIFY_PATH"/Themes/Metafy/color.ini
+  cp -v "$MXC_SPOTIFY_TMP" "$SPICETIFY_PATH"/Themes/Metafy/color.ini
   echo "==> $SPICETIFY_PATH/Themes/Metafy/color.ini"
 
   # TODO remove me 

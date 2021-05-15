@@ -1,7 +1,9 @@
 #!/usr/bin/env bash
 
-M_FZF=$MXTEMP/mx-fzf
-O_FZF=$HOME/.profile
+BS="$(GetPlugName)"
+MXC_FZF_TMP=/tmp/mxc/"$BS"
+MXC_FZF_OUT="${MXC_FZF_OUT:-"$HOME/.profile"}"
+
 
 FZF_COLOR_OPTS="$FZF_DEFAULT_OPTS \
   --color=fg:${XFG},bg:${XBG},hl:${WBG} \
@@ -9,13 +11,18 @@ FZF_COLOR_OPTS="$FZF_DEFAULT_OPTS \
   --color=info:${EBG},prompt:${C08},pointer:${WBX} \
   --color=marker:${C01},spinner:${WBG},header:${C01}"
 
+if ! [ -e "$MXC_FZF_OUT" ]; then 
+  Info 1 "$MXC_FZF_OUT doesnt exists"
+  return
+fi
+
 sed -r \
   -e "s/^export FZF_DEFAULT_OPTS=.+$/export FZF_DEFAULT_OPTS=\"$FZF_COLOR_OPTS\"/" \
-  "$O_FZF" > "$M_FZF"
+  "$MXC_FZF_OUT" > "$MXC_FZF_TMP"
 
-InfoDone "$M_FZF"
+InfoDone "$MXC_FZF_TMP"
 
 apply_fzf () {
-  cp "$M_FZF" "$O_FZF"
-  InfoDone "$O_FZF"
+  cp -v --backup "$MXC_FZF_TMP" "$MXC_FZF_OUT"
+  InfoDone "$MXC_FZF_OUT"
 }

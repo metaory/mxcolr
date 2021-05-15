@@ -1,17 +1,19 @@
 #!/usr/bin/env bash
 
+BS="${BASH_SOURCE[0]}"; BS=${BS##*/}
+
 Info () {
   local ico; local cf; local cc; # ; local lvl=$1 # ; local on
   # ! [[ $2 =~ ^[0-9]+$ ]] && lvl=0
   mlg "$*"
   case "${1:-0}" in
-    0) ico='' ; cf="$SBG" ; cc="$C02" ;; # ; on="${3:-}" ; shift ;  ;
-    1) ico='' ; cf="$C01" ; cc="$C01" ;;
-    2) ico='' ; cf="$SBG" ; cc="$C07" ;;
-    3) ico='' ; cf="$WBG" ; cc="$C08" ;;
-    *) ico='' ; cf="$EBG" ; cc="$C15" ;;
+    0) ico='' ; cc="$SBG" ;; # ; on="${3:-}" ; shift ;  ;
+    1) ico='' ; cc="$C01" ;;
+    2) ico='' ; cc="$SBG" ;;
+    3) ico='' ; cc="$WBG" ;;
+    *) ico='' ; cc="$EBG" ;;
   esac; shift
-  cf="${cf:-#f00}"
+  cf="${C07:-#f00}"
   cc="${cc:-#ff0}"
 
   local in="${1:-${BASH_SOURCE[1]}}" ; [[ "$VERBOSE" ]] && ! [[ "$in" =~ ^[0-9]+$ ]] && [[ -n "$in" ]] && pastel paint "$C07" " => ${in}"
@@ -28,7 +30,7 @@ Info () {
 }
 
 InfoIgnore () {
-  Info 3 " Ignoring·" "${FUNCNAME[1]}" "$(basename "${BASH_SOURCE[1]}")"
+  Info 3 " Ignoring·" "$1 ${FUNCNAME[1]}" "$(basename "${BASH_SOURCE[1]}")"
 }
 
 InfoDone () {
@@ -37,7 +39,7 @@ InfoDone () {
 
 PressToContinue () {
   if [[ "$XOPT" == *"full"* ]]; then return; fi
-  [ -n "$1" ] && pastel paint "${C03:-yellow}" -b " [ $1 ] "
+  [ -n "$1" ] && pastel paint "${SBG:-yellow}" -b " [ $1 ] $2"
   local fn; fn="${FUNCNAME[1]}"
   pastel paint -b -n -o 'black' "$WBX" "[${fn}]"
   pastel paint -b -n "$C03"   " press any key to continue"
@@ -75,6 +77,9 @@ PromptConfirm () {
   pastel paint -o "$C00" "$CX3" -b "  ·  "; fi
 }
 PromptContinue () {
-  pastel paint -b -n "$C07" "[ ${1:-${FUNCNAME[1]}} ] ==> "
+  pastel paint -b -n "${C07:-#666}" "[ "
+  pastel paint -b -n "${C03:-#f66}" "${1:-${FUNCNAME[1]}}"
+  pastel paint -b -n "${C07:-#666}" " ] ==> "
   PromptConfirm "   continue $1 "
 }
+

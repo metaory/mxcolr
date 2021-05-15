@@ -2,80 +2,68 @@
 
 # set -o pipefail
 # set -o errtrace
-source "$HOME"/dev/meta/configs/scripts/m.lib/lib.mxtrap.sh
+# source $MXS/m.lib/lib.mxtrap.sh
 
-if [ -e "$HOME"/dev/meta/configs/scripts/m.lib/lib.common.sh ]; then source "$HOME"/dev/meta/configs/scripts/m.lib/lib.common.sh 
-else mlg () { echo "${FUNCNAME[1]}:${BASH_LINENO[1]} => ${*}" >> /tmp/mxsh.log; }; fi
 # if tty -s; then mlg interactive; else mlg none-intreractive;fi
 
- MXC_V='mxc-v1.3'                         ; export MXC_V
+ MXC_V='mxc-v1.3'                    ; export MXC_V
+MXBASE=$(dirname "$(realpath "$0")") ; export MXBASE
+MXDIST=$XDG_CONFIG_HOME/mxc          ; export MXDIST
+MXTEMP=/tmp/mxc                      ; export MXTEMP
 
-MXBASE=$HOME/dev/meta/configs/scripts/MXX ; export MXBASE
-MXDIST=$XDG_CONFIG_HOME/mxc               ; export MXDIST
-MXTEMP=$MXBASE/dist                       ; export MXTEMP
-MXSNAP=$MXBASE/snapshots                  ; export MXSNAP
+MXSNAP=$MXBASE/snapshots    ; export MXSNAP
+MTHEME=$MXTEMP/theme.mx     ; export MTHEME
+OTHEME=$MXDIST/theme.mx     ; export OTHEME
 
-MTHEME=$MXTEMP/theme.mx                   ; export MTHEME
-OTHEME=$MXDIST/theme.mx                   ; export OTHEME
+M_SEED=$MXTEMP/mx-seed      ; export M_SEED
+O_SEED=$MXDIST/mx-seed      ; export O_SEED
 
-M_SEED=$MXTEMP/mx-seed                    ; export M_SEED
-O_SEED=$MXDIST/mx-seed                    ; export O_SEED
+if [ "$MXLIB" ]; then . "$MXLIB"/lib.common.sh 
+else mlg () { echo "${FUNCNAME[1]}:${BASH_LINENO[1]} => ${*}" >> /tmp/mxsh.log; }; fi
+# MXTEMP=$MXBASE/dist         ; export MXTEMP
+# XSEED=$MXBASE/src/xseed.sh  ; X_OUT=$MXBASE/src/x_out.sh
 
 mkdir "$MXDIST" -p 2>/dev/null || true 
-mkdir "$MXTEMP" -p 2>/dev/null || true 
 mkdir "$MXSNAP" -p 2>/dev/null || true 
-
-XSEED=$MXBASE/src/xseed.sh
-
-X_OUT=$MXBASE/src/x_out.sh
+mkdir /tmp/{mxc,mxc_hist} 2>/dev/null || true 
 
 ##########
-. "$MXBASE"/src/paint.sh
-. "$MXBASE"/src/xdemo.sh
-. "$MXBASE"/src/xmenu.sh
-# .........
-# .........
-. "$MXBASE"/src/xansi.sh
-. "$MXBASE"/src/xgenc.sh
-. "$MXBASE"/src/calib.sh
-. "$MXBASE"/src/snaps.sh
 
-. "$MXBASE"/plugins/9-awm.sh
-# . "$MXBASE"/plugins/2-tmux.sh
-###########
-
-# \\\\\\\\\\\\\\\\\\\\\\\\\\\\  
-################################
+################################################################################################
+# VARIABLES ####################################################################################
+MX_CC=(C{00..15})  ; MX_TC=(T{00..15}) ; MX_ZC=("${MX_CC[@]}" "${MX_TC[@]}")      ; export MX_CC
+MX_CX=(CX{1..6})   ; MX_TX=(TX{1..6})  ; MX_ZX=("${MX_CX[@]}" "${MX_TX[@]}")      ; export MX_CX
+MX_CK=(DK{0..9})   ; MX_TK=(TK{0..9})  ; MX_ZK=("${MX_CK[@]}" "${MX_TK[@]}")      ; export MX_CK
+MX_CL=(DL{0..9})   ; MX_TL=(TL{0..9})  ; MX_ZL=("${MX_CL[@]}" "${MX_TL[@]}")      ; export MX_CL
+MX_CM=({SB,WB,EB,SF,WF,EF,XB,XF}G WBX) ; export MX_CM
+MX_TM=(T{SB,WB,EB,SF,WF,EF,XB,XF} TFX) 
+MX_ZM=("${MX_CM[@]}" "${MX_TM[@]}")    ; export MX_ZM
+#...............................................................................................
+################################################################################################
+for src in "$MXBASE"/src/*.sh; do . "$src"; done
 #  ............................ .........................................#
-ClearTemp     () { Info ' Cleaning temp' ; rm "$MXTEMP"/*         || { Info "empty dir    " 2 && echo "$MXTEMP" ; } }
+ClearTemp     () { Info ' Cleaning temp'       ; rm "$MXTEMP"/*         || { Info "empty dir    " 2 && echo "$MXTEMP" ; } }
+LoadTempTheme () { Info ' Load Temp Theme'     ; . "$MTHEME" || . "$OTHEME" ; }
+CopyTempSeed  () { Info ' Copy Temp Seed'      ; cp -v "$O_SEED" "$M_SEED" ; }
+LoadProdTheme () { . "$OTHEME" || . "$MXBASE/data/sample_theme.mx" ; }
+LoadTempSeed  () { Info ' Load Temp Seed'      ; . "$M_SEED" || . "$O_SEED" ; }
+LoadProdSeed  () { . "$O_SEED" || . "$MXBASE/data/sample_mx-seed.mx" ; Info ' Load Live Seed' ; }
+BackupDist    () { Info ' Backup Prod Dist ··' ; cp -v "$MXDIST" /tmp/mxc_hist/"$(date +%s)" -r ; }
 #  ............................ .........................................#
-SaveSeed      () { Info " Save Temp Seed"  ; ( . "$XSEED"             && InfoDone "$XSEED"  ) || { Info "missing file " 1 && echo "$XSEED"  && exit 1 ; }  }
-SaveTheme     () { Info " Save Temp Theme" ; ( . "$X_OUT"             && InfoDone "$X_OUT"  ) || { Info "missing file " 1 && echo "$X_OUT"  && exit 1 ; }  }
-ReleaseSeed   () { Info " Release Seed"  0 ; ( cp "$M_SEED" "$O_SEED" && InfoDone "$O_SEED" ) || { Info "missing file " 1 && echo "$M_SEED" && exit 1 ; }  }
-ReleaseTheme  () { Info " Release Theme" 0 ; ( cp "$MTHEME" "$OTHEME" && InfoDone "$OTHEME" ) || { Info "missing file " 1 && echo "$MTHEME" && exit 1 ; }  }
+LoadProdTheme
 #  ............................ .........................................#
-LoadTempTheme () { Info ' Load Temp Theme' ; . "$MTHEME"            || { Info "missing file " 1 && echo "$MTHEME"  && exit 1 ; } }
-LoadProdTheme () { Info ' Load Prod Theme' ; . "$OTHEME"            || { Info "missing file " 1 && echo "$OTHEME"  && exit 1 ; } }
 #  ............................ .........................................#
-CopyTempSeed  () { Info ' Copy Temp Seed' ; cp "$O_SEED" "$M_SEED" || { Info "missing dir  " 1 && echo "$O_SEED"  && exit 1 ; } }
-LoadTempSeed  () { Info ' Load Temp Seed' ; . "$M_SEED"            || { Info "missing file " 1 && echo "$M_SEED"  && exit 1 ; } }
-#  ............................ .........................................#
-LoadProdSeed  () { Info ' Load Prod Seed' ; . "$O_SEED"            || { Info "missing file " 1 && echo "$O_SEED"  && exit 1 ; } }
-BackupDist    () { Info ' Backup Prod Dist ··' 
-  cp "$MXDIST" /tmp/mx_"$(date +%s)" -r                             || { Info "missing dir  " 1 && echo "$MXDIST"  && exit 1 ; } }
-#  ............................ .........................................#
-################################
-# ////////////////////////////  
+# ##############################
+GetPlugName () {
+  local BS="${BASH_SOURCE[1]}"; BS=${BS##*/}
+  BS="${BS::-3}"; BS="${BS:2}"
+  echo "$BS" 
+}
 SourcePlugs () { for plug in "$MXBASE"/plugins/*.sh; do . "$plug"; done; }
-# ............................  
-# ............................  
+################################
 # ##############################
 # ////////////////////////////  
 Demo () {
-  # fillHead "${MXNAME}"; pl '-'
-  # Demo_card
-  # Demo_slant
-  # Demo_shades3
   Demo_block
   Demo_dot
   MXDotLine
@@ -109,15 +97,18 @@ ApplyPlugs () {
   BackupDist
 
   Demo
-  PressToContinue
+  ls "$MXTEMP" && PressToContinue "drafts ready" "$MXTEMP"
 
   ReleaseSeed
   ReleaseTheme
 
   for plug_path in "$MXBASE"/plugins/*.sh; do
     local plugname; plugname="$(basename "$plug_path" | cut -d'-' -f2 | cut -d'.' -f1)"
-    ! [[ "$XOPT" == *"full"* ]] && PromptContinue "$plugname"; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then continue; fi
-    local applyfn="apply_${plugname}"; "$applyfn"
+
+    [[ ! "$XOPT" == *"full"* ]] && PromptContinue "$plugname"
+    [[ ! "$REPLY" =~ ^[Yy]$ ]] || [[ "$XOPT" == *"no$plugname"* ]] && InfoIgnore "$plugname" && continue 
+
+    local applyfn="apply_${plugname}"; ! [[ "$XOPT" == *"full"* ]] && "$applyfn"
   done
 }
 
@@ -174,4 +165,3 @@ exit 0
 
 # //////////////////////////// #
 ################################
-
