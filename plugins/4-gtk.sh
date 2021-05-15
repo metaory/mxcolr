@@ -1,18 +1,13 @@
 #!/usr/bin/env bash
 
-Info "  XP_GTK -- ${MXC_V}" 2
+BS="$(GetPlugName)-theme.mx"
+MXC_GTK_TMP=/tmp/mxc/"$BS"
+MXC_GTK_OUT="${MXC_GTK_OUT:-"$MXDIST/$BS"}"
 
 
-M_GTK="$MXTEMP"/mx-gtk.mx
-O_GTK="$MXDIST"/mx-gtk.mx
+:>"$MXC_GTK_TMP"
 
-:>"$M_GTK"
-
-
-# . "$MTHEME"
-
-cat <<  EOF > "$M_GTK"
-
+cat <<  EOF > "$MXC_GTK_TMP"
 NOGUI=True
 NAME=${MXC_V}
 
@@ -72,6 +67,7 @@ TERMINAL_THEME_ACCURACY=128
 TERMINAL_BACKGROUND=${XBG:1}
 TERMINAL_FOREGROUND=${XFG:1}
 TERMINAL_ACCENT_COLOR=${WBG:1}
+
 TERMINAL_COLOR0=${C00:1}
 TERMINAL_COLOR1=${C01:1}
 TERMINAL_COLOR2=${C02:1}
@@ -88,33 +84,32 @@ TERMINAL_COLOR12=${C12:1}
 TERMINAL_COLOR13=${C13:1}
 TERMINAL_COLOR14=${C14:1}
 TERMINAL_COLOR15=${C15:1}
-
 EOF
 
-InfoDone "$M_GTK"
+InfoDone "$MXC_GTK_TMP"
 
 ApplyGTKTheme () {
-  if [[ "$XOPT" == *"nogtk"* ]]; then InfoIgnore; return; fi
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
 
-  cp "$M_GTK" "$O_GTK"
   notify "╸頋━  ━  ${MXC_V} in 3s ⏲" ; sleep 1
-  oomox-cli --make-opts all -o "$MXC_V" -t "$HOME"/.themes -m all "$O_GTK"
+  oomox-cli --make-opts all -o "$MXC_V" -t "$HOME"/.themes -m all "$MXC_GTK_OUT"
 
   # useless 
-  [[ -n "$OOMOX_GUI_PREVIEW_ENABLED" ]] && cp "$M_GTK" /opt/oomox/plugins/import_random/colors/random3 
+  [[ -n "$OOMOX_GUI_PREVIEW_ENABLED" ]] && cp -v "$MXC_GTK_TMP" /opt/oomox/plugins/import_random/colors/random3 
 }
 # ............................ #
 ApplyGTKIcon () {
-  if [[ "$XOPT" == *"nogtk"* ]]; then InfoIgnore; return; fi
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
 
-  CURSOR_THEME=MetaPurpleDark
-
   notify "  ${MXNAME}.${MXC_V} in 3s ⏲" ; sleep 1
-  /opt/oomox/plugins/icons_archdroid/archdroid-icon-theme/change_color.sh -o "$MXC_V"  "$M_GTK"
-  InfoDone "$M_GTK"
+  /opt/oomox/plugins/icons_archdroid/archdroid-icon-theme/change_color.sh -o "$MXC_V"  "$MXC_GTK_OUT"
 
+  InfoDone
+}
+ApplyGTKCursor () {
+  CURSOR_THEME=MetaPurpleDark
+  PromptContinue "update cursor theme to ${CURSOR_THEME} ?"
+  if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   sed -r -i \
     -e "/^gtk-cursor-theme-name/s/=.+$/=${CURSOR_THEME}/" \
     "$XDG_CONFIG_HOME"/gtk-3.0/settings.ini
@@ -122,19 +117,20 @@ ApplyGTKIcon () {
   InfoDone
 }
 # ............................ #
-ApplyGTKSpt () {
-  if [[ "$XOPT" == *"noxsp"* ]]; then InfoIgnore; return; fi
-  PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
-
-  oomoxify-cli -s /opt/spotify/Apps "$M_GTK"
-  
-  InfoDone
-}
 
 apply_gtk () {
   if [[ "$XOPT" == *"nogtk"* ]]; then InfoIgnore; return; fi
+  cp -v --backup "$MXC_GTK_TMP" "$MXC_GTK_OUT"
   ApplyGTKTheme
   ApplyGTKIcon
+  ApplyGTKCursor
   InfoDone
   # ApplyGTKSpt
 }
+
+# ApplyGTKSpt () {
+#   if [[ "$XOPT" == *"noxsp"* ]]; then InfoIgnore; return; fi
+#   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
+#   oomoxify-cli -s /opt/spotify/Apps "$MXC_GTK_TMP"
+#   InfoDone
+# }

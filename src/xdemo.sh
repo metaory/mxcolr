@@ -1,8 +1,11 @@
 #!/usr/bin/env bash
-# . /home/metaory/dev/meta/configs/scripts/m.lib/lib.common.sh
 
-PAINT=$MXBASE/src/paint.sh
-
+MX_XX=(SBG WBG EBG)
+MX_CX=(CX{1..6})
+MX_CA=(C{00..07})
+MX_CB=(C{08..15})
+MX_CK=(DK{0..9})
+MX_CL=(DL{0..9})
 ################################
 prnt1 (){
   pastel paint "${3:-$(pastel textcolor "$1")}" -o "$1" -b -n "┠${1}┨"
@@ -10,51 +13,44 @@ prnt1 (){
 }
 ################################
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\  
-ca=(C00 C01 C02 C03 C04 C05 C06 C07)
-cb=(C08 C09 C10 C11 C12 C13 C14 C15)
-cx=(CX1 CX2 CX3 CX4 CX5 CX6)
-# ////////////////////////////  
-tx=(SBG WBG EBG)
-dk=(DK0 DK1 DK2 DK3 DK4 DK5 DK6 DK7 DL8 DL9)
-dl=(DL0 DK1 DK2 DK3 DL4 DL5 DL6 DL7 DL8 DL9)
 # ////////////////////////////  
 Demo_large_block () {
   
   pl '-'; pl '-'; pl '-'; pl '-'
   sp_block_d_middl='████'
-  fill 5 ; pl "${tx[0]}" "▄▄▄" ; prntlist 'pl:sp_block_d' "${tx[@]}" ; pl "${tx[-1]}" '▀▀▀' ; pl '-'
+  fill 5 ; pl "${MX_XX[0]}" "▄▄▄" ; prntlist 'pl:sp_block_d' "${MX_XX[@]}" ; pl "${MX_XX[-1]}" '▀▀▀' ; pl '-'
   pl '-'; pl '-'; pl '-'; pl '-'
 }
 # ////////////////////////////  
 Demo_block () {
-  [[ -z $2 ]] && { fill 8 ; pl "${tx[0]}" "${1-${MXNAME:0:2}}" ; pl "${tx[1]}"  "${MXNAME:2:4}" ;pl "${tx[2]}" "${MXNAME:8:16}"; pl '-'; }
-  fill 5 ; pl "${tx[0]}"   " ▄▄" ; prntlist 'prnt:sp_block_d' "${tx[@]}" ; pl "${tx[-1]}" '▀▀' ; pl '-'
+  [[ -z $2 ]] && { fill 8 ; pl "${MX_XX[0]}" "${1-${MXNAME:0:2}}" ; pl "${MX_XX[1]}"  "${MXNAME:2:4}" ;pl "${MX_XX[2]}" "${MXNAME:8:16}"; pl '-'; }
+  fill 5 ; pl "${MX_XX[0]}"   " ▄▄" ; prntlist 'prnt:sp_block_d' "${MX_XX[@]}" ; pl "${MX_XX[-1]}" '▀▀' ; pl '-'
 }
 Demo_full_block () {
   local head="${1:-}"
-  fill 1 ; pl "${tx[0]}" "${head}  " ; prntlist 'prnt:sp_blank' "${tx[@]}"   ; pl "${tx[-1]}" '   ' ; pl '-'
-  fill 6 ; pl "${tx[0]}" " ▄▄" ; prntlist 'prnt:sp_block_d' "${tx[@]}" ; pl "${tx[-1]}" '▀▀ ' ; pl '-'
-  fill 7 ; pl "${tx[0]}" "   " ; prntlist 'prnt:sp_blank' "${tx[@]}"   ; pl "${tx[-1]}" '   ' ; pl '-'
+  fill 1 ; pl "${MX_XX[0]}" "${head}  " ; prntlist 'prnt:sp_blank' "${MX_XX[@]}"   ; pl "${MX_XX[-1]}" '   ' ; pl '-'
+  fill 6 ; pl "${MX_XX[0]}" " ▄▄" ; prntlist 'prnt:sp_block_d' "${MX_XX[@]}" ; pl "${MX_XX[-1]}" '▀▀ ' ; pl '-'
+  fill 7 ; pl "${MX_XX[0]}" "   " ; prntlist 'prnt:sp_blank' "${MX_XX[@]}"   ; pl "${MX_XX[-1]}" '   ' ; pl '-'
 }
 Demo_slant () {
   # ########################################
-  # echo "DEMO SLANT, ${cb[*]}"
+  # echo "DEMO SLANT, ${MX_CB[*]}"
   Demo_block 1
-  # fill 1 ; pl                  ; prntlist 'pl:sp_line'  "${tx[@]}"  ; pl '-'
+  # fill 1 ; pl                  ; prntlist 'pl:sp_line'  "${MX_XX[@]}"  ; pl '-'
   # ........................................
   # ########################################
-  fill 1; pl                  ; prntlist 'prnt:sp_line_top'  "${ca[@]}" ; pl '-'
-  fill 1; pl "${ca[0]}" " ┗━" ; prntlist 'prnt:sp_block_l'   "${ca[@]}" ; pl "${ca[-1]}" '┛' ; pl '-'
+  fill 1 ; pl                      ; prntlist 'prnt:sp_line_top' "${MX_CA[@]}" ; pl '-'
+  fill 1 ; pl "${MX_CA[0]}" " ┗━" ; prntlist 'prnt:sp_block_l'  "${MX_CA[@]}"   ; pl "${MX_CA[-1]}" '┛' ; pl '-'
   # ........................................
   # ########################################
-  fill 1; pl "${cb[0]}" ' ┏━╺' ; prntlist 'prnt:sp_block_l'  "${cb[@]}"; pl '-'
-  fill 1; pl                   ; prntlist 'prnt:sp_line_bot' "${cb[@]}"; pl '-'
+  fill 1 ; pl "${MX_CB[0]}" ' ┏━╺' ; prntlist 'prnt:sp_block_l'  "${MX_CB[@]}" ; pl '-'
+  fill 1 ; pl                       ; prntlist 'prnt:sp_line_bot' "${MX_CB[@]}" ; pl '-'
   # ........................................
   # ########################################
   # ........................................
-  fill 4     ; prntlist 'pl:sp_line_top_mini' "${cx[@]}" ; pl '-'
-  fill 4     ; pl "${cx[0]}" "┗━"                        ; prntlist 'prnt:sp_block_c' "${cx[@]}" ; pl "${cx[-1]}" "━┛"; pl '-'
-  fill 7 ; prntlist 'pl:sp_line_bo2' "${cx[@]}"          ; pl '-'
+  fill 4     ; prntlist 'pl:sp_line_top_mini' "${MX_CX[@]}" ; pl '-'
+  fill 4     ; pl "${MX_CX[0]}" "┗━"                        ; prntlist 'prnt:sp_block_c' "${MX_CX[@]}" ; pl "${MX_CX[-1]}" "━┛"; pl '-'
+  fill 7 ; prntlist 'pl:sp_line_bo2' "${MX_CX[@]}"          ; pl '-'
   # ########################################
 }
 
@@ -88,52 +84,56 @@ _head () {
 }
 Demo_card () {
   local s="${1:-$MXNAME}"; local c="${2:-}"; local t="${3:-}"
-  local cy=("${tx[@]}" "${cx[@]}")
+  local cy=("${MX_XX[@]}" "${MX_CX[@]}")
   _head ; _title "$s"
-  _head "$c"  0 '-b' ; prntlist 'pl:sp_tiny' "${ca[@]}" ; pl '-'
-  _head "∕"   0      ; prntlist 'pl:sp_tiny' "${cb[@]}" ; pl '-'
+  _head "$c"  0 '-b' ; prntlist 'pl:sp_tiny' "${MX_CA[@]}" ; pl '-'
+  _head "∕"   0      ; prntlist 'pl:sp_tiny' "${MX_CB[@]}" ; pl '-'
   _head "$t"  0      ; prntlist 'pl:sp_tiny' "${cy[@]}" ; pl '-'
-  _head " "   0      ; prntlist 'pl:sp_tiny' "${dl[@]}" ; pl '-'
-  _head "██"  I     ; prntlist 'pl:sp_tiny' "${dk[@]}" ; pl '-'
+  _head " "   0      ; prntlist 'pl:sp_tiny' "${MX_CL[@]}" ; pl '-'
+  _head "██"  I     ; prntlist 'pl:sp_tiny' "${MX_CK[@]}" ; pl '-'
 
-  # _head "$t"  0      ; prntlist 'pl:sp_tiny' "${cx[@]}" ; pl '-'
+  # _head "$t"  0      ; prntlist 'pl:sp_tiny' "${MX_CX[@]}" ; pl '-'
 }
 # ##############################
 
 Demo_shades()  {
-  pl "${dk[0]}" ' ┏╸━' ; prntlist 'prnt:sp_block_l'  "${dk[@]}" ; pl '-'
-  pl                   ; prntlist 'prnt:sp_line_bot' "${dk[@]}"  ; pl '-'
+  pl "${MX_CK[0]}" ' ┏╸━' ; prntlist 'prnt:sp_block_l'  "${MX_CK[@]}" ; pl '-'
+  pl                   ; prntlist 'prnt:sp_line_bot' "${MX_CK[@]}"  ; pl '-'
 }
-Demo_shades1()  { fill 1; prntlist 'prnt:sp_lash' "${dk[@]}" ; pl '-'; }
-Demo_shades2()  { fill 1; prntlist 'prnt:sp_pentagon' "${dk[@]}" ; pl '-'; }
-Demo_shades3()  { fill 3; prntlist 'prnt:sp_dotline' "${dk[@]}" ; pl '-'; }
+Demo_shades1()  { fill 1; prntlist 'prnt:sp_lash' "${MX_CK[@]}" ; pl '-'; }
+Demo_shades2()  { fill 1; prntlist 'prnt:sp_pentagon' "${MX_CK[@]}" ; pl '-'; }
+Demo_shades3()  { fill 3; prntlist 'prnt:sp_dotline' "${MX_CK[@]}" ; pl '-'; }
 Demo_shades4()  { 
-  fill 3; prntlist 'prnt:sp_block_e' "${dk[@]}" ; pl '-'
-  fill 3; prntlist 'prnt:sp_block_e' "${dl[@]}" ; pl '-'
+  fill 3; prntlist 'prnt:sp_block_e' "${MX_CK[@]}" ; pl '-'
+  fill 3; prntlist 'prnt:sp_block_e' "${MX_CL[@]}" ; pl '-'
 }
 
 Demo_dot_slant () {
   sp_cross_begin='┏╸'; sp_cross_close=' ╺┓'
-  fill 5 ; prntlist 'prnt:sp_cross' "${cx[@]}"     ; pl '-'
-  fill 3 ; prntlist 'prnt:sp_circle_slant' "${ca[@]:1:6}" ; pl '-'
+  fill 5 ; prntlist 'prnt:sp_cross' "${MX_CX[@]}"     ; pl '-'
+  fill 3 ; prntlist 'prnt:sp_circle_slant' "${MX_CA[@]:1:6}" ; pl '-'
   sp_cross_close=' ╺┛'; sp_cross_begin='┗╸'
-  fill 5 ; prntlist 'prnt:sp_cross' "${cb[@]:1:6}" ; pl '-'
+  fill 5 ; prntlist 'prnt:sp_cross' "${MX_CB[@]:1:6}" ; pl '-'
 }
 
 # ##############################
 Demo_dot () {
-  fill 9; prntlist 'prnt:sp_dot' "${tx[@]}"; pl '-'
-  fill 6;  prntlist 'prnt:sp_dot' "${cx[@]}"; pl '-'
-  fill 4;  prntlist 'prnt:sp_dot' "${ca[@]}"; pl '-'
-  fill 4;  prntlist 'prnt:sp_dot' "${cb[@]}"; pl '-'
-  fill 2;  prntlist 'prnt:sp_dot' "${dk[@]}"; pl '-'
-  fill 2;  prntlist 'prnt:sp_dot' "${dl[@]}"; pl '-'
+  fill 9 ; prntlist 'prnt:sp_dot' "${MX_XX[@]}" ; pl '-'
+  fill 6 ; prntlist 'prnt:sp_dot' "${MX_CX[@]}" ; pl '-'
+
+  # echo "CA "${MX_CA[*]}""
+  fill 4 ; prntlist 'prnt:sp_dot' "${MX_CA[@]}" ; pl '-'
+  # echo "CB "${MX_CB[*]}""
+
+  fill 4 ; prntlist 'prnt:sp_dot' "${MX_CB[@]}" ; pl '-'
+  fill 2 ; prntlist 'prnt:sp_dot' "${MX_CK[@]}"     ; pl '-'
+  fill 2 ; prntlist 'prnt:sp_dot' "${MX_CL[@]}"     ; pl '-'
 }
 # ////////////////////////////  
 # ##############################
 # ·╺━╸⏽ ●  ● ⏽╺━╸·
-MXDots-full () { local cb=(C00 C01 C02 C03 C04 C05 C06 C07 C08 C09 C10 C11 C12 C13 C14 C15); prntlist 'prnt:sp_dot' "${cb[@]}" ; pl ; }
-MXDots () { local cb=(SBG WBG EBG); prntlist 'prnt:sp_dot' "${cb[@]}" ; pl ; }
+MXDots-full () { prntlist 'prnt:sp_dot' "${MX_XX[@]}" ; pl ; }
+MXDots () { prntlist 'prnt:sp_dot' "${MX_XX[@]}" ; pl ; }
 
 MXDotLine () {
   local cols;cols=$(tput cols); fill 0
@@ -160,3 +160,16 @@ MYIntro () {
 # ━
 
 # ////////////////////////////  
+# ca=(C00 C01 C02 C03 C04 C05 C06 C07)
+# cb=(C08 C09 C10 C11 C12 C13 C14 C15)
+# cx=(CX1 CX2 CX3 CX4 CX5 CX6)
+# dk=(DK0 DK1 DK2 DK3 DK4 DK5 DK6 DK7 DL8 DL9)
+# dl=(DL0 DK1 DK2 DK3 DL4 DL5 DL6 DL7 DL8 DL9)
+
+# ca=(C{00..07})
+# cb=(C{08..15})
+# cx=(CX{1..6})
+# tx=(SBG WBG EBG)
+# tt=(SBG WBG EBG SFG WFG EFG WBX TSB TWB TEB TSF TWF TEF TWX)
+# dk=(DK{0..9})
+# dl=(DL{0..9})
