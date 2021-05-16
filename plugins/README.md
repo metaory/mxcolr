@@ -15,7 +15,7 @@
 
 ### current active loaded theme variables are available to plugin
 
-> plugins outputs will first be drafted in `/tmp/mxc` and later upon confirmation will move to `$XDG_CONFIG_HOME/mxc/{plugin_name}`
+> plugins outputs will first be drafted in `/tmp/mxc` and later upon confirmation moved to `$XDG_CONFIG_HOME/mxc/{plugin_name}`
 > unless it have a different destination set
 - sample output [directory](../assets/samples)
 - sample output [theme.mx](../assets/samples/theme.mx)
