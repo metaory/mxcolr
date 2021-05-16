@@ -1,0 +1,27 @@
+[Base]
+main_bg                               =121217
+main_fg                               =6767c1
+dark_fg                               =2e2e4b
+light_fg                              =424280
+meta_1                                =4863e9
+meta_2                                =599150
+meta_3                                =d63488
+miscellaneous_hover_bg                =d63488
+preserve_1                            =d63488
+selected_button                       =2e2e4b
+slider_bg                             =2e2e4b
+miscellaneous_bg                      =2e2e4b
+secondary_fg                          =2e2e4b
+indicator_fg_and_button_bg            =599150
+pressing_fg                           =30305e
+cover_overlay_and_shadow              =121217
+sidebar_indicator_and_hover_button_bg =0d0d1a
+sidebar_and_player_bg                 =06060d
+scrollbar_fg_and_selected_row_bg      =0d0d11
+pressing_button_fg                    =06060d
+hover_selected                        =161627
+pressing_button_bg                    =599150
+meta_red                              =e53b96
+meta_yellow                           =e68555
+meta_high                             =eda582
+meta_amber                            =d63488

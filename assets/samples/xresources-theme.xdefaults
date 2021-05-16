@@ -1,0 +1,87 @@
+!   #   #  #    #   ### #  ##    #     # ####   
+!  ### ##  ##  ##  ##  #  ## #  ##      ##   #  
+!  ######   # ##  ##     ##   # ##      ##   #  
+!  ## # #    ##   ##     ##   # ##      #####   
+!  ##   #    ##   ##     ##   # ##      ## #    
+!  ##   #   ## #  ##   # ##   # ##    # ##  #   
+!  #    #  ##  ## ### ##  ## #  ###  #  #   ##  
+! #    ### #    #  #### #  ##  # ##### #     #  
+!   mxc virtualized @ mxc-v1.3
+! ! ! ! ! ! ! ! ! ! ! ! ! ! ! ! 
+
+*.background:           #121217
+*.foreground:           #6767c1
+*.selection_background: #22222f
+*.selection_foreground: #657fff
+*.cursor_text_color:    #000000
+*.cursor:               #657fff
+*.color0: #161627
+*.color1: #e53b96
+*.color2: #68cdaa
+*.color3: #e68555
+*.color4: #5788fa
+*.color5: #6d4bc4
+*.color6: #43b1ec
+*.color7: #424280
+*.color8: #2e2e4b
+*.color9: #eb68ae
+*.color10: #8edabf
+*.color11: #eda582
+*.color12: #89abfb
+*.color13: #8c71d1
+*.color14: #71c4f1
+*.color15: #8383d8
+*.c00: #161627
+*.c01: #e53b96
+*.c02: #68cdaa
+*.c03: #e68555
+*.c04: #5788fa
+*.c05: #6d4bc4
+*.c06: #43b1ec
+*.c07: #424280
+*.c08: #2e2e4b
+*.c09: #eb68ae
+*.c10: #8edabf
+*.c11: #eda582
+*.c12: #89abfb
+*.c13: #8c71d1
+*.c14: #71c4f1
+*.c15: #8383d8
+*.cx1: #ff1793
+*.cx2: #46e5ad
+*.cx3: #fe7733
+*.cx4: #487fff
+*.cx5: #5924e1
+*.cx6: #26b3ff
+*.dk0: #06060d
+*.dk1: #0d0d1a
+*.dk2: #161627
+*.dk3: #242437
+*.dk4: #2e2e4b
+*.dk5: #3b3b5d
+*.dk6: #48486f
+*.dk7: #595987
+*.dk8: #666698
+*.dk9: #7979a3
+*.dl0: #0d0d11
+*.dl1: #181825
+*.dl2: #1c1c36
+*.dl3: #1f1f3d
+*.dl4: #30305e
+*.dl5: #424280
+*.dl6: #4747ae
+*.dl7: #6767c1
+*.dl8: #8383d8
+*.dl9: #aaaae4
+*.sbg: #599150
+*.sfg: #000000
+*.wbg: #4863e9
+*.wfg: #cccccc
+*.ebg: #d63488
+*.efg: #000000
+*.xbg: #121217
+*.xfg: #6767c1
+*.obg: #22222f
+*.ofg: #657fff
+*.wbx: #657fff
+*.wfx: #000000

@@ -82,4 +82,3 @@ PromptContinue () {
   pastel paint -b -n "${C07:-#666}" " ] ==> "
   PromptConfirm "   continue $1 "
 }
-

@@ -168,3 +168,19 @@ prntlist () {
 }
 
 MXSep () { pastel paint -n -b "$C08" "${1:-⏽}"; }
+
+get_header () {
+  local comment_char="${1:-#}"
+  local header="{2:-MXCOLR}"
+  if  command -v figlet &> /dev/null; then
+    if [ -d /usr/share/figlet/fonts ]; then
+      header=$(figlet MXCOLR -f "$(basename "$(find /usr/share/figlet/fonts -name '*.flf' | shuf -n 1)")" 2>/dev/null)
+    else
+      header=$(figlet "MXCOLR" 2>/dev/null)
+    fi
+  fi
+  header+="
+  MXC $MXNAME @ $MXC_V"
+  echo "$(sed -n "s/^.*/${comment_char} &/p" <<< "$header")
+$(printf "%0.s${comment_char} " $(seq 1 16))"
+}
