@@ -2,7 +2,7 @@
 
 BS="$(GetPlugName)"
 MXC_FZF_TMP=/tmp/mxc/"$BS"
-MXC_FZF_OUT="${MXC_FZF_OUT:-"$HOME/.profile"}"
+MXC_FZF_OUT="${MXC_FZF_OUT:-"$HOME/.zprofile"}"
 
 
 FZF_COLOR_OPTS="$FZF_DEFAULT_OPTS \

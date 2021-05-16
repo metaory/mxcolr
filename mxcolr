@@ -38,15 +38,18 @@ MX_TERM=( "${MX_VARS[@]/#/T}" )
 ##############################################
 for src in "$MXBASE"/src/*.sh; do . "$src"; done
 #  ............................ .........................................#
+! [ -e "$OTHEME" ] && InfoDone 1 ' No Live Schema. run: mxcolr --generate' &&  InfoDone 'continueing  with sample files' 
+#  ............................ .........................................#
 ClearTemp     () { Info ' Cleaning temp'   ; rm "$MXTEMP"/*             ; } 
-LoadTempTheme () { Info ' Load Temp Theme' ; . "$MTHEME" || . "$OTHEME" ; }
-LoadTempSeed  () { Info ' Load Temp Seed'  ; . "$M_SEED" || . "$O_SEED" ; }
+LoadTempTheme () { ( . "$MTHEME" && InfoDone ' Load Temp Theme' ) || ( . "$OTHEME" && InfoDone ' Load Live Theme' ) ; }
+LoadTempSeed  () { ( . "$M_SEED" && InfoDone ' Load Temp Seed'  ) || ( . "$O_SEED" && InfoDone ' Load Live Seed'  ) ; }
 #  ............................ .........................................#
-CopyTempSeed  () { Info ' Copy Temp Seed'   ; cp -v "$O_SEED" "$M_SEED"                      ; }
-BackupDist    () { Info ' Backup Prod Dist' ; cp -v "$MXDIST" /tmp/mxc_hist/"$(date +%s)" -r ; }
+CopyTempSeed  () { Info ' Copy Live Seed' ; cp -v "$O_SEED" "$M_SEED"                      ; }
+BackupDist    () { Info ' Backup Live'    ; cp -v "$MXDIST" /tmp/mxc_hist/"$(date +%s)" -r ; }
 #  ............................ .........................................#
-LoadProdTheme () { . "$OTHEME" || . "$MXBASE/assets/samples/theme.mx" ; }
-LoadProdSeed  () { . "$O_SEED" || . "$MXBASE/assets/samples/mx-seed" ; Info ' Load Live Seed' ; }
+LoadProdTheme () { . "$OTHEME" || . "$MXBASE/assets/samples/theme.mx"; }
+LoadProdSeed  () { . "$O_SEED" || . "$MXBASE/assets/samples/mx-seed" ; }
+
 #  ............................ .........................................#
 LoadProdTheme
 #  ............................ .........................................#

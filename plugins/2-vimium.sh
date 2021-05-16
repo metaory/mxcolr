@@ -1,16 +1,11 @@
 #!/usr/bin/env bash
 
-
-
 BS="$(GetPlugName)"
 MXC_FZF_TMP=/tmp/mxc/"$BS"
-MXC_VIMIUM_EXTENSION_PATH=$XDG_CONFIG_HOME/chromium/Default/Extensions/dbepggeogbaibhgnhhndojpepiihcmeb/1.66_0
-MXC_VIMIUM_OUT="${MXC_FZF_OUT:-"$HOME/.profile"}"
+VIMIUM_EXTENSION_PATH=$XDG_CONFIG_HOME/chromium/Default/Extensions/dbepggeogbaibhgnhhndojpepiihcmeb/1.66_0
+VIMIUM_TARGETS=("$VIMIUM_EXTENSION_PATH"/{content_scripts/vimium.css,pages/vomnibar.css})
 
-! [ -d "$MXC_VIMIUM_EXTENSION_PATH" ] && Info 1 "MXC_VIMIUM_EXTENSION_PATH $MXC_VIMIUM_EXTENSION_PATH not directory" && exit 1
-
-# cp "$O_CHR1" "$M_CHR1"
-# cecho file.txt{,.bak}p "$MXC_VIMIUM_OUT" "$M_CHR2"
+! [ -d "$VIMIUM_EXTENSION_PATH" ] && Info 1 "VIMIUM_EXTENSION_PATH $VIMIUM_EXTENSION_PATH not directory" && exit 1
 
 __prep () {
   local target="${1}"
@@ -26,23 +21,22 @@ __prep () {
     -e "s/--amber-fg:.+$/--amber-fg: ${WBG};/" \
     -e "s/--accent-fg:.+$/--accent-fg: ${SBG};/" \
     -e "s/--purple-dark:.+$/--purple-dark: ${EBG};/" \
-    "$target" > "/tmp/mxc/${MXC_FZF_TMP}_${target##*/}"
+    "$target" > "${MXC_FZF_TMP}_${target##*/}"
 
-  InfoDone "$1"
+  InfoDone "$target"
 }
 
-__prep "$MXC_VIMIUM_EXTENSION_PATH/content_scripts/vimium.css"
-__prep "$MXC_VIMIUM_EXTENSION_PATH/pages/vomnibar.css"
+
+for t in "${VIMIUM_TARGETS[@]}"; do __prep "$t"; done
 
 InfoDone
 
 apply_vimium () {
-  if [[ "$XOPT" == *"nochr"* ]]; then InfoIgnore; return; fi
-
-  cp -v --backup "/tmp/mxc/${MXC_FZF_TMP}_vimium.css"   "$MXC_VIMIUM_EXTENSION_PATH/content_scripts/vimium.css"
-  cp -v --backup "/tmp/mxc/${MXC_FZF_TMP}_vomnibar.css" "$MXC_VIMIUM_EXTENSION_PATH/pages/vomnibar.css"        
+  for t in "${VIMIUM_TARGETS[@]}"; do
+    Info "$t"
+    cp -v --backup "${MXC_FZF_TMP}_${t##*/}" "$t"
+  done
 
   InfoDone
 }
-
 

@@ -17,8 +17,7 @@ PopulateFileWith () {
     eval echo "$format" >> "$file"
   done
 
-  echo; printf ' ==> '
-  file "$file" && InfoDone "$file"
+  echo; printf ' ==> '; file "$file"
 }
 
 ####################################################
@@ -31,8 +30,6 @@ SaveTheme () {
 }
 
 ReleaseTheme  () {
-  Info " Release Theme" 0
-
   cp -v "$MTHEME" "$OTHEME"
   . "$OTHEME"
   InfoDone "$OTHEME"
