@@ -18,6 +18,10 @@ OTHEME=$MXDIST/theme.mx     ; export OTHEME
 M_SEED=$MXTEMP/mx-seed      ; export M_SEED
 O_SEED=$MXDIST/mx-seed      ; export O_SEED
 
+if ! command -v pastel &> /dev/null; then
+  echo "pastel not found."; echo " ==> https://github.com/sharkdp/pastel#installation"; exit 1;
+fi
+
 if [ -d "$MXLIB" ]; then . "$MXLIB"/lib.common.sh; else mlg () { echo "${FUNCNAME[1]}:${BASH_LINENO[1]} => ${*}" >> /tmp/mxsh.log; }; fi
 
 mkdir "$MXDIST" -p 2>/dev/null || true 
