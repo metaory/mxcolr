@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 BS="$(GetPlugName)"
-MXC_FZF_TMP=/tmp/mxc/"$BS"
+VIMIUM_TMP=/tmp/mxc/"$BS"
 VIMIUM_EXTENSION_PATH=$XDG_CONFIG_HOME/chromium/Default/Extensions/dbepggeogbaibhgnhhndojpepiihcmeb/1.66_0
 VIMIUM_TARGETS=("$VIMIUM_EXTENSION_PATH"/{content_scripts/vimium.css,pages/vomnibar.css})
 
@@ -21,7 +21,7 @@ __prep () {
     -e "s/--amber-fg:.+$/--amber-fg: ${WBG};/" \
     -e "s/--accent-fg:.+$/--accent-fg: ${SBG};/" \
     -e "s/--purple-dark:.+$/--purple-dark: ${EBG};/" \
-    "$target" > "${MXC_FZF_TMP}_${target##*/}"
+    "$target" > "${VIMIUM_TMP}_${target##*/}"
 
   InfoDone "$target"
 }
@@ -34,7 +34,7 @@ InfoDone
 apply_vimium () {
   for t in "${VIMIUM_TARGETS[@]}"; do
     Info "$t"
-    cp -v --backup "${MXC_FZF_TMP}_${t##*/}" "$t"
+    cp -v --backup "${VIMIUM_TMP}_${t##*/}" "$t"
   done
 
   InfoDone

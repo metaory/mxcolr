@@ -33,14 +33,14 @@ ApplyIcons () {
   local steam_tray_icon=/usr/share/pixmaps/steam_tray_mono.png
   [ -w "$steam_tray_icon" ] && TARGET_ICONS+=("$steam_tray_icon")
 
-  info "${TARGET_ICONS[*]} TARGET_ICONS"
+  Info     "${#TARGET_ICONS[@]} TARGET_ICONS"
 
   for ico in "${TARGET_ICONS[@]}"; do
     cp -v "$ico" /tmp/mxc/"${BS}_${ico##*/}"
     convert "$ico" -fill "${DL6}" -colorize 100%  "$ico"; # < < TODO mv to tmp first
   done
 
-  InfoDone "${TARGET_ICONS[*]} TARGET_ICONS"
+  InfoDone "${#TARGET_ICONS[@]} TARGET_ICONS"
 
 }
 # ////////////////////////////  
