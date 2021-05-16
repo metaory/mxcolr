@@ -1,7 +1,7 @@
 # mxcolr plugin structure
 
 <p align="center">
-  <img width="193" height="64" src="./assets/screenshots/seed_2021-05-14-123246_193x64_scrot.png">
+  <img width="193" height="64" src="../assets/screenshots/seed_2021-05-14-123246_193x64_scrot.png">
 </p>
 
 ### each `sh` file presents in `./plugins` folder is treated as a plugin and is sourced
@@ -15,15 +15,17 @@
 
 ### current active loaded theme variables are available to plugin
 
-> plugins outputs will first be drafted in ``/tmp/mxc` and later upon confirmation will move to `$XDG_CONFIG_HOME/mxc/{plugin_name}`
+> plugins outputs will first be drafted in `/tmp/mxc` and later upon confirmation will move to `$XDG_CONFIG_HOME/mxc/{plugin_name}`
 > unless it have a different destination set
-- sample output [directory](./assets/samples)
-- sample output [theme.mx](./assets/samples/theme.mx)
-- sample output [kitty](./assets/samples/kitty-theme.conf)
-- sample output [vim-global](./assets/samples/vim-mx.vim)
-- sample output [xresources](./assets/samples/xresources-theme.xdefaults)
+- sample output [directory](../assets/samples)
+- sample output [theme.mx](../assets/samples/theme.mx)
+- sample output [kitty](../assets/samples/kitty-theme.conf)
+- sample output [vim-global](../assets/samples/vim-mx.vim)
+- sample output [xresources](../assets/samples/xresources-theme.xdefaults)
 
-![virtualized](./assets/screenshots/samples_2021-05-16-145353_361x247_scrot.png)
+<p align="center">
+  <img src="../assets/screenshots/samples_2021-05-16-145353_361x247_scrot.png">
+</p>
 
 *** 
 
