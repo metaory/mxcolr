@@ -38,7 +38,7 @@ outputs
 ### `theme.mx` is intended to be sourced in `.profile` or `bashrc` and have apps that can directly access system env read system scheme from it
 
 #### other apps can have a plugin to make the necessarily changes,
-> plugins outputs will first be drafted in ``/tmp/mxc` and later on confirmations will move to `$XDG_CONFIG_HOME/mxc/{plugin_name}`
+> plugins outputs will first be drafted in `/tmp/mxc` and later on confirmations will move to `$XDG_CONFIG_HOME/mxc/{plugin_name}`
 > unless it have a different destination set
 - sample output [directory](./assets/samples)
 - sample output [theme.mx](./assets/samples/theme.mx)
