@@ -181,6 +181,6 @@ get_header () {
   fi
   header+="
   MXC $MXNAME @ $MXC_V"
-  echo "$(sed -n "s/^.*/${comment_char} &/p" <<< "$header")
-$(printf "%0.s${comment_char} " $(seq 1 16))"
+  echo "$(sed -n "s/^.*/${comment_char}·&/p" <<< "$header")
+$(printf "%0.s${comment_char}·" $(seq 1 16))"
 }
