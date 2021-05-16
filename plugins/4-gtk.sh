@@ -8,6 +8,8 @@ MXC_GTK_OUT="${MXC_GTK_OUT:-"$MXDIST/$BS"}"
 :>"$MXC_GTK_TMP"
 
 cat <<  EOF > "$MXC_GTK_TMP"
+$(get_header)
+
 NOGUI=True
 NAME=${MXC_V}
 

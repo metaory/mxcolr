@@ -6,9 +6,10 @@ MXC_TMUX_TMP=/tmp/mxc/"$BS"
 MXC_TMUX_OUT="${MXC_TMUX_OUT:-"$MXDIST/$BS"}"
 
 # shellcheck disable=SC2046
-PopulateFileWith "$MXC_TMUX_TMP"  'FLUSH' \
+PopulateFileWith "$MXC_TMUX_TMP" 'FLUSH' \
   "\${c}=\'\${!c}\'" \
-  $(eval echo \$\{MX_Z{C,X,M,K,L}\[\@\]\})
+  "${MX_VARS[@]}"
+  # $(eval echo \$\{MX_Z{C,X,M,K,L}\[\@\]\})
 
 [ "$TMUX" ] && tmux run-shell "tmux source-file $MXC_TMUX_TMP"
 [ "$TMUX" ] && [ "$M_THEME" ] && tmux run-shell "tmux source-file $M_THEME"

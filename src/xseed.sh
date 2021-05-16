@@ -5,7 +5,7 @@ SaveSeed () {
 
   MXNAME="$(bullshit | cut -d' ' -f1 | cut -d'-' -f1)" ; export MXNAME
 
-  PopulateFileWith "$M_SEED"  'FLUSH' \
+  PopulateFileWith "$M_SEED" 'FLUSH' \
     "export \${c}=\'\${!c}\'" \
     MXNAME MXC_V WBG SBG EBG
 

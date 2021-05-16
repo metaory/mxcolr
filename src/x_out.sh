@@ -1,9 +1,5 @@
 #!/usr/bin/env bash
 
-mlg 'XP_MAIN'
-
-# :>"$MTHEME"
-# rm "$MTHEME" &>/dev/null
 PopulateFileWith () {
   local file="$1"   ; shift
   local operation="$1" ; shift
@@ -11,9 +7,10 @@ PopulateFileWith () {
 
   Info 2 "${operation^}ing ${file##*/} with ${#} keys"; mlg " ==> $*"
 
-  # cp -v "$file" "${file%/*}/${file##*/}_old" 2>/dev/null || true
-
-  [[ "$operation" == 'FLUSH' ]] && :>"$file"
+  if [[ "$operation" == 'FLUSH'* ]]; then
+    get_header "$(cut -d':' -f2 -s <<< "$operation")" > "$file"
+    echo  >> "$file"
+  fi
 
   while [ "$1" ]; do
     local c="$1"; shift
@@ -27,11 +24,9 @@ PopulateFileWith () {
 ####################################################
 
 SaveTheme () {
-  # shellcheck disable=SC2046
   PopulateFileWith "$MTHEME"  'FLUSH' \
     "export \${c}=\'\${!c}\'" \
-    MXNAME MXC_V $(eval echo \$\{MX_Z{C,X,M,K,L}\[\@\]\})
-
+    MXNAME MXC_V "${MX_VARS[@]}" "${MX_TERM[@]}"
   InfoDone
 }
 

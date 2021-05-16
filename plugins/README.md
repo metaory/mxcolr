@@ -1,5 +1,9 @@
 # mxcolr plugin structure
 
+<p align="center">
+  <img width="193" height="64" src="./assets/screenshots/seed_2021-05-14-123246_193x64_scrot.png">
+</p>
+
 ### each `sh` file presents in `./plugins` folder is treated as a plugin and is sourced
 ### its expected to follow these patterns:
 * filename: `[0-9]-[a-z_].sh` _`1-vim_airline.sh`_
@@ -10,7 +14,16 @@
   this function will be called with confirmation prompt
 
 ### current active loaded theme variables are available to plugin
-#### **sample variable** [theme.mx](../data/sample_theme.mx)
+
+> plugins outputs will first be drafted in ``/tmp/mxc` and later upon confirmation will move to `$XDG_CONFIG_HOME/mxc/{plugin_name}`
+> unless it have a different destination set
+- sample output [directory](./assets/samples)
+- sample output [theme.mx](./assets/samples/theme.mx)
+- sample output [kitty](./assets/samples/kitty-theme.conf)
+- sample output [vim-global](./assets/samples/vim-mx.vim)
+- sample output [xresources](./assets/samples/xresources-theme.xdefaults)
+
+![virtualized](./assets/screenshots/samples_2021-05-16-145353_361x247_scrot.png)
 
 *** 
 

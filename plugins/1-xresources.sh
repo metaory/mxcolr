@@ -4,7 +4,10 @@ BS="$(GetPlugName)-theme.xdefaults"
 MXC_XRS_TMP=/tmp/mxc/"$BS"
 MXC_XRS_OUT="${MXC_XRS_OUT:-"$MXDIST/$BS"}"
 
+
 cat <<   EOF | tr '[:upper:]' '[:lower:]' > "$MXC_XRS_TMP"
+$(get_header '!')
+
 *.background:           $XBG
 *.foreground:           $XFG
 *.selection_background: $OBG
@@ -23,7 +26,8 @@ PopulateFileWith "$MXC_XRS_TMP" 'APPEND' \
 # shellcheck disable=SC2046
 PopulateFileWith "$MXC_XRS_TMP" 'APPEND' \
   "*.\${c,,}: \${!c}" \
-  $(eval echo \$\{MX_C{X,M,K,L}\[\@\]\})
+  "${MX_VARS[@]}"
+  # $(eval echo \$\{MX_C{X,M,K,L}\[\@\]\})
 
 InfoDone "$MXC_XRS_TMP"
 

@@ -29,8 +29,8 @@ Demo_block () {
 Demo_full_block () {
   local head="${1:-}"
   fill 1 ; pl "${MX_XX[0]}" "${head}  " ; prntlist 'prnt:sp_blank' "${MX_XX[@]}"   ; pl "${MX_XX[-1]}" '   ' ; pl '-'
-  fill 6 ; pl "${MX_XX[0]}" " ▄▄" ; prntlist 'prnt:sp_block_d' "${MX_XX[@]}" ; pl "${MX_XX[-1]}" '▀▀ ' ; pl '-'
-  fill 7 ; pl "${MX_XX[0]}" "   " ; prntlist 'prnt:sp_blank' "${MX_XX[@]}"   ; pl "${MX_XX[-1]}" '   ' ; pl '-'
+  fill 6 ; pl "${MX_XX[0]}" " ▄▄"       ; prntlist 'prnt:sp_block_d' "${MX_XX[@]}" ; pl "${MX_XX[-1]}" '▀▀ ' ; pl '-'
+  fill 7 ; pl "${MX_XX[0]}" "   "       ; prntlist 'prnt:sp_blank' "${MX_XX[@]}"   ; pl "${MX_XX[-1]}" '   ' ; pl '-'
 }
 Demo_slant () {
   # ########################################
@@ -39,12 +39,12 @@ Demo_slant () {
   # fill 1 ; pl                  ; prntlist 'pl:sp_line'  "${MX_XX[@]}"  ; pl '-'
   # ........................................
   # ########################################
-  fill 1 ; pl                      ; prntlist 'prnt:sp_line_top' "${MX_CA[@]}" ; pl '-'
-  fill 1 ; pl "${MX_CA[0]}" " ┗━" ; prntlist 'prnt:sp_block_l'  "${MX_CA[@]}"   ; pl "${MX_CA[-1]}" '┛' ; pl '-'
+  fill 1 ; pl                     ; prntlist 'prnt:sp_line_top' "${MX_CA[@]}" ; pl '-'
+  fill 1 ; pl "${MX_CA[0]}" " ┗━" ; prntlist 'prnt:sp_block_l'  "${MX_CA[@]}" ; pl "${MX_CA[-1]}" '┛' ; pl '-'
   # ........................................
   # ########################################
   fill 1 ; pl "${MX_CB[0]}" ' ┏━╺' ; prntlist 'prnt:sp_block_l'  "${MX_CB[@]}" ; pl '-'
-  fill 1 ; pl                       ; prntlist 'prnt:sp_line_bot' "${MX_CB[@]}" ; pl '-'
+  fill 1 ; pl                      ; prntlist 'prnt:sp_line_bot' "${MX_CB[@]}" ; pl '-'
   # ........................................
   # ########################################
   # ........................................
@@ -85,10 +85,10 @@ _head () {
 Demo_card () {
   local s="${1:-$MXNAME}"; local c="${2:-}"; local t="${3:-}"
   local cy=("${MX_XX[@]}" "${MX_CX[@]}")
-  _head ; _title "$s"
+  _head              ; _title "$s"
   _head "$c"  0 '-b' ; prntlist 'pl:sp_tiny' "${MX_CA[@]}" ; pl '-'
   _head "∕"   0      ; prntlist 'pl:sp_tiny' "${MX_CB[@]}" ; pl '-'
-  _head "$t"  0      ; prntlist 'pl:sp_tiny' "${cy[@]}" ; pl '-'
+  _head "$t"  0      ; prntlist 'pl:sp_tiny' "${cy[@]}"    ; pl '-'
   _head " "   0      ; prntlist 'pl:sp_tiny' "${MX_CL[@]}" ; pl '-'
   _head "██"  I     ; prntlist 'pl:sp_tiny' "${MX_CK[@]}" ; pl '-'
 
@@ -98,11 +98,11 @@ Demo_card () {
 
 Demo_shades()  {
   pl "${MX_CK[0]}" ' ┏╸━' ; prntlist 'prnt:sp_block_l'  "${MX_CK[@]}" ; pl '-'
-  pl                   ; prntlist 'prnt:sp_line_bot' "${MX_CK[@]}"  ; pl '-'
+  pl                      ; prntlist 'prnt:sp_line_bot' "${MX_CK[@]}" ; pl '-'
 }
-Demo_shades1()  { fill 1; prntlist 'prnt:sp_lash' "${MX_CK[@]}" ; pl '-'; }
-Demo_shades2()  { fill 1; prntlist 'prnt:sp_pentagon' "${MX_CK[@]}" ; pl '-'; }
-Demo_shades3()  { fill 3; prntlist 'prnt:sp_dotline' "${MX_CK[@]}" ; pl '-'; }
+Demo_shades1()  { fill 1 ; prntlist 'prnt:sp_lash' "${MX_CK[@]}"     ; pl '-' ; }
+Demo_shades2()  { fill 1 ; prntlist 'prnt:sp_pentagon' "${MX_CK[@]}" ; pl '-' ; }
+Demo_shades3()  { fill 3 ; prntlist 'prnt:sp_dotline' "${MX_CK[@]}"  ; pl '-' ; }
 Demo_shades4()  { 
   fill 3; prntlist 'prnt:sp_block_e' "${MX_CK[@]}" ; pl '-'
   fill 3; prntlist 'prnt:sp_block_e' "${MX_CL[@]}" ; pl '-'
@@ -126,14 +126,14 @@ Demo_dot () {
   # echo "CB "${MX_CB[*]}""
 
   fill 4 ; prntlist 'prnt:sp_dot' "${MX_CB[@]}" ; pl '-'
-  fill 2 ; prntlist 'prnt:sp_dot' "${MX_CK[@]}"     ; pl '-'
-  fill 2 ; prntlist 'prnt:sp_dot' "${MX_CL[@]}"     ; pl '-'
+  fill 2 ; prntlist 'prnt:sp_dot' "${MX_CK[@]}" ; pl '-'
+  fill 2 ; prntlist 'prnt:sp_dot' "${MX_CL[@]}" ; pl '-'
 }
 # ////////////////////////////  
 # ##############################
 # ·╺━╸⏽ ●  ● ⏽╺━╸·
 MXDots-full () { prntlist 'prnt:sp_dot' "${MX_XX[@]}" ; pl ; }
-MXDots () { prntlist 'prnt:sp_dot' "${MX_XX[@]}" ; pl ; }
+MXDots () { prntlist 'prnt:sp_dot' "${MX_XX[@]}"      ; pl ; }
 
 MXDotLine () {
   local cols;cols=$(tput cols); fill 0

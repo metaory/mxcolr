@@ -4,6 +4,8 @@ MXC_KITTY_TMP=/tmp/mxc/"$BS"
 MXC_KITTY_OUT="${MXC_KITTY_OUT:-"$MXDIST/$BS"}"
 
 cat <<  EOF > "$MXC_KITTY_TMP"
+$(get_header)
+
 color20                $SBG
 color21                $SFG
 color30                $WBG

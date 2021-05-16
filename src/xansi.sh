@@ -1,66 +1,14 @@
 #!/usr/bin/env bash
 
-_ansi () {
-  local c="$1"
-  local x; x=$(pastel format ansi-8bit "${!c}" | cut -d";" -f3-); x="${x::(-1)}"; echo "$x"
+get_ansi () {
+  local c="$1"; local x;
+  x=$(pastel format ansi-8bit "${!c}" | cut -d";" -f3-)
+  echo "${x::(-1)}"
 }
+
 gen_ansi () {
-  TX1="$(_ansi CX1)"
-  TX2="$(_ansi CX2)"
-  TX3="$(_ansi CX3)"
-  TX4="$(_ansi CX4)"
-  TX5="$(_ansi CX5)"
-  TX6="$(_ansi CX6)"
-
-  TWB="$(_ansi WBG)"
-  TWF="$(_ansi WFG)"
-  TEB="$(_ansi EBG)"
-  TEF="$(_ansi EFG)"
-  TSB="$(_ansi SBG)"
-  TSF="$(_ansi SFG)"
-  TOB="$(_ansi OBG)"
-  TOF="$(_ansi OFG)"
-  TXF="$(_ansi XFG)"
-  TXB="$(_ansi XBG)"
-
-  T00="$(_ansi C00)"
-  T08="$(_ansi C08)"
-  T07="$(_ansi C07)"
-  T15="$(_ansi C15)"
-  T01="$(_ansi C01)"
-  T09="$(_ansi C09)"
-  T02="$(_ansi C02)"
-  T10="$(_ansi C10)"
-  T03="$(_ansi C03)"
-  T11="$(_ansi C11)"
-  T04="$(_ansi C04)"
-  T12="$(_ansi C12)"
-  T05="$(_ansi C05)"
-  T13="$(_ansi C13)"
-  T06="$(_ansi C06)"
-  T14="$(_ansi C14)"
-
-  TL0="$(_ansi DL0)"
-  TL1="$(_ansi DL1)"
-  TL2="$(_ansi DL2)"
-  TL3="$(_ansi DL3)"
-  TL4="$(_ansi DL4)"
-  TL5="$(_ansi DL5)"
-  TL6="$(_ansi DL6)"
-  TL7="$(_ansi DL7)"
-  TL8="$(_ansi DL8)"
-  TL9="$(_ansi DL9)"
-
-  TK0="$(_ansi DK0)"
-  TK1="$(_ansi DK1)"
-  TK2="$(_ansi DK2)"
-  TK3="$(_ansi DK3)"
-  TK4="$(_ansi DK4)"
-  TK5="$(_ansi DK5)"
-  TK6="$(_ansi DK6)"
-  TK7="$(_ansi DK7)"
-  TK8="$(_ansi DK8)"
-  TK9="$(_ansi DK9)"
-
-  Info '' 0
+  for x in "${MX_VARS[@]}"; do
+    declare -g "T$x=$(get_ansi "$x")"
+  done
 }
+

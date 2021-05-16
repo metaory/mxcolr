@@ -18,10 +18,7 @@ OTHEME=$MXDIST/theme.mx     ; export OTHEME
 M_SEED=$MXTEMP/mx-seed      ; export M_SEED
 O_SEED=$MXDIST/mx-seed      ; export O_SEED
 
-if [ "$MXLIB" ]; then . "$MXLIB"/lib.common.sh 
-else mlg () { echo "${FUNCNAME[1]}:${BASH_LINENO[1]} => ${*}" >> /tmp/mxsh.log; }; fi
-# MXTEMP=$MXBASE/dist         ; export MXTEMP
-# XSEED=$MXBASE/src/xseed.sh  ; X_OUT=$MXBASE/src/x_out.sh
+if [ -d "$MXLIB" ]; then . "$MXLIB"/lib.common.sh; else mlg () { echo "${FUNCNAME[1]}:${BASH_LINENO[1]} => ${*}" >> /tmp/mxsh.log; }; fi
 
 mkdir "$MXDIST" -p 2>/dev/null || true 
 mkdir "$MXSNAP" -p 2>/dev/null || true 
@@ -29,29 +26,29 @@ mkdir /tmp/{mxc,mxc_hist} 2>/dev/null || true
 
 ##########
 
-################################################################################################
-# VARIABLES ####################################################################################
-MX_CC=(C{00..15})  ; MX_TC=(T{00..15}) ; MX_ZC=("${MX_CC[@]}" "${MX_TC[@]}")      ; export MX_CC
-MX_CX=(CX{1..6})   ; MX_TX=(TX{1..6})  ; MX_ZX=("${MX_CX[@]}" "${MX_TX[@]}")      ; export MX_CX
-MX_CK=(DK{0..9})   ; MX_TK=(TK{0..9})  ; MX_ZK=("${MX_CK[@]}" "${MX_TK[@]}")      ; export MX_CK
-MX_CL=(DL{0..9})   ; MX_TL=(TL{0..9})  ; MX_ZL=("${MX_CL[@]}" "${MX_TL[@]}")      ; export MX_CL
-MX_CM=({SB,WB,EB,SF,WF,EF,XB,XF}G WBX) ; export MX_CM
-MX_TM=(T{SB,WB,EB,SF,WF,EF,XB,XF} TFX) 
-MX_ZM=("${MX_CM[@]}" "${MX_TM[@]}")    ; export MX_ZM
-#...............................................................................................
-################################################################################################
+####################################################
+# VARIABLES ########################################
+MX_CC=(C{00..15}); MX_CX=(CX{1..6}); MX_CK=(DK{0..9}); MX_CL=(DL{0..9}) 
+MX_CM=({S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G W{B,F}X)
+#....................................................
+MX_VARS=( "${MX_CC[@]}" "${MX_CX[@]}" "${MX_CK[@]}" "${MX_CL[@]}" "${MX_CM[@]}" )
+MX_TERM=( "${MX_VARS[@]/#/T}" )
+# mapfile -t MX_VARS <<<"$(eval echo \$\{MX_C{C,X,K,L,M}\[\@\]\}))"
+#####################################################
+##############################################
 for src in "$MXBASE"/src/*.sh; do . "$src"; done
 #  ............................ .........................................#
-ClearTemp     () { Info ' Cleaning temp'       ; rm "$MXTEMP"/*         || { Info "empty dir    " 2 && echo "$MXTEMP" ; } }
-LoadTempTheme () { Info ' Load Temp Theme'     ; . "$MTHEME" || . "$OTHEME" ; }
-CopyTempSeed  () { Info ' Copy Temp Seed'      ; cp -v "$O_SEED" "$M_SEED" ; }
+ClearTemp     () { Info ' Cleaning temp'   ; rm "$MXTEMP"/*             ; } 
+LoadTempTheme () { Info ' Load Temp Theme' ; . "$MTHEME" || . "$OTHEME" ; }
+LoadTempSeed  () { Info ' Load Temp Seed'  ; . "$M_SEED" || . "$O_SEED" ; }
+#  ............................ .........................................#
+CopyTempSeed  () { Info ' Copy Temp Seed'   ; cp -v "$O_SEED" "$M_SEED"                      ; }
+BackupDist    () { Info ' Backup Prod Dist' ; cp -v "$MXDIST" /tmp/mxc_hist/"$(date +%s)" -r ; }
+#  ............................ .........................................#
 LoadProdTheme () { . "$OTHEME" || . "$MXBASE/data/sample_theme.mx" ; }
-LoadTempSeed  () { Info ' Load Temp Seed'      ; . "$M_SEED" || . "$O_SEED" ; }
 LoadProdSeed  () { . "$O_SEED" || . "$MXBASE/data/sample_mx-seed.mx" ; Info ' Load Live Seed' ; }
-BackupDist    () { Info ' Backup Prod Dist ··' ; cp -v "$MXDIST" /tmp/mxc_hist/"$(date +%s)" -r ; }
 #  ............................ .........................................#
 LoadProdTheme
-#  ............................ .........................................#
 #  ............................ .........................................#
 # ##############################
 GetPlugName () {
