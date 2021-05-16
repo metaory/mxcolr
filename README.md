@@ -26,11 +26,11 @@ flags
 outputs
 =======
 ### `mxseed` is a trio of randomely generated colors, it's the core of the palette
-- `$XDG_CONFIG_HOME/mxc/mx-seed` sample_generated [mx-seed](./assets/samples/mx-seed)
+- `$XDG_CONFIG_HOME/mxc/mx-seed` sample generated [mx-seed](./assets/samples/mx-seed)
 > the entire palette is drived from this generated `seed` file 
 
 ### `theme.mx` is the primary output scheme file
-- `$XDG_CONFIG_HOME/mxc/theme.mx` [sample_generated_theme.mx](./assets/samples/theme.mx)
+- `$XDG_CONFIG_HOME/mxc/theme.mx` sample generated [theme.mx](./assets/samples/theme.mx)
 > given the same `seed` file, its guaranteed the same `theme.mx` will be produced.
 > _allowing post generation calibrations._
 
