@@ -45,8 +45,8 @@ LoadTempSeed  () { Info ' Load Temp Seed'  ; . "$M_SEED" || . "$O_SEED" ; }
 CopyTempSeed  () { Info ' Copy Temp Seed'   ; cp -v "$O_SEED" "$M_SEED"                      ; }
 BackupDist    () { Info ' Backup Prod Dist' ; cp -v "$MXDIST" /tmp/mxc_hist/"$(date +%s)" -r ; }
 #  ............................ .........................................#
-LoadProdTheme () { . "$OTHEME" || . "$MXBASE/data/sample_theme.mx" ; }
-LoadProdSeed  () { . "$O_SEED" || . "$MXBASE/data/sample_mx-seed.mx" ; Info ' Load Live Seed' ; }
+LoadProdTheme () { . "$OTHEME" || . "$MXBASE/assets/samples/theme.mx" ; }
+LoadProdSeed  () { . "$O_SEED" || . "$MXBASE/assets/samples/mx-seed" ; Info ' Load Live Seed' ; }
 #  ............................ .........................................#
 LoadProdTheme
 #  ............................ .........................................#
