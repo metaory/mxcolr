@@ -8,6 +8,7 @@ mxcolr
 
 samples
 -------
-
-![virtualized](../screenshots/samples_2021-05-16-145353_361x247_scrot.png)
+<p align="center">
+  <img src="../screenshots/samples_2021-05-16-145353_361x247_scrot.png">
+</p>
 
