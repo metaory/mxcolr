@@ -12,7 +12,7 @@ FZF_COLOR_OPTS="$FZF_DEFAULT_OPTS \
   --color=marker:${C01},spinner:${WBG},header:${C01}"
 
 if ! [ -e "$MXC_FZF_OUT" ]; then 
-  Info 1 "$MXC_FZF_OUT doesnt exists"
+  InfoError "$MXC_FZF_OUT doesnt exists"
   return
 fi
 
@@ -20,7 +20,7 @@ sed -r \
   -e "s/^export FZF_DEFAULT_OPTS=.+$/export FZF_DEFAULT_OPTS=\"$FZF_COLOR_OPTS\"/" \
   "$MXC_FZF_OUT" > "$MXC_FZF_TMP"
 
-InfoDone "$MXC_FZF_TMP"
+Info "$MXC_FZF_TMP"
 
 apply_fzf () {
   cp -v --backup "$MXC_FZF_TMP" "$MXC_FZF_OUT"

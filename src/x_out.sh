@@ -5,7 +5,7 @@ PopulateFileWith () {
   local operation="$1" ; shift
   local format="$1" ; shift
 
-  Info 2 "${operation^}ing ${file##*/} with ${#} keys"; mlg " ==> $*"
+  InfoWarn "${operation^}ing ${file##*/} with ${#} keys"; mlg " ==> $*"
 
   if [[ "$operation" == 'FLUSH'* ]]; then
     get_header "$(cut -d':' -f2 -s <<< "$operation")" > "$file"
@@ -26,7 +26,7 @@ SaveTheme () {
   PopulateFileWith "$MTHEME"  'FLUSH' \
     "export \${c}=\'\${!c}\'" \
     MXNAME MXC_V "${MX_VARS[@]}" "${MX_TERM[@]}"
-  InfoDone
+  InfoDone"$MTHEME"
 }
 
 ReleaseTheme  () {

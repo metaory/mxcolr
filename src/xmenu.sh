@@ -2,23 +2,23 @@
 
 BS="${BASH_SOURCE[0]}"; BS=${BS##*/}
 
-Info () {
+_info () {
   local ico; local cf; local cc; # ; local lvl=$1 # ; local on
   # ! [[ $2 =~ ^[0-9]+$ ]] && lvl=0
   mlg "$*"
   case "${1:-0}" in
-    0) ico='' ; cc="$SBG" ;; # ; on="${3:-}" ; shift ;  ;
+    0) ico=' ' ; cc="$C02" ;;
     1) ico='' ; cc="$C01" ;;
-    2) ico='' ; cc="$SBG" ;;
-    3) ico='' ; cc="$WBG" ;;
-    *) ico='' ; cc="$EBG" ;;
-  esac; shift
+    2) ico='' ; cc="$C07" ;;
+    3) ico='' ; cc="$C08" ;;
+    *) ico='' ; cc="$C03" ;;
+  esac         ; shift
   cf="${C07:-#f00}"
   cc="${cc:-#ff0}"
 
-  local in="${1:-${BASH_SOURCE[1]}}" ; [[ "$VERBOSE" ]] && ! [[ "$in" =~ ^[0-9]+$ ]] && [[ -n "$in" ]] && pastel paint "$C07" " => ${in}"
-  local fn="${2:-${FUNCNAME[1]}}"    ; #fn="${fn:(-8)}"
-  local sf="${3:-${BASH_SOURCE[1]}}" ; sf="${sf:(-8)}" ; #sf="${sf:(-8)}"
+  local in="${1:-${BASH_SOURCE[2]}}" ; [[ "$VERBOSE" ]] && ! [[ "$in" =~ ^[0-9]+$ ]] && [[ -n "$in" ]] && pastel paint "$C07" " => ${in}"
+  local fn="${2:-${FUNCNAME[2]}}"    ; #fn="${fn:(-8)}"
+  local sf="${3:-${BASH_SOURCE[2]}}" ; sf="${sf:(-8)}" ; #sf="${sf:(-8)}"
 
   local src="${sf} ${fn}"
   local fill_len ; fill_len=$((19-${#src}))
@@ -29,13 +29,11 @@ Info () {
   pastel paint -b       "$cc"   " ${ico} "
 }
 
-InfoIgnore () {
-  Info 3 " Ignoring·" "$1 ${FUNCNAME[1]}" "$(basename "${BASH_SOURCE[1]}")"
-}
-
-InfoDone () {
-  Info 0 "${1:-${BASH_SOURCE[1]}} " "${FUNCNAME[1]}" "$(basename "${BASH_SOURCE[1]}")"
-}
+InfoDone ()   { _info 0 "$*"               ; }
+InfoError ()  { _info 1 "$*"               ; }
+Info ()       { _info 2 "$*"               ; }
+InfoIgnore () { _info 3 " Ignoring·" "$*" ; }
+InfoWarn ()   { _info 4 "$*"               ; }
 
 PressToContinue () {
   if [[ "$XOPT" == *"full"* ]]; then return; fi

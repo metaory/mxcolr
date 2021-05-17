@@ -29,7 +29,7 @@ __prep () {
 
 for t in "${VIMIUM_TARGETS[@]}"; do __prep "$t"; done
 
-InfoDone
+Info "${VIMIUM_TMP}"
 
 apply_vimium () {
   for t in "${VIMIUM_TARGETS[@]}"; do
@@ -37,6 +37,6 @@ apply_vimium () {
     cp -v --backup "${VIMIUM_TMP}_${t##*/}" "$t"
   done
 
-  InfoDone
+  InfoDone "${VIMIUM_TARGETS[@]}"
 }
 

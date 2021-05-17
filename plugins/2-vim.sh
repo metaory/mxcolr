@@ -39,6 +39,7 @@ PopulateFileWith "$MXC_VIM_TMP" 'APPEND' \
   "${MX_TERM[@]}"
   # $(eval echo \$\{MX_T{C,X,M,K,L}\[\@\]\})
   # "*.\${c/color}: \${!c}" \
+Info "$MXC_VIM_TMP"
 
 apply_vim () {
   cp -v --backup "$MXC_VIM_TMP" "$MXC_VIM_OUT"

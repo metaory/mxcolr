@@ -36,7 +36,7 @@ meta_high                             =${C11:1}
 meta_amber                            =${EBG:1}
 EOF
 
-InfoDone "$MXC_SPOTIFY_TMP"
+Info "$MXC_SPOTIFY_TMP"
 
   # TODO remove me 
   # NOT NEEDED

@@ -29,6 +29,7 @@ PopulateFileWith "$MXC_KITTY_TMP" 'APPEND' \
   "\${c/C/color} \${!c}" \
   C{10..15}
 
+Info "$MXC_KITTY_TMP"
 
 apply_kitty () {
   cp -v "$MXC_KITTY_TMP" "$MXC_KITTY_OUT"

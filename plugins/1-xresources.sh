@@ -29,24 +29,19 @@ PopulateFileWith "$MXC_XRS_TMP" 'APPEND' \
   "${MX_VARS[@]}"
   # $(eval echo \$\{MX_C{X,M,K,L}\[\@\]\})
 
-InfoDone "$MXC_XRS_TMP"
+Info "$MXC_XRS_TMP"
 
 apply_xresources() {
   if ! grep "mxc" "$HOME"/.Xresources; then 
-    Info "${MXC_XRS_OUT} is not included in $HOME/.Xresources"
+    InfoWarn "${MXC_XRS_OUT} is not included in $HOME/.Xresources"
     # Info 'appent include?'; PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
-    Info "add this to your $HOME/.Xresources "
+    InfoWarn "add this to your $HOME/.Xresources "
     echo "#include $MXC_XRS_OUT"; echo
     # echo "#include '$XDG_CONFIG_HOMR/mxc/mx-xrs.xdefaults'" >> "$HOME"/.Xresources; InfoDone 'added'
   fi
 
   cp -v "$MXC_XRS_TMP" "$MXC_XRS_OUT"
-  xrdb "$HOME/.Xresources"; Info "refreshed xrdb with $HOME/.Xresources"
+  xrdb "$HOME/.Xresources"; InfoDone "refreshed xrdb with $HOME/.Xresources"
 
-  InfoDone "$MXC_XRS_OUT"
+  Info "$MXC_XRS_OUT"
 }
-# vivid preview <( curl -f https://raw.githubusercontent.com/tapeinosyne/nord-vivid/master/nord.yml )
-#
-# vivid generate <( curl -f https://raw.githubusercontent.com/tapeinosyne/nord-vivid/master/nord.yml ) \
-# >> ~/.config/vivid/themes/nord.ls_colors
-#
