@@ -45,3 +45,8 @@ apply_xresources() {
 
   InfoDone "$MXC_XRS_OUT"
 }
+# vivid preview <( curl -f https://raw.githubusercontent.com/tapeinosyne/nord-vivid/master/nord.yml )
+#
+# vivid generate <( curl -f https://raw.githubusercontent.com/tapeinosyne/nord-vivid/master/nord.yml ) \
+# >> ~/.config/vivid/themes/nord.ls_colors
+#

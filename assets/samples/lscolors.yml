@@ -1,0 +1,135 @@
+colors:
+  # virtualized @ mxc-v1.3
+  # Based on "snazzy" theme by sindresorhus
+  
+  background_color: '121217'
+  white:            '8383d8'
+  black:            '06060d'
+  mxc01:            'df419b'
+  mxc02:            '5fcead'
+  mxc03:            'e8855a'
+  mxc04:            '5388fc'
+  mxc05:            '5e4dcd'
+  mxc06:            '4fafea'
+  mxc09:            'e66db2'
+  mxc10:            '86dac1'
+  mxc11:            'eea687'
+  mxc12:            '85abfd'
+  mxc13:            '8275d8'
+  mxc14:            '7dc3ef'
+  mxc07:            '424280'
+  mxc08:            '2e2e4b'
+  mxc00:            '161627'
+  mxwbg:            '4863e9'
+
+core:
+  regular_file: {}
+
+  directory:
+    foreground: mxwbg
+
+  executable_file:
+    foreground: mxc01
+    font-style: bold
+
+  symlink:
+    foreground: mxc05
+
+  broken_symlink:
+    foreground: black
+    background: mxc01
+  missing_symlink_target:
+    foreground: black
+    background: mxc01
+
+  fifo:
+    foreground: black
+    background: mxc04
+
+  socket:
+    foreground: black
+    background: mxc05
+
+  character_device:
+    foreground: mxc05
+    background: mxc00
+
+  block_device:
+    foreground: mxc06
+    background: mxc00
+
+  normal_text:
+    {}
+
+  other_writable:
+    {}
+
+  sticky:
+    {}
+
+  sticky_other_writable:
+    {}
+
+text:
+  special:
+    foreground: background_color
+    background: mxc03
+
+  todo:
+    font-style: bold
+
+  licenses:
+    foreground: mxc07
+
+  configuration:
+    foreground: mxc03
+
+  other:
+    foreground: mxc03
+
+markup:
+  foreground: mxc03
+
+programming:
+  source:
+    foreground: mxc02
+
+  tooling:
+    foreground: mxc10
+
+    continuous-integration:
+      foreground: mxc02
+
+media:
+  foreground: mxc14
+  font-style: italic
+
+  audio:
+    foreground: mxc07
+    font-style: italic
+
+  fonts:
+    foreground: mxc04
+
+  image:
+    foreground: mxc14
+    font-style: italic
+
+  video:
+    foreground: mxc14
+    font-style: italic
+
+
+office:
+  foreground: mxc01
+
+archives:
+  foreground: mxc06
+  font-style: underline
+
+executable:
+  foreground: mxc01
+  font-style: bold
+
+unimportant:
+  foreground: mxc08

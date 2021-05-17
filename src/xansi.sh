@@ -12,3 +12,12 @@ gen_ansi () {
   done
 }
 
+set_hexless () {
+  :>/tmp/mxc/hexless
+  for x in "${MX_VARS[@]}"; do
+    local hlvalue="${!x}"; hlvalue="${hlvalue:1}"
+    echo "export HL$x=$hlvalue" >> /tmp/mxc/hexless
+  done
+  . /tmp/mxc/hexless
+}
+

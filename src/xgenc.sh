@@ -157,6 +157,7 @@ UpdatePalette () {
   gen_idempotents
   gen_shades
   gen_ansi
+  set_hexless
 
   SaveTheme
   LoadTempTheme
