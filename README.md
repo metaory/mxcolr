@@ -88,16 +88,13 @@ Optional Requirements
 - [oomox](https://github.com/themix-project/oomox)
 - [spicetify-cli](https://github.com/khanhas/spicetify-cli)
 - [ffmpeg](https://github.com/FFmpeg/FFmpeg)
+- [vivid](https://github.com/sharkdp/vivid)
 
 Plugins
 -------
 - Xresources
 - Kitty
-- ~~Alacritty~~
 - Vim colorscheme
-- Vim Airline theme
-- Vim LeaderF theme
-- Vim LeaderGuide theme
 - Vimium
 - FZF
 - Spotify
@@ -109,6 +106,7 @@ Plugins
 - Wallpaper tint
 - Tmux
 - AwesomeWM
+- LS_COLORS
 
 ***
 
