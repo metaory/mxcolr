@@ -17,7 +17,7 @@ ApplyWallpaper () {
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   local stamp; stamp=$(date +%s); stamp="${stamp:(-8)}"
   local base="$HOME"/pics/wall/BASE.png
-  if ! [ -e "$base" ]; then Info 1 "base wallpaper not found"; Info 1 "$base"; return; fi
+  if ! [ -e "$base" ]; then InfoError "base wallpaper not found"; InfoError "$base"; return; fi
   cp -v "$HOME"/pics/wall/curr.png "$HOME"/pics/wall/hist/"${stamp}".png
   convert "$HOME"/pics/wall/BASE.png -fill "${WBG}" -tint 100%  "$HOME"/pics/wall/curr.png
   InfoDone 

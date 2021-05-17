@@ -133,7 +133,7 @@ gen_shades () {
   XFG="$DL7"
   C15="$DL8"
 
-  Info '' 0
+  InfoDone
 }
 
 # #################
@@ -148,7 +148,7 @@ GeneratePalette () {
   SaveSeed
   SaveTheme
   LoadTempTheme
-  Info '' 0
+  InfoDone
 }
 ################################
 ################################
@@ -161,7 +161,7 @@ UpdatePalette () {
 
   SaveTheme
   LoadTempTheme
-  Info '' 0
+  InfoDone
 }
 ################################
 

@@ -1,37 +1,38 @@
-#  ______  _    _ ______ _____  _ ______  
-# |  ___ \\ \  / / _____) ___ \| (_____ \ 
-# | | _ | |\ \/ / /    | |   | | |_____) )
-# | || || | )  (| |    | |   | | (_____ ( 
-# | || || |/ /\ \ \____| |___| | |_____| |
-# |_||_||_/_/  \_\______)_____/|_______)_|
-#                                         
-#   MXC virtualized @ mxc-v1.3
-# # # # # # # # # # # # # # # # 
+#· ##  ### ###  ## ####### 
+#· ####### ###  ## ##  ### 
+#· ####### ###  ## ##  ### 
+#· ### ###  #####  ##      
+#· ##  ### ##  ### ##   ## 
+#· ##  ### ##  ### ##   ## 
+#· ##  ### ##  ### ####### 
+#·                         
+#·  virtualized @ mxc-v1.3
+#·#·#·#·#·#·#·#·#·#·#·#·#·
 
 export MXNAME='virtualized'
 export MXC_V='mxc-v1.3'
 export C00='#161627'
-export C01='#e53b96'
-export C02='#68cdaa'
-export C03='#e68555'
-export C04='#5788fa'
-export C05='#6d4bc4'
-export C06='#43b1ec'
+export C01='#df419b'
+export C02='#5fceb6'
+export C03='#ef8155'
+export C04='#5c87f5'
+export C05='#5a50c9'
+export C06='#38b0f6'
 export C07='#424280'
 export C08='#2e2e4b'
-export C09='#eb68ae'
-export C10='#8edabf'
-export C11='#eda582'
-export C12='#89abfb'
-export C13='#8c71d1'
-export C14='#71c4f1'
+export C09='#e66db2'
+export C10='#86dac8'
+export C11='#f3a383'
+export C12='#8cabf8'
+export C13='#7f77d5'
+export C14='#69c4f8'
 export C15='#8383d8'
-export CX1='#ff1793'
-export CX2='#46e5ad'
-export CX3='#fe7733'
-export CX4='#487fff'
-export CX5='#5924e1'
-export CX6='#26b3ff'
+export CX1='#fb1b9a'
+export CX2='#3ce7c2'
+export CX3='#ff723b'
+export CX4='#487cff'
+export CX5='#3a2ae4'
+export CX6='#25afff'
 export DK0='#06060d'
 export DK1='#0d0d1a'
 export DK2='#161627'
@@ -65,26 +66,26 @@ export OFG='#657fff'
 export WBX='#657fff'
 export WFX='#000000'
 export TC00='233'
-export TC01='198'
+export TC01='169'
 export TC02='79'
-export TC03='173'
+export TC03='209'
 export TC04='69'
 export TC05='62'
 export TC06='39'
 export TC07='60'
 export TC08='235'
-export TC09='205'
-export TC10='115'
+export TC09='169'
+export TC10='116'
 export TC11='216'
 export TC12='111'
-export TC13='98'
+export TC13='104'
 export TC14='117'
 export TC15='104'
 export TCX1='198'
-export TCX2='79'
+export TCX2='43'
 export TCX3='202'
 export TCX4='69'
-export TCX5='56'
+export TCX5='21'
 export TCX6='39'
 export TDK0='232'
 export TDK1='16'

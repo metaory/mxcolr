@@ -1,13 +1,13 @@
-#  ##   ## ###  ##  ####### ######   ###    ######  
-#  #######  ##  ##               ##              ## 
-#  ## # ##  ######   ##      ##  ##   ##     ##  ## 
-#  ##   ##    ##     ##      ##  ##   ##     #####  
-#  ##   ##  ######   ##      ##  ##   ##     ##  ## 
-#  ##   ##  ##  ##   ##      ##  ##   ##  ## ##  ## 
-#  ##   ## ###  ##   ######   ####    ###### ##  ## 
-#                                                   
-#   MXC virtualized @ mxc-v1.3
-# # # # # # # # # # # # # # # # 
+#·##   ## ##   ##  #####   
+#·### ### ##   ## ##   ##  
+#·#######  ## ##  ##       
+#·## # ##   ###   ##       
+#·##   ##  ## ##  ##       
+#·##   ## ##   ## ##   ##  
+#·##   ## ##   ##  #####   
+#·                         
+#·  virtualized @ mxc-v1.3
+#·#·#·#·#·#·#·#·#·#·#·#·#·
 
 NOGUI=True
 NAME=mxc-v1.3
@@ -43,7 +43,7 @@ ICONS_ARCHDROID=4747ae
 ICONS_DARK=06060d
 ICONS_LIGHT=2e2e4b
 ICONS_LIGHT_FOLDER=161627
-ICONS_MEDIUM=6d4bc4
+ICONS_MEDIUM=5a50c9
 HDR_BG=06060d
 HDR_FG=48486f
 SEL_BG=22222f
@@ -70,18 +70,18 @@ TERMINAL_FOREGROUND=6767c1
 TERMINAL_ACCENT_COLOR=4863e9
 
 TERMINAL_COLOR0=161627
-TERMINAL_COLOR1=e53b96
-TERMINAL_COLOR2=68cdaa
-TERMINAL_COLOR3=e68555
-TERMINAL_COLOR4=5788fa
-TERMINAL_COLOR5=6d4bc4
-TERMINAL_COLOR6=43b1ec
+TERMINAL_COLOR1=df419b
+TERMINAL_COLOR2=5fceb6
+TERMINAL_COLOR3=ef8155
+TERMINAL_COLOR4=5c87f5
+TERMINAL_COLOR5=5a50c9
+TERMINAL_COLOR6=38b0f6
 TERMINAL_COLOR7=424280
 TERMINAL_COLOR8=2e2e4b
-TERMINAL_COLOR9=eb68ae
-TERMINAL_COLOR10=8edabf
-TERMINAL_COLOR11=eda582
-TERMINAL_COLOR12=89abfb
-TERMINAL_COLOR13=8c71d1
-TERMINAL_COLOR14=71c4f1
+TERMINAL_COLOR9=e66db2
+TERMINAL_COLOR10=86dac8
+TERMINAL_COLOR11=f3a383
+TERMINAL_COLOR12=8cabf8
+TERMINAL_COLOR13=7f77d5
+TERMINAL_COLOR14=69c4f8
 TERMINAL_COLOR15=8383d8

@@ -1,10 +1,16 @@
-"  ,_ _           __   __        , _  
-" /| | |  (\  /  / () /\_\/\_|) /|/ \ 
-"  | | |    ><  |    |    |  |   |__/ 
-"  | | |_/_/  \_/\___/\__/  (\__/| \_/
-"                                     
-"   MXC virtualized @ mxc-v1.3
-" " " " " " " " " " " " " " " " 
+"·                      
+"·                      
+"·                      
+"·###   ## ### ##  #### 
+"· ### ###  ## #  ##  # 
+"· # ## ##   ##   ##    
+"· # ## ##   ##   ##    
+"· # ## ##  # ##  ##  # 
+"·##  # ## ## ###  ###  
+"·                      
+"·                      
+"·  virtualized @ mxc-v1.3
+"·"·"·"·"·"·"·"·"·"·"·"·"·
 
 hi Title        ctermfg=27 guifg=#599150
 hi Normal       ctermfg=61 ctermbg=232 guibg=#121217 guifg=#6767c1
@@ -26,27 +32,27 @@ let g:mxc_c_black = 232
 let g:mxc_g_white = '#8383d8'
 let g:mxc_c_white =  104
 let g:mxc_g_c00 = '#161627'
-let g:mxc_g_c01 = '#e53b96'
-let g:mxc_g_c02 = '#68cdaa'
-let g:mxc_g_c03 = '#e68555'
-let g:mxc_g_c04 = '#5788fa'
-let g:mxc_g_c05 = '#6d4bc4'
-let g:mxc_g_c06 = '#43b1ec'
+let g:mxc_g_c01 = '#df419b'
+let g:mxc_g_c02 = '#5fceb6'
+let g:mxc_g_c03 = '#ef8155'
+let g:mxc_g_c04 = '#5c87f5'
+let g:mxc_g_c05 = '#5a50c9'
+let g:mxc_g_c06 = '#38b0f6'
 let g:mxc_g_c07 = '#424280'
 let g:mxc_g_c08 = '#2e2e4b'
-let g:mxc_g_c09 = '#eb68ae'
-let g:mxc_g_c10 = '#8edabf'
-let g:mxc_g_c11 = '#eda582'
-let g:mxc_g_c12 = '#89abfb'
-let g:mxc_g_c13 = '#8c71d1'
-let g:mxc_g_c14 = '#71c4f1'
+let g:mxc_g_c09 = '#e66db2'
+let g:mxc_g_c10 = '#86dac8'
+let g:mxc_g_c11 = '#f3a383'
+let g:mxc_g_c12 = '#8cabf8'
+let g:mxc_g_c13 = '#7f77d5'
+let g:mxc_g_c14 = '#69c4f8'
 let g:mxc_g_c15 = '#8383d8'
-let g:mxc_g_cx1 = '#ff1793'
-let g:mxc_g_cx2 = '#46e5ad'
-let g:mxc_g_cx3 = '#fe7733'
-let g:mxc_g_cx4 = '#487fff'
-let g:mxc_g_cx5 = '#5924e1'
-let g:mxc_g_cx6 = '#26b3ff'
+let g:mxc_g_cx1 = '#fb1b9a'
+let g:mxc_g_cx2 = '#3ce7c2'
+let g:mxc_g_cx3 = '#ff723b'
+let g:mxc_g_cx4 = '#487cff'
+let g:mxc_g_cx5 = '#3a2ae4'
+let g:mxc_g_cx6 = '#25afff'
 let g:mxc_g_dk0 = '#06060d'
 let g:mxc_g_dk1 = '#0d0d1a'
 let g:mxc_g_dk2 = '#161627'
@@ -80,26 +86,26 @@ let g:mxc_g_ofg = '#657fff'
 let g:mxc_g_wbx = '#657fff'
 let g:mxc_g_wfx = '#000000'
 let g:mxc_c_tc00 = 233
-let g:mxc_c_tc01 = 198
+let g:mxc_c_tc01 = 169
 let g:mxc_c_tc02 = 79
-let g:mxc_c_tc03 = 173
+let g:mxc_c_tc03 = 209
 let g:mxc_c_tc04 = 69
 let g:mxc_c_tc05 = 62
 let g:mxc_c_tc06 = 39
 let g:mxc_c_tc07 = 60
 let g:mxc_c_tc08 = 235
-let g:mxc_c_tc09 = 205
-let g:mxc_c_tc10 = 115
+let g:mxc_c_tc09 = 169
+let g:mxc_c_tc10 = 116
 let g:mxc_c_tc11 = 216
 let g:mxc_c_tc12 = 111
-let g:mxc_c_tc13 = 98
+let g:mxc_c_tc13 = 104
 let g:mxc_c_tc14 = 117
 let g:mxc_c_tc15 = 104
 let g:mxc_c_tcx1 = 198
-let g:mxc_c_tcx2 = 79
+let g:mxc_c_tcx2 = 43
 let g:mxc_c_tcx3 = 202
 let g:mxc_c_tcx4 = 69
-let g:mxc_c_tcx5 = 56
+let g:mxc_c_tcx5 = 21
 let g:mxc_c_tcx6 = 39
 let g:mxc_c_tdk0 = 232
 let g:mxc_c_tdk1 = 16

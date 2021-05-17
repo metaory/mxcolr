@@ -88,7 +88,7 @@ TERMINAL_COLOR14=${C14:1}
 TERMINAL_COLOR15=${C15:1}
 EOF
 
-InfoDone "$MXC_GTK_TMP"
+Info "$MXC_GTK_TMP"
 
 ApplyGTKTheme () {
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi

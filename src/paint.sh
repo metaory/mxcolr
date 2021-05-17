@@ -174,13 +174,14 @@ get_header () {
   local header="{2:-MXCOLR}"
   if  command -v figlet &> /dev/null; then
     if [ -d /usr/share/figlet/fonts ]; then
-      header=$(figlet MXCOLR -f "$(basename "$(find /usr/share/figlet/fonts -name '*.flf' | shuf -n 1)")" 2>/dev/null)
+      header=$(figlet MXC -f "$(basename "$(find /usr/share/figlet/fonts -name '*.flf' | shuf -n 1)")" 2>/dev/null)
     else
-      header=$(figlet "MXCOLR" 2>/dev/null)
+      header=$(figlet "MXC" 2>/dev/null)
     fi
   fi
+  local name="$MXNAME @ $MXC_V"; local _f=$(( ${#name} / 2 + 2 ))
   header+="
-  MXC $MXNAME @ $MXC_V"
+  $name"
   echo "$(sed -n "s/^.*/${comment_char}·&/p" <<< "$header")
-$(printf "%0.s${comment_char}·" $(seq 1 16))"
+$(printf "%0.s${comment_char}·" $(seq 1 $_f))"
 }

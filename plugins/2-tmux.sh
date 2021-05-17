@@ -10,6 +10,7 @@ PopulateFileWith "$MXC_TMUX_TMP" 'FLUSH' \
   "\${c}=\'\${!c}\'" \
   "${MX_VARS[@]}"
   # $(eval echo \$\{MX_Z{C,X,M,K,L}\[\@\]\})
+Info "$MXC_TMUX_TMP"
 
 [ "$TMUX" ] && tmux run-shell "tmux source-file $MXC_TMUX_TMP"
 [ "$TMUX" ] && [ "$M_THEME" ] && tmux run-shell "tmux source-file $M_THEME"
