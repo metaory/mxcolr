@@ -50,7 +50,7 @@ Templates are the easiest way to produce scheme files for different apps,
 every file the `./templates/{tpl}` will be parsed, scheme variables replaced and placed in `~/.config/mxc/{tpl}`
 
 ### some apps that ONLY rely on template file
-- kitty  template:[kitty-theme.conf](./templates/kitty-theme.conf) output:[kitty-theme.conf](./samples/kitty-theme.conf)
+- kitty  template:[kitty-theme.conf](./templates/kitty-theme.conf) output:[kitty-theme.conf](./assets/samples/kitty-theme.conf)
 - xresources.sh, tmux.sh vim.sh could have too
 
 Advance Usage
@@ -66,7 +66,6 @@ each `sh` file presents in `./plugins` folder is treated as a plugin and is sour
 its expected to follow these patterns:
 * filename: `[0-9]-[a-z_].sh` _`1-vim.sh`_
   * prefix number is the `order` its loaded, 0 means disabled
-  _(for plugins that depends on other plugins)_
   * suffix the `plugin_name`
 * plugin file is expected to have a function named `apply_{plugin_name}`
   this function will be called with confirmation prompt
