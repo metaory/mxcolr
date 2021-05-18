@@ -99,7 +99,7 @@ vivid strategy
 
 update
 ------
-![update](./assets/screenshots/update_210511172824.gif)
+![update](./assets/screenshots/update_210518195953.gif)
 
 snapshot list
 -------------
