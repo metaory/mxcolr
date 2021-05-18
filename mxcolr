@@ -8,7 +8,7 @@
 
  MXC_V='mxc-v1.3'                    ; export MXC_V
 MXBASE=$(dirname "$(realpath "$0")") ; export MXBASE
-MXDIST=$XDG_CONFIG_HOME/mxc          ; export MXDIST
+MXDIST=~/.config/mxc          ; export MXDIST
 MXTEMP=/tmp/mxc                      ; export MXTEMP
 
 MXSNAP=$MXBASE/snapshots    ; export MXSNAP
@@ -97,14 +97,21 @@ Revert () {
   Demo
 }
 
+ApplyTemplates () {
+  ! command -v envsubst &> /dev/null && Info 1 "envsubst command not found" && return 1
+  for tpl_path in "$MXBASE"/assets/templates/*; do
+    local tpl="${tpl_path##*/}"
+
+    [[ ! "$XOPT" == *"full"* ]] && PromptContinue "$tpl"
+    [[ ! "$REPLY" =~ ^[Yy]$ ]] || [[ "$XOPT" == *"no$tpl"* ]] && InfoIgnore "$tpl" && continue 
+    # if [ -e /tmp/mxc/"$tpl" ]; then
+    envsubst < "$tpl_path" | tee \
+      >(cat > /tmp/mxc/"$tpl") \
+      >(cat > "$MXDIST/$tpl") &> /dev/null; # XXX read from env/config
+  done
+}
 ApplyPlugs () {
   BackupDist
-
-  Demo
-  ls "$MXTEMP" && PressToContinue "drafts ready" "$MXTEMP"
-
-  ReleaseSeed
-  ReleaseTheme
 
   for plug_path in "$MXBASE"/plugins/*.sh; do
     local plugname; plugname="$(basename "$plug_path" | cut -d'-' -f2 | cut -d'.' -f1)"
@@ -119,8 +126,14 @@ ApplyPlugs () {
 ReGenerate () {
   UpdatePalette 
   SourcePlugs
+  ReleaseSeed
+  ReleaseTheme
+  Demo; ls "$MXTEMP" && PressToContinue "drafts ready" "$MXTEMP"
+  # ............................ #
+  ApplyTemplates
   ApplyPlugs
-} # ............................ #
+} 
+# ............................ #
 Generate () {
   GeneratePalette
 

@@ -27,28 +27,45 @@ flags
 
 outputs
 =======
-### `mxseed` is a trio of randomely generated colors, it's the core of the palette
-- `$XDG_CONFIG_HOME/mxc/mx-seed` sample generated [mx-seed](./assets/samples/mx-seed)
+
+mxseed
+------
+`mxseed` is a trio of randomely generated colors, it's the core of the palette
+- `~/.config/mxc/mx-seed` sample generated [mx-seed](./assets/samples/mx-seed)
 > the entire palette is drived from this generated `seed` file 
 
-### `theme.mx` is the primary output scheme file
-- `$XDG_CONFIG_HOME/mxc/theme.mx` sample generated [theme.mx](./assets/samples/theme.mx)
+theme.mx
+--------
+`theme.mx` is the primary output scheme file
+- `~/.config/mxc/theme.mx` sample generated [theme.mx](./assets/samples/theme.mx)
 > given the same `seed` file, its guaranteed the same `theme.mx` will be produced.
 > _allowing post generation calibrations._
 
+`theme.mx` is intended to be sourced in `.profile` or `bashrc` to have apps that can directly access system env read system scheme from it
 
-### `theme.mx` is intended to be sourced in `.profile` or `bashrc` and have apps that can directly access system env read system scheme from it
+basic usage
+-----------
+Templates are the easiest way to produce scheme files for different apps, 
 
-#### other apps can have a plugin to make the necessarily changes,
-> plugins outputs will first be drafted in `/tmp/mxc` and later on confirmations will move to `$XDG_CONFIG_HOME/mxc/{plugin_name}`
+every file the `./assets/templates/*` will be parsed, scheme variables replaced and placed in `~/.config/mxc/{file}`
+
+advance usage
+-------------
+if further steps required to patch an app a plugin `sh` file can be added to plugins forlder to make the additinal steps
+plugin apply function will be called after parsing templates if there is any template
+
+> plugins outputs will first be drafted in `/tmp/mxc` and later on confirmations will move to `~/.config/mxc/{plugin_name}`
 > unless it have a different destination set
+
+### **Plugins Structure** [plugins-readme](./plugins)
+
+some sample outputs
+-------------------
 - sample output [directory](./assets/samples)
 - sample output [theme.mx](./assets/samples/theme.mx)
 - sample output [kitty](./assets/samples/kitty-theme.conf)
 - sample output [vim-global](./assets/samples/vim-mx.vim)
 - sample output [xresources](./assets/samples/xresources-theme.xdefaults)
-
-### **Plugins Structure** [plugins-readme](./plugins)
 
 ***
 
