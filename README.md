@@ -26,10 +26,10 @@ flags
 outputs
 =======
 
-mxseed
+seed.mx
 ------
-`mxseed` is a trio of randomely generated colors, it's the core of the palette
-- `~/.config/mxc/mx-seed` sample generated [mx-seed](./assets/samples/mx-seed)
+`seed.mx` is a trio of randomely generated colors, it's the core of the palette
+%% - `~/.config/mxc/seed.mx` sample generated [seed.mx](./assets/samples/seed.mx)
 > the entire palette is drived from this generated `seed` file 
 
 theme.mx
