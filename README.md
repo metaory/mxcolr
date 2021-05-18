@@ -43,11 +43,13 @@ theme.mx
 
 `theme.mx` is intended to be sourced in `.profile` or `bashrc` to have apps that can directly access system env read system scheme from it
 
+
 Basic Usage
 ===========
 Templates are the easiest way to produce scheme files for different apps, 
 
 every file the `./templates/{tpl}` will be parsed, scheme variables replaced and placed in `~/.config/mxc/{tpl}`
+possible variables in addition to [theme.mx](./assets/samples/theme.mx) are gui (hex) colors short of their hash prefixed with HL, eg: HLC01 HLWBG > df419b 4863e9
 
 ### some apps that ONLY rely on template file
 - kitty  template:[kitty-theme.conf](./templates/kitty-theme.conf) output:[kitty-theme.conf](./assets/samples/kitty-theme.conf)
@@ -58,13 +60,10 @@ Advance Usage
 if further steps required to patch an app a plugin `sh` file can be added to plugins forlder to make the additinal steps
 plugin apply function will be called after parsing templates if there is any template
 
-> plugins outputs will first be drafted in `/tmp/mxc` and later on confirmations will move to `~/.config/mxc/{plugin_name}`
-> unless it have a different destination set
-
 each `sh` file presents in `./plugins` folder is treated as a plugin and is sourced
 
 its expected to follow these patterns:
-* filename: `[0-9]-[a-z_].sh` _`1-vim.sh`_
+* filename: `[0-9]-[a-z_].sh` _eg `1-vim.sh`_
   * prefix number is the `order` its loaded, 0 means disabled
   * suffix the `plugin_name`
 * plugin file is expected to have a function named `apply_{plugin_name}`
