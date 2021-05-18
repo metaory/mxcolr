@@ -61,7 +61,6 @@ with prefix of `HL` eg: `HLC01` `HLWBG` > `df419b` `4863e9`
 Advance Usage
 =============
 if further steps required to patch an app a plugin `sh` file can be added to plugins forlder to make the additinal steps
-plugin apply function will be called after parsing templates if there is any template
 
 each `sh` file presents in `./plugins` folder is treated as a plugin and is sourced
 
