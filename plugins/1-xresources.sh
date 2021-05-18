@@ -29,6 +29,9 @@ PopulateFileWith "$MXC_XRS_TMP" 'APPEND' \
   "${MX_VARS[@]}"
   # $(eval echo \$\{MX_C{X,M,K,L}\[\@\]\})
 
+# since https://github.com/metaory/mxcolr/commit/f6d25e
+# most of this file couple be replaced by a simple template file
+
 Info "$MXC_XRS_TMP"
 
 apply_xresources() {

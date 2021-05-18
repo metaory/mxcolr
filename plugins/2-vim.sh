@@ -41,6 +41,9 @@ PopulateFileWith "$MXC_VIM_TMP" 'APPEND' \
   # "*.\${c/color}: \${!c}" \
 Info "$MXC_VIM_TMP"
 
+# since https://github.com/metaory/mxcolr/commit/f6d25e
+# most of this file couple be replaced by a simple template file
+
 apply_vim () {
   cp -v --backup "$MXC_VIM_TMP" "$MXC_VIM_OUT"
 
