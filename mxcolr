@@ -99,7 +99,7 @@ Revert () {
 
 ApplyTemplates () {
   ! command -v envsubst &> /dev/null && Info 1 "envsubst command not found" && return 1
-  for tpl_path in "$MXBASE"/assets/templates/*; do
+  for tpl_path in "$MXBASE"/templates/*; do
     local tpl="${tpl_path##*/}"
 
     [[ ! "$XOPT" == *"full"* ]] && PromptContinue "$tpl"
