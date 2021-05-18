@@ -141,7 +141,7 @@ fillHead () {
   pastel paint -n -o "$XBG" -b "${XFG}" "$s"
   fill $space "$(( cols + ${#sep} ))" "$sep" "$XFG"; pl '-'
 }
-fillCols () { fill $(($(tput cols)/2)) 0 '' "$DL3"; pl '-'; } # "$(tput cols)" "${1:-·}" "${2:-$C00}"; }
+fillCols () { fill $(($(tput cols)/2)) 0 "${1:-}" "$DL3"; pl '-'; } # "$(tput cols)" "${1:-·}" "${2:-$C00}"; }
 # fillCols () { pl "$(tput cols)" "${1:-·}" "${2:-$C00}"; }
 #
 prntlist () {

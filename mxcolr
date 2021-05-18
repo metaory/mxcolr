@@ -6,7 +6,7 @@
 
 # if tty -s; then mlg interactive; else mlg none-intreractive;fi
 
- MXC_V='mxc-v1.3'                    ; export MXC_V
+ MXC_V='mxc-v1.4'                    ; export MXC_V
 MXBASE=$(dirname "$(realpath "$0")") ; export MXBASE
 MXDIST=~/.config/mxc          ; export MXDIST
 MXTEMP=/tmp/mxc                      ; export MXTEMP
@@ -84,11 +84,8 @@ DemoAll () {
   fillCols
 }
 
-LoadPreview () { CopyTempSeed ; LoadTempTheme ; apply_tmux ; }
-RestoreTmux   () {
-  [ -e "$MXDIST/tmuxpre" ] && cp "$MXDIST/tmuxpre" "$MXDIST/tmux.mx"
-  [ "$TMUX" ] && apply_tmux
-}
+LoadPreview () { CopyTempSeed ; LoadTempTheme ; apply_tmux 1; }
+RestoreTmux   () { . "$MXBASE"/plugins/2-tmux.sh  && apply_tmux; }
 Revert () {
   ClearTemp
   CopyTempSeed
@@ -128,6 +125,7 @@ ReGenerate () {
   SourcePlugs
   ReleaseSeed
   ReleaseTheme
+  MXDotLine; fillCols ' '; fillCols ' ●'
   Demo; ls "$MXTEMP" && PressToContinue "drafts ready" "$MXTEMP"
   # ............................ #
   ApplyTemplates
@@ -169,8 +167,8 @@ Generate () {
     -i | --init         ) LoadPreview   ; Demo_block ;;
     -l | --list         ) ListSnapshots ;;
     -s | --save         ) SaveSnapshot  ;;
-    -x1                 ) XP_1          ;;
-    -x2                 ) XP_2          ;;
+    -x1                 ) playground_1  ;;
+    -x2                 ) playground_2  ;;
     *                   ) MXIntro       ;;
   esac
   mlg "━✔━━<MENU>━━┛"
