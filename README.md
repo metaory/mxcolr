@@ -4,8 +4,6 @@
   <img width="193" height="64" src="./assets/screenshots/seed_2021-05-14-123246_193x64_scrot.png">
 </p>
 
-***
-
 usage
 =====
     mxcolr --init
@@ -44,6 +42,9 @@ theme.mx
 
 `theme.mx` is intended to be sourced in `.profile` or `bashrc` to have apps that can directly access system env read system scheme from it
 
+<p align="center">
+  <img src="./assets/screenshots/samples_2021-05-16-145353_361x247_scrot.png">
+</p>
 
 Basic Usage
 ===========
