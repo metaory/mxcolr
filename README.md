@@ -43,14 +43,18 @@ theme.mx
 
 `theme.mx` is intended to be sourced in `.profile` or `bashrc` to have apps that can directly access system env read system scheme from it
 
-basic usage
------------
+Basic Usage
+===========
 Templates are the easiest way to produce scheme files for different apps, 
 
 every file the `./templates/{tpl}` will be parsed, scheme variables replaced and placed in `~/.config/mxc/{tpl}`
 
-advance usage
--------------
+### some apps that ONLY rely on template file
+- kitty  template:[kitty-theme.conf](./templates/kitty-theme.conf) output:[kitty-theme.conf](./samples/kitty-theme.conf)
+- xresources.sh, tmux.sh vim.sh could have too
+
+Advance Usage
+=============
 if further steps required to patch an app a plugin `sh` file can be added to plugins forlder to make the additinal steps
 plugin apply function will be called after parsing templates if there is any template
 
@@ -74,11 +78,6 @@ its expected to follow these patterns:
 > plugins outputs will first be drafted in `/tmp/mxc` and later upon confirmation prompt moved to `~/.config/mxc/{plugin_name}` 
 unless different destination is set
 
-***
-
-### some apps that ONLY rely on template file
-%% - kitty  template:[kitty-theme.conf](./templates/kitty-theme.conf) output:[kitty-theme.conf](./samples/kitty-theme.conf)
-- xresources.sh, tmux.sh vim.sh could have too
 
 ### some apps that rely on BOTH template file AND plugin file
 - lscolors template:[lscolors-vivid.yml](./templates/lscolors-vivid.yml) output:[lscolors-vivid.yml](./samples/lscolors-vivid.yml) plugin:[2-lscolors.sh](./plugins/2-lscolors.sh)  output:[lscolors](./samples/lscolors)
@@ -86,7 +85,6 @@ unless different destination is set
 
 ### some apps that rely on ONLY plugin file
 - vimium, gtk.sh, spotify.sh, awm.sh
-
 
 ***
 
