@@ -89,14 +89,6 @@ unless different destination is set
 
 ***
 
-lch strategy
-------------
-![lch](./assets/screenshots/lch_210511171753.gif)
-
-vivid strategy
---------------
-![vivid](./assets/screenshots/vivid_210511172635.gif)
-
 update
 ------
 ![update](./assets/screenshots/update_210518195953.gif)
