@@ -21,6 +21,8 @@ cursor_text_color      $WFX
 cursor                 $WBX
 EOF
 
+# since https://github.com/metaory/mxcolr/commit/f6d25e
+# this file couple be replaced by a simple template file
 
 PopulateFileWith "$MXC_KITTY_TMP" 'APPEND' \
   "\${c/C0/color} \${!c}" \

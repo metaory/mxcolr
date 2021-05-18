@@ -88,6 +88,9 @@ TERMINAL_COLOR14=${C14:1}
 TERMINAL_COLOR15=${C15:1}
 EOF
 
+# since https://github.com/metaory/mxcolr/commit/f6d25e
+# most of this file couple be replaced by a simple template file
+
 Info "$MXC_GTK_TMP"
 
 ApplyGTKTheme () {
