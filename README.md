@@ -47,7 +47,7 @@ basic usage
 -----------
 Templates are the easiest way to produce scheme files for different apps, 
 
-every file the `./assets/templates/{tpl}` will be parsed, scheme variables replaced and placed in `~/.config/mxc/{tpl}`
+every file the `./templates/{tpl}` will be parsed, scheme variables replaced and placed in `~/.config/mxc/{tpl}`
 
 advance usage
 -------------
@@ -77,11 +77,11 @@ unless different destination is set
 ***
 
 ### some apps that ONLY rely on template file
-- kitty  template:[kitty-theme.conf](./assets/templates/kitty-theme.conf) output:[kitty-theme.conf](./assets/samples/kitty-theme.conf)
+%% - kitty  template:[kitty-theme.conf](./templates/kitty-theme.conf) output:[kitty-theme.conf](./samples/kitty-theme.conf)
 - xresources.sh, tmux.sh vim.sh could have too
 
 ### some apps that rely on BOTH template file AND plugin file
-- lscolors template:[lscolors-vivid.yml](./assets/templates/lscolors-vivid.yml) output:[lscolors-vivid.yml](./assets/samples/lscolors-vivid.yml) plugin:[2-lscolors.sh](./plugins/2-lscolors.sh)  output:[lscolors](./assets/samples/lscolors)
+- lscolors template:[lscolors-vivid.yml](./templates/lscolors-vivid.yml) output:[lscolors-vivid.yml](./samples/lscolors-vivid.yml) plugin:[2-lscolors.sh](./plugins/2-lscolors.sh)  output:[lscolors](./samples/lscolors)
 - gtk.sh, spotify.sh could have too
 
 ### some apps that rely on ONLY plugin file
