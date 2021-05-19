@@ -4,33 +4,22 @@
 GEN_MIN_DISTANCE=30
 ATTMP_WARN_THRESHOLD=7
 ################################
-abs_diff () { echo "df=($1 - $2); if (df < 0) { df=df* -1}; print df" | bc -l; }
+diff_real () { echo "df=($1 - $2); if (df < 0) { df=df* -1}; print df" | bc -l; }
 diff_under () {
-  local diff; diff=$(echo "df=($1 - $2); if (df < 0) { df=df* -1}; print df" | bc -l)
+  local diff; diff=$(diff_real "$1" "$2")
   echo "$diff < $GEN_MIN_DISTANCE" | bc -l
 }
+
 ################################
 
 # shellcheck disable=SC2034
 gen_random () {
 
   local attmp="${1:-1}"
-  # XBG="$(pastel set hsl-saturation   0.14 "$WBG" | pastel set hsl-lightness 0.08 | pastel format hex)"
-
-
-  # -- [[
-  # SBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel saturate 0.30 | pastel format hex)"
-  # EBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel saturate 0.30 | pastel format hex)"
-  # --]
-  # WBG="$(pastel random -n 1 -s lch_hue | pastel saturate        0.40 | pastel darken   0.10 | pastel format hex)"
-  # SBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel format hex)"
-  # EBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel format hex)"
 
   # PressToContinue "XOPT $XOPT"
   local strategy="${XOPT:-lch}" ; [[ "$strategy" == 'lch' ]]   && strategy='lch_hue'
   local xcal='0.16'             ; [[ "$strategy" == 'vivid' ]] && xcal='0.08'
-  # PressToContinue "strategy $strategy"
-  mlg "strategy $strategy"
 
   WBG="$(pastel random -n 1 -s lch_hue     | pastel saturate     "$xcal" | pastel darken "$xcal" | pastel format hex)"
   SBG="$(pastel random -n 1 -s "$strategy" | pastel mix - "$WBG" -f 0.80 | pastel darken "$xcal" | pastel format hex)"
@@ -57,12 +46,11 @@ gen_random () {
   mlg "HU:: S $SBG_HUE - W $WBG_HUE - E $EBG_HUE"
   mlg "HX:: S $SOver - E $EOver - X $XOver"
 
-
   if (( SOver || EOver || XOver )); then
     ! (( attmp % ATTMP_WARN_THRESHOLD )) && PressToContinue "failed $attmp attempts, still continue?"
     gen_random $((++attmp))
   else
-    InfoDone "${strategy^^} generated, after $attmp attempts,proceeding"; return
+    fillCols ' ▪'; InfoDone "${strategy^^} generated, after $attmp attempts,proceeding"; return
   fi
 }
 # well almost!
@@ -164,4 +152,14 @@ UpdatePalette () {
   InfoDone
 }
 ################################
+
+
+  # -- [[
+  # SBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel saturate 0.30 | pastel format hex)"
+  # EBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel saturate 0.30 | pastel format hex)"
+  # WBG="$(pastel random -n 1 -s lch_hue | pastel saturate        0.40 | pastel darken   0.10 | pastel format hex)"
+  # .. 
+  # SBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel format hex)"
+  # EBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel format hex)"
+  # --]]
 
