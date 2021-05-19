@@ -1,26 +1,26 @@
 colors:
-  # virtualized @ mxc-v1.3
+  # DevOps @ mxc-v1.4
   # Based on "snazzy" theme by sindresorhus
   
-  background_color: '121217'
-  white:            '8383d8'
-  black:            '06060d'
-  mxc01:            'df419b'
-  mxc02:            '5fceb6'
-  mxc03:            'ef8155'
-  mxc04:            '5c87f5'
-  mxc05:            '5a50c9'
-  mxc06:            '38b0f6'
-  mxc09:            'e66db2'
-  mxc10:            '86dac8'
-  mxc11:            'f3a383'
-  mxc12:            '8cabf8'
-  mxc13:            '7f77d5'
-  mxc14:            '69c4f8'
-  mxc07:            '424280'
-  mxc08:            '2e2e4b'
-  mxc00:            '161627'
-  mxwbg:            '4863e9'
+  background_color: '121717'
+  white:            '83d8d8'
+  black:            '060d0d'
+  mxc01:            'dc527e'
+  mxc02:            '58d59b'
+  mxc03:            'dc9539'
+  mxc04:            '5292e6'
+  mxc05:            '565cb8'
+  mxc06:            '1bbddd'
+  mxc09:            'e57c9d'
+  mxc10:            '81dfb3'
+  mxc11:            'e4ac64'
+  mxc12:            '7faeec'
+  mxc13:            '7a7fc7'
+  mxc14:            '43cce8'
+  mxc07:            '428080'
+  mxc08:            '2e4b4b'
+  mxc00:            '162727'
+  mxwbg:            '219088'
 
 core:
   regular_file: {}

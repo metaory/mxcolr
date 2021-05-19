@@ -167,17 +167,17 @@
   --font: Source Code Pro, Noto Sans Mono, FiraMono, monospace;
   --padding: 2px;
   --shadow: none;
-  --fg: #6767c1;
-  --bg: #121217;
-  --border: #242437;
-  --bg-dark: #0d0d1a;
-  --fg-dark: #48486f;
-  --bg-darker: #06060d;
-  --main-fg: #595987;
-  --fg-light: #424280;
-  --amber-fg: #4863e9;
-  --accent-fg: #599150;
-  --purple-dark: #d63488;
+  --fg: #67c1c1;
+  --bg: #121717;
+  --border: #243737;
+  --bg-dark: #0d1a1a;
+  --fg-dark: #486f6f;
+  --bg-darker: #060d0d;
+  --main-fg: #598787;
+  --fg-light: #428080;
+  --amber-fg: #219088;
+  --accent-fg: #c8464e;
+  --purple-dark: #a28136;
 }
 
 ::selection {
