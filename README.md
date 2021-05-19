@@ -50,7 +50,7 @@ Basic Usage
 ===========
 Templates are the easiest way to produce scheme files for different apps, 
 
-every file the `./templates/{tpl}` will be parsed, scheme variables replaced and placed in `~/.config/mxc/{tpl}`
+every file in `./templates/{tpl}` will be parsed; scheme variables replaced; and placed in `~/.config/mxc/{tpl}`
 possible variables in addition to [theme.mx](./assets/samples/theme.mx) are gui (hex) colors wihtout `#`
 with prefix of `HL` eg: `HLC01` `HLWBG` > `df419b` `4863e9`
 
