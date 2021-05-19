@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-XP_2 () {
+Playground_2 () {
 
   gen_random
   gen_idiomatic
@@ -10,7 +10,7 @@ XP_2 () {
   case $REPLY in
     k ) Info 'nope ·';;
     u ) Info 'nope··';;
-    n ) Info 'Again ·········'; XP_2  ;;
+    n ) Info 'Again ·········'; Playground_2  ;;
     d ) Info 'Full Demo ·····'; DemoAll    ;;
     * ) Info 'Reverting ·····'; Revert     ;;
   esac
@@ -18,7 +18,7 @@ XP_2 () {
 
 # ///////////////////////////////////////////
 
-XP_1 () {
+Playground_1 () {
   Info "(XP) XOPT $XOPT"
   local cx=(WBG SBG EBG)
 

@@ -17,7 +17,7 @@ PopulateFileWith () {
     eval echo "$format" >> "$file"
   done
 
-  echo; printf ' ==> '; file "$file"
+  printf ' ==> '; file "$file"
 }
 
 ####################################################

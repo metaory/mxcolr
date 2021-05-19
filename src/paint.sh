@@ -1,104 +1,30 @@
 #!/usr/bin/env bash
 
-export sp_block_l_begin='▌'
-export sp_block_l_middl=''
-export sp_block_l_close='▐'
-
-export sp_pentagon_begin=''
-export sp_pentagon_middl=''
-export sp_pentagon_close=''
-
-export sp_tiny_begin=' '
-export sp_tiny_middl=' '
-export sp_tiny_close=' '
-
-export sp_blank_begin='  '
-export sp_blank_middl='  '
-export sp_blank_close='  '
-
-export sp_block_l_begin=''
-export sp_block_l_middl=''
-export sp_block_l_close=''
-
-export sp_block_c_begin='█'
-export sp_block_c_middl=''
-export sp_block_c_close='█'
-
-export sp_block_d_begin='█'
-export sp_block_d_middl='██'
-export sp_block_d_close='█'
-
-export sp_block_e_begin='▆ '
-export sp_block_e_middl='▆ '
-export sp_block_e_close='▆'
-
-# export sp_block_begin=''
-export sp_block_r_begin=''
-export sp_block_r_middl=''
-export sp_block_r_close=''
-
-# export sp_line_top_begin='┏╸━'
-# export sp_line_top_middl='━╸'
-# export sp_line_top_close='━━╸━┓'
-export sp_line_begin='╺╸'
-export sp_line_middl='··'
-export sp_line_close='·╺╸'
-
-export sp_line_top_begin='┏╸'
-export sp_line_top_middl='·'
-export sp_line_top_close='·╺┓'
-#   
-export sp_cross_begin=' '
-export sp_cross_middl=' '
-export sp_cross_close=' '
-
-export sp_dot_begin=' ●'
-export sp_dot_middl=' '
-export sp_dot_close=' ●'
-
-export sp_lash_begin='●'
-export sp_lash_middl='●'
-export sp_lash_close='●●'
-
-export sp_dotline_begin='╸⏽'
-export sp_dotline_middl='●⏽'
-export sp_dotline_close='╺'
-
-export sp_lash_begin='╸⏽'
-export sp_lash_middl='●⏽'
-export sp_lash_close='●╺'
-
-export sp_box_slant_begin='█┣╸●'
-export sp_box_slant_middl=' '
-export sp_box_slant_close=' ●╺┫█'
-
-export sp_circle_slant_begin='█┣ ●'
-export sp_circle_slant_middl=' '
-export sp_circle_slant_close=' ● ┫█'
-
-export sp_dot_slant_begin='█🮈╸'
-export sp_dot_slant_middl='·'
-export sp_dot_slant_close='·╺▍█'
-
-export sp_line_top_mini_begin='┏╸'
-export sp_line_top_mini_middl='·'
-export sp_line_top_mini_close='·╺╺┓'
-
-export sp_line_bot_begin='┗━╺╸╺╸'
-export sp_line_bot_middl='╺━'
-export sp_line_bot_close='┛'
-
-export sp_line_bo2_begin='┗╸'
-export sp_line_bo2_middl='╺╸'
-export sp_line_bo2_close='┛'
-
-export sp_box_begin='■'
-export sp_box_middl='■'
-export sp_box_close='■'
-
-export sp_box2_begin='█🮈'
-export sp_box2_middl='▍'
-export sp_box2_close='▍█'
+sp_block_l_begin='▌'         ; sp_block_l_middl=''       ; sp_block_l_close='▐'
+sp_pentagon_begin=''        ; sp_pentagon_middl=''      ; sp_pentagon_close=''
+sp_tiny_begin=' '            ; sp_tiny_middl=' '          ; sp_tiny_close=' '
+sp_blank_begin='  '           ; sp_blank_middl='  '         ; sp_blank_close='  '            ;
+sp_block_l_begin=''         ; sp_block_l_middl=''       ; sp_block_l_close=''
+sp_block_c_begin='█'         ; sp_block_c_middl=''       ; sp_block_c_close='█'
+sp_block_d_begin='█'         ; sp_block_d_middl='██'     ; sp_block_d_close='█'
+sp_block_e_begin='▆ '         ; sp_block_e_middl='▆ '       ; sp_block_e_close='▆'
+sp_block_r_begin=''         ; sp_block_r_middl=''       ; sp_block_r_close=''
+sp_line_top_begin='┏╸━'       ; sp_line_top_middl='━╸'      ; sp_line_top_close='━━╸━┓'
+sp_line_begin='╺╸'           ; sp_line_middl='··'         ; sp_line_close='·╺╸'
+sp_line_top_begin='┏╸'       ; sp_line_top_middl='·'      ; sp_line_top_close='·╺┓'       ; #   
+sp_cross_begin=' '           ; sp_cross_middl=' '         ; sp_cross_close=' '
+sp_dot_begin=' ●'             ; sp_dot_middl=' '           ; sp_dot_close=' ●'
+sp_lash_begin='●'            ; sp_lash_middl='●'          ; sp_lash_close='●●'
+sp_dotline_begin='╸⏽'         ; sp_dotline_middl='●⏽'       ; sp_dotline_close='╺'
+sp_lash_begin='╸⏽'           ; sp_lash_middl='●⏽'          ; sp_lash_close='●╺'
+sp_box_slant_begin='█┣╸●'    ; sp_box_slant_middl=' '     ; sp_box_slant_close=' ●╺┫█'
+sp_circle_slant_begin='█┣ ●' ; sp_circle_slant_middl=' '  ; sp_circle_slant_close=' ● ┫█'
+sp_dot_slant_begin='█🮈╸'    ; sp_dot_slant_middl='·'     ; sp_dot_slant_close='·╺▍█'
+sp_line_top_mini_begin='┏╸'  ; sp_line_top_mini_middl='·' ; sp_line_top_mini_close='·╺╺┓'
+sp_line_bot_begin='┗━╺╸╺╸'    ; sp_line_bot_middl='╺━'      ; sp_line_bot_close='┛'
+sp_line_bo2_begin='┗╸'        ; sp_line_bo2_middl='╺╸'      ; sp_line_bo2_close='┛'
+sp_box_begin='■'              ; sp_box_middl='■'            ; sp_box_close='■'
+sp_box2_begin='█🮈'            ; sp_box2_middl='▍'           ; sp_box2_close='▍█'
 
 # \\\\\\\\\\\\\\\\\\\\\\\\\\\\  
 prnt (){
