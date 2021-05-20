@@ -39,7 +39,7 @@ ListSnapshots () {
     # exit 1
     ClearTemp
     # TODO copy whole dir
-    cp "$selected"/mx-seed "$M_SEED"
+    cp "$selected"/seed.mx "$M_SEED"
 
     ReGenerate
     return
@@ -49,7 +49,6 @@ ListSnapshots () {
     ListSnapshots
     return
   fi
-  mlg "FROM LIST::: $FOO" 
 }
 ## #####################
 SaveSnapshot () {
@@ -70,18 +69,15 @@ SaveSnapshot () {
   for sid in "${!snapshots[@]}"; do
     local snap=${snapshots[$sid]}; mlg "$snap"
 
+    [ -e "$snap"/mx-seed ] && mv "$snap"/mx-seed "$snap"/seed.mx; # legacy name
 
-    # ssum=$(md5sum "$snap"/* | awk '{print $1}')||true;
-    # if [ "$csum" = "$ssum" ]; then
-    # if (diff "$OTHEME" "$snap"/theme.mx 1>/dev/null); then
-    if (diff "$O_SEED" "$snap"/mx-seed 1>/dev/null); then
+    if (diff "$O_SEED" "$snap"/seed.mx &>/dev/null); then
       mlg "snap exists $snap"
 
       . "$snap"/theme.mx
       Demo_card "${MXNAME}" "$total" "$total"; Demo
 
-      pastel paint "$C01" -b " duplicate "
-      pastel paint "$C09" -i "$snap"; Info "         "
+      InfoError " duplicate 🢃🢃🢃"; InfoWarn "$snap"
 
       PromptConfirm " Create anyway "; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
     fi

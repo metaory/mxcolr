@@ -3,6 +3,7 @@
 MX_XX=(SBG WBG EBG)
 MX_CA=(C{00..07})
 MX_CB=(C{08..15})
+
 ################################
 prnt1 (){
   pastel paint "${3:-$(pastel textcolor "$1")}" -o "$1" -b -n "┠${1}┨"
@@ -45,6 +46,7 @@ Demo_slant () {
   # ........................................
   # ########################################
   # ........................................
+
   fill 4     ; prntlist 'pl:sp_line_top_mini' "${MX_CX[@]}" ; pl '-'
   fill 4     ; pl "${MX_CX[0]}" "┗━"                        ; prntlist 'prnt:sp_block_c' "${MX_CX[@]}" ; pl "${MX_CX[-1]}" "━┛"; pl '-'
   fill 7 ; prntlist 'pl:sp_line_bo2' "${MX_CX[@]}"          ; pl '-'
@@ -82,12 +84,12 @@ _head () {
 Demo_card () {
   local s="${1:-$MXNAME}"; local c="${2:-}"; local t="${3:-}"
   local cy=("${MX_XX[@]}" "${MX_CX[@]}")
-  _head              ; _title "$s"
-  _head "$c"  0 '-b' ; prntlist 'pl:sp_tiny' "${MX_CA[@]}" ; pl '-'
-  _head "∕"   0      ; prntlist 'pl:sp_tiny' "${MX_CB[@]}" ; pl '-'
-  _head "$t"  0      ; prntlist 'pl:sp_tiny' "${cy[@]}"    ; pl '-'
-  _head " "   0      ; prntlist 'pl:sp_tiny' "${MX_CL[@]}" ; pl '-'
-  _head "██"  I     ; prntlist 'pl:sp_tiny' "${MX_CK[@]}" ; pl '-'
+fll 8; _head              ; _title "$s"
+fll 8; _head "$c"  0 '-b' ; prntlist 'pl:sp_tiny' "${MX_CA[@]}" ; pl '-'
+fll 8; _head "∕"   0      ; prntlist 'pl:sp_tiny' "${MX_CB[@]}" ; pl '-'
+fll 8; _head "$t"  0      ; prntlist 'pl:sp_tiny' "${cy[@]}"    ; pl '-'
+fll 8; _head " "   0      ; prntlist 'pl:sp_tiny' "${MX_CL[@]}" ; pl '-'
+fll 8; _head "██"  I     ; prntlist 'pl:sp_tiny' "${MX_CK[@]}" ; pl '-'
 
   # _head "$t"  0      ; prntlist 'pl:sp_tiny' "${MX_CX[@]}" ; pl '-'
 }

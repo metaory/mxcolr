@@ -121,7 +121,7 @@ ReGenerate () {
   SourcePlugs
   ReleaseSeed
   ReleaseTheme
-  MXDotLine; fillCols ' '; fillCols ' ●'
+  MXDotLine; fillCols '▄'; fillCols '▀'
   Demo; ls "$MXTEMP" && PressToContinue "drafts ready" "$MXTEMP"
   # ............................ #
   ApplyTemplates

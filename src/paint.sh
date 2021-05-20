@@ -32,6 +32,7 @@ prnt (){
   pastel paint -o "$XBG" -n "${!1:-red}" "$char" 
 }
 pl () {
+  [ $# -eq 0 ] && printf ' ' && return
   c="${1:-XBG}"
   s="${2:- }"
   o="$XBG"
@@ -44,6 +45,7 @@ pl () {
   fi
   pastel paint -o "$o" "$op" "${!c:-red}" "$s"
 }
+fll () { printf "%0.s${2:- }" $(seq 1 "${1:-1}"); }
 fill () {
   local cols;cols=$(tput cols)
 
