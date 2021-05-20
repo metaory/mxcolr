@@ -10,6 +10,7 @@ source=/dev/null
 # enable=check-unassigned-uppercase
 
 # Allow [ ! -z foo ] instead of suggesting -n
+disable=SC2153
 disable=SC2236
 disable=SC2034
 # disable=w2034
