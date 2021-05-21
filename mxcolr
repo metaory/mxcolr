@@ -122,6 +122,7 @@ ReGenerate () {
   ReleaseSeed
   ReleaseTheme
   MXDotLine; fillCols '▄'; fillCols '▀'
+  [ "$1" ] && return
   Demo; ls "$MXTEMP" && PressToContinue "drafts ready" "$MXTEMP"
   # ............................ #
   ApplyTemplates
@@ -137,11 +138,11 @@ Generate () {
 
   PrompRand
   case $REPLY in
-    k ) Info 'Keeping draft ·'; SourcePlugs    ;;
-    u ) Info 'Proceeding ····'; ReGenerate ;;
-    n ) Info 'Again ·········'; Generate  ;;
-    d ) Info 'Full Demo ·····'; DemoAll    ;;
-    * ) Info 'Reverting ·····'; Revert     ;;
+    k ) Info 'Keeping draft ·' ; SourcePlugs  ;;
+    u ) Info 'Proceeding ····' ; ReGenerate   ;;
+    n ) Info 'Again ·········' ; Generate     ;;
+    d ) Info 'Full Demo ·····' ; DemoAll      ;;
+    * ) Info 'Reverting ·····' ; Revert; ReGenerate 1 ;;
   esac
   mlg "━✔━━━┛"
 } # ............................ #
