@@ -35,7 +35,7 @@ PopulateFileWith "$MXC_VIM_TMP" 'APPEND' \
 
 # shellcheck disable=SC2046
 PopulateFileWith "$MXC_VIM_TMP" 'APPEND' \
-  "let g:mxc_c_\${c,,} = \${!c}" \
+  "let g:mxc_c_\${c,,} = \'\${!c}\'" \
   "${MX_TERM[@]}"
   # $(eval echo \$\{MX_T{C,X,M,K,L}\[\@\]\})
   # "*.\${c/color}: \${!c}" \

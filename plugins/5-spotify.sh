@@ -8,8 +8,8 @@ MXC_SPOTIFY_OUT="${MXC_SPOTIFY_OUT:-"$MXDIST/$BS"}"
 
 cat <<  EOF > "$MXC_SPOTIFY_TMP"
 [Base]
-main_bg                               =${XBG:1}
-main_fg                               =${XFG:1}
+main_bg                               =${DK0:1}
+main_fg                               =${C07:1}
 dark_fg                               =${C08:1}
 light_fg                              =${C07:1}
 meta_1                                =${WBG:1}
