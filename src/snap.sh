@@ -7,7 +7,9 @@ ListSnapshots () {
   local slen;slen="$(MXDots)";slen="${#slen}"
   for sid in "${!snapshots[@]}"; do
     local snap=${snapshots[$sid]}; mlg "$snap"
+    local xname="$MXNAME"
     . "$snap"/theme.mx
+    # [[ "$MXNAME" == "$xname" ]]
     local slabel; slabel="$(basename "$snap" | cut -d'_' -f2-3)"
     # Demo_card "$slabel" "$((sid+1))" "$total"
     # prnt "WBG" "$((sid+1))"
@@ -16,7 +18,10 @@ ListSnapshots () {
     ! (( sid % brk )) && echo
     printf ' '
     MXSep
-    pastel paint -o "$XBG" -b -n "$XFG" "$(printf '%#2d\n' "$sid")"
+    (diff "$O_SEED" "$snap"/seed.mx &>/dev/null) \
+      && pastel paint -n -b -o "$SBG" "$SFG" " $sid " \
+      && pastel paint -n -b -o "$WBG" "$WFG" " $MXNAME " \
+      || pastel paint -o "$XBG" -b -n "$XFG" "$(printf '%#2d\n' "$sid")"
     MXDots
     MXSep
 
