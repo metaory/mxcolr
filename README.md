@@ -62,16 +62,17 @@ check sample generated [root.mx](./assets/samples/root.mx
 
 Vim
 ---
-root-mx.vim  tpl:[root-mx.vim](./templates/root-mx.vim) out:[root-mx.vim](./assets/samples/root-mx.vim)
+**root-mx.vim**  tpl:[root-mx.vim](./templates/root-mx.vim) out:[root-mx.vim](./assets/samples/root-mx.vim)
+
 > root-mx.vim is intented to be sourced in vimrc
 
-css/less
---------
-css/less for web/electron apps
+css / less
+----------
+css / less for web/electron apps
 
-root-mx.css tpl:[root-mx.css](./templates/root-mx.css) out:[root-mx.css](./assets/samples/root-mx.css)
+**root-mx.css** tpl:[root-mx.css](./templates/root-mx.css) out:[root-mx.css](./assets/samples/root-mx.css)
 
-root-mx.less tpl:[root-mx.less](./templates/root-mx.less) out:[root-mx.less](./assets/samples/root-mx.less)
+**root-mx.less** tpl:[root-mx.less](./templates/root-mx.less) out:[root-mx.less](./assets/samples/root-mx.less)
 
 > (root css/less) are intented to be included in other js / electron apps, like Atom editor or Source Code
 
