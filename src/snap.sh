@@ -7,11 +7,12 @@ ListSnapshots () {
   local slen;slen="$(MXDots)";slen="${#slen}"
   for sid in "${!snapshots[@]}"; do
     local snap=${snapshots[$sid]}; mlg "$snap"
-    . "$snap"/theme.mx
+
+    [ -e "$snap"/mx-seed ]  && mv "$snap"/mx-seed  "$snap"/seed.mx; # legacy name
+    [ -e "$snap"/theme.mx ] && mv "$snap"/theme.mx "$snap"/root.mx; # legacy name
+
+    . "$snap"/root.mx
     local slabel; slabel="$(basename "$snap" | cut -d'_' -f2-3)"
-    # Demo_card "$slabel" "$((sid+1))" "$total"
-    # prnt "WBG" "$((sid+1))"
-    # Demo_block "[$((sid+1))] "
     local brk; brk=$(tput cols);brk=$((brk/(slen * 2)))
     ! (( sid % brk )) && echo
     printf ' '
@@ -73,12 +74,12 @@ SaveSnapshot () {
   for sid in "${!snapshots[@]}"; do
     local snap=${snapshots[$sid]}; mlg "$snap"
 
-    [ -e "$snap"/mx-seed ] && mv "$snap"/mx-seed "$snap"/seed.mx; # legacy name
+    [ -e "$snap"/mx-seed ]  && mv "$snap"/mx-seed  "$snap"/seed.mx; # legacy name
+    [ -e "$snap"/theme.mx ] && mv "$snap"/theme.mx "$snap"/root.mx; # legacy name
 
     if (diff "$O_SEED" "$snap"/seed.mx &>/dev/null); then
       mlg "snap exists $snap"
-
-      . "$snap"/theme.mx
+      . "$snap"/root.mx
       InfoError " duplicate 🢃🢃🢃"; InfoWarn "$snap"
       PromptConfirm " Create anyway "; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
     fi

@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 BS="$(GetPlugName)-mx.vim"
-MXC_VIM_TMP=/tmp/mxc/"$BS"
-MXC_VIM_OUT="${MXC_VIM_OUT:-"$MXDIST/$BS"}"
+MXC_VIM_TMP=/tmp/mxc/root-mx.vim
+MXC_VIM_OUT="$MXDIST"/root-mx.vim
 
 cat <<  EOF > "$MXC_VIM_TMP"
 $(get_header '\"')
