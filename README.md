@@ -27,9 +27,9 @@ Motivations
 ===========
 While tools like Oomox and Spicetify are great in reallity you probably got more than GTK theme and Icons you'd want to patch
 
-terminal colors, terminal prompt, window manager / status bar icons, Vim/Atom/SourceCode editor and more 
+terminal colors, terminal prompt, window manager / status bar theme / icons, Vim/Atom/SourceCode editor and more 
 
-Some apps might require to compile and build, all of these are just too repetitive and anoying to do for every change, and there is finding color scheme 
+Some apps might require to compile and build, all of these are just too repetitive and anoying to do for every change, then there is the never ending search for the right color scheme  
 
 #### This repo goal is to be a tool for generating and previewing palettes and serve as a framework for patching any application with few keystrokes.
 
@@ -55,14 +55,15 @@ Shell
 -----
  [root.mx](./assets/samples/root.mx) is the primary output scheme sh file
 - `~/.config/mxc/root.mx` sample generated [root.mx](./assets/samples/root.mx)
-`root.mx` is intended to be sourced in `.profile` or `bashrc` to have apps that can directly access system env read system scheme from it
+
+> intended to be sourced in `.profile` or `bashrc` and have apps that can directly access system env read system scheme from it
 
 Vim
 ---
  output: [root-mx.vim](./assets/samples/root-mx.vim)
 plugin: [2-vim.sh](./plugins/2-vim.sh)
 
-> root-mx.vim is intented to be sourced in vimrc
+> intented to be sourced in vimrc
 
 css / less
 ----------
