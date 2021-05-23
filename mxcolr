@@ -11,8 +11,8 @@ MXBASE=$(dirname "$(realpath "$0")") ; export MXBASE
 MXDIST=~/.config/mxc                 ; export MXDIST
 MXTEMP=/tmp/mxc                      ; export MXTEMP
 MXSNAP=$MXBASE/snapshots             ; export MXSNAP
-MTHEME=$MXTEMP/theme.mx              ; export MTHEME
-OTHEME=$MXDIST/theme.mx              ; export OTHEME
+MTHEME=$MXTEMP/root.mx               ; export MTHEME
+OTHEME=$MXDIST/root.mx               ; export OTHEME
 M_SEED=$MXTEMP/seed.mx               ; export M_SEED
 O_SEED=$MXDIST/seed.mx               ; export O_SEED
 
@@ -47,7 +47,7 @@ LoadTempSeed  () { ( . "$M_SEED" && InfoDone ' Load Temp Seed'  ) || ( . "$O_
 CopyTempSeed  () { Info ' Copy Live Seed' ; cp -v "$O_SEED" "$M_SEED"                      ; }
 BackupDist    () { Info ' Backup Live'    ; cp -v "$MXDIST" /tmp/mxc_hist/"$(date +%s)" -r ; }
 #  ............................ .........................................#
-LoadLiveTheme () { . "$OTHEME" || . "$MXBASE/assets/samples/theme.mx"; }
+LoadLiveTheme () { . "$OTHEME" || . "$MXBASE/assets/samples/root.mx"; }
 LoadLiveSeed  () { . "$O_SEED" || . "$MXBASE/assets/samples/seed.mx" ; }
 
 #  ............................ .........................................#

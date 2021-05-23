@@ -42,20 +42,32 @@ seed.mx
 - `~/.config/mxc/seed.mx` sample generated [seed.mx](./assets/samples/seed.mx)
 > the entire palette is drived from this generated `seed` file 
 
-theme.mx
---------
-`theme.mx` is the primary output scheme file
-- `~/.config/mxc/theme.mx` sample generated [theme.mx](./assets/samples/theme.mx)
-> given the same `seed` file, its <sub>almost!</sub> guaranteed the same `theme.mx` will be produced.
+Globals
+=======
+
+root.mx
+-------
+`root.mx` is the primary output scheme sh file
+- `~/.config/mxc/root.mx` sample generated [root.mx](./assets/samples/root.mx
+> given the same `seed` file, its <sub>almost!</sub> guaranteed the same `root.mx` will be produced.
 
 possible variables are:
 - gui colors: `C00..C15`, `DK0..DK9`, `DL0..DL9`, `{S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G`
 - cterm ansi: all gui colors prefixed with `T`
 - gui hashless: all gui colors without the `#`. prefixed with `HL`
 
-check sample generated [theme.mx](./assets/samples/theme.mx)
+check sample generated [root.mx](./assets/samples/root.mx
 
-`theme.mx` is intended to be sourced in `.profile` or `bashrc` to have apps that can directly access system env read system scheme from it
+`root.mx` is intended to be sourced in `.profile` or `bashrc` to have apps that can directly access system env read system scheme from it
+
+- vim
+root-mx.vim  template:[root-mx.vim](./templates/root-mx.vim) output:[root-mx.vim](./assets/samples/root-mx.vim)
+> root-mx.vim is intented to be sourced in vimrc
+
+- css/less
+root-mx.css  template:[root-mx.css](./templates/root-mx.css) output:[root-mx.css](./assets/samples/root-mx.css)
+root-mx.less template:[root-mx.less](./templates/root-mx.less) output:[root-mx.less](./assets/samples/root-mx.less)
+> (root css/less) are intented to be included in other js / electron apps, like Atom editor or Source Code
 
 <p align="center">
   <img src="./assets/screenshots/samples_2021-05-16-145353_361x247_scrot.png">
@@ -68,9 +80,6 @@ every file in `./templates/{tpl}` will be parsed; scheme variables replaced; and
 
 ### some apps that ONLY rely on template file
 - kitty  template:[kitty-theme.conf](./templates/kitty-theme.conf) output:[kitty-theme.conf](./assets/samples/kitty-theme.conf)
-- root-mx.css  template:[root-mx.css](./templates/root-mx.css) output:[root-mx.css](./assets/samples/root-mx.css)
-- root-mx.less template:[root-mx.less](./templates/root-mx.less) output:[root-mx.less](./assets/samples/root-mx.less)
-> (root css/less) are intented to be included in other js / electron apps, like Atom editor or Source Code
 - xresources.sh, tmux.sh vim.sh could have too
 
 Advance Usage
