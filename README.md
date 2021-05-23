@@ -45,8 +45,8 @@ seed.mx
 Globals
 =======
 
-root.mx
--------
+Shell
+-----
 `root.mx` is the primary output scheme sh file
 - `~/.config/mxc/root.mx` sample generated [root.mx](./assets/samples/root.mx
 > given the same `seed` file, its <sub>almost!</sub> guaranteed the same `root.mx` will be produced.
@@ -60,14 +60,19 @@ check sample generated [root.mx](./assets/samples/root.mx
 
 `root.mx` is intended to be sourced in `.profile` or `bashrc` to have apps that can directly access system env read system scheme from it
 
-- vim
+Vim
+---
 root-mx.vim  template:[root-mx.vim](./templates/root-mx.vim) output:[root-mx.vim](./assets/samples/root-mx.vim)
 > root-mx.vim is intented to be sourced in vimrc
 
-- css/less
+css/less
+--------
+css/less for web/electron apps
 root-mx.css  template:[root-mx.css](./templates/root-mx.css) output:[root-mx.css](./assets/samples/root-mx.css)
 root-mx.less template:[root-mx.less](./templates/root-mx.less) output:[root-mx.less](./assets/samples/root-mx.less)
 > (root css/less) are intented to be included in other js / electron apps, like Atom editor or Source Code
+
+***
 
 <p align="center">
   <img src="./assets/screenshots/samples_2021-05-16-145353_361x247_scrot.png">
