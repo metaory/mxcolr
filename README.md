@@ -51,7 +51,7 @@ theme.mx
 possible variables are:
 - gui colors: `C00..C15`, `DK0..DK9`, `DL0..DL9`, `{S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G`
 - cterm ansi: all gui colors prefixed with `T`
-- gui hashless: all gui colors withouth the `#`. prefixed with `HL`
+- gui hashless: all gui colors without the `#`. prefixed with `HL`
 
 check sample generated [theme.mx](./assets/samples/theme.mx)
 
