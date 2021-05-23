@@ -38,7 +38,7 @@ outputs
 
 seed.mx
 ------
-`seed.mx` is a trio of randomely generated colors, it's the core of the palette
+[seed.mx](./assets/samples/seed.mx) is a trio of randomely generated colors, it's the core of the palette
 - `~/.config/mxc/seed.mx` sample generated [seed.mx](./assets/samples/seed.mx)
 > the entire palette is drived from this generated `seed` file 
 
@@ -53,13 +53,14 @@ possible variables available in all templates or plugins are:
 
 Shell
 -----
-`root.mx` is the primary output scheme sh file
+ [root.mx](./assets/samples/root.mx) is the primary output scheme sh file
 - `~/.config/mxc/root.mx` sample generated [root.mx](./assets/samples/root.mx
 `root.mx` is intended to be sourced in `.profile` or `bashrc` to have apps that can directly access system env read system scheme from it
 
 Vim
 ---
-**root-mx.vim**  tpl:[root-mx.vim](./templates/root-mx.vim) out:[root-mx.vim](./assets/samples/root-mx.vim)
+global vim scheme [root-mx.vim](./assets/samples/root-mx.vim)
+tpl:[root-mx.vim](./templates/root-mx.vim)
 
 > root-mx.vim is intented to be sourced in vimrc
 
