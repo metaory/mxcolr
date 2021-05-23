@@ -23,6 +23,16 @@ flags
     -s, --save                | save snapshot
     --verbose                 | verbose logs
 
+Motivations
+===========
+While tools like Ommox and Spicetify are great in reallity you probably got more than GTK theme and Icons you'd want to patch
+
+terminal colors, terminal prompt, window manager / status bar icons, Vim/Atom/SourceCode editor and more 
+
+Some apps might require to compile and build, all of these are just too repetitive and anoying to do for every change, and there is finding color scheme 
+
+This repo goal is easily generate nice random palettes, safely do live preview and patch all configured apps with few keystrokes.
+
 outputs
 =======
 
@@ -38,7 +48,11 @@ theme.mx
 - `~/.config/mxc/theme.mx` sample generated [theme.mx](./assets/samples/theme.mx)
 > given the same `seed` file, its <sub>almost!</sub> guaranteed the same `theme.mx` will be produced.
 
-> _allowing post generation calibrations._
+possible variables are:
+gui colors:- `C00..C15`, `DK0..DK9`, `DL0..DL9`, `{S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G`
+cterm ansi: - all gui colors prefixed with `T`
+gui hashless: - all gui colors withouth the `#`. prefixed with `HL`
+check sample generated [theme.mx](./assets/samples/theme.mx)
 
 `theme.mx` is intended to be sourced in `.profile` or `bashrc` to have apps that can directly access system env read system scheme from it
 
@@ -49,13 +63,13 @@ theme.mx
 Basic Usage
 ===========
 Templates are the easiest way to produce scheme files for different apps, 
-
 every file in `./templates/{tpl}` will be parsed; scheme variables replaced; and placed in `~/.config/mxc/{tpl}`
-possible variables in addition to [theme.mx](./assets/samples/theme.mx) are gui (hex) colors wihtout `#`
-with prefix of `HL` eg: `HLC01` `HLWBG` > `df419b` `4863e9`
 
 ### some apps that ONLY rely on template file
 - kitty  template:[kitty-theme.conf](./templates/kitty-theme.conf) output:[kitty-theme.conf](./assets/samples/kitty-theme.conf)
+- root-mx.css  template:[root-mx.css](./templates/root-mx.css) output:[root-mx.css](./assets/samples/root-mx.css)
+- root-mx.less template:[root-mx.less](./templates/root-mx.less) output:[root-mx.less](./assets/samples/root-mx.less)
+> (root css/less) are intented to be included in other js / electron apps, like Atom editor or Source Code
 - xresources.sh, tmux.sh vim.sh could have too
 
 Advance Usage
@@ -141,3 +155,4 @@ Plugins
 <p align="center">
   <img width="374" height="40" src="./assets/screenshots/footer_2021-05-16-221932_374x40_scrot.png">
 </p>
+

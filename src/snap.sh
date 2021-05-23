@@ -16,7 +16,7 @@ ListSnapshots () {
     ! (( sid % brk )) && echo
     printf ' '
     MXSep
-    (diff "$O_SEED" "$snap"/seed.mx &>/dev/null  && ( pastel paint -n -b -o "$SBG" "$SFG" " $sid " && pastel paint -n -b -o "$WBG" "$WFG" " $MXNAME " )) \
+    (diff "$O_SEED" "$snap"/seed.mx &>/dev/null  && ( Demo_mxname "$sid" )) \
       || pastel paint -o "$XBG" -b -n "$XFG" "$(printf '%#2d\n' "$sid")"
     MXDots
     MXSep
@@ -53,8 +53,11 @@ ListSnapshots () {
 }
 ## #####################
 SaveSnapshot () {
-  LoadProdTheme
-  Demo_card; Demo; Info "[${MXNAME}]  Saving Snapshot"
+  LoadLiveTheme
+  Demo_card
+  fillCols
+  Demo
+  Info "[${MXNAME}]  Saving Snapshot"
 
   local snapshots=("$MXSNAP"/*)
 
@@ -80,10 +83,12 @@ SaveSnapshot () {
       PromptConfirm " Create anyway "; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
     fi
   done
-  PressToContinue "no match found. creating new snapshot"
   local stamp; stamp=$(date +%s); stamp="${stamp:(-8)}"
   local sname; sname="${stamp}_${ccount}_${MXNAME}"
   local spath="$MXSNAP"/"$sname"
+  # pastel paint -n -b -o "$SBG" "$SFG" " $ccount "; pastel paint -n -b -o "$WBG" "$WFG" " $MXNAME "
+  Demo_mxname $ccount; echo
+  PressToContinue "creating new snapshot"
   cp "$MXDIST" "$spath" -r
   InfoDone "$spath"
 }

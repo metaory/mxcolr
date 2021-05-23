@@ -107,6 +107,12 @@ Demo_shades4()  {
   fill 3; prntlist 'prnt:sp_block_e' "${MX_CL[@]}" ; pl '-'
 }
 
+Demo_mxname () {
+  fll 2
+  pastel paint -n -b -o "$SBG" "$SFG" " ${1:-$USER} "
+  pastel paint -n -b -o "$WBG" "$WFG" " $MXNAME "
+  pastel paint -n -b -o "$EBG" "$EFG" " $MXC_V "
+}
 Demo_dot_slant () {
   sp_cross_begin='┏╸'; sp_cross_close=' ╺┓'
   fill 5 ; prntlist 'prnt:sp_cross' "${MX_CX[@]}"     ; pl '-'

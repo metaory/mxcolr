@@ -47,11 +47,11 @@ LoadTempSeed  () { ( . "$M_SEED" && InfoDone ' Load Temp Seed'  ) || ( . "$O_
 CopyTempSeed  () { Info ' Copy Live Seed' ; cp -v "$O_SEED" "$M_SEED"                      ; }
 BackupDist    () { Info ' Backup Live'    ; cp -v "$MXDIST" /tmp/mxc_hist/"$(date +%s)" -r ; }
 #  ............................ .........................................#
-LoadProdTheme () { . "$OTHEME" || . "$MXBASE/assets/samples/theme.mx"; }
-LoadProdSeed  () { . "$O_SEED" || . "$MXBASE/assets/samples/seed.mx" ; }
+LoadLiveTheme () { . "$OTHEME" || . "$MXBASE/assets/samples/theme.mx"; }
+LoadLiveSeed  () { . "$O_SEED" || . "$MXBASE/assets/samples/seed.mx" ; }
 
 #  ............................ .........................................#
-LoadProdTheme
+LoadLiveTheme
 #  ............................ .........................................#
 # ##############################
 GetPlugName () {
@@ -64,6 +64,7 @@ SourcePlugs () { for plug in "$MXBASE"/plugins/*.sh; do . "$plug"; done; }
 # ##############################
 # ////////////////////////////  
 Demo () {
+  Demo_mxname; echo; echo
   Demo_block
   Demo_dot
   MXDotLine
@@ -81,12 +82,12 @@ DemoAll () {
 }
 
 LoadPreview () { CopyTempSeed ; LoadTempTheme ; apply_tmux 1; }
-RestoreTmux   () { . "$MXBASE"/plugins/2-tmux.sh  && apply_tmux; }
 Revert () {
   ClearTemp
   CopyTempSeed
   UpdatePalette
-  RestoreTmux
+  LoadLiveTheme
+  [[ -n "$TMUX" ]] && . "$MXBASE"/plugins/2-tmux.sh
   Demo
 }
 
@@ -123,8 +124,9 @@ ReGenerate () {
   ReleaseTheme
   MXDotLine; fillCols '▄'; fillCols '▀'
   [ "$1" ] && return
-  Demo; ls "$MXTEMP" && PressToContinue "drafts ready" "$MXTEMP"
-  # ............................ #
+  Demo_mxname; echo; fillCols '▄' Demo; ls "$MXTEMP"
+  PressToContinue "drafts ready" "$MXTEMP"
+  # ............................ 
   ApplyTemplates
   ApplyPlugs
 } 
