@@ -59,8 +59,8 @@ Shell
 
 Vim
 ---
-global vim scheme [root-mx.vim](./assets/samples/root-mx.vim)
-tpl:[root-mx.vim](./templates/root-mx.vim)
+ output: [root-mx.vim](./assets/samples/root-mx.vim)
+plugin: [2-vim.sh](./plugins/2-vim.sh)
 
 > root-mx.vim is intented to be sourced in vimrc
 
