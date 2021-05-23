@@ -103,13 +103,17 @@ unless different destination is set
 
 ***
 
+generate
+--------
+![generate](./assets/screenshots/generate_210523133127.gif)
+
 update
 ------
-![update](./assets/screenshots/update_210518195953.gif)
+![update](./assets/screenshots/update_210523132539.gif)
 
-snapshot list
--------------
-![list](./assets/screenshots/list_210511173612.gif)
+snapshot
+--------
+![snapshot](./assets/screenshots/snapshot_210523132148.gif)
   
 ***
   
