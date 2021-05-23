@@ -31,6 +31,13 @@ terminal colors, terminal prompt, window manager / status bar theme / icons, Vim
 
 Some apps might require to compile and build, all of these are just too repetitive and anoying to do for every change, then there is the never ending search for the right color scheme  
 
+What about
+----------
+- [Pywal](https://github.com/dylanaraps/pywal): all about Wallpaper,, great documentation and support though. 
+> almost all [pywal-customization](https://github.com/dylanaraps/pywal/wiki/customization) can be easilly added
+- [Oomox](https://github.com/themix-project/oomox) plugins: possible,, to mxcolr oomox is yet another plugin for gtk theme and icon
+ 
+ 
 #### This repo goal is to be a tool for generating and previewing palettes and serve as a framework for patching any application with few keystrokes.
 
 outputs
@@ -173,14 +180,10 @@ Plugins
 - AwesomeWM
 - LS_COLORS
 
-What about
-----------
-- Pywal: all about Wallpaper,, great documentation and support though. almost all [Pywal-Customization](https://github.com/dylanaraps/pywal/wiki/Customization) can be easilly added
-- Oomox plugins: possible,, to mxcolr oomox is yet another plugin for gtk theme and icon 
-
 ***
 
 <p align="center">
   <img width="374" height="40" src="./assets/screenshots/footer_2021-05-16-221932_374x40_scrot.png">
 </p>
+
 
