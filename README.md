@@ -49,9 +49,10 @@ theme.mx
 > given the same `seed` file, its <sub>almost!</sub> guaranteed the same `theme.mx` will be produced.
 
 possible variables are:
-gui colors:- `C00..C15`, `DK0..DK9`, `DL0..DL9`, `{S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G`
-cterm ansi: - all gui colors prefixed with `T`
-gui hashless: - all gui colors withouth the `#`. prefixed with `HL`
+- gui colors: `C00..C15`, `DK0..DK9`, `DL0..DL9`, `{S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G`
+- cterm ansi: all gui colors prefixed with `T`
+- gui hashless: all gui colors withouth the `#`. prefixed with `HL`
+
 check sample generated [theme.mx](./assets/samples/theme.mx)
 
 `theme.mx` is intended to be sourced in `.profile` or `bashrc` to have apps that can directly access system env read system scheme from it
