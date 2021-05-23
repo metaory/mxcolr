@@ -44,20 +44,17 @@ seed.mx
 
 Globals
 =======
+given the same `seed` file, its guaranteed the same `palette` be produced.
+
+possible variables available in all templates or plugins are:
+- gui colors: `C00..C15`, `DK0..DK9`, `DL0..DL9`, `{S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G`
+- cterm ansi: all gui colors prefixed with `T`
+- gui hashless: all gui colors without the `#`. prefixed with `HL`
 
 Shell
 -----
 `root.mx` is the primary output scheme sh file
 - `~/.config/mxc/root.mx` sample generated [root.mx](./assets/samples/root.mx
-> given the same `seed` file, its <sub>almost!</sub> guaranteed the same `root.mx` will be produced.
-
-possible variables are:
-- gui colors: `C00..C15`, `DK0..DK9`, `DL0..DL9`, `{S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G`
-- cterm ansi: all gui colors prefixed with `T`
-- gui hashless: all gui colors without the `#`. prefixed with `HL`
-
-check sample generated [root.mx](./assets/samples/root.mx
-
 `root.mx` is intended to be sourced in `.profile` or `bashrc` to have apps that can directly access system env read system scheme from it
 
 Vim
