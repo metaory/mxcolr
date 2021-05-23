@@ -62,14 +62,17 @@ check sample generated [root.mx](./assets/samples/root.mx
 
 Vim
 ---
-root-mx.vim  template:[root-mx.vim](./templates/root-mx.vim) output:[root-mx.vim](./assets/samples/root-mx.vim)
+root-mx.vim  tpl:[root-mx.vim](./templates/root-mx.vim) out:[root-mx.vim](./assets/samples/root-mx.vim)
 > root-mx.vim is intented to be sourced in vimrc
 
 css/less
 --------
 css/less for web/electron apps
-root-mx.css  template:[root-mx.css](./templates/root-mx.css) output:[root-mx.css](./assets/samples/root-mx.css)
-root-mx.less template:[root-mx.less](./templates/root-mx.less) output:[root-mx.less](./assets/samples/root-mx.less)
+
+root-mx.css tpl:[root-mx.css](./templates/root-mx.css) out:[root-mx.css](./assets/samples/root-mx.css)
+
+root-mx.less tpl:[root-mx.less](./templates/root-mx.less) out:[root-mx.less](./assets/samples/root-mx.less)
+
 > (root css/less) are intented to be included in other js / electron apps, like Atom editor or Source Code
 
 ***
@@ -84,7 +87,7 @@ Templates are the easiest way to produce scheme files for different apps,
 every file in `./templates/{tpl}` will be parsed; scheme variables replaced; and placed in `~/.config/mxc/{tpl}`
 
 ### some apps that ONLY rely on template file
-- kitty  template:[kitty-theme.conf](./templates/kitty-theme.conf) output:[kitty-theme.conf](./assets/samples/kitty-theme.conf)
+- kitty  tpl:[kitty-theme.conf](./templates/kitty-theme.conf) out:[kitty-theme.conf](./assets/samples/kitty-theme.conf)
 - xresources.sh, tmux.sh vim.sh could have too
 
 Advance Usage
@@ -109,7 +112,7 @@ unless different destination is set
 
 
 ### some apps that rely on BOTH template file AND plugin file
-- lscolors template:[lscolors-vivid.yml](./templates/lscolors-vivid.yml) output:[lscolors-vivid.yml](./samples/lscolors-vivid.yml) plugin:[2-lscolors.sh](./plugins/2-lscolors.sh)  output:[lscolors](./samples/lscolors)
+- lscolors tpl:[lscolors-vivid.yml](./templates/lscolors-vivid.yml) out:[lscolors-vivid.yml](./samples/lscolors-vivid.yml) plugin:[2-lscolors.sh](./plugins/2-lscolors.sh)  out:[lscolors](./samples/lscolors)
 - gtk.sh, spotify.sh could have too
 
 ### some apps that rely on ONLY plugin file
