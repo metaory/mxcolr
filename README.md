@@ -54,7 +54,7 @@ possible variables available in all templates or plugins are:
 Shell
 -----
  [root.mx](./assets/samples/root.mx) is the primary output scheme sh file
-- `~/.config/mxc/root.mx` sample generated [root.mx](./assets/samples/root.mx
+- `~/.config/mxc/root.mx` sample generated [root.mx](./assets/samples/root.mx)
 `root.mx` is intended to be sourced in `.profile` or `bashrc` to have apps that can directly access system env read system scheme from it
 
 Vim
