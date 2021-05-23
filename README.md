@@ -25,7 +25,7 @@ flags
 
 Motivations
 ===========
-While tools like Ommox and Spicetify are great in reallity you probably got more than GTK theme and Icons you'd want to patch
+While tools like Oomox and Spicetify are great in reallity you probably got more than GTK theme and Icons you'd want to patch
 
 terminal colors, terminal prompt, window manager / status bar icons, Vim/Atom/SourceCode editor and more 
 
