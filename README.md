@@ -72,7 +72,7 @@ css / less for web/electron apps
 
 **root-mx.less** tpl:[root-mx.less](./templates/root-mx.less) out:[root-mx.less](./assets/samples/root-mx.less)
 
-> (root css/less) are intented to be included in other js / electron apps, like Atom editor or Source Code
+> intented to be included in other js / electron apps, like Atom editor or Source Code
 
 ***
 
