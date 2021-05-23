@@ -31,7 +31,7 @@ terminal colors, terminal prompt, window manager / status bar icons, Vim/Atom/So
 
 Some apps might require to compile and build, all of these are just too repetitive and anoying to do for every change, and there is finding color scheme 
 
-This repo goal is easily generate nice random palettes, safely do live preview and patch all configured apps with few keystrokes.
+### This repo goal is to be a tool for generating and previewing palettes and serve as a framework for patching any application with few keystrokes.
 
 outputs
 =======
