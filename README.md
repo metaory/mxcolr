@@ -176,7 +176,7 @@ Plugins
 What about
 ----------
 - Pywal: all about Wallpaper,, great documentation and support though. almost all [Pywal-Customization](https://github.com/dylanaraps/pywal/wiki/Customization) can be easilly added
-- Oomox plugins: possible,, yet to mxcolr oomox is yet another plugin for gtk theme and icon 
+- Oomox plugins: possible,, to mxcolr oomox is yet another plugin for gtk theme and icon 
 
 ***
 
