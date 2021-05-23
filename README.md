@@ -44,7 +44,7 @@ seed.mx
 
 Globals
 =======
-given the same `seed` file, its guaranteed the same `palette` be produced.
+given the same `seed` file, its guaranteed the same `scheme file` be produced.
 
 possible variables available in all templates or plugins are:
 - gui colors: `C00..C15`, `DK0..DK9`, `DL0..DL9`, `{S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G`
