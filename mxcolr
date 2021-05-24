@@ -96,9 +96,6 @@ ApplyTemplates () {
 }
 ApplyPlugs () {
   BackupDist
-
-  # local plugs=("$MXBASE"/plugins/*.sh)
-  # for i in "${!list[@]}"; do
   # shellcheck disable=SC2046
   mapfile -t plugs <<<$(find "$MXBASE"/plugins -name "*.sh" -type f)
 
