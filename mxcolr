@@ -96,8 +96,8 @@ ApplyTemplates () {
   for tpl_path in "$MXBASE"/templates/*; do
     local tpl="${tpl_path##*/}"
 
-    [[ ! "$XOPT" == *"full"* ]] && PromptContinue "$tpl"
-    [[ ! "$REPLY" =~ ^[Yy]$ ]] || [[ "$XOPT" == *"no$tpl"* ]] && InfoIgnore "$tpl" && continue 
+    # [[ ! "$XOPT" == *"full"* ]] && PromptContinue "$tpl"
+    # [[ ! "$REPLY" =~ ^[Yy]$ ]] || [[ "$XOPT" == *"no$tpl"* ]] && InfoIgnore "$tpl" && continue
     # if [ -e /tmp/mxc/"$tpl" ]; then
     envsubst < "$tpl_path" | tee \
       >(cat > /tmp/mxc/"$tpl") \
