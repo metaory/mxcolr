@@ -22,15 +22,10 @@ PopulateFileWith "$MXC_XRS_TMP" 'APPEND' \
 PopulateFileWith "$MXC_XRS_TMP" 'APPEND' \
   "*.\${c/C/color}: \${!c}" \
   C{10..15}
-
 # shellcheck disable=SC2046
 PopulateFileWith "$MXC_XRS_TMP" 'APPEND' \
   "*.\${c,,}: \${!c}" \
   "${MX_VARS[@]}"
-  # $(eval echo \$\{MX_C{X,M,K,L}\[\@\]\})
-
-# since https://github.com/metaory/mxcolr/commit/f6d25e
-# most of this file couple be replaced by a simple template file
 
 Info "$MXC_XRS_TMP"
 

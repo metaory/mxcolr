@@ -36,6 +36,13 @@ meta_high                             =${C11:1}
 meta_amber                            =${EBG:1}
 EOF
 
+
+
+  # shellcheck disable=SC2016
+PopulateFileWith "$MXC_SPOTIFY_TMP" 'APPEND' \
+  '$c = ${!c}' \
+  C{00..15}
+
 Info "$MXC_SPOTIFY_TMP"
 
   # TODO remove me 

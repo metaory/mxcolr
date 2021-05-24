@@ -71,27 +71,37 @@ _title () {
   pastel paint "$DK0"  "█"
 }
 _head () {
-  local s; s="${1}"
-  local filler
-  if [[ "$2" = 'I' ]]; then filler='█'; else filler=' '; s=" ${s}"; fi
+  local s="${1}"
+  local filler=' '
+  (( "$2" )) && filler='█'
   local fill; fill="$(printf "%0.s${filler}" $(seq 1 6))"
-  local out="${s}${fill}"; out="${out::3}"
 
-  if   [[ "$#" -eq 0 ]]; then pastel paint "$XBG" -n "$out"
-  elif [[ "$2" = 'I' ]]; then pastel paint "$WBG" -n "$out"
-  else pastel paint "$WFG" -o "$WBG" -n "$out"; fi
+  local out="${s}${fill}"; out=" ${out::3}"
+  local bg="$WBG"
+  local fg="$WFG"
+  (( $2 )) && bg="$XBG" && fg="$WBG"; # || out=" ${out}"
+
+  pastel paint -n -o "$bg" "$fg" "$out" 
+
+  # ! (( "$#" )) && pastel paint "$XBG" -n "$out"
+  #   (( "$2" )) && pastel paint "$XBG" -n "$out"
+  # ! (( "$2" )) && pastel paint "$WFG" -o "$WBG" -n "$out"
+# pastel paint "$WFG" -o "$WBG" -n "$out"
+# pastel paint "$XBG" -n "$out"
+# pastel paint "$WFG" -o "$WBG" -n "$out"
+  # if   [[ "$#" -eq 0 ]]; then pastel paint "$XBG" -n "$out"
+  # elif [[ "$2" -eq 1 ]]; then pastel paint "$WBG" -n "$out"
+  # else pastel paint "$WFG" -o "$WBG" -n "$out"; fi
 }
 Demo_card () {
   local s="${1:-$MXNAME}"; local c="${2:-}"; local t="${3:-}"
   local cy=("${MX_XX[@]}" "${MX_CX[@]}")
-fll 8; _head              ; _title "$s"
-fll 8; _head "$c"  0 '-b' ; prntlist 'pl:sp_tiny' "${MX_CA[@]}" ; pl '-'
-fll 8; _head "∕"   0      ; prntlist 'pl:sp_tiny' "${MX_CB[@]}" ; pl '-'
-fll 8; _head "$t"  0      ; prntlist 'pl:sp_tiny' "${cy[@]}"    ; pl '-'
-fll 8; _head " "   0      ; prntlist 'pl:sp_tiny' "${MX_CL[@]}" ; pl '-'
-fll 8; _head "██"  I     ; prntlist 'pl:sp_tiny' "${MX_CK[@]}" ; pl '-'
-
-  # _head "$t"  0      ; prntlist 'pl:sp_tiny' "${MX_CX[@]}" ; pl '-'
+  fll 8                     ; _title "$s"
+  fll 8; _head "$c"  0 '-b' ; prntlist 'prnt:sp_tiny' "${MX_CA[@]}" ; echo
+  fll 8; _head "∕"   0      ; prntlist 'prnt:sp_tiny' "${MX_CB[@]}" ; echo
+  fll 8; _head "$t"  0      ; prntlist 'prnt:sp_tiny' "${cy[@]}"    ; echo
+  fll 8; _head " "   0      ; prntlist 'prnt:sp_tiny' "${MX_CL[@]}" ; echo
+  fll 8; _head "██" 1      ; prntlist 'prnt:sp_tiny' "${MX_CK[@]}" ; echo
 }
 # ##############################
 
