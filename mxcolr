@@ -97,12 +97,16 @@ ApplyTemplates () {
 ApplyPlugs () {
   BackupDist
 
-  for plug_path in "$MXBASE"/plugins/*.sh; do
+  # local plugs=("$MXBASE"/plugins/*.sh)
+  # for i in "${!list[@]}"; do
+  # shellcheck disable=SC2046
+  mapfile -t plugs <<<$(find "$MXBASE"/plugins -name "*.sh" -type f)
+
+  for plug_id in "${!plugs[@]}"; do
+    local plug_path="${plugs[$plug_id]}"
     local plugname; plugname="$(basename "$plug_path" | cut -d'-' -f2 | cut -d'.' -f1)"
-
-    [[ ! "$XOPT" == *"full"* ]] && PromptContinue "$plugname"
-    [[ ! "$REPLY" =~ ^[Yy]$ ]] || [[ "$XOPT" == *"no$plugname"* ]] && InfoIgnore "$plugname" && continue 
-
+    PromptContinue "$plugname" "${plugs[(plug_id-1)]}" "${plugs[(plug_id+1)]}"
+    [[ ! "$REPLY" =~ ^[Yy]$ ]] || [[ "$XOPT" == *"no$plugname"* ]] && InfoIgnore "$plugname" && continue
     local applyfn="apply_${plugname}"; ! [[ "$XOPT" == *"full"* ]] && "$applyfn"
   done
 }

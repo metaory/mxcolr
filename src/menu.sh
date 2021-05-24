@@ -75,8 +75,11 @@ PromptConfirm () {
   pastel paint -o "$C00" "$CX3" -b "  ·  "; fi
 }
 PromptContinue () {
+
   pastel paint -b -n "${C07:-#666}" "[ "
+  pastel paint -b -n "${C08:-#666}" "${2##*/} "
   pastel paint -b -n "${C03:-#f66}" "${1:-${FUNCNAME[1]}}"
+  pastel paint -b -n "${C07:-#666}" " ${3##*/}"
   pastel paint -b -n "${C07:-#666}" " ] ==> "
-  PromptConfirm "   continue $1 "
+  PromptConfirm "   continue $1 " 
 }
