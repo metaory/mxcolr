@@ -39,7 +39,7 @@ EOF
 
   # shellcheck disable=SC2016
 PopulateFileWith "$MXC_SPOTIFY_TMP" 'APPEND' \
-  '$c = ${!c}' \
+  '${c,,} = ${!hl}' \
   C{00..15}
 
 Info "$MXC_SPOTIFY_TMP"

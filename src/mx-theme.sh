@@ -13,7 +13,7 @@ PopulateFileWith () {
   fi
 
   while [ "$1" ]; do
-    local c="$1"; shift
+    local c="$1"; local hl="HL$1"; shift
     eval echo "$format" >> "$file"
   done
 
