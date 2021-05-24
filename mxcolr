@@ -1,10 +1,7 @@
 #!/usr/bin/env bash
 
-# set -o pipefail
-# set -o errtrace
-# source $MXS/m.lib/lib.mxtrap.sh
-
-# if tty -s; then mlg interactive; else mlg none-intreractive;fi
+# set -o pipefail # set -o errtrace
+# source $MXS/m.lib/lib.mxtrap.sh # if tty -s; then mlg interactive; else mlg none-intreractive;fi
 
  MXC_V='mxc-v1.4'                    ; export MXC_V
 MXBASE=$(dirname "$(realpath "$0")") ; export MXBASE
@@ -16,9 +13,7 @@ OTHEME=$MXDIST/root.mx               ; export OTHEME
 M_SEED=$MXTEMP/seed.mx               ; export M_SEED
 O_SEED=$MXDIST/seed.mx               ; export O_SEED
 
-if ! command -v pastel &> /dev/null; then
-  echo "pastel not found."; echo " ==> https://github.com/sharkdp/pastel#installation"; exit 1;
-fi
+if ! command -v pastel &> /dev/null; then echo "pastel not found."; echo " ==> https://github.com/sharkdp/pastel#installation"; exit 1; fi
 
 if [ -d "$MXLIB" ]; then . "$MXLIB"/lib.common.sh; else mlg () { echo "${FUNCNAME[1]}:${BASH_LINENO[1]} => ${*}" >> /tmp/mxsh.log; }; fi
 
@@ -35,7 +30,6 @@ MX_VARS=( "${MX_CC[@]}" "${MX_CX[@]}" "${MX_CK[@]}" "${MX_CL[@]}" "${MX_CM[@]}" 
 MX_TERM=( "${MX_VARS[@]/#/T}" )
 # mapfile -t MX_VARS <<<"$(eval echo \$\{MX_C{C,X,K,L,M}\[\@\]\}))"
 #####################################################
-##############################################
 for src in "$MXBASE"/src/*.sh; do . "$src"; done
 #  ............................ .........................................#
 ! [ -e "$OTHEME" ] && InfoDone 1 ' No Live Schema. run: mxcolr --generate' &&  InfoDone 'continueing  with sample files' 
@@ -95,10 +89,6 @@ ApplyTemplates () {
   ! command -v envsubst &> /dev/null && Info 1 "envsubst command not found" && return 1
   for tpl_path in "$MXBASE"/templates/*; do
     local tpl="${tpl_path##*/}"
-
-    # [[ ! "$XOPT" == *"full"* ]] && PromptContinue "$tpl"
-    # [[ ! "$REPLY" =~ ^[Yy]$ ]] || [[ "$XOPT" == *"no$tpl"* ]] && InfoIgnore "$tpl" && continue
-    # if [ -e /tmp/mxc/"$tpl" ]; then
     envsubst < "$tpl_path" | tee \
       >(cat > /tmp/mxc/"$tpl") \
       >(cat > "$MXDIST/$tpl") &> /dev/null; # XXX read from env/config
@@ -123,7 +113,7 @@ ReGenerate () {
   ReleaseSeed
   ReleaseTheme
   MXDotLine; fillCols '▄'; fillCols '▀'
-  [ "$1" ] && return
+  (( "$1" )) && return
   Demo_mxname; echo; fillCols '▄' Demo; ls "$MXTEMP"
   PressToContinue "drafts ready" "$MXTEMP"
   # ............................ 
