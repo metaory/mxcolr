@@ -16,15 +16,18 @@ $(get_header '!')
 *.cursor:               $WBX
 EOF
 
+# shellcheck disable=SC2016
 PopulateFileWith "$MXC_XRS_TMP" 'APPEND' \
-  "*.\${c/C0/color}: \${!c}" \
+  '*.${c/C0/color}: ${!c}' \
   C{00..09}
+# shellcheck disable=SC2016
 PopulateFileWith "$MXC_XRS_TMP" 'APPEND' \
-  "*.\${c/C/color}: \${!c}" \
+  '*.${c/C/color}: ${!c}' \
   C{10..15}
 # shellcheck disable=SC2046
+# shellcheck disable=SC2016
 PopulateFileWith "$MXC_XRS_TMP" 'APPEND' \
-  "*.\${c,,}: \${!c}" \
+  '*.${c,,}: ${!c}' \
   "${MX_VARS[@]}"
 
 Info "$MXC_XRS_TMP"

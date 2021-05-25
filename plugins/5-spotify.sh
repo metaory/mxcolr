@@ -12,7 +12,7 @@ cat <<  EOF > "$MXC_SPOTIFY_TMP"
 main_bg                               =${DK0:1}
 main_fg                               =${C07:1}
 dark_fg                               =${C08:1}
-light_fg                              =${C07:1}
+light_fg                              =${XFG:1}
 meta_1                                =${WBG:1}
 meta_2                                =${SBG:1}
 meta_3                                =${EBG:1}
@@ -21,7 +21,7 @@ preserve_1                            =${EBG:1}
 selected_button                       =${DK4:1}
 slider_bg                             =${DK4:1}
 miscellaneous_bg                      =${DK4:1}
-secondary_fg                          =${C08:1}
+secondary_fg                          =${C07:1}
 indicator_fg_and_button_bg            =${SBG:1}
 pressing_fg                           =${DL4:1}
 cover_overlay_and_shadow              =${XBG:1}

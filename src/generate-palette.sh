@@ -21,7 +21,7 @@ gen_random () {
   local strategy="${XOPT:-lch}" ; [[ "$strategy" == 'lch' ]]   && strategy='lch_hue'
   local xcal='0.16'             ; [[ "$strategy" == 'vivid' ]] && xcal='0.08'
 
-  WBG="$(pastel random -n 1 -s lch_hue     | pastel saturate     "$xcal" | pastel darken "$xcal" | pastel format hex)"
+  WBG="$(pastel random -n 1 -s "$strategy" | pastel saturate     "$xcal" | pastel darken "$xcal" | pastel format hex)"
   SBG="$(pastel random -n 1 -s "$strategy" | pastel mix - "$WBG" -f 0.80 | pastel darken "$xcal" | pastel format hex)"
   EBG="$(pastel random -n 1 -s "$strategy" | pastel mix - "$WBG" -f 0.80 | pastel darken "$xcal" | pastel format hex)"
 
