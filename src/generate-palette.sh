@@ -127,7 +127,6 @@ gen_shades () {
 # #################
 ################################
 GeneratePalette () { 
-   ClearTemp
   gen_random
   gen_idempotents
   gen_shades
@@ -141,14 +140,13 @@ GeneratePalette () {
 ################################
 ################################
 UpdatePalette () {
-  # LoadTempSeed
+  . "$M_SEED" 2> /dev/null || . "$O_SEED"
   gen_idempotents
   gen_shades
   gen_ansi
   set_hexless
 
   SaveTheme
-  # LoadTempTheme
   InfoDone
 }
 ################################

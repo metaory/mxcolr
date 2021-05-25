@@ -97,7 +97,6 @@ ApplyPlugs () {
 }
 
 ReGenerate () {
-  . $M_SEED 2> /dev/null || . $O_SEED
   UpdatePalette 
   SourcePlugs
   ReleaseSeed

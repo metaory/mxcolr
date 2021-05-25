@@ -1,0 +1,71 @@
+[Base]
+main_bg                               = ${HLDK0}
+main_fg                               = ${HLC07}
+dark_fg                               = ${HLC08}
+light_fg                              = ${HLXFG}
+miscellaneous_hover_bg                = ${HLEBG}
+preserve_1                            = ${HLEBG}
+selected_button                       = ${HLDK4}
+slider_bg                             = ${HLDK4}
+miscellaneous_bg                      = ${HLDK4}
+secondary_fg                          = ${HLC07}
+indicator_fg_and_button_bg            = ${HLSBG}
+pressing_fg                           = ${HLDL4}
+cover_overlay_and_shadow              = ${HLXBG}
+sidebar_indicator_and_hover_button_bg = ${HLDK1}
+sidebar_and_player_bg                 = ${HLDK0}
+scrollbar_fg_and_selected_row_bg      = ${HLDL0}
+pressing_button_fg                    = ${HLDK0}
+hover_selected                        = ${HLDK2}
+pressing_button_bg                    = ${HLSBG}
+
+c00                                   = ${HLC00}
+c01                                   = ${HLC01}
+c02                                   = ${HLC02}
+c03                                   = ${HLC03}
+c04                                   = ${HLC04}
+c05                                   = ${HLC05}
+c06                                   = ${HLC06}
+c07                                   = ${HLC07}
+c08                                   = ${HLC08}
+c09                                   = ${HLC09}
+c10                                   = ${HLC10}
+c11                                   = ${HLC11}
+c12                                   = ${HLC12}
+c13                                   = ${HLC13}
+c14                                   = ${HLC14}
+c15                                   = ${HLC15}
+
+sbg                                   = ${HLSBG}
+sfg                                   = ${HLSFG}
+wbg                                   = ${HLWBG}
+wfg                                   = ${HLWFG}
+ebg                                   = ${HLEBG}
+efg                                   = ${HLEFG}
+xbg                                   = ${HLXBG}
+xfg                                   = ${HLXFG}
+obg                                   = ${HLOBG}
+ofg                                   = ${HLOFG}
+
+dk0                                   = ${HLDK0}
+dk1                                   = ${HLDK1}
+dk2                                   = ${HLDK2}
+dk3                                   = ${HLDK3}
+dk4                                   = ${HLDK4}
+dk5                                   = ${HLDK5}
+dk6                                   = ${HLDK6}
+dk7                                   = ${HLDK7}
+dk8                                   = ${HLDK8}
+dk9                                   = ${HLDK9}
+
+dl0                                   = ${HLDL0}
+dl1                                   = ${HLDL1}
+dl2                                   = ${HLDL2}
+dl3                                   = ${HLDL3}
+dl4                                   = ${HLDL4}
+dl5                                   = ${HLDL5}
+dl6                                   = ${HLDL6}
+dl7                                   = ${HLDL7}
+dl8                                   = ${HLDL8}
+dl9                                   = ${HLDL9}
+
