@@ -17,6 +17,11 @@ if ! command -v pastel &> /dev/null; then echo "pastel not found."; echo " ==> h
 
 if [ -d "$MXLIB" ]; then . "$MXLIB"/lib.common.sh; else mlg () { echo "${FUNCNAME[1]}:${BASH_LINENO[1]} => ${*}" >> /tmp/mxsh.log; }; fi
 
+! [ -e "$O_SEED" ] && cp -v "$MXBASE/assets/samples/seed.mx" "$O_SEED" 
+! [ -e "$OTHEME" ] && cp -v "$MXBASE/assets/samples/root.mx" "$OTHEME" 
+
+. "$OTHEME"
+
 mkdir "$MXDIST" -p 2>/dev/null || true 
 mkdir "$MXSNAP" -p 2>/dev/null || true 
 mkdir /tmp/{mxc,mxc_hist} 2>/dev/null || true 
@@ -31,30 +36,9 @@ MX_TERM=( "${MX_VARS[@]/#/T}" )
 # mapfile -t MX_VARS <<<"$(eval echo \$\{MX_C{C,X,K,L,M}\[\@\]\}))"
 #####################################################
 for src in "$MXBASE"/src/*.sh; do . "$src"; done
-#  ............................ .........................................#
-! [ -e "$OTHEME" ] && InfoDone 1 ' No Live Schema. run: mxcolr --generate' &&  InfoDone 'continueing  with sample files' 
-#  ............................ .........................................#
-ClearTemp     () { Info ' Cleaning temp'   ; rm "$MXTEMP"/*             ; } 
-LoadTempTheme () { ( . "$MTHEME" && InfoDone ' Load Temp Theme' ) || ( . "$OTHEME" && InfoDone ' Load Live Theme' ) ; }
-LoadTempSeed  () { ( . "$M_SEED" && InfoDone ' Load Temp Seed'  ) || ( . "$O_SEED" && InfoDone ' Load Live Seed'  ) ; }
-#  ............................ .........................................#
-CopyTempSeed  () { Info ' Copy Live Seed' ; cp -v "$O_SEED" "$M_SEED"                      ; }
-BackupDist    () { Info ' Backup Live'    ; cp -v "$MXDIST" /tmp/mxc_hist/"$(date +%s)" -r ; }
-#  ............................ .........................................#
-LoadLiveTheme () { . "$OTHEME" || . "$MXBASE/assets/samples/root.mx"; }
-LoadLiveSeed  () { . "$O_SEED" || . "$MXBASE/assets/samples/seed.mx" ; }
-
-#  ............................ .........................................#
-LoadLiveTheme
-#  ............................ .........................................#
 # ##############################
-GetPlugName () {
-  local BS="${BASH_SOURCE[1]}"; BS=${BS##*/}
-  BS="${BS::-3}"; BS="${BS:2}"
-  echo "$BS" 
-}
+GetPlugName () { local BS="${BASH_SOURCE[1]}"; BS=${BS##*/}; BS="${BS::-3}"; BS="${BS:2}"; echo "$BS"; }
 SourcePlugs () { for plug in "$MXBASE"/plugins/*.sh; do . "$plug"; done; }
-################################
 # ##############################
 # ////////////////////////////  
 Demo () {
@@ -75,12 +59,11 @@ DemoAll () {
   fillCols
 }
 
-LoadPreview () { CopyTempSeed ; LoadTempTheme ; apply_tmux 1; }
+LoadPreview () { apply_tmux 1; }
 Revert () {
-  ClearTemp
-  CopyTempSeed
+  rm /tmp/mxc/*
   UpdatePalette
-  LoadLiveTheme
+  . "$OTHEME"
   [[ -n "$TMUX" ]] && . "$MXBASE"/plugins/2-tmux.sh
   Demo
 }
@@ -95,20 +78,26 @@ ApplyTemplates () {
   done
 }
 ApplyPlugs () {
-  BackupDist
+  cp -v "$MXDIST" /tmp/mxc_hist/"$(date +%s)" -r
   # shellcheck disable=SC2046
-  mapfile -t plugs <<<$(find "$MXBASE"/plugins -name "*.sh" -type f)
+  mapfile -t plugs <<<$(find "$MXBASE"/plugins -name "*.sh" -type f | sort)
 
   for plug_id in "${!plugs[@]}"; do
     local plug_path="${plugs[$plug_id]}"
-    local plugname; plugname="$(basename "$plug_path" | cut -d'-' -f2 | cut -d'.' -f1)"
-    PromptContinue "$plugname" "${plugs[(plug_id-1)]}" "${plugs[(plug_id+1)]}"
-    [[ ! "$REPLY" =~ ^[Yy]$ ]] || [[ "$XOPT" == *"no$plugname"* ]] && InfoIgnore "$plugname" && continue
-    local applyfn="apply_${plugname}"; ! [[ "$XOPT" == *"full"* ]] && "$applyfn"
+    local plug="${plug_path##*/}"
+    local pname="${plug#*-}";pname="${pname%.*}"
+
+    [[ $plug == 0* || "$XOPT" == *"no$pname"* ]] && InfoIgnore "$pname" && continue
+
+    PromptContinue "$plug" "${plugs[(plug_id-1)]}" "${plugs[(plug_id+1)]}"
+    [[ ! "$REPLY" =~ ^[Yy]$ ]] && InfoIgnore "$pname" && continue
+
+    local applyfn="apply_${pname}"; "$applyfn"
   done
 }
 
 ReGenerate () {
+  . $M_SEED 2> /dev/null || . $O_SEED
   UpdatePalette 
   SourcePlugs
   ReleaseSeed
@@ -123,6 +112,7 @@ ReGenerate () {
 } 
 # ............................ #
 Generate () {
+  rm /tmp/mxc/*
   GeneratePalette
 
   [[ -n "$TMUX" ]] && . "$MXBASE"/plugins/2-tmux.sh
@@ -168,5 +158,3 @@ Generate () {
 # MXDotLine
 exit 0
 
-# //////////////////////////// #
-################################

@@ -26,12 +26,12 @@ SaveTheme () {
   PopulateFileWith "$MTHEME"  'FLUSH' \
     "export \${c}=\'\${!c}\'" \
     MXNAME MXC_V "${MX_VARS[@]}" "${MX_TERM[@]}"
-  InfoDone "$MTHEME"
+
+  . "$MTHEME" && InfoDone "$MTHEME"
 }
 
 ReleaseTheme  () {
   cp -v "$MTHEME" "$OTHEME"
-  . "$OTHEME"
-  InfoDone "$OTHEME"
+  . "$OTHEME" && InfoDone "$OTHEME"
 }
 
