@@ -53,7 +53,7 @@ local s; s=''
 pastel paint -n -o "${2:-black}" "${1:-$XBG}" "$s"
 }
 PrompRand () {
-  pastel paint -n    -o "$WBG" "$WFG" "  "  ; BG_Sep "$WBG"                              ; BG_Sep
+  pastel paint -n    -o "$WBG" "$WFG" "  "   ; BG_Sep "$WBG"                               ; BG_Sep
   pastel paint -n -b -o "black" "$C05" " [k]" ; pastel paint -n -o "black" "$C07" "eep "    ; BG_Sep
   pastel paint -n -b -o "black" "$C02" " [R]" ; pastel paint -n -o "black" "$C07" "evert "  ; BG_Sep
   pastel paint -n -b -o "black" "$C01" " [u]" ; pastel paint -n -o "black" "$C07" "update " ; BG_Sep

@@ -10,10 +10,10 @@ SaveSeed () {
     "export \${c}=\'\${!c}\'" \
     MXNAME MXC_V WBG SBG EBG
 
-  InfoDone "$XSEED"
+  . "$M_SEED" && InfoDone "$M_SEED"
 }
 
 ReleaseSeed   () {
   cp -v "$M_SEED" "$O_SEED"
-  InfoDone "$O_SEED"
+  . "$O_SEED" && InfoDone "$O_SEED"
 }

@@ -127,7 +127,7 @@ gen_shades () {
 # #################
 ################################
 GeneratePalette () { 
-  ClearTemp
+   ClearTemp
   gen_random
   gen_idempotents
   gen_shades
@@ -135,20 +135,20 @@ GeneratePalette () {
 
   SaveSeed
   SaveTheme
-  LoadTempTheme
+  # LoadTempTheme
   InfoDone
 }
 ################################
 ################################
 UpdatePalette () {
-  LoadTempSeed
+  # LoadTempSeed
   gen_idempotents
   gen_shades
   gen_ansi
   set_hexless
 
   SaveTheme
-  LoadTempTheme
+  # LoadTempTheme
   InfoDone
 }
 ################################
