@@ -45,7 +45,12 @@ pl () {
   fi
   pastel paint -o "$o" "$op" "${!c:-red}" "$s"
 }
-fll () { printf "%0.s${2:- }" $(seq 1 "${1:-1}"); }
+fll ()  { printf "%0.s${2:- }" $(seq 1 "${1:-1}"); }
+flll () { 
+  local n="$1";n=$((n-1))
+  local tx;tx="$(printf "%0.s${2:- }" $(seq 1 "$n"))"
+  pastel paint "${3:-$C00}" "$tx"
+}
 fill () {
   local cols;cols=$(tput cols)
 
