@@ -70,7 +70,7 @@ ApplyPlugs () {
     local cols;cols=$(tput cols); local plug_len=${#plugs[@]}
     local progress;progress=$(echo "scale=0; $cols/$plug_len*($plug_id+1)" | bc -l)
 
-    flll "$progress" '▁' "$C08"
+    flll "$progress" '▔' "$C08"
     [[ $plug == "0-"* || "$XOPT" == *"no$pname"* ]] && InfoIgnore "$pname" && continue
     PromptContinue "$plug" "${plugs[(plug_id-1)]}" "${plugs[(plug_id+1)]}"
     [[ ! "$REPLY" =~ ^[Yy]$ ]] && InfoIgnore "$pname" && continue
