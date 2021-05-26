@@ -40,7 +40,6 @@ for src in "$MXBASE"/src/*.sh; do . "$src"; done
 GetPlugName () { local BS="${BASH_SOURCE[1]}"; BS=${BS##*/}; BS="${BS::-3}"; BS="${BS:2}"; echo "$BS"; }
 SourcePlugs () { for plug in "$MXBASE"/plugins/*.sh; do . "$plug"; done; }
 # ##############################
-LoadPreview () { apply_tmux 1; }
 Revert () {
   rm /tmp/mxc/*
   UpdatePalette
@@ -127,7 +126,7 @@ Generate () {
     -U | --update-force ) XOPT+='full'  ; ReGenerate ;;
     -d | --demo         ) Demo          ;;
     -D | --demo-all     ) DemoAll       ;;
-    -i | --init         ) LoadPreview   ; Demo_block ;;
+    -i | --init         ) apply_tmux 1; Demo_block ;;
     -l | --list         ) ListSnapshots ;;
     -s | --save         ) SaveSnapshot  ;;
     -x1                 ) Playground_1  ;;
