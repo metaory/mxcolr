@@ -173,3 +173,22 @@ MYIntro () {
 }
   # if (( RANDOM % 2 )); then MXDotLine; else Demo_block; fi
 # ////////////////////////////  
+# ////////////////////////////  
+Demo () {
+  Demo_mxname "$USER"; echo; echo
+  Demo_block
+  Demo_dot
+  MXDotLine
+  fillCols
+}
+DemoAll () {
+  Demo_card "$USER"
+  Demo_slant
+  Demo_shades3
+  Demo_shades4
+
+  Demo_dot_slant
+  MXDotLine
+  fillCols
+}
+
