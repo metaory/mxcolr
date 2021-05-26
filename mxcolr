@@ -3,15 +3,15 @@
 # set -o pipefail # set -o errtrace
 # source $MXS/m.lib/lib.mxtrap.sh # if tty -s; then mlg interactive; else mlg none-intreractive;fi
 
- MXC_V='mxc-v1.4'                    ; export MXC_V
-MXBASE=$(dirname "$(realpath "$0")") ; export MXBASE
-MXDIST=~/.config/mxc                 ; export MXDIST
-MXTEMP=/tmp/mxc                      ; export MXTEMP
-MXSNAP=$MXBASE/snapshots             ; export MXSNAP
-MTHEME=$MXTEMP/root.mx               ; export MTHEME
-OTHEME=$MXDIST/root.mx               ; export OTHEME
-M_SEED=$MXTEMP/seed.mx               ; export M_SEED
-O_SEED=$MXDIST/seed.mx               ; export O_SEED
+ MXC_V='mxc-v1.4'
+MXBASE=$(dirname "$(realpath "$0")")
+MXDIST=~/.config/mxc
+MXTEMP=/tmp/mxc
+MXSNAP=$MXBASE/snapshots
+MTHEME=$MXTEMP/root.mx
+OTHEME=$MXDIST/root.mx
+M_SEED=$MXTEMP/seed.mx
+O_SEED=$MXDIST/seed.mx
 
 if ! command -v pastel &> /dev/null; then echo "pastel not found."; echo " ==> https://github.com/sharkdp/pastel#installation"; exit 1; fi
 
@@ -26,15 +26,15 @@ mkdir "$MXDIST" -p 2>/dev/null || true
 mkdir "$MXSNAP" -p 2>/dev/null || true 
 mkdir /tmp/{mxc,mxc_hist} 2>/dev/null || true 
 
-####################################################
-# VARIABLES ########################################
+# ########################################
+# VARIABLES ##############################
 MX_CC=(C{00..15}); MX_CX=(CX{1..6}); MX_CK=(DK{0..9}); MX_CL=(DL{0..9}) 
 MX_CM=({S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G W{B,F}X)
-#....................................................
+# ...
 MX_VARS=( "${MX_CC[@]}" "${MX_CX[@]}" "${MX_CK[@]}" "${MX_CL[@]}" "${MX_CM[@]}" )
 MX_TERM=( "${MX_VARS[@]/#/T}" )
 # mapfile -t MX_VARS <<<"$(eval echo \$\{MX_C{C,X,K,L,M}\[\@\]\}))"
-#####################################################
+# ########################################
 for src in "$MXBASE"/src/*.sh; do . "$src"; done
 # ##############################
 GetPlugName () { local BS="${BASH_SOURCE[1]}"; BS=${BS##*/}; BS="${BS::-3}"; BS="${BS:2}"; echo "$BS"; }
@@ -87,8 +87,11 @@ ApplyPlugs () {
     local plug="${plug_path##*/}"
     local pname="${plug#*-}";pname="${pname%.*}"
 
-    [[ $plug == 0* || "$XOPT" == *"no$pname"* ]] && InfoIgnore "$pname" && continue
+    local cols;cols=$(tput cols); local plug_len=${#plugs[@]}
+    local progress;progress=$(echo "scale=0; $cols/$plug_len*($plug_id+1)" | bc -l)
 
+    flll "$progress" '▁' "$C08"
+    [[ $plug == "0-"* || "$XOPT" == *"no$pname"* ]] && InfoIgnore "$pname" && continue
     PromptContinue "$plug" "${plugs[(plug_id-1)]}" "${plugs[(plug_id+1)]}"
     [[ ! "$REPLY" =~ ^[Yy]$ ]] && InfoIgnore "$pname" && continue
 
