@@ -1,7 +1,5 @@
 #!/usr/bin/env bash
 
-BS="${BASH_SOURCE[0]}"; BS=${BS##*/}
-
 _info () {
   local ico; local cf; local cc; # ; local lvl=$1 # ; local on
   # ! [[ $2 =~ ^[0-9]+$ ]] && lvl=0
@@ -13,8 +11,7 @@ _info () {
     3) ico='' ; cc="$C08" ;;
     *) ico='' ; cc="$C03" ;;
   esac         ; shift
-  cf="${C07:-#f00}"
-  cc="${cc:-#ff0}"
+  cf="${C07:-#f00}"; cc="${cc:-#ff0}"
 
   local in="${1:-${BASH_SOURCE[2]}}" ; [[ "$VERBOSE" ]] && ! [[ "$in" =~ ^[0-9]+$ ]] && [[ -n "$in" ]] && pastel paint "$C07" " => ${in}"
   local fn="${2:-${FUNCNAME[2]}}"    ; #fn="${fn:(-8)}"
@@ -47,18 +44,15 @@ PressToContinue () {
   pl '-'
 }
 
-BG_Sep () { 
-local s; s=''
-[[ -n "$1" ]] && s='█'
-pastel paint -n -o "${2:-black}" "${1:-$XBG}" "$s"
-}
+_slant_sep () { local s; s=''; [[ -n "$1" ]] && s='█'; pastel paint -n -o "${2:-black}" "${1:-$XBG}" "$s"; }
+
 PrompRand () {
-  pastel paint -n    -o "$WBG" "$WFG" "  "   ; BG_Sep "$WBG"                               ; BG_Sep
-  pastel paint -n -b -o "black" "$C05" " [k]" ; pastel paint -n -o "black" "$C07" "eep "    ; BG_Sep
-  pastel paint -n -b -o "black" "$C02" " [R]" ; pastel paint -n -o "black" "$C07" "evert "  ; BG_Sep
-  pastel paint -n -b -o "black" "$C01" " [u]" ; pastel paint -n -o "black" "$C07" "update " ; BG_Sep
-  pastel paint -n -b -o "black" "$C03" " [n]" ; pastel paint -n -o "black" "$C07" "ext "    ; BG_Sep
-  pastel paint -n -b -o "black" "$C06" " [d]" ; pastel paint -n -o "black" "$C07" "emo"     ; BG_Sep "black" "$XBG"
+  pastel paint -n    -o "$WBG" "$WFG" "  "   ; _slant_sep "$WBG"                           ; _slant_sep
+  pastel paint -n -b -o "black" "$C05" " [k]" ; pastel paint -n -o "black" "$C07" "eep "    ; _slant_sep
+  pastel paint -n -b -o "black" "$C02" " [R]" ; pastel paint -n -o "black" "$C07" "evert "  ; _slant_sep
+  pastel paint -n -b -o "black" "$C01" " [u]" ; pastel paint -n -o "black" "$C07" "update " ; _slant_sep
+  pastel paint -n -b -o "black" "$C03" " [n]" ; pastel paint -n -o "black" "$C07" "ext "    ; _slant_sep
+  pastel paint -n -b -o "black" "$C06" " [d]" ; pastel paint -n -o "black" "$C07" "emo"     ; _slant_sep "black" "$XBG"
   read -n 1 -r -s
   pastel paint -o "$XBG" "$SBG" -b -n "█"
   pastel paint -o "$SBG"  "$SFG" -b -n "$REPLY"

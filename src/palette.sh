@@ -134,7 +134,6 @@ GeneratePalette () {
 
   SaveSeed
   SaveTheme
-  # LoadTempTheme
   InfoDone
 }
 ################################
@@ -149,15 +148,4 @@ UpdatePalette () {
   SaveTheme
   InfoDone
 }
-################################
-
-
-  # -- [[
-  # SBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel saturate 0.30 | pastel format hex)"
-  # EBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel saturate 0.30 | pastel format hex)"
-  # WBG="$(pastel random -n 1 -s lch_hue | pastel saturate        0.40 | pastel darken   0.10 | pastel format hex)"
-  # .. 
-  # SBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel format hex)"
-  # EBG="$(pastel random -n 1 -s vivid   | pastel mix - "$WBG" -f 0.70 | pastel format hex)"
-  # --]]
 
