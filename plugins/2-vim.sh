@@ -9,13 +9,13 @@ $(get_header '\"')
 hi Title        ctermfg=$TWBG guifg=$SBG
 hi Normal       ctermfg=$TXFG ctermbg=$TXBG guibg=$XBG guifg=$XFG
 hi Visual       ctermbg=$TOBG guibg=$OBG    guifg=$OFG gui=bold
-hi CursorLineNr guifg=$WBX
-hi LineNr       guifg=$DK4
+hi CursorLineNr guifg=$WBX    gui=bold
+hi LineNr       guifg=$C07
 hi EndOfBuffer  guibg=$DK0
-hi CursorColumn guibg=$DK2
-hi CursorLine   guibg=$DK2
+hi CursorColumn guibg=$C00
+hi CursorLine   guibg=$C00
 hi ColorColumn  guibg=$WBG
-hi Comment      guifg=$DK4
+hi Comment      guifg=$C08
 
 let g:indentLine_color_gui  = '${C08}'
 let g:indentLine_color_term = ${TC08}

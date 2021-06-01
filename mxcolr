@@ -84,10 +84,9 @@ ReGenerate () {
   SourcePlugs
   ReleaseSeed
   ReleaseTheme
-  MXDotLine; fillCols '▄'; fillCols '▀'
+  fillCols '▄'; fillCols '▀'; Demo
   (( "$1" )) && return
-  Demo_mxname; echo; fillCols '▄' Demo; ls "$MXTEMP"
-  PressToContinue "drafts ready" "$MXTEMP"
+  ls "$MXTEMP"; PressToContinue "drafts ready" "$MXTEMP"
   # ............................ 
   ApplyTemplates
   ApplyPlugs
@@ -126,7 +125,7 @@ Generate () {
     -U | --update-force ) XOPT+='full'  ; ReGenerate ;;
     -d | --demo         ) Demo          ;;
     -D | --demo-all     ) DemoAll       ;;
-    -i | --init         ) apply_tmux 1; Demo_block ;;
+    -i | --init         ) . "$MXBASE"/plugins/2-tmux.sh; apply_tmux 1; Demo_block ;;
     -l | --list         ) ListSnapshots ;;
     -s | --save         ) SaveSnapshot  ;;
     -x1                 ) Playground_1  ;;
