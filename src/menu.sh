@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+DEFAULT_TINT=${DEFAULT_TINT:-100}
+
 _info () {
   local ico; local cf; local cc; # ; local lvl=$1 # ; local on
   # ! [[ $2 =~ ^[0-9]+$ ]] && lvl=0
@@ -76,4 +78,17 @@ PromptContinue () {
   pastel paint -b -n "${C07:-#666}" " ${3##*/}"
   pastel paint -b -n "${C07:-#666}" " ] ==> "
   PromptConfirm "   continue $1 " 
+}
+
+PromptWallpaperTint () {
+  pastel paint -b -n -o 'black' "$WBX" "[${FUNCNAME[0]}]"
+  pastel paint -b -n "$C03"   " enter TINT value [0-1000]"
+  pastel paint -b -n "$C02"   " default:($DEFAULT_TINT) "
+  read -r
+  [ -z "$REPLY" ] && REPLY="$DEFAULT_TINT"
+  if ! [[ "$REPLY" =~ ^[0-9]+$ ]]; then 
+    pastel paint -b -n -o "$C01" "black" "  $REPLY "
+    pastel paint -b  "$C01" " numbers only "
+    PromptWallpaperTint
+  fi
 }
