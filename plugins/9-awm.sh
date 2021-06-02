@@ -6,8 +6,8 @@ AWESOME_THEME_PATH="$XDG_CONFIG_HOME"/awesome/themes/"$AWESOME_THEME"
 
 ################################
 notify () { 
-  if command -v awesome-client &> /dev/null; then
-    awesome-client "require('naughty').notify({ bg='$WBG', fg='$WFG',  timeout=3, opacity = 0.8, text='${1}'})" 2>/dev/null
+  if command -v notify-send &> /dev/null; then
+    notify-send "${1}"
   else
     echo -e "\n ==> $* \n"
   fi
