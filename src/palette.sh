@@ -11,10 +11,40 @@ diff_under () {
 }
 
 ################################
+sort_lightness () {
+  local H=0;local highest
+  local L=100;local lowest
+
+  while [ "$1" ]; do
+    local l; l=$(pastel format lch-lightness "${!1}")
+    (( $(echo "$l < $L" | bc) )) && L="$l" && lowest="$1"
+    (( $(echo "$l > $H" | bc) )) && H="$l" && highest="$1"
+    shift
+  done
+
+  echo "$highest:$lowest"
+}
+expandp () {
+  echo "1 $1"
+  while [ "$1" ]; do
+    pastel format hex "${!1}"
+    shift
+  done
+}
+################################
+lightest () {
+  local l; l=$(sort_lightness "$@" | cut -d':' -f1)
+  pastel paint "$(pastel textcolor "${!l}")" -o "${!l}" "${l}"
+}
+################################
+darkest () {
+  local d; d=$(sort_lightness "$@" | cut -d':' -f2)
+  pastel paint "$(pastel textcolor "${!d}")" -o "${!d}" "${d}"
+}
+################################
 
 # shellcheck disable=SC2034
 gen_random () {
-
   local attmp="${1:-1}"
 
   # PressToContinue "XOPT $XOPT"
@@ -57,32 +87,34 @@ gen_random () {
 gen_idempotents () {
   C01="$(pastel mix "$WBG" "$(pastel random -n 1 -s lch_hue)" -f 0.7 | pastel mix - crimson       -f 0.6 | pastel mix - deeppink          -f 0.5 | pastel saturate 0.06 | pastel format hex)"
   C02="$(pastel mix "$WBG" "$(pastel random -n 1 -s lch_hue)" -f 0.7 | pastel mix - darkseagreen  -f 0.6 | pastel mix - mediumspringgreen -f 0.5 | pastel saturate 0.06 | pastel format hex)"
-  C03="$(pastel mix "$WBG" "$(pastel random -n 1 -s lch_hue)" -f 0.7 | pastel mix - orangered     -f 0.6 | pastel mix - orange            -f 0.5 | pastel saturate 0.06 | pastel format hex)"
+  C03="$(pastel mix "$WBG" "$(pastel random -n 1 -s lch_hue)" -f 0.7 | pastel mix - orange        -f 0.6 | pastel mix - coral             -f 0.5 | pastel saturate 0.06 | pastel format hex)"
   C04="$(pastel mix "$WBG" "$(pastel random -n 1 -s lch_hue)" -f 0.7 | pastel mix - blue          -f 0.6 | pastel mix - deepskyblue       -f 0.5 | pastel saturate 0.06 | pastel format hex)"
   C05="$(pastel mix "$WBG" "$(pastel random -n 1 -s lch_hue)" -f 0.7 | pastel mix - indigo        -f 0.6 | pastel mix - slateblue         -f 0.5 | pastel saturate 0.06 | pastel format hex)"
   C06="$(pastel mix "$WBG" "$(pastel random -n 1 -s lch_hue)" -f 0.7 | pastel mix - darkturquoise -f 0.6 | pastel mix - deepskyblue       -f 0.5 | pastel saturate 0.06 | pastel format hex)"
+  # PressToContinue "[${FUNCNAME[0]}]__C05__${C05}"
 
-  C09="$(pastel lighten   0.10 "$C01" | pastel format hex)"; # REDL
-  C10="$(pastel lighten   0.10 "$C02" | pastel format hex)"; # GRNL
-  C11="$(pastel lighten   0.10 "$C03" | pastel format hex)"; # YELL
-  C12="$(pastel lighten   0.10 "$C04" | pastel format hex)"; # BLUL
-  C13="$(pastel lighten   0.10 "$C05" | pastel format hex)"; # PRPL
-  C14="$(pastel lighten   0.10 "$C06" | pastel format hex)"; # CYNL
+  C09="$(pastel lighten   0.10 "$C01" | pastel format hex)"; # 1
+  C10="$(pastel lighten   0.10 "$C02" | pastel format hex)"; # 2
+  C11="$(pastel lighten   0.10 "$C03" | pastel format hex)"; # 3
+  C12="$(pastel lighten   0.10 "$C04" | pastel format hex)"; # 4
+  C13="$(pastel lighten   0.10 "$C05" | pastel format hex)"; # 5
+  C14="$(pastel lighten   0.10 "$C06" | pastel format hex)"; # 6
 
   WBX="$(pastel saturate  0.30 "$WBG" | pastel lighten 0.10  | pastel format hex)" ; # ZXX
   WFX="$(pastel textcolor      "$WBX" | pastel darken  0.20  | pastel format hex)" ; # ZXF
 
-  CX1="$(pastel saturate  0.25 "$C01" | pastel darken  0.02  | pastel format hex)" ; # C01
-  CX2="$(pastel saturate  0.25 "$C02" | pastel darken  0.02  | pastel format hex)" ; # C02
-  CX3="$(pastel saturate  0.25 "$C03" | pastel darken  0.02  | pastel format hex)" ; # C03  
-  CX4="$(pastel saturate  0.25 "$C04" | pastel darken  0.02  | pastel format hex)" ; # C04
-  CX5="$(pastel saturate  0.25 "$C05" | pastel darken  0.02  | pastel format hex)" ; # C05
-  CX6="$(pastel saturate  0.25 "$C06" | pastel darken  0.02  | pastel format hex)" ; # C06
+  CX1="$(pastel saturate  0.25 "$C01" | pastel lighten  0.02 | pastel format hex)" ; # C01
+  CX2="$(pastel saturate  0.25 "$C02" | pastel lighten  0.02 | pastel format hex)" ; # C02
+  CX3="$(pastel saturate  0.25 "$C03" | pastel lighten  0.02 | pastel format hex)" ; # C03  
+  CX4="$(pastel saturate  0.25 "$C04" | pastel lighten  0.02 | pastel format hex)" ; # C04
+  CX5="$(pastel saturate  0.25 "$C05" | pastel lighten  0.06 | pastel format hex)" ; # C05
+  CX6="$(pastel saturate  0.25 "$C06" | pastel lighten  0.02 | pastel format hex)" ; # C06
 
   WFG="$(pastel textcolor      "$WBG" | pastel darken 0.2 | pastel format hex)"
   EFG="$(pastel textcolor      "$EBG" | pastel darken 0.2 | pastel saturate 0.20 | pastel format hex)"
   SFG="$(pastel textcolor      "$SBG" | pastel darken 0.2 | pastel saturate 0.20 | pastel format hex)"
-  Info '' 0
+
+  InfoDone
 } 
 
 # shellcheck disable=SC2034

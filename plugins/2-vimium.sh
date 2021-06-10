@@ -12,6 +12,12 @@ __prep () {
   sed -r \
     -e "s/--fg:.+$/--fg: ${XFG};/" \
     -e "s/--bg:.+$/--bg: ${XBG};/" \
+    -e "s/--sbg:.+$/--sbg: ${SBG};/" \
+    -e "s/--wbg:.+$/--wbg: ${WBG};/" \
+    -e "s/--ebg:.+$/--ebg: ${EBG};/" \
+    -e "s/--sfg:.+$/--sfg: ${SFG};/" \
+    -e "s/--wfg:.+$/--wfg: ${WFG};/" \
+    -e "s/--efg:.+$/--efg: ${EFG};/" \
     -e "s/--border:.+$/--border: ${DK3};/" \
     -e "s/--bg-dark:.+$/--bg-dark: ${DK1};/" \
     -e "s/--bg-darker:.+$/--bg-darker: ${DK0};/" \

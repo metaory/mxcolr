@@ -139,3 +139,23 @@ DemoAll () {
   fillCols
 }
 
+__print_hexes () {
+  while [ "$1" ]; do
+    pastel paint -n -o "${!1}" "$(pastel textcolor "${!1}")" " ${1}: "
+    pastel paint -n "${!1}" " ${!1}"
+    printf ' '
+    shift
+  done
+  echo
+}
+
+# shellcheck disable=SC2046
+Demo_hexes () {
+  __print_hexes $(echo {S,W,E}BG X{F,B}G)
+  fillCols '━'
+  __print_hexes $(echo C0{1..6})
+  __print_hexes $(echo CX{1..6})
+  fillCols '━'
+  __print_hexes $(echo DK{1..6})
+  __print_hexes $(echo DL{1..6})
+}

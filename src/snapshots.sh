@@ -54,7 +54,7 @@ ListSnapshots () {
 }
 ## #####################
 SaveSnapshot () {
-  LoadLiveTheme
+  . "$OTHEME"
   Demo_card
   fillCols
   Demo

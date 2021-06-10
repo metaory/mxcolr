@@ -19,9 +19,11 @@ ApplyWallpaper () {
   local base="$HOME"/pics/wall/BASE.png
   if ! [ -e "$base" ]; then InfoError "base wallpaper not found"; InfoError "$base"; return; fi
   cp -v "$HOME"/pics/wall/curr.png "$HOME"/pics/wall/hist/"${stamp}".png
-  PromptWallpaperTint
-  pastel paint -b "$EBG"  " ==> running convert fill $EBG with tint value: [$REPLY]"
-  convert "$HOME"/pics/wall/BASE.png -fill "${WBG}" -tint "$REPLY" "$HOME"/pics/wall/curr.png
+  local tintColor;tintColor=$(lightest SBG WBG EBG)
+  PromptWallpaperTint "$tintColor"
+  pastel paint -b "$EBG"  " ==> running convert fill $tintColor with tint value: [$REPLY]"
+
+  convert "$HOME"/pics/wall/BASE.png -fill "${!tintColor}" -tint "$REPLY" "$HOME"/pics/wall/curr.png
   InfoDone 
 }
 # ////////////////////////////  
@@ -35,7 +37,7 @@ ApplyIcons () {
   local steam_tray_icon=/usr/share/pixmaps/steam_tray_mono.png
   [ -w "$steam_tray_icon" ] && TARGET_ICONS+=("$steam_tray_icon")
 
-  Info     "${#TARGET_ICONS[@]} TARGET_ICONS"
+  Info "${#TARGET_ICONS[@]} TARGET_ICONS"
 
   for ico in "${TARGET_ICONS[@]}"; do
     cp -v "$ico" /tmp/mxc/"${BS}_${ico##*/}"
@@ -43,7 +45,6 @@ ApplyIcons () {
   done
 
   InfoDone "${#TARGET_ICONS[@]} TARGET_ICONS"
-
 }
 # ////////////////////////////  
 # ////////////////////////////  
