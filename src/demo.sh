@@ -123,8 +123,6 @@ MYIntro () {
 # ////////////////////////////  
 Demo () {
   Demo_mxname "$USER"; echo; echo
-  Demo_hexes
-  Demo_slant
   Demo_block
   Demo_dot
   MXDotLine
@@ -132,6 +130,7 @@ Demo () {
 }
 DemoAll () {
   Demo_card "$USER"
+  Demo_hexes
   Demo_slant
   Demo_shades3
   Demo_shades4

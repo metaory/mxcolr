@@ -84,7 +84,7 @@ ReGenerate () {
   SourcePlugs
   ReleaseSeed
   ReleaseTheme
-  fillCols '▄'; fillCols '▀'; Demo
+  fillCols '▄'; fillCols '▀'; DemoAll
   (( "$1" )) && return
   ls "$MXTEMP"; PressToContinue "drafts ready" "$MXTEMP"
   # ............................ 
