@@ -123,6 +123,8 @@ MYIntro () {
 # ////////////////////////////  
 Demo () {
   Demo_mxname "$USER"; echo; echo
+  Demo_hexes
+  Demo_slant
   Demo_block
   Demo_dot
   MXDotLine
@@ -151,7 +153,7 @@ __print_hexes () {
 
 # shellcheck disable=SC2046
 Demo_hexes () {
-  __print_hexes $(echo {S,W,E}BG)
+  __print_hexes $(echo {S,W,W,W,W,E}BG)
   fillCols '━'
   __print_hexes $(echo CX{1..6})
   __print_hexes $(echo C{01..06})
@@ -160,4 +162,5 @@ Demo_hexes () {
   __print_hexes $(echo XBG C0{0,8,7} C15 XFG)
   __print_hexes $(echo DK{1..6})
   __print_hexes $(echo DL{1..6})
+  fillCols '━'
 }

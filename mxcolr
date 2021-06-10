@@ -104,6 +104,7 @@ Generate () {
   case $REPLY in
     k ) Info 'Keeping draft ·' ; SourcePlugs  ;;
     u ) Info 'Proceeding ····' ; ReGenerate   ;;
+    U ) Info 'Forcing ·······' ; XOPT='force'; ReGenerate   ;;
     n ) Info 'Again ·········' ; Generate     ;;
     d ) Info 'Full Demo ·····' ; DemoAll      ;;
     * ) Info 'Reverting ·····' ; Revert; ReGenerate 1 ;;
@@ -122,7 +123,7 @@ Generate () {
   case $menu in
     -g | --generate     ) Generate      ;;
     -u | --update       ) ReGenerate    ;;
-    -U | --update-force ) XOPT+='full'  ; ReGenerate ;;
+    -U | --update-force ) XOPT+='force'  ; ReGenerate ;;
     -d | --demo         ) Demo          ;;
     -D | --demo-all     ) DemoAll       ;;
     -i | --init         ) . "$MXBASE"/plugins/2-tmux.sh; apply_tmux 1; Demo_block ;;

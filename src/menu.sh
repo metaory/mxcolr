@@ -1,6 +1,6 @@
 #!/usr/bin/env bash
 
-DEFAULT_TINT=${DEFAULT_TINT:-100}
+DEFAULT_TINT=${DEFAULT_TINT:-10}
 
 _info () {
   local ico; local cf; local cc; # ; local lvl=$1 # ; local on
@@ -35,13 +35,13 @@ InfoIgnore () { _info 3 " Ignoring·" "$*" ; }
 InfoWarn ()   { _info 4 "$*"               ; }
 
 PressToContinue () {
-  if [[ "$XOPT" == *"full"* ]]; then return; fi
+  if [[ "$XOPT" == *"force"* ]]; then return; fi
   [ -n "$1" ] && pastel paint "${SBG:-yellow}" -b " [ $1 ] $2"
   local fn; fn="${FUNCNAME[1]}"
   pastel paint -b -n -o 'black' "$WBX" "[${fn}]"
   pastel paint -b -n "$C03"   " press any key to continue"
   pastel paint -b -n "$C01"   "  "; MXDots; MXSep; pl
-  if [[ "$XOPT" = full ]]; then REPLY='y'; pl '-'; return; fi
+  if [[ "$XOPT" = force ]]; then REPLY='y'; pl '-'; return; fi
   read -n 1 -r -s
   pl '-'
 }
@@ -51,8 +51,8 @@ _slant_sep () { local s; s=''; [[ -n "$1" ]] && s='█'; pastel paint -
 PrompRand () {
   pastel paint -n    -o "$WBG" "$WFG" "  "   ; _slant_sep "$WBG"                           ; _slant_sep
   pastel paint -n -b -o "black" "$C05" " [k]" ; pastel paint -n -o "black" "$C07" "eep "    ; _slant_sep
-  pastel paint -n -b -o "black" "$C02" " [R]" ; pastel paint -n -o "black" "$C07" "evert "  ; _slant_sep
-  pastel paint -n -b -o "black" "$C01" " [u]" ; pastel paint -n -o "black" "$C07" "update " ; _slant_sep
+  pastel paint -n -b -o "black" "$C02" " [*R]" ; pastel paint -n -o "black" "$C07" "evert "  ; _slant_sep
+  pastel paint -n -b -o "black" "$C01" " [Uu]" ; pastel paint -n -o "black" "$C07" "update " ; _slant_sep
   pastel paint -n -b -o "black" "$C03" " [n]" ; pastel paint -n -o "black" "$C07" "ext "    ; _slant_sep
   pastel paint -n -b -o "black" "$C06" " [d]" ; pastel paint -n -o "black" "$C07" "emo"     ; _slant_sep "black" "$XBG"
   read -n 1 -r -s
@@ -83,6 +83,7 @@ PromptWallpaperTint () {
   pastel paint -b -n -o 'black' "$WBX" "[${FUNCNAME[0]}]"
   pastel paint -b -n "$C03"   " enter TINT value [0-1000]"
   pastel paint -b -n "$C02"   " default:($DEFAULT_TINT) "
+  [ "$XOPT" = force ] && REPLY="$DEFAULT_TINT" && return
   read -r
   [ -z "$REPLY" ] && REPLY="$DEFAULT_TINT"
   if ! [[ "$REPLY" =~ ^[0-9]+$ ]]; then 
