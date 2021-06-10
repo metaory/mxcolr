@@ -71,7 +71,7 @@ ApplyPlugs () {
     local progress;progress=$(echo "scale=0; $cols/$plug_len*($plug_id+1)" | bc -l)
 
     flll "$progress" '▔' "$C08"
-    [[ $plug == "0-"* || "$XOPT" == *"no$pname"* ]] && InfoIgnore "$pname" && continue
+    [[ $plug == "0-"* || "$XOPT" == *"no$pname"*  ]] && InfoIgnore "$pname" && continue
     PromptContinue "$plug" "${plugs[(plug_id-1)]}" "${plugs[(plug_id+1)]}"
     [[ ! "$REPLY" =~ ^[Yy]$ ]] && InfoIgnore "$pname" && continue
 
@@ -130,7 +130,12 @@ Generate () {
     -s | --save         ) SaveSnapshot  ;;
     -x1                 ) Playground_1  ;;
     -x2                 ) Playground_2  ;;
+    -x3                 ) Demo_hexes  ;;
+    -xp                 ) expandp "$@"  ;;
+    --darkest           ) darkest "$@";;
+    --lightest          ) lightest "$@";;
     *                   ) MXIntro       ;;
+
   esac
   mlg "━✔━━<MENU>━━┛"
 }

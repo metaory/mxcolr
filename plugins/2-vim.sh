@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-BS="$(GetPlugName)-mx.vim"
+# BS="$(GetPlugName)-mx.vim"
 MXC_VIM_TMP=/tmp/mxc/root-mx.vim
 MXC_VIM_OUT="$MXDIST"/root-mx.vim
 
@@ -45,6 +45,7 @@ Info "$MXC_VIM_TMP"
 # most of this file couple be replaced by a simple template file
 
 apply_vim () {
+  # PressToContinue "[${BASH_SOURCE[0]}]__C05__${C05}"
   cp -v --backup "$MXC_VIM_TMP" "$MXC_VIM_OUT"
 
   InfoDone "$MXC_VIM_OUT"

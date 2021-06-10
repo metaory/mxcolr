@@ -62,7 +62,7 @@ PrompRand () {
 }
 
 PromptConfirm () {
-  if [[ "$XOPT" = full ]]; then REPLY='y'; return; fi
+  if [[ "$XOPT" = force ]]; then REPLY='y'; return; fi
   local msg; msg="${1:-Are you sure?}"
   pastel paint "$WBG" -n "${msg^} "
   pastel paint "$SBG" -n -b "[y/N] "
@@ -71,7 +71,6 @@ PromptConfirm () {
   pastel paint -o "$C00" "$CX3" -b "  ·  "; fi
 }
 PromptContinue () {
-
   pastel paint -b -n "${C07:-#666}" "[ "
   pastel paint -b -n "${C08:-#666}" "${2##*/} "
   pastel paint -b -n "${C03:-#f66}" "${1:-${FUNCNAME[1]}}"
