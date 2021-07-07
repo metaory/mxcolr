@@ -3,7 +3,7 @@
 # set -o pipefail # set -o errtrace
 # source $MXS/m.lib/lib.mxtrap.sh # if tty -s; then mlg interactive; else mlg none-intreractive;fi
 
- MXC_V='mxc-v1.4'
+ MXC_V='mxc-v1.5'
 MXBASE=$(dirname "$(realpath "$0")")
 MXDIST=~/.config/mxc
 MXTEMP=/tmp/mxc
@@ -28,10 +28,10 @@ mkdir /tmp/{mxc,mxc_hist} 2>/dev/null || true
 
 # ########################################
 # VARIABLES ##############################
-MX_CC=(C{00..15}); MX_CX=(CX{1..6}); MX_CK=(DK{0..9}); MX_CL=(DL{0..9}) 
+MX_CC=(C{00..15}); MX_CX=(CX{1..6});MX_CY=(CY{1..6}); MX_CK=(DK{0..9}); MX_CL=(DL{0..9}) 
 MX_CM=({S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G W{B,F}X)
 # ...
-MX_VARS=( "${MX_CC[@]}" "${MX_CX[@]}" "${MX_CK[@]}" "${MX_CL[@]}" "${MX_CM[@]}" )
+MX_VARS=( "${MX_CC[@]}" "${MX_CX[@]}" "${MX_CY[@]}" "${MX_CK[@]}" "${MX_CL[@]}" "${MX_CM[@]}" )
 MX_TERM=( "${MX_VARS[@]/#/T}" )
 # mapfile -t MX_VARS <<<"$(eval echo \$\{MX_C{C,X,K,L,M}\[\@\]\}))"
 # ########################################
@@ -62,17 +62,31 @@ ApplyPlugs () {
   # shellcheck disable=SC2046
   mapfile -t plugs <<<$(find "$MXBASE"/plugins -name "*.sh" -type f | sort)
 
+  pnames=( "${plugs[@]##*/}" )
+  pnames=( "${pnames[@]#*-}" )
+  pnames=( "${pnames[@]%.*}" )
+
+  if [ -n "$XOPT" ] && [[ "${pnames[*]}" == *"$XOPT"*  ]]; then # shellcheck disable=SC2046
+    mapfile -t plugs <<<$(find "$MXBASE"/plugins -name "*${XOPT}.sh" -type f | sort)
+    Info "force updated plugin list"
+  fi
+
   for plug_id in "${!plugs[@]}"; do
-    local plug_path="${plugs[$plug_id]}"
-    local plug="${plug_path##*/}"
-    local pname="${plug#*-}";pname="${pname%.*}"
+    local plugpath="${plugs[$plug_id]}"
+    local pname="${plugpath##*/}";pname="${pname#*-}";pname="${pname%.*}"
+    local porder="${plugpath##*/}"; porder="${porder%-*}"
+    local lastplug="${plugs[(plug_id-1)]}"
+    local nextplug="${plugs[(plug_id+1)]}"
 
     local cols;cols=$(tput cols); local plug_len=${#plugs[@]}
     local progress;progress=$(echo "scale=0; $cols/$plug_len*($plug_id+1)" | bc -l)
 
     flll "$progress" '▔' "$C08"
-    [[ $plug == "0-"* || "$XOPT" == *"no$pname"*  ]] && InfoIgnore "$pname" && continue
-    PromptContinue "$plug" "${plugs[(plug_id-1)]}" "${plugs[(plug_id+1)]}"
+
+    [[ $porder = 0 || "$XOPT" == *"no$pname"*  ]] && InfoIgnore "$pname" && continue
+
+    PromptContinue "$pname" "$lastplug" "$nextplug"
+
     [[ ! "$REPLY" =~ ^[Yy]$ ]] && InfoIgnore "$pname" && continue
 
     local applyfn="apply_${pname}"; "$applyfn"
@@ -85,7 +99,11 @@ ReGenerate () {
   ReleaseSeed
   ReleaseTheme
   fillCols '▄'; fillCols '▀'; DemoAll
+  echo "FORCE_UPDATE $FORCE_UPDATE"
   (( "$1" )) && return
+  (( "$FORCE_UPDATE" )) && InfoWarn "FORCE_UPDATE is ON"
+  (( "$VERBOSE" )) && InfoWarn "VERBOSE is ON"
+  [[ -n "$XOPT" ]] && InfoWarn "XOPT $XOPT"
   ls "$MXTEMP"; PressToContinue "drafts ready" "$MXTEMP"
   # ............................ 
   ApplyTemplates
@@ -96,7 +114,7 @@ Generate () {
   rm /tmp/mxc/*
   GeneratePalette
 
-  [[ -n "$TMUX" ]] && . "$MXBASE"/plugins/2-tmux.sh
+  [[ -n "$TMUX" ]] && . "$MXBASE"/plugins/2-tmux.sh && apply_tmux
 
   Demo
 
@@ -113,30 +131,34 @@ Generate () {
 } # ............................ #
 {
   mlg "━━━━<XOPT>━━┓"
-  menu="$1" ; shift ; XOPT="$*"
-  [[ "$XOPT" == *"verbose"* ]] && VERBOSE=1
+  case $1 in
+    --force | -U ) FORCE_UPDATE=1; shift ;;
+    --header ) shift; put_header "$@"; exit ;;
+    --verbose ) VERBOSE=1; shift ;;
+  esac
+  menu="$1"; shift
+  XOPT="$*"
   mlg "━✔━━<XOPT>━━ ${XOPT}"
-}
-# ............................ #
+} # ............................ #
+
 {
   mlg "━━━━<MENU>━━┓"
   case $menu in
-    -g | --generate     ) Generate      ;;
-    -u | --update       ) ReGenerate    ;;
-    -U | --update-force ) XOPT+='force'  ; ReGenerate ;;
-    -d | --demo         ) Demo          ;;
-    -D | --demo-all     ) DemoAll       ;;
-    -i | --init         ) . "$MXBASE"/plugins/2-tmux.sh; apply_tmux 1; Demo_block ;;
-    -l | --list         ) ListSnapshots ;;
-    -s | --save         ) SaveSnapshot  ;;
-    -x1                 ) Playground_1  ;;
-    -x2                 ) Playground_2  ;;
-    -x3                 ) Demo_hexes  ;;
-    -xp                 ) expandp "$@"  ;;
-    --darkest           ) darkest "$@";;
-    --lightest          ) lightest "$@";;
-    *                   ) MXIntro       ;;
-
+    -g | --generate     ) Generate                      ;;
+    -u | --update       ) ReGenerate                    ;;
+    -U | --update-force ) ReGenerate                    ;;
+    -d | --demo         ) Demo                          ;;
+    -D | --demo-all     ) DemoAll                       ;;
+    -i | --init         ) . "$MXBASE"/plugins/2-tmux.sh ; apply_tmux 1 ; Demo_block ;;
+    -l | --list         ) ListSnapshots                 ;;
+    -s | --save         ) SaveSnapshot                  ;;
+    --gen-icon          ) GenIcon "$@"                  ; exit ;;
+    --lorem             ) Lorem  "$@"                   ;;
+    --lorem-cols        ) LoremCols                     ;;
+    --darkest           ) darkest "$@"                  ;;
+    --lightest          ) lightest "$@"                 ;;
+    -xp                 ) expandp "$@"                  ;;
+    *                   ) MXIntro                       ;;
   esac
   mlg "━✔━━<MENU>━━┛"
 }

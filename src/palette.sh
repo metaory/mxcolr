@@ -70,13 +70,13 @@ gen_random () {
   local SBG_HUE; SBG_HUE="$(pastel format hsl-hue "$SBG")"
   local EBG_HUE; EBG_HUE="$(pastel format hsl-hue "$EBG")"
 
-  local SOver;SOver="$(diff_under "$WBG_HUE" "$SBG_HUE")"
-  local EOver;EOver="$(diff_under "$WBG_HUE" "$EBG_HUE")"
-  local XOver;XOver="$(diff_under "$SBG_HUE" "$EBG_HUE")"
+  local S_fail;S_fail="$(diff_under "$WBG_HUE" "$SBG_HUE")"
+  local E_fail;E_fail="$(diff_under "$WBG_HUE" "$EBG_HUE")"
+  local X_fail;X_fail="$(diff_under "$SBG_HUE" "$EBG_HUE")"
   mlg "HU:: S $SBG_HUE - W $WBG_HUE - E $EBG_HUE"
-  mlg "HX:: S $SOver - E $EOver - X $XOver"
+  mlg "HX:: S $S_fail - E $E_fail - X $X_fail"
 
-  if (( SOver || EOver || XOver )); then
+  if (( S_fail || E_fail || X_fail )); then
     ! (( attmp % ATTMP_WARN_THRESHOLD )) && PressToContinue "failed $attmp attempts, still continue?"
     gen_random $((++attmp))
   else
@@ -110,6 +110,13 @@ gen_idempotents () {
   CX5="$(pastel saturate  0.25 "$C05" | pastel lighten  0.06 | pastel format hex)" ; # C05
   CX6="$(pastel saturate  0.25 "$C06" | pastel lighten  0.02 | pastel format hex)" ; # C06
 
+  CY1="$(pastel desaturate  0.16 "$C01" | pastel lighten  0.06 | pastel format hex)" ; # C01
+  CY2="$(pastel desaturate  0.16 "$C02" | pastel lighten  0.06 | pastel format hex)" ; # C02
+  CY3="$(pastel desaturate  0.16 "$C03" | pastel lighten  0.06 | pastel format hex)" ; # C03  
+  CY4="$(pastel desaturate  0.16 "$C04" | pastel lighten  0.06 | pastel format hex)" ; # C04
+  CY5="$(pastel desaturate  0.16 "$C05" | pastel lighten  0.06 | pastel format hex)" ; # C05
+  CY6="$(pastel desaturate  0.16 "$C06" | pastel lighten  0.06 | pastel format hex)" ; # C06
+
   WFG="$(pastel textcolor      "$WBG" | pastel darken 0.2 | pastel format hex)"
   EFG="$(pastel textcolor      "$EBG" | pastel darken 0.2 | pastel saturate 0.20 | pastel format hex)"
   SFG="$(pastel textcolor      "$SBG" | pastel darken 0.2 | pastel saturate 0.20 | pastel format hex)"
@@ -119,10 +126,12 @@ gen_idempotents () {
 
 # shellcheck disable=SC2034
 gen_shades () {
-  XBG="$(pastel set hsl-saturation   0.14 "$WBG" | pastel set hsl-lightness 0.08 | pastel format hex)"
+  local bgColor;bgColor=$(darkest SBG WBG EBG)
+  pastel pain -o "${!bgColor}" "$(pastel textcolor "${!bgColor}")" " darkest : ${bgColor}"
+  XBG="$(pastel set hsl-saturation   0.16 "${!bgColor}" | pastel set hsl-lightness 0.04 | pastel format hex)"
   OBG="$(pastel lighten 0.08 "$XBG" |  pastel saturate 0.04 | pastel format hex)"; # OBG="$(pastel desaturate  0.20 "$WBG" | pastel darken  0.30        | pastel format hex)"
   OFG="$WBX"
-  DKB="$(pastel lighten 0.10 "$XBG" |  pastel saturate 0.04 | pastel format hex)"; # OBG="$(pastel desaturate  0.20 "$WBG" | pastel darken  0.30        | pastel format hex)"
+  DKB="$(pastel lighten 0.10 "$XBG" | pastel   saturate 0.04 | pastel format hex)"; # OBG="$(pastel desaturate  0.20 "$WBG" | pastel darken  0.30        | pastel format hex)"
 
   DL0="$(pastel darken  0.02 "$XBG" | pastel   saturate 0.0  | pastel format hex)"
   DL1="$(pastel lighten 0.04 "$XBG" | pastel   saturate 0.10 | pastel format hex)"

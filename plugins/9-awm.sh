@@ -34,17 +34,32 @@ ApplyIcons () {
   # shellcheck disable=SC2046
   mapfile -t TARGET_ICONS <<<$(find "$AWESOME_THEME_PATH"/icons/{layout,apps} -name "*.png" -type f)
 
+  # mapfile -t CUSTOM_ICONS <<<$(find /usr/share/icons/hicolor -name "*telegram*.png" -type f)
+
   local steam_tray_icon=/usr/share/pixmaps/steam_tray_mono.png
   [ -w "$steam_tray_icon" ] && TARGET_ICONS+=("$steam_tray_icon")
 
-  Info "${#TARGET_ICONS[@]} TARGET_ICONS"
+  # local tg_tray_icon=/usr/share/pixmaps/telegram.png
+  # [ -w "$tg_tray_icon" ] && TARGET_ICONS+=("$tg_tray_icon")
 
+  Info "${#TARGET_ICONS[@]} TARGET_ICONS"
   for ico in "${TARGET_ICONS[@]}"; do
     cp -v "$ico" /tmp/mxc/"${BS}_${ico##*/}"
     convert "$ico" -fill "${DL6}" -colorize 100%  "$ico"; # < < TODO mv to tmp first
   done
-
   InfoDone "${#TARGET_ICONS[@]} TARGET_ICONS"
+
+  # Info "${#CUSTOM_ICONS[@]} CUSTOM_ICONS"
+  # for ico in "${CUSTOM_ICONS[@]}"; do
+  #   cp -v "$ico" /tmp/mxc/"${BS}_${ico##*/}"
+  #   convert "$ico" -modulate 100,100,200 "$ico"
+  # done
+  # InfoDone "${#CUSTOM_ICONS[@]} CUSTOM_ICONS"
+
+  cp /usr/share/icons/hicolor/48x48/apps/telegram.png /tmp/mxc
+  GenIcon "" "$DL6" /usr/share/icons/hicolor/48x48/apps/telegram.png
+  # GenIcon "" "$DL6" /usr/share/icons/hicolor/48x48/apps/telegram.png
+
 }
 # ////////////////////////////  
 # ////////////////////////////  

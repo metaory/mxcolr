@@ -107,14 +107,49 @@ get_header () {
   local header="{2:-MXCOLR}"
   if  command -v figlet &> /dev/null; then
     if [ -d /usr/share/figlet/fonts ]; then
-      header=$(figlet MXC -f "$(basename "$(find /usr/share/figlet/fonts -name '*.flf' | shuf -n 1)")" 2>/dev/null)
+      # header=$(figlet MXC -f "$(basename "$(find /usr/share/figlet/fonts -name '*.flf' | shuf -n 1)")" 2>/dev/null)
+      header=$(figlet 'MXC' -p -f "$(figlist | shuf -n 1)" 2>/dev/null)
     else
       header=$(figlet "MXC" 2>/dev/null)
     fi
   fi
   local name="$MXNAME @ $MXC_V"; local _f=$(( ${#name} / 2 + 2 ))
-  header+="
-  $name"
-  echo "$(sed -n "s/^.*/${comment_char}·&/p" <<< "$header")
-$(printf "%0.s${comment_char}·" $(seq 1 $_f))"
+  asciiart="$header"
+
+  if ! (( "$3" )); then 
+      asciiart="$(sed "s/^.*/${comment_char}&/p" <<< "$header")"
+  fi
+  asciiart="$(sed "s/[[:graph:]]/${comment_char}/g" <<< "$asciiart")"
+  asciiart+="
+  ${comment_char} ${name}"
+  echo "$asciiart"
+# $(printf "%0.s${comment_char}" $(seq 1 $_f))"
 }
+
+put_header () {
+  local des="$1"; shift
+  local esc="${1:-·}" 
+  header=$(get_header "$esc" "MXC" 1)
+  echo "local header = {" > "$des"
+  while read -r i
+  do
+    echo "\"$i\"," >> "$des"
+  done <<< "$header"
+
+  echo "}" >> "$des"
+  echo "return header" >> "$des"
+}
+
+Lorem () {
+  local s=''
+  for t in $(seq 1 "${1:-300}"); do
+    (( RANDOM % 2 )) &&  s+='🮂'  ||  s+=' '; # '▂'
+  done
+  pastel paint "${DL5}" "$s"
+  # echo
+}
+
+LoremCols () {
+  Lorem "$(tput cols)"
+}
+
