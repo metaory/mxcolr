@@ -115,13 +115,15 @@ MXIntro () { ( (( RANDOM % 2 )) &&  MXDotLine ) || ( pl '-' ; Demo_block 0 0 ); 
 MYIntro () { 
   case $(( RANDOM % 3 )) in
     0 ) MXDotLine ;;
-    1 ) MXDotLine-full ;;
-    2 ) Demo_block ;;
+    # 1 ) MXDotLine-full ;;
+    1 ) LoremCols ;;
+    2 ) Demo_block 0 0 ;;
   esac
 }
 # ////////////////////////////  
 # ////////////////////////////  
 Demo () {
+  if (( "$FORCE_UPDATE" )); then return; fi
   Demo_mxname "$USER"; echo; echo
   Demo_block
   Demo_dot
@@ -129,6 +131,7 @@ Demo () {
   fillCols
 }
 DemoAll () {
+  if (( "$FORCE_UPDATE" )); then return; fi
   Demo_card "$USER"
   Demo_hexes
   Demo_slant
@@ -142,7 +145,7 @@ DemoAll () {
 
 __print_hexes () {
   while [ "$1" ]; do
-    pastel paint -n -o "${!1}" "$(pastel textcolor "${!1}")" " ${1}: "
+    pastel paint -n -o "${!1}" "$(pastel textcolor "${!1}")" " ${1} "
     pastel paint -n "${!1}" " ${!1}"
     printf ' '
     shift
@@ -152,6 +155,7 @@ __print_hexes () {
 
 # shellcheck disable=SC2046
 Demo_hexes () {
+  if (( "$FORCE_UPDATE" )); then return; fi
   __print_hexes $(echo {S,W,W,W,W,E}BG)
   fillCols '━'
   __print_hexes $(echo CX{1..6})
@@ -163,3 +167,4 @@ Demo_hexes () {
   __print_hexes $(echo DL{1..6})
   fillCols '━'
 }
+

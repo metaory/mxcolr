@@ -4,9 +4,9 @@ BS="$(GetPlugName)-theme.xdefaults"
 MXC_XRS_TMP=/tmp/mxc/"$BS"
 MXC_XRS_OUT="${MXC_XRS_OUT:-"$MXDIST/$BS"}"
 
-
-cat <<   EOF | tr '[:upper:]' '[:lower:]' > "$MXC_XRS_TMP"
 $(get_header '!')
+cat <<   EOF | tr '[:upper:]' '[:lower:]' > "$MXC_XRS_TMP"
+$MXNAME
 
 *.background:           $XBG
 *.foreground:           $XFG

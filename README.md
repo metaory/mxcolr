@@ -21,13 +21,21 @@ flags
     -D, --demo-all            | complete demo
     -l, --list                | list all saved snapshots
     -s, --save                | save snapshot
+    -s, --save                | save snapshot
+    --gen-icon                | [char, path]
+    --lorem                   | [char, length]
+    --lorem-cols              | [char]
+    --darkest                 | [colors]
+    --lightest                | [colors]
+    --force                   | forcefull update
     --verbose                 | verbose logs
+                              | intro
 
 Motivations
 ===========
 While tools like Oomox and Spicetify are great in reallity you probably got more than GTK theme and Icons you'd want to patch
 
-terminal colors, terminal prompt, window manager / status bar theme / icons, Vim/Atom/SourceCode editor and more 
+Terminal colors, terminal prompt, window manager / status bar theme / icons, Vim/Atom/SourceCode editor and more 
 
 Some apps might require to compile and build, all of these are just too repetitive and anoying to do for every change, then there is the never ending search for the right color scheme  
 
@@ -40,7 +48,7 @@ What about
  
 #### This repo goal is to be a tool for generating and previewing palettes and serve as a framework for patching any application with few keystrokes.
 
-outputs
+Outputs
 =======
 
 seed.mx
@@ -49,9 +57,9 @@ seed.mx
 - `~/.config/mxc/seed.mx` sample generated [seed.mx](./assets/samples/seed.mx)
 > the entire palette is drived from this generated `seed` file 
 
-given the same `seed` file, its guaranteed the same `scheme file` be produced.
+Given the same `seed` file, its guaranteed the same `scheme file` be produced.
 
-possible variables available in all templates or plugins are:
+Possible variables available in all templates or plugins are:
 - gui colors: `C00..C15`, `DK0..DK9`, `DL0..DL9`, `{S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G`
 - cterm ansi: all gui colors prefixed with `T`
 - gui hashless: all gui colors without the `#`. prefixed with `HL`
@@ -66,6 +74,10 @@ Shell
 
 > intended to be sourced in `.profile` or `bashrc` and have apps that can directly access system env read system scheme from it
 
+Lua scheme
+---
+ tpl: [mxc-nvim-colors.lua](./templates/mxc-nvim-colors.lua)
+ out: [mxc-nvim-colors.lua](./assets/samples/mxc-nvim-colors.lua)
 Vim
 ---
  output: [root-mx.vim](./assets/samples/root-mx.vim)
@@ -166,18 +178,19 @@ Plugins
 -------
 - Xresources
 - Kitty
-- Vim colorscheme
+- Vim `colors.vim` Nvim `colors.lua`
 - Vimium
 - FZF
 - Spotify
 - Slack
 - Ranger
 - P10k
+- Zathura
 - GTK Theme
 - GTK Icon Theme
 - Wallpaper tint
 - Tmux
-- AwesomeWM
+- AwesomeWM `colors.lua`
 - LS_COLORS
 
 ***
@@ -194,7 +207,7 @@ Plugins
           /  /:/      |  |:|       \  \:\     
          /__/:/       |__|:|        \  \:\    
          \__\/         \__\|         \__\/    
-             @ mxc-v1.4
+             @ mxc-v1.5
 
 <p align="center">
   <img width="374" height="40" src="./assets/screenshots/footer_2021-05-16-221932_374x40_scrot.png">

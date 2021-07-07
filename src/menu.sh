@@ -35,13 +35,13 @@ InfoIgnore () { _info 3 " Ignoring·" "$*" ; }
 InfoWarn ()   { _info 4 "$*"               ; }
 
 PressToContinue () {
-  if [[ "$XOPT" == *"force"* ]]; then return; fi
+  if (( "$FORCE_UPDATE" )); then return; fi
   [ -n "$1" ] && pastel paint "${SBG:-yellow}" -b " [ $1 ] $2"
   local fn; fn="${FUNCNAME[1]}"
   pastel paint -b -n -o 'black' "$WBX" "[${fn}]"
   pastel paint -b -n "$C03"   " press any key to continue"
   pastel paint -b -n "$C01"   "  "; MXDots; MXSep; pl
-  if [[ "$XOPT" = force ]]; then REPLY='y'; pl '-'; return; fi
+  if (( "$FORCE_UPDATE" )); then REPLY='y'; pl '-'; return; fi
   read -n 1 -r -s
   pl '-'
 }
@@ -62,7 +62,7 @@ PrompRand () {
 }
 
 PromptConfirm () {
-  if [[ "$XOPT" = force ]]; then REPLY='y'; return; fi
+  if (( "$FORCE_UPDATE" )); then REPLY='y'; return; fi
   local msg; msg="${1:-Are you sure?}"
   pastel paint "$WBG" -n "${msg^} "
   pastel paint "$SBG" -n -b "[y/N] "
@@ -83,7 +83,7 @@ PromptWallpaperTint () {
   pastel paint -b -n -o 'black' "$WBX" "[${FUNCNAME[0]}]"
   pastel paint -b -n "$C03"   " enter TINT value [0-1000]"
   pastel paint -b -n "$C02"   " default:($DEFAULT_TINT) "
-  [ "$XOPT" = force ] && REPLY="$DEFAULT_TINT" && return
+  (( "$FORCE_UPDATE" )) && REPLY="$DEFAULT_TINT" && return
   read -r
   [ -z "$REPLY" ] && REPLY="$DEFAULT_TINT"
   if ! [[ "$REPLY" =~ ^[0-9]+$ ]]; then 

@@ -1,50 +1,50 @@
 [mxc]
-; $MXNAME @ $MXC_V
-text               = ${HLXFG}
-subtext            = ${HLC07}
-main               = ${HLDK0}
-sidebar            = ${HLDK1}
-player             = ${HLXBG}
-card               = ${HLSBG}
-shadow             = ${HLC08}
-selected-row       = ${HLC05}
-button             = ${HLEBG}
-button-active      = ${HLWBG}
-button-disabled    = ${HLDL4}
-tab-active         = ${HLSBG}
-notification       = ${HLEBG}
-notification-error = ${HLC01}
-misc               = ${HLC02}
-sbg                = ${HLSBG}
-sfg                = ${HLSFG}
-wbx                = ${HLWBX}
-wfx                = ${HLWFX}
-wbg                = ${HLWBG}
-wfg                = ${HLWFG}
-ebg                = ${HLEBG}
-efg                = ${HLEFG}
+; hyper @ mxc-v1.5
+text               = 5656be
+subtext            = 393975
+main               = 000000
+sidebar            = 07070e
+player             = 09090c
+card               = 64994c
+shadow             = 262641
+selected-row       = 5c56ce
+button             = 6c45e1
+button-active      = 1c87f2
+button-disabled    = 282853
+tab-active         = 64994c
+notification       = 6c45e1
+notification-error = dc4f9d
+misc               = 6bd3ab
+sbg                = 64994c
+sfg                = 000000
+wbx                = 42a0ff
+wfx                = 000000
+wbg                = 1c87f2
+wfg                = 000000
+ebg                = 6c45e1
+efg                = d6c2c2
                      
 [legacy]
-; $MXNAME @ $MXC_V
-main_bg                               = ${HLDK0}
-main_fg                               = ${HLC07}
-dark_fg                               = ${HLC08}
-light_fg                              = ${HLXFG}
-miscellaneous_hover_bg                = ${HLEBG}
-preserve_1                            = ${HLEBG}
-selected_button                       = ${HLDK4}
-slider_bg                             = ${HLDK4}
-miscellaneous_bg                      = ${HLDK4}
-secondary_fg                          = ${HLC07}
-indicator_fg_and_button_bg            = ${HLSBG}
-pressing_fg                           = ${HLDL4}
-cover_overlay_and_shadow              = ${HLXBG}
-sidebar_indicator_and_hover_button_bg = ${HLDK1}
-sidebar_and_player_bg                 = ${HLDK0}
-scrollbar_fg_and_selected_row_bg      = ${HLDL0}
-pressing_button_fg                    = ${HLDK0}
-hover_selected                        = ${HLDK2}
-pressing_button_bg                    = ${HLSBG}
+; hyper @ mxc-v1.5
+main_bg                               = 000000
+main_fg                               = 393975
+dark_fg                               = 262641
+light_fg                              = 5656be
+miscellaneous_hover_bg                = 6c45e1
+preserve_1                            = 6c45e1
+selected_button                       = 262641
+slider_bg                             = 262641
+miscellaneous_bg                      = 262641
+secondary_fg                          = 393975
+indicator_fg_and_button_bg            = 64994c
+pressing_fg                           = 282853
+cover_overlay_and_shadow              = 09090c
+sidebar_indicator_and_hover_button_bg = 07070e
+sidebar_and_player_bg                 = 000000
+scrollbar_fg_and_selected_row_bg      = 050506
+pressing_button_fg                    = 000000
+hover_selected                        = 0e0e1b
+pressing_button_bg                    = 64994c
 
 [pink-white]
 ; Pink on White background

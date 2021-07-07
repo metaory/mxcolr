@@ -1,0 +1,35 @@
+!  $MXNAME @ $MXC_V
+
+! Add ↓ to your ~/.config/kitty/kitty.conf
+
+! include ~/.config/mxc/kitty-theme.conf
+! map kitty_mod+f12 remote_control set-colors "~/.config/mxc/kitty-theme.conf"
+
+*.color0:               $C00
+*.color1:               $C01
+*.color2:               $C02
+*.color3:               $C03
+*.color4:               $C04
+*.color5:               $C05
+*.color6:               $C06
+*.color7:               $C07
+*.color8:               $C08
+*.color9:               $C09
+*.color10:              $C10
+*.color11:              $C11
+*.color12:              $C12
+*.color13:              $C13
+*.color14:              $C14
+*.color15:              $C15
+*.color20:              $SBG
+*.color21:              $SFG
+*.color30:              $WBG
+*.color31:              $WFG
+*.color40:              $EBG
+*.color41:              $EFG
+*.background:           $XBG
+*.foreground:           $XFG
+*.selection_background: $OBG
+*.selection_foreground: $OFG
+*.cursor_text_color:    $WFX
+*.cursor:               $WBX
