@@ -142,11 +142,11 @@ unless different destination is set
 
 generate
 --------
-![generate](./assets/screenshots/generate_210523133127.gif)
+![generate 1.4](./assets/screenshots/generate_210523133127.gif)
 
 update
 ------
-![update](./assets/screenshots/update_210523132539.gif)
+![update 1.5](./assets/screenshots/gifcast_210707121038.gif)
 
 snapshot
 --------
