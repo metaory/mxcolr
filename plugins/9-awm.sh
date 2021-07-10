@@ -32,22 +32,26 @@ ApplyIcons () {
   if [[ "$XOPT" == *"noico"* ]]; then InfoIgnore; return; fi
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   # shellcheck disable=SC2046
-  mapfile -t TARGET_ICONS <<<$(find "$AWESOME_THEME_PATH"/icons/{layout,apps} -name "*.png" -type f)
-
-  # mapfile -t CUSTOM_ICONS <<<$(find /usr/share/icons/hicolor -name "*telegram*.png" -type f)
+  mapfile -t APP_ICONS <<<$(find "$AWESOME_THEME_PATH"/icons/apps -name "*.png" -type f)
+  mapfile -t LAYOUT_ICONS <<<$(find "$AWESOME_THEME_PATH"/icons/layout -name "*.png" -type f)
 
   local steam_tray_icon=/usr/share/pixmaps/steam_tray_mono.png
-  [ -w "$steam_tray_icon" ] && TARGET_ICONS+=("$steam_tray_icon")
+  [ -w "$steam_tray_icon" ] && APP_ICONS+=("$steam_tray_icon")
 
   # local tg_tray_icon=/usr/share/pixmaps/telegram.png
-  # [ -w "$tg_tray_icon" ] && TARGET_ICONS+=("$tg_tray_icon")
+  # [ -w "$tg_tray_icon" ] && APP_ICONS+=("$tg_tray_icon")
 
-  Info "${#TARGET_ICONS[@]} TARGET_ICONS"
-  for ico in "${TARGET_ICONS[@]}"; do
-    cp -v "$ico" /tmp/mxc/"${BS}_${ico##*/}"
-    convert "$ico" -fill "${DL6}" -colorize 100%  "$ico"; # < < TODO mv to tmp first
+  Info "${#APP_ICONS[@]} APP_ICONS"
+  for ico in "${APP_ICONS[@]}"; do
+    convert "$ico" -fill "${DL6}" -colorize 100%  "$ico"
   done
-  InfoDone "${#TARGET_ICONS[@]} TARGET_ICONS"
+  InfoDone "${#APP_ICONS[@]} APP_ICONS"
+
+  Info "${#LAYOUT_ICONS[@]} LAYOUT_ICONS"
+  for ico in "${LAYOUT_ICONS[@]}"; do
+    convert "$ico" -fill "${EBG}" -colorize 100%  "$ico"
+  done
+  InfoDone "${#LAYOUT_ICONS[@]} LAYOUT_ICONS"
 
   # Info "${#CUSTOM_ICONS[@]} CUSTOM_ICONS"
   # for ico in "${CUSTOM_ICONS[@]}"; do
@@ -56,10 +60,11 @@ ApplyIcons () {
   # done
   # InfoDone "${#CUSTOM_ICONS[@]} CUSTOM_ICONS"
 
-  cp /usr/share/icons/hicolor/48x48/apps/telegram.png /tmp/mxc
   GenIcon "" "$DL6" /usr/share/icons/hicolor/48x48/apps/telegram.png
+  # convert "/usr/share/pixmaps/steam_tray_mono.png -fill "${DL6}" -colorize 100%  /usr/share/pixmaps/steam_tray_mono.png
   # GenIcon "" "$DL6" /usr/share/icons/hicolor/48x48/apps/telegram.png
 
+  InfoDone
 }
 # ////////////////////////////  
 # ////////////////////////////  
