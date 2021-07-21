@@ -2,10 +2,10 @@
 
 BS="$(GetPlugName)"
 VIMIUM_TMP=/tmp/mxc/"$BS"
-VIMIUM_EXTENSION_PATH=$XDG_CONFIG_HOME/chromium/Default/Extensions/dbepggeogbaibhgnhhndojpepiihcmeb/1.66_0
+VIMIUM_EXTENSION_PATH=$XDG_CONFIG_HOME/chromium/Default/Extensions/dbepggeogbaibhgnhhndojpepiihcmeb/1.67_0; #  XXX replace me with ls !
 VIMIUM_TARGETS=("$VIMIUM_EXTENSION_PATH"/{content_scripts/vimium.css,pages/vomnibar.css})
 
-! [ -d "$VIMIUM_EXTENSION_PATH" ] && Info 1 "VIMIUM_EXTENSION_PATH $VIMIUM_EXTENSION_PATH not directory" && return
+# ! [ -d "$VIMIUM_EXTENSION_PATH" ] && Info 1 "VIMIUM_EXTENSION_PATH $VIMIUM_EXTENSION_PATH not directory" && return
 
 __prep () {
   local target="${1}"
@@ -32,11 +32,6 @@ __prep () {
   InfoDone "$target"
 }
 
-
-for t in "${VIMIUM_TARGETS[@]}"; do __prep "$t"; done
-
-Info "${VIMIUM_TMP}"
-
 apply_vimium () {
   for t in "${VIMIUM_TARGETS[@]}"; do
     Info "$t"
@@ -45,4 +40,14 @@ apply_vimium () {
 
   InfoDone "${VIMIUM_TARGETS[@]}"
 }
+
+LoremCols
+LoremCols
+InfoWarn "Broken since vimium@1.67_0" && return
+
+for t in "${VIMIUM_TARGETS[@]}"
+    do __prep "$t"
+done
+
+Info "${VIMIUM_TMP}"
 

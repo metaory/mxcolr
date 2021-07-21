@@ -33,7 +33,8 @@ apply_vim () {
 
   cp -v /tmp/mxc/mxc-nvim-base16.lua "$HOME/.config/nvim/lua/themes"
   cp -v /tmp/mxc/mxc-nvim-colors.lua "$HOME/.config/nvim/lua/themes"
-
+  cp -v /tmp/mxc/vim-visual-multi_themes.vim "$HOME/.local/share/nvim/site/pack/packer/start/vim-visual-multi/autoload/vm/themes.vim"
+  
   InfoDone "$MXC_VIM_OUT"
 }
 
