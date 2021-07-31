@@ -164,7 +164,9 @@ snapshot
 
 Requirements
 ------------
+- [bc](https://TODO)
 - [pastel](https://github.com/sharkdp/pastel)
+
 
 Optional Requirements
 ---------------------
