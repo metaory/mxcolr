@@ -38,7 +38,7 @@ apply_xresources() {
     # Info 'appent include?'; PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
     InfoWarn "add this to your $HOME/.Xresources "
     echo "#include $MXC_XRS_OUT"; echo
-    # echo "#include '$XDG_CONFIG_HOMR/mxc/mx-xrs.xdefaults'" >> "$HOME"/.Xresources; InfoDone 'added'
+    # echo "#include '~/.config/mxc/mx-xrs.xdefaults'" >> "$HOME"/.Xresources; InfoDone 'added'
   fi
 
   cp -v "$MXC_XRS_TMP" "$MXC_XRS_OUT"

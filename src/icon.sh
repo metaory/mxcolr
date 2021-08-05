@@ -4,6 +4,7 @@ GenIcon () {
     local char="${1:?missing char}"
     local color="${2:?missing color}"
     local destinathion="${3:?missing destination}"
+    local size="${4:-96}"
 
     echo "char         : ${char}"
     echo "color        : ${color}"
@@ -11,7 +12,7 @@ GenIcon () {
 
     convert -font Sauce-Code-Pro-Black-Nerd-Font-Complete \
         -background none \
-        -pointsize 96 label:" ${char} " \
+        -pointsize ${size} label:" ${char} " \
         /tmp/mxc/z1.png
 
     # convert /tmp/mxc/z1.png -transparent "white" /tmp/mxc/z2.png
