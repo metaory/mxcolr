@@ -2,6 +2,7 @@
 
 DEFAULT_TINT=${DEFAULT_TINT:-10}
 
+_paint () { pastel paint -b "${2:-$WBG}" "${1:-NA}"; }
 _info () {
   local ico; local cf; local cc; # ; local lvl=$1 # ; local on
   # ! [[ $2 =~ ^[0-9]+$ ]] && lvl=0
@@ -10,7 +11,7 @@ _info () {
     0) ico=' ' ; cc="$C02" ;;
     1) ico='' ; cc="$C01" ;;
     2) ico='' ; cc="$C07" ;;
-    3) ico='' ; cc="$C08" ;;
+    3) ico='' ; cc="$C05" ;;
     *) ico='' ; cc="$C03" ;;
   esac         ; shift
   cf="${C07:-#f00}"; cc="${cc:-#ff0}"
@@ -31,7 +32,7 @@ _info () {
 InfoDone ()   { _info 0 "$*"               ; }
 InfoError ()  { _info 1 "$*"               ; }
 Info ()       { _info 2 "$*"               ; }
-InfoIgnore () { _info 3 " Ignoring·" "$*" ; }
+InfoIgnore () { _info 3 " Ignoring·"; _paint " ==> ${*}" "$EBG"; }
 InfoWarn ()   { _info 4 "$*"               ; }
 
 PressToContinue () {

@@ -2,7 +2,7 @@
 
 BS="$(GetPlugName)"
 VIMIUM_TMP=/tmp/mxc/"$BS"
-VIMIUM_EXTENSION_PATH=$XDG_CONFIG_HOME/chromium/Default/Extensions/dbepggeogbaibhgnhhndojpepiihcmeb/1.67_0; #  XXX replace me with ls !
+VIMIUM_EXTENSION_PATH=~/.config/chromium/Default/Extensions/dbepggeogbaibhgnhhndojpepiihcmeb/1.67_0; #  XXX replace me with ls !
 VIMIUM_TARGETS=("$VIMIUM_EXTENSION_PATH"/{content_scripts/vimium.css,pages/vomnibar.css})
 
 # ! [ -d "$VIMIUM_EXTENSION_PATH" ] && Info 1 "VIMIUM_EXTENSION_PATH $VIMIUM_EXTENSION_PATH not directory" && return

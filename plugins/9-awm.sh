@@ -2,7 +2,8 @@
 BS="$(GetPlugName)"
 
 AWESOME_THEME=${AWESOME_THEME:-$USER}
-AWESOME_THEME_PATH="$XDG_CONFIG_HOME"/awesome/themes/"$AWESOME_THEME"
+AWESOME_THEME_PATH=~/.config/awesome/themes/$AWESOME_THEME
+WALLPAPER_BASE_PATH=~/pics/wall/BASE.png
 
 ################################
 notify () { 
@@ -14,8 +15,13 @@ notify () {
 }
 ################################
 ApplyWallpaper () {
+  ! [ -e $WALLPAPER_BASE_PATH ] && InfoIgnore "Wallpaper BASE.png not found." "$WALLPAPER_BASE_PATH" && return
+
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
-  local stamp; stamp=$(date +%s); stamp="${stamp:(-8)}"
+  local stamp
+  stamp=$(date +%s)
+  stamp=${stamp:(-8)}
+
   local base="$HOME"/pics/wall/BASE.png
   if ! [ -e "$base" ]; then InfoError "base wallpaper not found"; InfoError "$base"; return; fi
   cp -v "$HOME"/pics/wall/curr.png "$HOME"/pics/wall/hist/"${stamp}".png
@@ -29,14 +35,15 @@ ApplyWallpaper () {
 # ////////////////////////////  
 ################################
 ApplyIcons () {
+  ! [ -d $AWESOME_THEME_PATH ] && InfoIgnore "Awesome Theme $AWESOME_THEME not found." "$AWESOME_THEME_PATH" && return
+
   if [[ "$XOPT" == *"noico"* ]]; then InfoIgnore; return; fi
+
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   # shellcheck disable=SC2046
-  mapfile -t APP_ICONS <<<$(find "$AWESOME_THEME_PATH"/icons/apps -name "*.png" -type f)
-  mapfile -t LAYOUT_ICONS <<<$(find "$AWESOME_THEME_PATH"/icons/layout -name "*.png" -type f)
-
-  local steam_tray_icon=/usr/share/pixmaps/steam_tray_mono.png
-  [ -w "$steam_tray_icon" ] && APP_ICONS+=("$steam_tray_icon")
+  # TODO
+  mapfile -t APP_ICONS <<<$(find "$AWESOME_THEME_PATH"/icons/apps -name "*.png" -type f 2> /dev/null)
+  mapfile -t LAYOUT_ICONS <<<$(find "$AWESOME_THEME_PATH"/icons/layout -name "*.png" -type f 2> /dev/null)
 
   # local tg_tray_icon=/usr/share/pixmaps/telegram.png
   # [ -w "$tg_tray_icon" ] && APP_ICONS+=("$tg_tray_icon")
@@ -60,6 +67,9 @@ ApplyIcons () {
   # done
   # InfoDone "${#CUSTOM_ICONS[@]} CUSTOM_ICONS"
 
+  # local steam_tray_icon=/usr/share/pixmaps/steam_tray_mono.png
+  # [ -w "$steam_tray_icon" ] && APP_ICONS+=("$steam_tray_icon")
+  GenIcon "" "$DL6" /usr/share/pixmaps/steam_tray_mono.png 128
   GenIcon "" "$DL6" /usr/share/icons/hicolor/48x48/apps/telegram.png
   # convert "/usr/share/pixmaps/steam_tray_mono.png -fill "${DL6}" -colorize 100%  /usr/share/pixmaps/steam_tray_mono.png
   # GenIcon "" "$DL6" /usr/share/icons/hicolor/48x48/apps/telegram.png
@@ -80,7 +90,14 @@ RestartAWM () {
     # awesome --replace & disown
   killall steam &>/dev/null
   killall nm-applet &>/dev/null
-  nm-applet & disown
+  killall telegram-desktop &>/dev/null
+
+  sleep 3
+
+  # if command -v steam &> /dev/null; then steam & disown; fi
+  if command -v nm-applet &> /dev/null; then nm-applet & disown; fi
+  if command -v telegram-desktop &> /dev/null; then telegram-desktop & disown; fi
+
   InfoDone
 }
 

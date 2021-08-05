@@ -1,14 +1,21 @@
 #!/usr/bin/env bash
 
-SPICETIFY_PATH=$XDG_CONFIG_HOME/spicetify
+SPICETIFY_PATH=~/.config/spicetify
 SPICETIFY_THEME=Metafy
 MXC_SPOTIFY_TMP=/tmp/mxc/spotify-mx
+not_found_msg="spicetify not found."
 
-if ! command -v spicetify &> /dev/null; then echo "spicetify not found."; echo " ==> https://github.com/khanhas/spicetify-cli"; exit 1; fi
+if ! command -v spicetify &> /dev/null; then
+  echo $not_found_msg
+  echo " ==> https://github.com/khanhas/spicetify-cli"
+  ignore=1 
+fi
 
-! [ -d "$SPICETIFY_PATH/Themes/$SPICETIFY_THEME" ] && mkdir -p "$SPICETIFY_PATH/Themes/$SPICETIFY_THEME"
+! [ $ignore ] && ! [ -d "$SPICETIFY_PATH/Themes/$SPICETIFY_THEME" ] && mkdir -p "$SPICETIFY_PATH/Themes/$SPICETIFY_THEME"
 
 apply_spotify () {
+  [ $ignore ] && InfoIgnore $not_found_msg && return 1
+
   ! [ -e "$MXC_SPOTIFY_TMP" ] && InfoError "missing templates" && return 1
 
   cp -v "$MXC_SPOTIFY_TMP" "$SPICETIFY_PATH"/Themes/$SPICETIFY_THEME/color.ini

@@ -117,7 +117,7 @@ ApplyGTKCursor () {
   if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
   sed -r -i \
     -e "/^gtk-cursor-theme-name/s/=.+$/=${CURSOR_THEME}/" \
-    "$XDG_CONFIG_HOME"/gtk-3.0/settings.ini
+    ~/.config/gtk-3.0/settings.ini
 
   InfoDone
 }
