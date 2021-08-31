@@ -169,7 +169,7 @@ Requirements
 
 Optional Requirements
 ---------------------
-- [tmux](https://github.com/tmux/tmux) Live preview
+- [tmux](https://github.com/tmux/tmux) Terminal Agnostic Live preview
 - [oomox](https://github.com/themix-project/oomox) GTK Theme & Icons
 - [bullshit](https://aur.archlinux.org/packages/bullshit) Random Palette Name
 - [spicetify-cli](https://github.com/khanhas/spicetify-cli) Spotify
