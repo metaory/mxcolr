@@ -21,7 +21,7 @@ flags
     -D, --demo-all            | complete demo
     -l, --list                | list all saved snapshots
     -s, --save                | save snapshot
-    -s, --save                | save snapshot
+    --tmp-only                | exit silently after placing temp files in /tmp/mxc
     --gen-icon                | [char, path]
     --lorem                   | [char, length]
     --lorem-cols              | [char]
