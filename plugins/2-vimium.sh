@@ -7,11 +7,13 @@ VIMIUM_TARGETS=("$VIMIUM_EXTENSION_PATH"/{content_scripts/vimium.css,pages/vomni
 
 # ! [ -d "$VIMIUM_EXTENSION_PATH" ] && Info 1 "VIMIUM_EXTENSION_PATH $VIMIUM_EXTENSION_PATH not directory" && return
 
+# /* MXC_PLACEHOLDER */
 __prep () {
   local target="${1}"
   sed -r \
     -e "s/--fg:.+$/--fg: ${XFG};/" \
     -e "s/--bg:.+$/--bg: ${XBG};/" \
+    -e "s/--mxc-bg:.+$/--bg: ${XBG};/" \
     -e "s/--sbg:.+$/--sbg: ${SBG};/" \
     -e "s/--wbg:.+$/--wbg: ${WBG};/" \
     -e "s/--ebg:.+$/--ebg: ${EBG};/" \
@@ -41,9 +43,6 @@ apply_vimium () {
   InfoDone "${VIMIUM_TARGETS[@]}"
 }
 
-LoremCols
-LoremCols
-InfoWarn "Broken since vimium@1.67_0" && return
 
 for t in "${VIMIUM_TARGETS[@]}"
     do __prep "$t"

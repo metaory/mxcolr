@@ -63,12 +63,19 @@ Demo_card () {
 #   pl "${MX_CK[0]}" ' ┏╸━' ; prntlist 'prnt:sp_block_l'  "${MX_CK[@]}" ; pl '-'
 #   pl                      ; prntlist 'prnt:sp_line_bot' "${MX_CK[@]}" ; pl '-'
 # }
-# Demo_shades1()  { fill 1 ; prntlist 'prnt:sp_lash' "${MX_CK[@]}"     ; pl '-' ; }
+# Demo_shades1()  { fill 1 ; prntlist 'prnt:sp_lash' "${MX_CK[@]}"     ; pl '-' ; }j
 # Demo_shades2()  { fill 1 ; prntlist 'prnt:sp_pentagon' "${MX_CK[@]}" ; pl '-' ; }
-Demo_shades3()  { fill 3 ; prntlist 'prnt:sp_dotline' "${MX_CK[@]}"  ; pl '-' ; }
+Demo_shades3()  { 
+  fill 9 ; printf 'DK ' ; prntlist 'prnt:sp_dotline' "${MX_CK[@]}"  ; pl '-'
+  fill 9 ; printf 'DL ' ; prntlist 'prnt:sp_dotline' "${MX_CK[@]}"  ; pl '-'
+  fill 9 ; printf 'LK ' ; prntlist 'prnt:sp_dotline' "${MX_CLK[@]}" ; pl '-'
+}
 Demo_shades4()  { 
-  fill 3; prntlist 'prnt:sp_block_e' "${MX_CK[@]}" ; pl '-'
-  fill 3; prntlist 'prnt:sp_block_e' "${MX_CL[@]}" ; pl '-'
+  fill 12; for i in {0..9}; do printf '%s ' "$i"; done; echo
+
+  fill 9 ; printf 'DK ' ; prntlist 'prnt:sp_block_e' "${MX_CK[@]}"  ; pl '-'
+  fill 9 ; printf 'DL ' ; prntlist 'prnt:sp_block_e' "${MX_CL[@]}"  ; pl '-'
+  fill 9 ; printf 'LK ' ; prntlist 'prnt:sp_block_e' "${MX_CLK[@]}" ; pl '-'
 }
 
 Demo_mxname () {
@@ -87,11 +94,13 @@ Demo_dot_slant () {
 # ##############################
 Demo_dot () {
   fill 9 ; prntlist 'prnt:sp_dot' "${MX_XX[@]}" ; pl '-'
+  fill 6 ; prntlist 'prnt:sp_dot' "${MX_CY[@]}" ; pl '-'
   fill 6 ; prntlist 'prnt:sp_dot' "${MX_CX[@]}" ; pl '-'
   fill 4 ; prntlist 'prnt:sp_dot' "${MX_CA[@]}" ; pl '-'
   fill 4 ; prntlist 'prnt:sp_dot' "${MX_CB[@]}" ; pl '-'
   fill 2 ; prntlist 'prnt:sp_dot' "${MX_CK[@]}" ; pl '-'
   fill 2 ; prntlist 'prnt:sp_dot' "${MX_CL[@]}" ; pl '-'
+  fill 2 ; prntlist 'prnt:sp_dot' "${MX_CLK[@]}" ; pl '-'
 }
 # ##############################
 # ·╺━╸⏽ ●  ● ⏽╺━╸·
@@ -111,7 +120,11 @@ __randmico () { shuf -n 1 -e $(cat ~/mxx/mico/uni-etc); }
 
 MXMico () { ( (( RANDOM % 2 )) &&  MXDots ) || __randmico; }
 
-MXIntro () { ( (( RANDOM % 2 )) &&  MXDotLine ) || ( pl '-' ; Demo_block 0 0 ); }
+MXIntro () { 
+  fll 4; pastel paint "$C08" -n "${1:-NA}ms"
+   (( RANDOM % 2 )) &&  MXDotLine || Demo_block 0 0 
+}
+
 MYIntro () { 
   case $(( RANDOM % 3 )) in
     0 ) MXDotLine ;;
@@ -145,7 +158,7 @@ DemoAll () {
 
 __print_hexes () {
   while [ "$1" ]; do
-    pastel paint -n -o "${!1}" "$(pastel textcolor "${!1}")" " ${1} "
+    pastel paint -n -o "${!1}" "$(pastel textcolor "${!1}")" "${1}"
     pastel paint -n "${!1}" " ${!1}"
     printf ' '
     shift
@@ -159,12 +172,13 @@ Demo_hexes () {
   __print_hexes $(echo {S,W,W,W,W,E}BG)
   fillCols '━'
   __print_hexes $(echo CX{1..6})
+  # __print_hexes $(echo CY{1..6})
   __print_hexes $(echo C{01..06})
   __print_hexes $(echo C{09..14})
   fillCols '━'
   __print_hexes $(echo XBG C0{0,8,7} C15 XFG)
-  __print_hexes $(echo DK{1..6})
-  __print_hexes $(echo DL{1..6})
+  __print_hexes $(echo DK{1..9})
+  __print_hexes $(echo DL{1..9})
   fillCols '━'
 }
 
