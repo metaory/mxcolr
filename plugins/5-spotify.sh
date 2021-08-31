@@ -4,6 +4,7 @@ SPICETIFY_PATH=~/.config/spicetify
 SPICETIFY_THEME=Metafy
 MXC_SPOTIFY_TMP=/tmp/mxc/spotify-mx
 not_found_msg="spicetify not found."
+# #main > div > div.Root__top-container > nav { max-width: 100px; }
 
 if ! command -v spicetify &> /dev/null; then
   echo $not_found_msg

@@ -67,12 +67,19 @@ ApplyIcons () {
   # done
   # InfoDone "${#CUSTOM_ICONS[@]} CUSTOM_ICONS"
 
-  # local steam_tray_icon=/usr/share/pixmaps/steam_tray_mono.png
-  # [ -w "$steam_tray_icon" ] && APP_ICONS+=("$steam_tray_icon")
-  GenIcon "" "$DL6" /usr/share/pixmaps/steam_tray_mono.png 128
-  GenIcon "" "$DL6" /usr/share/icons/hicolor/48x48/apps/telegram.png
-  # convert "/usr/share/pixmaps/steam_tray_mono.png -fill "${DL6}" -colorize 100%  /usr/share/pixmaps/steam_tray_mono.png
-  # GenIcon "" "$DL6" /usr/share/icons/hicolor/48x48/apps/telegram.png
+  declare -A customIcons
+  customIcons[/usr/share/pixmaps/steam_tray_mono.png]=''
+  customIcons[/usr/share/icons/hicolor/48x48/apps/telegram.png]=''
+  
+  for x in "${!customIcons[@]}"; do
+    icon="${customIcons[$x]}"; path="${x}"
+    ! [ -w $path ] && continue
+    echo "icon $icon "
+    echo "path $path "
+    
+    GenIcon "$icon" "$DL6" "$path" 128
+  done
+
 
   InfoDone
 }
@@ -96,7 +103,7 @@ RestartAWM () {
 
   # if command -v steam &> /dev/null; then steam & disown; fi
   if command -v nm-applet &> /dev/null; then nm-applet & disown; fi
-  if command -v telegram-desktop &> /dev/null; then telegram-desktop & disown; fi
+  # if command -v telegram-desktop &> /dev/null; then telegram-desktop & disown; fi
 
   InfoDone
 }

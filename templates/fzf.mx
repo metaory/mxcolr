@@ -1,8 +1,11 @@
 # $MXNAME @ $MXC_V
 
-export FZF_DEFAULT_OPTS=" --height 40% --layout=reverse --no-border \
-  --color=fg:${XFG},bg:${XBG},hl:${WBG} \
-  --color=fg+:${SBG},bg+:${DK0},hl+:${WBX} \
+export FZF_DEFAULT_OPTS=" \
+  --height 100% \
+  --layout=reverse \
+  --no-border \
+  --color=fg:${DL7},bg:${DK2},hl:${WBG} \
+  --color=fg+:${SBG},bg+:${DL2},hl+:${WBX} \
   --color=info:${EBG},prompt:${C08},pointer:${WBX} \
   --color=marker:${C01},spinner:${WBG},header:${C01}"
 

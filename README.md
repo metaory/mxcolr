@@ -164,17 +164,17 @@ snapshot
 
 Requirements
 ------------
-- [bc](https://TODO)
 - [pastel](https://github.com/sharkdp/pastel)
-
+- [bc](https://archlinux.org/packages/extra/x86_64/bc)
 
 Optional Requirements
 ---------------------
-- [tmux](https://github.com/tmux/tmux)
-- [oomox](https://github.com/themix-project/oomox)
-- [spicetify-cli](https://github.com/khanhas/spicetify-cli)
-- [ffmpeg](https://github.com/FFmpeg/FFmpeg)
-- [vivid](https://github.com/sharkdp/vivid)
+- [tmux](https://github.com/tmux/tmux) Live preview
+- [oomox](https://github.com/themix-project/oomox) GTK Theme & Icons
+- [bullshit](https://aur.archlinux.org/packages/bullshit) Random Palette Name
+- [spicetify-cli](https://github.com/khanhas/spicetify-cli) Spotify
+- [ffmpeg](https://github.com/FFmpeg/FFmpeg) Wallpaper Tints & Custom Icons
+- [vivid](https://github.com/sharkdp/vivid) LS_COLORS
 
 Plugins
 -------

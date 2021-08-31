@@ -3,7 +3,7 @@
 # set -o pipefail # set -o errtrace
 # source $MXS/m.lib/lib.mxtrap.sh # if tty -s; then mlg interactive; else mlg none-intreractive;fi
 
- MXC_V='mxc-v1.5'
+ MXC_V='mxc-v1.6'
 MXBASE=$(dirname "$(realpath "$0")")
 MXDIST=~/.config/mxc
 MXTEMP=/tmp/mxc
@@ -28,10 +28,10 @@ mkdir /tmp/{mxc,mxc_hist} 2>/dev/null || true
 
 # ########################################
 # VARIABLES ##############################
-MX_CC=(C{00..15}); MX_CX=(CX{1..6});MX_CY=(CY{1..6}); MX_CK=(DK{0..9}); MX_CL=(DL{0..9}) 
+MX_CC=(C{00..15}); MX_CX=(CX{1..6});MX_CY=(CY{1..6}); MX_CLK=(LK{0..9}); MX_CK=(DK{0..9}); MX_CL=(DL{0..9}) 
 MX_CM=({S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G W{B,F}X)
 # ...
-MX_VARS=( "${MX_CC[@]}" "${MX_CX[@]}" "${MX_CY[@]}" "${MX_CK[@]}" "${MX_CL[@]}" "${MX_CM[@]}" )
+MX_VARS=( "${MX_CC[@]}" "${MX_CX[@]}" "${MX_CY[@]}" "${MX_CLK[@]}" "${MX_CK[@]}" "${MX_CL[@]}" "${MX_CM[@]}" )
 MX_TERM=( "${MX_VARS[@]/#/T}" )
 # mapfile -t MX_VARS <<<"$(eval echo \$\{MX_C{C,X,K,L,M}\[\@\]\}))"
 # ########################################
@@ -74,9 +74,10 @@ ApplyPlugs () {
   for plug_id in "${!plugs[@]}"; do
     local plugpath="${plugs[$plug_id]}"
     local pname="${plugpath##*/}";pname="${pname#*-}";pname="${pname%.*}"
-    local porder="${plugpath##*/}"; porder="${porder%-*}"
-    local lastplug="${plugs[(plug_id-1)]}"
-    local nextplug="${plugs[(plug_id+1)]}"
+    local porder="${plugpath##*/}"
+    porder="${porder%-*}"
+    local lastplug="${plugs[((plug_id - 1))]}"
+    local nextplug="${plugs[((plug_id + 1))]}"
 
     local cols;cols=$(tput cols); local plug_len=${#plugs[@]}
     local progress;progress=$(echo "scale=0; $cols/$plug_len*($plug_id+1)" | bc -l)
@@ -91,6 +92,8 @@ ApplyPlugs () {
 
     local applyfn="apply_${pname}"; "$applyfn"
   done
+
+  InfoDone
 }
 
 ReGenerate () {
@@ -98,24 +101,25 @@ ReGenerate () {
   SourcePlugs
   ReleaseSeed
   ReleaseTheme
-  fillCols '▄'; fillCols '▀'; DemoAll
+  fillCols '▄'; fillCols '▀'; Demo
   echo "FORCE_UPDATE $FORCE_UPDATE"
   (( "$1" )) && return
   (( "$FORCE_UPDATE" )) && InfoWarn "FORCE_UPDATE is ON"
   (( "$VERBOSE" )) && InfoWarn "VERBOSE is ON"
   [[ -n "$XOPT" ]] && InfoWarn "XOPT $XOPT"
-  ls "$MXTEMP"; PressToContinue "drafts ready" "$MXTEMP"
   # ............................ 
   ApplyTemplates
+  ls "$MXTEMP" 
+  (( "$TMP_ONLY" )) && InfoWarn "--tmp-only is set, exiting ..." && exit 0
+  # ............................ 
+  PressToContinue "drafts ready" "$MXTEMP"
   ApplyPlugs
 } 
 # ............................ #
 Generate () {
   rm /tmp/mxc/*
   GeneratePalette
-
   [[ -n "$TMUX" ]] && . "$MXBASE"/plugins/2-tmux.sh && apply_tmux
-
   Demo
 
   PrompRand
@@ -134,6 +138,7 @@ Generate () {
   case $1 in
     --force | -U ) FORCE_UPDATE=1; shift ;;
     --header ) shift; put_header "$@"; exit ;;
+    --tmp-only ) TMP_ONLY=1; shift ;;
     --verbose ) VERBOSE=1; shift ;;
   esac
   menu="$1"; shift
@@ -158,7 +163,7 @@ Generate () {
     --darkest           ) darkest "$@"                  ;;
     --lightest          ) lightest "$@"                 ;;
     -xp                 ) expandp "$@"                  ;;
-    *                   ) MXIntro                       ;;
+    *                   ) MXIntro "$menu"                  ;;
   esac
   mlg "━✔━━<MENU>━━┛"
 }
