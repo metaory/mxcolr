@@ -165,7 +165,7 @@ snapshot
 Requirements
 ------------
 - [pastel](https://github.com/sharkdp/pastel)
-- [bc](https://archlinux.org/packages/extra/x86_64/bc)
+- [GNU bc](https://www.gnu.org/software/bc)
 
 Optional Requirements
 ---------------------
