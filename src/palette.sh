@@ -159,8 +159,8 @@ gen_shades () {
   C00="$DK2"
   C08="$DK4"
   C07="$DL5"
-  XFG="$DL8"
-  C15="$DL9"
+  XFG="$DK8"
+  C15="$DK9"
 
   InfoDone
 }
