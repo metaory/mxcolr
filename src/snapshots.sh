@@ -81,15 +81,16 @@ SaveSnapshot () {
       mlg "snap exists $snap"
       . "$snap"/root.mx
       InfoError " duplicate 🢃🢃🢃"; InfoWarn "$snap"
+      echo $snap
       PromptConfirm " Create anyway "; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
     fi
   done
-  local stamp; stamp=$(date +%s); stamp="${stamp:(-8)}"
+  local stamp; stamp=$(date +%s); stamp="${stamp:((-8))}"
   local sname; sname="${stamp}_${ccount}_${MXNAME}"
-  local spath="$MXSNAP"/"$sname"
-  # pastel paint -n -b -o "$SBG" "$SFG" " $ccount "; pastel paint -n -b -o "$WBG" "$WFG" " $MXNAME "
+  local spath=$MXSNAP/$sname
   Demo_mxname $ccount; echo
   PressToContinue "creating new snapshot"
   cp "$MXDIST" "$spath" -r
   InfoDone "$spath"
 }
+
