@@ -1,5 +1,5 @@
 #!/usr/bin/env bash
-LS_COLORS_EXPORT_DESTINATION=$HOME/.zprofile
+LS_COLORS_EXPORT_DESTINATION=$HOME/.zshrc
 
 apply_lscolors () {
   ! command -v vivid    &> /dev/null && Info 1 "vivid command not found"    && return 1

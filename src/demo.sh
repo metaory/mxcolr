@@ -159,7 +159,7 @@ DemoAll () {
 __print_hexes () {
   while [ "$1" ]; do
     pastel paint -n -o "${!1}" "$(pastel textcolor "${!1}")" "${1}"
-    pastel paint -n "${!1}" " ${!1}"
+    pastel paint -n "${!1}" "${!1}"
     printf ' '
     shift
   done
