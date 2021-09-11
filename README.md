@@ -165,11 +165,11 @@ snapshot
 Requirements
 ------------
 - [pastel](https://github.com/sharkdp/pastel)
-- [bc](https://archlinux.org/packages/extra/x86_64/bc)
+- [GNU bc](https://www.gnu.org/software/bc)
 
 Optional Requirements
 ---------------------
-- [tmux](https://github.com/tmux/tmux) Live preview
+- [tmux](https://github.com/tmux/tmux) Terminal Agnostic Live preview
 - [oomox](https://github.com/themix-project/oomox) GTK Theme & Icons
 - [bullshit](https://aur.archlinux.org/packages/bullshit) Random Palette Name
 - [spicetify-cli](https://github.com/khanhas/spicetify-cli) Spotify
