@@ -121,14 +121,19 @@ gen_shades () {
   OBG="$(pastel lighten 0.08 "$XBG" | pastel saturate 0.04 | pastel format hex)"; # OBG="$(pastel desaturate  0.20 "$WBG" | pastel darken  0.30 | pastel format hex)"
 
   if (( "$DEBUG" )); then
-    __print_hexes $(echo DK{1..9})
-    __print_hexes $(echo DL{1..9})
-    __print_hexes $(echo LK{1..9})
+    __print_hexes $(echo DK{0..9})
+    __print_hexes $(echo DL{0..9})
+    __print_hexes $(echo LK{0..9})
     Demo_shades4; echo
     printf '%10s %10s %10s %10s %10s %10s\n' "expoSin" "expoCos" "expoArc"
   fi
+
+  # local base=$(pastel darken "0.1" "$XBG" | pastel desaturate "0.2")
+      # pastel lighten "$3" "$base" | \
+
   __gen_shade () {
-    pastel lighten "$3" "$XBG" | \
+    pastel desaturate "0.2" "$XBG" | \
+      pastel lighten "$3" | \
       pastel "$1" "$2" | \
       pastel format hex
     }
@@ -138,29 +143,30 @@ gen_shades () {
     local act2=saturate
 
     local expoArc="0$(echo "scale=2; e(a($i-3))/10" | bc -l)"
-    local expoSin="0$(echo "scale=2; e(s($i))/10"   | bc -l)"
-    local expoCos="0$(echo "scale=2; e(c($i))/10"   | bc -l)"
+    local expoSin="0$(echo "scale=2; e(s($i))/10" | bc -l)"
+    local expoCos="0$(echo "scale=2; e(c($i))/10" | bc -l)"
 
     declare -g "DL$i=$(__gen_shade $act2 $expoSin $expoArc)"
     declare -g "DK$i=$(__gen_shade $act2 $expoCos $expoArc)"
-    declare -g "LK$i=$(__gen_shade $act1 $expoArc $expoArc)"
+    declare -g "LK$i=$(pastel lighten 0.2 \
+      $(__gen_shade $act2 $expoArc $expoArc) | pastel format hex)"
 
     (( "$DEBUG" )) && printf '%10s %10s %10s  %10s %10s %10s\n' "$expoSin" "$expoCos" "$expoArc"
   done
 
   if (( "$DEBUG" )); then
     Demo_shades4
-    __print_hexes $(echo DK{1..9})
-    __print_hexes $(echo DL{1..9})
-    __print_hexes $(echo LK{1..9})
+    __print_hexes $(echo DK{0..9})
+    __print_hexes $(echo DL{0..9})
+    __print_hexes $(echo LK{0..9})
   fi
 
   OFG="$WBX"
-  C00="$DK2"
+  C00="$DL3"
   C08="$DK4"
-  C07="$DL5"
+  C07="$DL7"
   XFG="$DK8"
-  C15="$DK9"
+  C15="$LK9"
 
   InfoDone
 }

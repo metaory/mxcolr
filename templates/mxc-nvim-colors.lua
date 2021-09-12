@@ -109,7 +109,18 @@ local colors = {
   dl6 = "$DL6",
   dl7 = "$DL7",
   dl8 = "$DL8",
-  dl9 = "$DL9"
+  dl9 = "$DL9",
+
+  lk0 = "$LK0",
+  lk1 = "$LK1",
+  lk2 = "$LK2",
+  lk3 = "$LK3",
+  lk4 = "$LK4",
+  lk5 = "$LK5",
+  lk6 = "$LK6",
+  lk7 = "$LK7",
+  lk8 = "$LK8",
+  lk9 = "$LK9"
 }
 
 return colors
