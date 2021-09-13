@@ -126,7 +126,7 @@ Generate () {
   case $REPLY in
     k ) Info 'Keeping draft ·' ; SourcePlugs  ;;
     u ) Info 'Proceeding ····' ; ReGenerate   ;;
-    U ) Info 'Forcing ·······' ; XOPT='force'; ReGenerate   ;;
+    U ) Info 'Forcing ·······' ; FORCE_UPDATE=1; ReGenerate   ;;
     n ) Info 'Again ·········' ; Generate     ;;
     d ) Info 'Full Demo ·····' ; DemoAll      ;;
     * ) Info 'Reverting ·····' ; Revert; ReGenerate 1 ;;

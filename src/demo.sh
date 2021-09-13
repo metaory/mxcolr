@@ -177,8 +177,8 @@ Demo_hexes () {
   __print_hexes $(echo C{09..14})
   fillCols '━'
   __print_hexes $(echo XBG C0{0,8,7} C15 XFG)
-  __print_hexes $(echo DK{1..9})
-  __print_hexes $(echo DL{1..9})
+  __print_hexes $(echo DK{0..9})
+  __print_hexes $(echo DL{0..9})
   fillCols '━'
 }
 
