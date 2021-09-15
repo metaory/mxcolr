@@ -50,6 +50,8 @@
 *.c14: $C14
 *.c15: $C15
 
+*.wbx: $WBG
+*.wfx: $WFG
 *.sbg: $SBG
 *.sfg: $SFG
 *.wbg: $WBG

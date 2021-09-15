@@ -75,12 +75,15 @@ Shell
 > intended to be sourced in `.profile` or `bashrc` and have apps that can directly access system env read system scheme from it
 
 Lua scheme
----
- tpl: [mxc-nvim-colors.lua](./templates/mxc-nvim-colors.lua)
- out: [mxc-nvim-colors.lua](./assets/samples/mxc-nvim-colors.lua)
+----------
+
+tpl: [mxc-nvim-colors.lua](./templates/mxc-nvim-colors.lua)
+out: [mxc-nvim-colors.lua](./assets/samples/mxc-nvim-colors.lua)
+
 Vim
 ---
- output: [root-mx.vim](./assets/samples/root-mx.vim)
+
+output: [root-mx.vim](./assets/samples/root-mx.vim)
 plugin: [2-vim.sh](./plugins/2-vim.sh)
 
 > intented to be sourced in vimrc
@@ -142,11 +145,11 @@ unless different destination is set
 
 generate
 --------
-![generate 1.4](./assets/screenshots/generate_210523133127.gif)
+![generate 1.4](./assets/screenshots/gifcast_210915123230_generate.gif)
 
 update
 ------
-![update 1.5](./assets/screenshots/gifcast_210707121038.gif)
+![update 1.5](./assets/screenshots/gifcast_210915123404_update.gif)
 
 snapshot
 --------
@@ -209,10 +212,11 @@ Plugins
           /  /:/      |  |:|       \  \:\     
          /__/:/       |__|:|        \  \:\    
          \__\/         \__\|         \__\/    
-             @ mxc-v1.5
+             @ mxc-v1.6
 
 <p align="center">
   <img width="374" height="40" src="./assets/screenshots/footer_2021-05-16-221932_374x40_scrot.png">
 </p>
+
 
 
