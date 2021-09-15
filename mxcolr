@@ -3,7 +3,6 @@
 # set -o pipefail # set -o errtrace
 # source $MXS/m.lib/lib.mxtrap.sh # if tty -s; then mlg interactive; else mlg none-intreractive;fi
 
- MXC_V='mxc-v1.6'
 MXBASE=$(dirname "$(realpath "$0")")
 MXDIST=~/.config/mxc
 MXTEMP=/tmp/mxc
@@ -21,6 +20,8 @@ if [ -d "$MXLIB" ]; then . "$MXLIB"/lib.common.sh; else mlg () { echo "${FUNCNAM
 ! [ -e "$OTHEME" ] && cp -v "$MXBASE/assets/samples/root.mx" "$OTHEME" 
 
 . "$OTHEME"
+
+MXC_V='mxc-v1.6'
 
 mkdir "$MXDIST" -p 2>/dev/null || true 
 mkdir "$MXSNAP" -p 2>/dev/null || true 
