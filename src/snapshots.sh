@@ -32,17 +32,13 @@ ListSnapshots () {
     return
   fi
 
-  local selected="${snapshots["$((choice-1))"]}"
+  local selected="${snapshots["$((choice))"]}"
   if [ -n "$selected" ]; then
     mlg "selected $selected"
     mlg "choice $choice"
     pastel paint "$XFG" -b "selectd ${selected}"
-    Info Broken; PressToContinue
-    # exit 1
     ClearTemp
-    # TODO copy whole dir
     cp "$selected"/seed.mx "$M_SEED"
-
     ReGenerate
     return
   else

@@ -7,7 +7,7 @@ SaveSeed () {
 
   PopulateFileWith "$M_SEED" 'FLUSH' \
     "export \${c}=\'\${!c}\'" \
-    MXNAME WBG SBG EBG
+    MXNAME SBG WBG EBG
 
   . "$M_SEED" && InfoDone "$M_SEED"
 }
