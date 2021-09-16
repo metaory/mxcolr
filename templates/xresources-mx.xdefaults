@@ -63,6 +63,13 @@
 *.obg: $OBG
 *.ofg: $OFG
 
+*.cx1: $CX1
+*.cx2: $CX2
+*.cx3: $CX3
+*.cx4: $CX4
+*.cx5: $CX5
+*.cx6: $CX6
+
 *.dk0: $DK0
 *.dk1: $DK1
 *.dk2: $DK2
@@ -84,3 +91,14 @@
 *.dl7: $DL7
 *.dl8: $DL8
 *.dl9: $DL9
+
+*.lk0: $LK0
+*.lk1: $LK1
+*.lk2: $LK2
+*.lk3: $LK3
+*.lk4: $LK4
+*.lk5: $LK5
+*.lk6: $LK6
+*.lk7: $LK7
+*.lk8: $LK8
+*.lk9: $LK9
