@@ -13,23 +13,23 @@ usage
 
 flags
 =====
-    -i, --init                | initial bootstrap
-    -g, --generate <strategy> | <vivid, lch> (Pastel randomization strategy) default is lch
-    -u, --update              | apply to all plugins
-    -U, --update-force        | force apply to all plugins without any prompts
-    -d, --demo                | basic demo
-    -D, --demo-all            | complete demo
-    -l, --list                | list all saved snapshots
-    -s, --save                | save snapshot
-    --tmp-only                | exit silently after placing temp files in /tmp/mxc
-    --gen-icon                | [char, path]
-    --lorem                   | [char, length]
-    --lorem-cols              | [char]
-    --darkest                 | [colors]
-    --lightest                | [colors]
-    --force                   | forcefull update
-    --verbose                 | verbose logs
-                              | intro
+    -i, init                | initial bootstrap
+    -g, generate <strategy> | <vivid, lch> (Pastel randomization strategy) default is lch
+    -u, update              | apply to all plugins
+    -U, update-force        | force apply to all plugins without any prompts
+    -d, demo                | basic demo
+    -D, demo-all            | complete demo
+    -l, list                | list all saved snapshots
+    -s, save                | save snapshot
+    --tmp-only              | exit silently after placing temp files in /tmp/mxc
+    --gen-icon              | [char, path]
+    --lorem                 | [char, length]
+    --lorem-cols            | [char]
+    --darkest               | [colors]
+    --lightest              | [colors]
+    --force                 | forcefull update
+    --verbose               | verbose logs
+                            | intro
 
 Motivations
 ===========
