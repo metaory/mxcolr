@@ -101,7 +101,7 @@ css / less for web/electron apps
 ***
 
 <p align="center">
-  <img src="./assets/screenshots/samples_2021-05-16-145353_361x247_scrot.png">
+  <img src="./assets/screenshots/2021-09-17-082344_331x303_scrot.png">
 </p>
 
 Basic Usage
@@ -156,6 +156,8 @@ snapshot
 ![snapshot](./assets/screenshots/snapshot_210523132148.gif)
   
 ***
+  
+![screenshot](./assets/screenshots/2021-09-17-083105_2560x1080_scrot.png)
   
 ![screenshot](./assets/screenshots/2021-05-10-021854_1920x1080_scrot.png)
 
