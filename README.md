@@ -6,10 +6,10 @@
 
 usage
 =====
-    mxcolr --init
-    mxcolr --generate <strategy>
-    mxcolr --demo
-    mxcolr --update
+    mxcolr init
+    mxcolr generate <strategy>
+    mxcolr demo
+    mxcolr update
 
 flags
 =====
