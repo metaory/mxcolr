@@ -66,16 +66,16 @@ Demo_card () {
 # Demo_shades1()  { fill 1 ; prntlist 'prnt:sp_lash' "${MX_CK[@]}"     ; pl '-' ; }j
 # Demo_shades2()  { fill 1 ; prntlist 'prnt:sp_pentagon' "${MX_CK[@]}" ; pl '-' ; }
 Demo_shades3()  { 
-  fill 9 ; printf 'DK ' ; prntlist 'prnt:sp_dotline' "${MX_CK[@]}"  ; pl '-'
-  fill 9 ; printf 'DL ' ; prntlist 'prnt:sp_dotline' "${MX_CK[@]}"  ; pl '-'
-  fill 9 ; printf 'LK ' ; prntlist 'prnt:sp_dotline' "${MX_CLK[@]}" ; pl '-'
+  fill 0 ; printf 'DK ' ; prntlist 'prnt:sp_dotline' "${MX_CK[@]}"  ; pl '-'
+  fill 0 ; printf 'DL ' ; prntlist 'prnt:sp_dotline' "${MX_CK[@]}"  ; pl '-'
+  fill 0 ; printf 'LK ' ; prntlist 'prnt:sp_dotline' "${MX_CLK[@]}" ; pl '-'
 }
 Demo_shades4()  { 
-  fill 12; for i in {0..9}; do printf '%s ' "$i"; done; echo
+  fill 3; for i in {0..9}; do printf '%s ' "$i"; done; echo
 
-  fill 9 ; printf 'DK ' ; prntlist 'prnt:sp_block_e' "${MX_CK[@]}"  ; pl '-'
-  fill 9 ; printf 'DL ' ; prntlist 'prnt:sp_block_e' "${MX_CL[@]}"  ; pl '-'
-  fill 9 ; printf 'LK ' ; prntlist 'prnt:sp_block_e' "${MX_CLK[@]}" ; pl '-'
+  fill 0 ; printf 'DK ' ; prntlist 'prnt:sp_block_e' "${MX_CK[@]}"  ; pl '-'
+  fill 0 ; printf 'DL ' ; prntlist 'prnt:sp_block_e' "${MX_CL[@]}"  ; pl '-'
+  fill 0 ; printf 'LK ' ; prntlist 'prnt:sp_block_e' "${MX_CLK[@]}" ; pl '-'
 }
 
 Demo_mxname () {

@@ -157,7 +157,7 @@ snapshot
   
 ***
   
-![screenshot](./assets/screenshots/2021-09-17-083105_2560x1080_scrot.png)
+![screenshot](./assets/screenshots/2021-09-17-084207_2560x1080_scrot.png)
   
 ![screenshot](./assets/screenshots/2021-05-10-021854_1920x1080_scrot.png)
 
