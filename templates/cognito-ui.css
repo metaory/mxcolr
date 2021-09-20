@@ -1,0 +1,92 @@
+.logo-customizable {
+	max-width: 60%;
+	max-height: 30%;
+}
+.banner-customizable {
+	padding: 25px 0px 25px 10px;
+	background-color: ${DL4};
+}
+.label-customizable {
+	font-weight: 300;
+}
+.textDescription-customizable {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display: block;
+	font-size: 16px;
+}
+.idpDescription-customizable {
+	padding-top: 10px;
+	padding-bottom: 10px;
+	display: block;
+	font-size: 16px;
+}
+.legalText-customizable {
+	color: ${C08};
+	font-size: 11px;
+}
+.submitButton-customizable {
+	font-size: 14px;
+	font-weight: bold;
+	margin: 20px 0px 10px 0px;
+	height: 40px;
+	width: 100%;
+	color: ${C15};
+	background-color: ${C05};
+}
+.submitButton-customizable:hover {
+	color: ${C15};
+	background-color: ${CX5};
+}
+.errorMessage-customizable {
+	padding: 5px;
+	font-size: 14px;
+	width: 100%;
+	background: ${DL2};
+	border: 2px solid ${CX1};
+	color: ${C01};
+}
+.inputField-customizable {
+	width: 100%;
+	height: 34px;
+	color: ${DL8};
+	background-color: ${DK2};
+	border: 1px solid ${C07};
+}
+.inputField-customizable:focus {
+	border-color: ${CY4};
+	outline: 0;
+}
+.idpButton-customizable {
+	height: 40px;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 15px;
+	color: ${C15};
+	background-color: ${WBG};
+	border-color: ${WBX};
+}
+.idpButton-customizable:hover {
+	color: ${C15};
+	background-color: ${CY4};
+}
+.socialButton-customizable {
+	height: 40px;
+	text-align: left;
+	width: 100%;
+	margin-bottom: 15px;
+}
+.redirect-customizable {
+	text-align: center;
+}
+.passwordCheck-notValid-customizable {
+	color: ${CX1};
+}
+.passwordCheck-valid-customizable {
+	color: ${C02};
+}
+.background-customizable {
+  color: ${DK2};
+	background-color: lighten(${DK9}, 10%);
+}
+

@@ -143,6 +143,18 @@ unless different destination is set
 
 ***
 
+## Chain usage temp-only
+`mxcolr --tmp-only update` 
+will exit silently after placing temp files in /tmp/mxc
+[cognito-ui.css](./templates/cognito-ui.css) 
+
+for example:
+```
+mxcolr --tmp-only update
+aws cognito-idp set-ui-customization --user-pool-id $COGNITO_POOL_ID --css "$(cat /tmp/mxc/cognito-ui.css)"
+```
+***
+
 generate
 --------
 ![generate 1.4](./assets/screenshots/gifcast_210915123230_generate.gif)
