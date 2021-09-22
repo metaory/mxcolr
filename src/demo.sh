@@ -153,6 +153,18 @@ DemoAll () {
 
   Demo_dot_slant
   MXDotLine
+  if command -v kitty && command -v scrot &> /dev/null; then
+    kitty sh -c "mxcolr demo;
+    sleep 2;
+    scrot -a 300,110,310,300 /tmp/mxc/mxc-full.png;
+    "
+
+    kitty sh -c "mxcolr demo;
+    sleep 2;
+    scrot -a 300,380,310,32 /tmp/mxc/mxc-foot.png;
+    "
+  fi
+
   fillCols
 }
 
