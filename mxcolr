@@ -152,7 +152,7 @@ Generate () {
   case $menu in
     -g | generate     ) Generate                      ;;
     -u | update       ) ReGenerate                    ;;
-    -U | update-force ) ReGenerate                    ;;
+    -U | update-force ) FORCE_UPDATE=1; ReGenerate    ;;
     -d | demo         ) Demo                          ;;
     -D | demo-all     ) DemoAll                       ;;
     -i | init         ) . "$MXBASE"/plugins/2-tmux.sh ; apply_tmux 1 ; Demo_block ;;
