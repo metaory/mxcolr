@@ -158,13 +158,14 @@ Generate () {
     -i | init         ) . "$MXBASE"/plugins/2-tmux.sh ; apply_tmux 1 ; Demo_block ;;
     -l | list         ) ListSnapshots                 ;;
     -s | save         ) SaveSnapshot                  ;;
+    --demo-image      ) SaveDemoImage                 ; exit ;;
     --gen-icon        ) GenIcon "$@"                  ; exit ;;
     --lorem           ) Lorem  "$@"                   ;;
     --lorem-cols      ) LoremCols                     ;;
     --darkest         ) darkest "$@"                  ;;
     --lightest        ) lightest "$@"                 ;;
     -xp               ) expandp "$@"                  ;;
-    *                 ) MXIntro "$menu"                  ;;
+    *                 ) MXIntro "$menu"               ;;
   esac
   mlg "━✔━━<MENU>━━┛"
 }
