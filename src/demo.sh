@@ -153,6 +153,9 @@ DemoAll () {
 
   Demo_dot_slant
   MXDotLine
+  fillCols
+}
+SaveDemoImage () {
   if command -v kitty && command -v scrot &> /dev/null; then
     kitty sh -c "mxcolr demo;
     sleep 2;
@@ -164,8 +167,6 @@ DemoAll () {
     scrot -a 300,380,310,32 /tmp/mxc/mxc-foot.png;
     "
   fi
-
-  fillCols
 }
 
 __print_hexes () {
