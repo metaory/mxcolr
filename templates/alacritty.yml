@@ -1,0 +1,60 @@
+#  $MXNAME @ $MXC_V
+colors                :
+  primary             :
+    background        : '${XBG}'
+    foreground        : '${XFG}'
+    bright_foreground : '${WBG}'
+  normal              :
+    black             : '${DK2}'
+    red               : '${C01}'
+    green             : '${C02}'
+    yellow            : '${C03}'
+    blue              : '${C04}'
+    magenta           : '${C05}'
+    cyan              : '${C06}'
+    white             : '${DK9}'
+  bright              :
+    black             : '${DL4}'
+    red               : '${CX1}'
+    green             : '${CX2}'
+    yel               : '${CX3}'
+    blue              : '${CX4}'
+    magenta           : '${CX5}'
+    cyan              : '${CX6}'
+    white             : '${LK9}'
+  dim                 :
+   black              : '${DL3}'
+   red                : '${CY1}'
+   green              : '${CY2}'
+   yellow             : '${CY3}'
+   blue               : '${CY4}'
+   magenta            : '${CY5}'
+   cyan               : '${CY6}'
+   white              : '${DL7}'
+  cursor              :
+    text              : CellBackground
+    cursor            : CellForeground
+  vi_mode_cursor      :
+    text              : CellBackground
+    cursor            : '${SBG}'
+  selection           :
+   text               : CellBackground
+   background         : CellForeground
+  search:
+    matches:
+     foreground: '${EFG}'
+     background: '${EBG}'
+    focused_match:
+     foreground: '${SFG}'
+     background: '${SBG}'
+    bar:
+     background: '${DK1}'
+     foreground: '${WBG}'
+  indexed_colors      :
+    - { index         : 20, color      : '${SBG}' }
+    - { index         : 21, color      : '${SFG}' }
+    - { index         : 30, color      : '${WBG}' }
+    - { index         : 31, color      : '${WFG}' }
+    - { index         : 40, color      : '${EBG}' }
+    - { index         : 41, color      : '${EFG}' }
+
