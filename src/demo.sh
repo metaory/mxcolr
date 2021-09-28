@@ -94,10 +94,10 @@ Demo_dot_slant () {
 # ##############################
 Demo_dot () {
   fill 9 ; prntlist 'prnt:sp_dot' "${MX_XX[@]}" ; pl '-'
-  fill 6 ; prntlist 'prnt:sp_dot' "${MX_CY[@]}" ; pl '-'
   fill 6 ; prntlist 'prnt:sp_dot' "${MX_CX[@]}" ; pl '-'
   fill 4 ; prntlist 'prnt:sp_dot' "${MX_CA[@]}" ; pl '-'
   fill 4 ; prntlist 'prnt:sp_dot' "${MX_CB[@]}" ; pl '-'
+  fill 6 ; prntlist 'prnt:sp_dot' "${MX_CY[@]}" ; pl '-'
   fill 2 ; prntlist 'prnt:sp_dot' "${MX_CK[@]}" ; pl '-'
   fill 2 ; prntlist 'prnt:sp_dot' "${MX_CL[@]}" ; pl '-'
   fill 2 ; prntlist 'prnt:sp_dot' "${MX_CLK[@]}" ; pl '-'
@@ -185,13 +185,14 @@ Demo_hexes () {
   __print_hexes $(echo {S,W,W,W,W,E}BG)
   fillCols '━'
   __print_hexes $(echo CX{1..6})
-  # __print_hexes $(echo CY{1..6})
   __print_hexes $(echo C{01..06})
   __print_hexes $(echo C{09..14})
+  __print_hexes $(echo CY{1..6})
   fillCols '━'
   __print_hexes $(echo XBG C0{0,8,7} C15 XFG)
   __print_hexes $(echo DK{0..9})
   __print_hexes $(echo DL{0..9})
+  __print_hexes $(echo LK{0..9})
   fillCols '━'
 }
 

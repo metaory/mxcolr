@@ -4,15 +4,23 @@
   <img width="193" height="64" src="./assets/screenshots/seed_2021-05-14-123246_193x64_scrot.png">
 </p>
 
-usage
+Usage
 =====
-    mxcolr init
-    mxcolr generate <strategy>
-    mxcolr demo
-    mxcolr update
+    mxcolr [options] <action> [params]
 
-flags
-=====
+Options
+=======
+    --force                 | forcefull update
+    --verbose               | verbose logs
+    --tmp-only              | exit silently after placing temp files in /tmp/mxc
+    --gen-icon              | [char, path]
+    --lorem                 | [char, length]
+    --lorem-cols            | [char]
+    --darkest               | [colors]
+    --lightest              | [colors]
+
+Actions
+=======
     -i, init                | initial bootstrap
     -g, generate <strategy> | <vivid, lch> (Pastel randomization strategy) default is lch
     -u, update              | apply to all plugins
@@ -21,15 +29,7 @@ flags
     -D, demo-all            | complete demo
     -l, list                | list all saved snapshots
     -s, save                | save snapshot
-    --tmp-only              | exit silently after placing temp files in /tmp/mxc
-    --gen-icon              | [char, path]
-    --lorem                 | [char, length]
-    --lorem-cols            | [char]
-    --darkest               | [colors]
-    --lightest              | [colors]
-    --force                 | forcefull update
-    --verbose               | verbose logs
-                            | intro
+     *                      | intro
 
 Motivations
 ===========

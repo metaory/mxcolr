@@ -83,29 +83,29 @@ gen_random () {
     fillCols ' ▪'; InfoDone "${strategy^^} generated, after $attmp attempts,proceeding"; return
   fi
 }
-# well almost!
+# well almost! not anymore..
 gen_idempotents () {
   local ds;ds=$(darkest SBG WBG EBG)
 
-  C01="$(pastel mix ${!ds} crimson       -f 0.6 | pastel mix - deeppink          -f 0.6 | pastel mix - "$(pastel random -n 1 -s lch_hue)" -f 0.6 | pastel saturate 0.06 | pastel format hex)"
-  C02="$(pastel mix ${!ds} darkseagreen  -f 0.6 | pastel mix - mediumspringgreen -f 0.6 | pastel mix - "$(pastel random -n 1 -s lch_hue)" -f 0.6 | pastel saturate 0.06 | pastel format hex)"
-  C03="$(pastel mix ${!ds} orange        -f 0.6 | pastel mix - coral             -f 0.6 | pastel mix - "$(pastel random -n 1 -s lch_hue)" -f 0.6 | pastel saturate 0.06 | pastel format hex)"
-  C04="$(pastel mix ${!ds} blue          -f 0.6 | pastel mix - deepskyblue       -f 0.6 | pastel mix - "$(pastel random -n 1 -s lch_hue)" -f 0.6 | pastel saturate 0.06 | pastel format hex)"
-  C05="$(pastel mix ${!ds} indigo        -f 0.6 | pastel mix - slateblue         -f 0.6 | pastel mix - "$(pastel random -n 1 -s lch_hue)" -f 0.6 | pastel saturate 0.06 | pastel format hex)"
-  C06="$(pastel mix ${!ds} darkturquoise -f 0.6 | pastel mix - deepskyblue       -f 0.6 | pastel mix - "$(pastel random -n 1 -s lch_hue)" -f 0.6 | pastel saturate 0.06 | pastel format hex)"
+  C01="$(pastel mix ${!ds} "$(pastel random -n 1 -s lch_hue)" -f 0.5 | pastel mix - crimson       -f 0.6 | pastel mix - deeppink          -f 0.7 | pastel saturate 0.08 | pastel format hex)"
+  C02="$(pastel mix ${!ds} "$(pastel random -n 1 -s lch_hue)" -f 0.5 | pastel mix - darkseagreen  -f 0.6 | pastel mix - mediumspringgreen -f 0.7 | pastel saturate 0.08 | pastel format hex)"
+  C03="$(pastel mix ${!ds} "$(pastel random -n 1 -s lch_hue)" -f 0.5 | pastel mix - orange        -f 0.6 | pastel mix - coral             -f 0.7 | pastel saturate 0.08 | pastel format hex)"
+  C04="$(pastel mix ${!ds} "$(pastel random -n 1 -s lch_hue)" -f 0.5 | pastel mix - blue          -f 0.6 | pastel mix - deepskyblue       -f 0.7 | pastel saturate 0.08 | pastel format hex)"
+  C05="$(pastel mix ${!ds} "$(pastel random -n 1 -s lch_hue)" -f 0.5 | pastel mix - indigo        -f 0.6 | pastel mix - slateblue         -f 0.7 | pastel saturate 0.08 | pastel format hex)"
+  C06="$(pastel mix ${!ds} "$(pastel random -n 1 -s lch_hue)" -f 0.5 | pastel mix - darkturquoise -f 0.6 | pastel mix - deepskyblue       -f 0.7 | pastel saturate 0.08 | pastel format hex)"
 
   for i in {09..14}; do
     local c="C0$(echo "$i - 8" | bc)"; c="${!c}"
     declare -g "C$i=$(pastel lighten   0.10 "$c" | pastel format hex)"
   done
 
-  WBX="$(pastel saturate  0.30 "$WBG" | pastel lighten 0.10 | pastel format hex)" ; # ZXX
-  WFX="$(pastel textcolor      "$WBX" | pastel darken  0.20 | pastel format hex)" ; # ZXF
+  WBX="$(pastel saturate  0.30 "$WBG" | pastel lighten 0.10 | pastel format hex)"
+  WFX="$(pastel textcolor      "$WBX" | pastel darken  0.20 | pastel format hex)"
 
   for i in {1..6}; do
     local c="C0$i"; c="${!c}"
-    declare -g "CX$i=$(pastel saturate    0.24 "$c" | pastel lighten  0.02 | pastel format hex)"
-    declare -g "CY$i=$(pastel desaturate  0.16 "$c" | pastel lighten  0.06 | pastel format hex)"
+    declare -g "CX$i=$(pastel saturate    0.30 "$c" | pastel darken   0.04 | pastel format hex)"
+    declare -g "CY$i=$(pastel desaturate  0.32 "$c" | pastel lighten  0.10 | pastel format hex)"
   done
 
   WFG="$(pastel textcolor "$WBG" | pastel darken 0.2 | pastel format hex)"
@@ -151,7 +151,7 @@ gen_shades () {
     declare -g "DL$i=$(__gen_shade $act2 $expoSin $expoArc)"
     declare -g "DK$i=$(__gen_shade $act2 $expoCos $expoArc)"
     declare -g "LK$i=$(pastel lighten 0.2 \
-      $(__gen_shade $act2 $expoArc $expoArc) | pastel format hex)"
+      $(__gen_shade $act2 $expoArc $expoArc) | pastel desaturate 0.07 | pastel format hex)"
 
     (( "$DEBUG" )) && printf '%10s %10s %10s  %10s %10s %10s\n' "$expoSin" "$expoCos" "$expoArc"
   done
@@ -205,6 +205,7 @@ UpdatePalette () {
 # e (x)  The exponential function of raising e to the value x.
 # j (n,x) The Bessel function of integer order n of x.
 
+(( "$DEBUG" )) && gen_shades
 (( "$DEBUG" )) && gen_idempotents
 (( "$DEBUG" )) && Demo && Demo_slant && Demo_hexes
 
