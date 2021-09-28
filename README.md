@@ -196,6 +196,7 @@ Optional Requirements
 Plugins
 -------
 - Xresources
+- Alacritty
 - Kitty
 - Vim `colors.vim` Nvim `colors.lua`
 - Vimium
