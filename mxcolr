@@ -158,6 +158,7 @@ Generate () {
     -i | init         ) . "$MXBASE"/plugins/2-tmux.sh ; apply_tmux 1 ; Demo_block ;;
     -l | list         ) ListSnapshots                 ;;
     -s | save         ) SaveSnapshot                  ;;
+    intro             ) MXIntro "$menu"               ;;
     --demo-image      ) SaveDemoImage                 ; exit ;;
     --gen-icon        ) GenIcon "$@"                  ; exit ;;
     --lorem           ) Lorem  "$@"                   ;;
@@ -165,7 +166,7 @@ Generate () {
     --darkest         ) darkest "$@"                  ;;
     --lightest        ) lightest "$@"                 ;;
     -xp               ) expandp "$@"                  ;;
-    *                 ) MXIntro "$menu"               ;;
+    *                 ) PrintMenu                     ; exit ;;
   esac
   mlg "━✔━━<MENU>━━┛"
 }
