@@ -1,0 +1,8 @@
+{
+  "name": "mxc",
+  "version": "1.6.1",
+  "main": "index.js",
+  "repository": "git@github.com:metaory/mxcolr.git",
+  "author": "metaory <metaory@gmail.com>",
+  "license": "MIT"
+}
