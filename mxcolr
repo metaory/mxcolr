@@ -13,6 +13,7 @@ M_SEED=$MXTEMP/seed.mx
 O_SEED=$MXDIST/seed.mx
 
 if ! command -v pastel &> /dev/null; then echo "pastel not found."; echo " ==> https://github.com/sharkdp/pastel#installation"; exit 1; fi
+if ! command -v jq &> /dev/null; then echo "jq not found."; echo " ==> https://github.com/stedolan/jq"; exit 1; fi
 
 if [ -d "$MXLIB" ]; then . "$MXLIB"/lib.common.sh; else mlg () { echo "${FUNCNAME[1]}:${BASH_LINENO[1]} => ${*}" >> /tmp/mxsh.log; }; fi
 
@@ -21,7 +22,7 @@ if [ -d "$MXLIB" ]; then . "$MXLIB"/lib.common.sh; else mlg () { echo "${FUNCNAM
 
 . "$OTHEME"
 
-MXC_V='mxc-v1.6'
+MXC_V="mxc-v$(cat $MXBASE/package.json | jq -r '.version')"
 
 mkdir "$MXDIST" -p 2>/dev/null || true 
 mkdir "$MXSNAP" -p 2>/dev/null || true 
