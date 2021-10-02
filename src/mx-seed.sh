@@ -3,7 +3,10 @@
 SaveSeed () {
   Info " Save Temp Seed"  
 
-  MXNAME="$(bullshit | cut -d' ' -f1 | cut -d'-' -f1)" ; export MXNAME
+  MXNAME="MXC_${MXC_V}"
+
+  command -v bullshit &> /dev/null \
+    && MXNAME="$(bullshit | cut -d' ' -f1 | cut -d'-' -f1)"
 
   PopulateFileWith "$M_SEED" 'FLUSH' \
     "export \${c}=\'\${!c}\'" \

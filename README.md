@@ -183,12 +183,15 @@ Requirements
 ------------
 - [pastel](https://github.com/sharkdp/pastel)
 - [GNU bc](https://www.gnu.org/software/bc)
+- [jq](https://github.com/stedolan/jq)
 
 Optional Requirements
 ---------------------
 - [tmux](https://github.com/tmux/tmux) Terminal Agnostic Live preview
 - [oomox](https://github.com/themix-project/oomox) GTK Theme & Icons
 - [bullshit](https://aur.archlinux.org/packages/bullshit) Random Palette Name
+- [bullshit](https://aur.archlinux.org/packages/bullshit) [origin](http://man2.aiju.de/1/bullshit) Random Palette Name
+- [scrot](https://github.com/dreamer/scrot) Palette Image Screenshot
 - [spicetify-cli](https://github.com/khanhas/spicetify-cli) Spotify
 - [ffmpeg](https://github.com/FFmpeg/FFmpeg) Wallpaper Tints & Custom Icons
 - [vivid](https://github.com/sharkdp/vivid) LS_COLORS
