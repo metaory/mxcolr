@@ -48,6 +48,9 @@ What about
  
 #### This repo goal is to be a tool for generating and previewing palettes and serve as a framework for patching any application with few keystrokes.
 
+## Not for the faint-hearted
+Only tested on Arch Linux, not advised for beginner users.
+ 
 Outputs
 =======
 
@@ -235,6 +238,4 @@ Plugins
 <p align="center">
   <img width="374" height="40" src="./assets/screenshots/footer_2021-05-16-221932_374x40_scrot.png">
 </p>
-
-
 
