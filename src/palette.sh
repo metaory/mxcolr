@@ -81,18 +81,25 @@ gen_random () {
     gen_random $((++attmp))
   else
     fillCols ' ▪'; InfoDone "${strategy^^} generated, after $attmp attempts,proceeding"; return
+    if (( "$DEBUG" )); then
+      fill 9 ; prntlist 'prnt:sp_dot' "${MX_XX[@]}" ; pl '-'
+      PromptConfirm "ﭤ redo palette "
+      if [[ "$REPLY" =~ ^[Yy]$ ]]; then gen_random; fi
+    fi
   fi
+
+
 }
-# well almost! not anymore..
+
 gen_idempotents () {
   local ds;ds=$(darkest SBG WBG EBG)
 
-  C01="$(pastel mix ${!ds} "$(pastel random -n 1 -s lch_hue)" -f 0.5 | pastel mix - crimson       -f 0.6 | pastel mix - deeppink          -f 0.7 | pastel saturate 0.08 | pastel format hex)"
-  C02="$(pastel mix ${!ds} "$(pastel random -n 1 -s lch_hue)" -f 0.5 | pastel mix - darkseagreen  -f 0.6 | pastel mix - mediumspringgreen -f 0.7 | pastel saturate 0.08 | pastel format hex)"
-  C03="$(pastel mix ${!ds} "$(pastel random -n 1 -s lch_hue)" -f 0.5 | pastel mix - orange        -f 0.6 | pastel mix - coral             -f 0.7 | pastel saturate 0.08 | pastel format hex)"
-  C04="$(pastel mix ${!ds} "$(pastel random -n 1 -s lch_hue)" -f 0.5 | pastel mix - blue          -f 0.6 | pastel mix - deepskyblue       -f 0.7 | pastel saturate 0.08 | pastel format hex)"
-  C05="$(pastel mix ${!ds} "$(pastel random -n 1 -s lch_hue)" -f 0.5 | pastel mix - indigo        -f 0.6 | pastel mix - slateblue         -f 0.7 | pastel saturate 0.08 | pastel format hex)"
-  C06="$(pastel mix ${!ds} "$(pastel random -n 1 -s lch_hue)" -f 0.5 | pastel mix - darkturquoise -f 0.6 | pastel mix - deepskyblue       -f 0.7 | pastel saturate 0.08 | pastel format hex)"
+  C01="$(pastel mix ${!ds} crimson       -f 0.6 | pastel mix - deeppink          -f 0.7 | pastel saturate 0.08 | pastel format hex)"
+  C02="$(pastel mix ${!ds} darkseagreen  -f 0.6 | pastel mix - mediumspringgreen -f 0.7 | pastel saturate 0.08 | pastel format hex)"
+  C03="$(pastel mix ${!ds} orange        -f 0.6 | pastel mix - coral             -f 0.7 | pastel saturate 0.08 | pastel format hex)"
+  C04="$(pastel mix ${!ds} blue          -f 0.6 | pastel mix - deepskyblue       -f 0.7 | pastel saturate 0.08 | pastel format hex)"
+  C05="$(pastel mix ${!ds} indigo        -f 0.6 | pastel mix - slateblue         -f 0.7 | pastel saturate 0.08 | pastel format hex)"
+  C06="$(pastel mix ${!ds} darkturquoise -f 0.6 | pastel mix - deepskyblue       -f 0.7 | pastel saturate 0.08 | pastel format hex)"
 
   for i in {09..14}; do
     local c="C0$(echo "$i - 8" | bc)"; c="${!c}"
