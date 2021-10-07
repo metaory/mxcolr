@@ -113,11 +113,11 @@ ApplyGTKIcon () {
 }
 ApplyGTKCursor () {
   CURSOR_THEME=MetaPurpleDark
-  PromptContinue "update cursor theme to ${CURSOR_THEME} ?"
-  if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
-  sed -r -i \
-    -e "/^gtk-cursor-theme-name/s/=.+$/=${CURSOR_THEME}/" \
-    ~/.config/gtk-3.0/settings.ini
+  # PromptContinue "update cursor theme to ${CURSOR_THEME} ?"
+  # if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
+  # sed -r -i \
+  #   -e "/^gtk-cursor-theme-name/s/=.+$/=${CURSOR_THEME}/" \
+  #   ~/.config/gtk-3.0/settings.ini
 
   InfoDone
 }
