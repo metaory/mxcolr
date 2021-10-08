@@ -1,21 +1,8 @@
--- local base16 = {
---   base00; base01; base02; base03;
---   base04; base05; base06; base07;
---   base08; base09; base0A; base0B;
---   base0C; base0D; base0E; base0F;
--- }
--- local base16 = {
---   "${HLC00}"; "${HLC08}"; "${HLC07}"; "${HLC01}";
---   "${HLEBG}"; "${HLWBG}"; "${HLC01}"; "${HLC03}";
---   "${HLSBG}"; "${HLWBG}"; "${HLEBG}"; "${HLC05}";
---   "${HLCX1}"; "${HLCX2}"; "${HLCX3}"; "${HLCX4}";
--- }
-
 local base16 = {
-  base00="${HLXBG}"; base01="${HLDK2}"; base02="${HLDK4}"; base03="${HLDK7}";
-  base04="${HLDL5}"; base05="${HLSBG}"; base06="${HLC15}"; base07="${HLDL4}";
-  base08="${HLCX1}"; base09="${HLC04}"; base0A="${HLEBG}"; base0B="${HLDL8}";
-  base0C="${HLCX3}"; base0D="${HLC05}"; base0E="${HLWBG}"; base0F="${HLDK6}";
+  base00="${XBG}"; base01="${DK3}"; base02="${DK4}"; base03="${DK7}";
+  base04="${LK5}"; base05="${DL6}"; base06="${DK8}"; base07="${DL9}";
+  base08="${C01}"; base09="${C09}"; base0A="${C03}"; base0B="${C10}";
+  base0C="${C02}"; base0D="${C04}"; base0E="${WBG}"; base0F="${SBG}";
 }
 return base16
 
@@ -363,3 +350,16 @@ return base16
 
 -- Colors base00 to base07 are typically variations of a shade and run from darkest to lightest. These colors are used for foreground and background, status bars, line highlighting and such. Colors base08 to base0F are typically individual colors used for types, operators, names and variables. In order to create a dark theme, colors base00 to base07 should span from dark to light. For a light theme, these colours should span from light to dark.
 --
+-- local base16 = {
+--   base00; base01; base02; base03;
+--   base04; base05; base06; base07;
+--   base08; base09; base0A; base0B;
+--   base0C; base0D; base0E; base0F;
+-- }
+-- local base16 = {
+--   "${HLC00}"; "${HLC08}"; "${HLC07}"; "${HLC01}";
+--   "${HLEBG}"; "${HLWBG}"; "${HLC01}"; "${HLC03}";
+--   "${HLSBG}"; "${HLWBG}"; "${HLEBG}"; "${HLC05}";
+--   "${HLCX1}"; "${HLCX2}"; "${HLCX3}"; "${HLCX4}";
+-- }
+
