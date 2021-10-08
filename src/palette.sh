@@ -134,16 +134,17 @@ gen_shades () {
     __print_hexes $(echo DL{0..9})
     __print_hexes $(echo LK{0..9})
     Demo_shades4; echo
-    printf '%10s %10s %10s %10s %10s %10s\n' "expoSin" "expoCos" "expoArc"
+    printf '%10s %10s %10s %10s %10s %10s\n' "expoSin" "expoCos" "expoArc"  "expoArz"
   fi
 
   # local base=$(pastel darken "0.1" "$XBG" | pastel desaturate "0.2")
       # pastel lighten "$3" "$base" | \
 
   __gen_shade () {
-    pastel desaturate "0.2" "$XBG" | \
-      pastel lighten "$3" | \
-      pastel "$1" "$2" | \
+    pastel set hsl-saturation 0.01 "$3" | \
+      pastel set hsl-lightness 0.4 | \
+      pastel darken  $1 | \
+      pastel saturate  $2 | \
       pastel format hex
     }
 
@@ -151,16 +152,16 @@ gen_shades () {
     local act1=lighten
     local act2=saturate
 
-    local expoArc="0$(echo "scale=2; e(a($i-3))/10" | bc -l)"
-    local expoSin="0$(echo "scale=2; e(s($i))/10" | bc -l)"
-    local expoCos="0$(echo "scale=2; e(c($i))/10" | bc -l)"
+    local expoArc="0$(echo "scale=2; e(a($i))/2/10"     | bc -l)"
+    local expoArz="0$(echo "scale=2; e(a(5-$i))/10"     | bc -l)"
+    local expoSin="0$(echo "scale=2; e(s($i-2)*1.5)/10" | bc -l)"
+    local expoCos="0$(echo "scale=2; e(c($i-2))/10"     | bc -l)"
 
-    declare -g "DL$i=$(__gen_shade $act2 $expoSin $expoArc)"
-    declare -g "DK$i=$(__gen_shade $act2 $expoCos $expoArc)"
-    declare -g "LK$i=$(pastel lighten 0.2 \
-      $(__gen_shade $act2 $expoArc $expoArc) | pastel desaturate 0.07 | pastel format hex)"
+    declare -g "DL$i=$(__gen_shade $expoArz $expoSin $(pastel rotate -10 $WBG))"
+    declare -g "DK$i=$(__gen_shade $expoArz $expoCos $(pastel rotate   0 $WBG))"
+    declare -g "LK$i=$(__gen_shade $expoArz $expoArc $(pastel rotate  10 $WBG))"
 
-    (( "$DEBUG" )) && printf '%10s %10s %10s  %10s %10s %10s\n' "$expoSin" "$expoCos" "$expoArc"
+    (( "$DEBUG" )) && printf '%10s %10s %10s  %10s %10s %10s\n' "$expoSin" "$expoCos" "$expoArc" "$expoArz"
   done
 
   if (( "$DEBUG" )); then
@@ -213,6 +214,6 @@ UpdatePalette () {
 # j (n,x) The Bessel function of integer order n of x.
 
 (( "$DEBUG" )) && gen_shades
-(( "$DEBUG" )) && gen_idempotents
-(( "$DEBUG" )) && Demo && Demo_slant && Demo_hexes
+# (( "$DEBUG" )) && gen_idempotents
+# (( "$DEBUG" )) && Demo && Demo_slant && Demo_hexes
 
