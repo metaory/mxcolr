@@ -95,6 +95,7 @@ PromptWallpaperTint () {
 }
 
 PrintMenu () {
+  (( "$DEBUG" )) && return
   cat <<  EOF
 Usage
 =====
