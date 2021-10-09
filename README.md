@@ -4,6 +4,10 @@
   <img width="193" height="64" src="./assets/screenshots/seed_2021-05-14-123246_193x64_scrot.png">
 </p>
 
+<p align="center">
+  :warning: Warning! This is experimental! :warning:
+</p>
+
 Usage
 =====
     mxcolr [options] <action> [params]
@@ -238,4 +242,5 @@ Plugins
 <p align="center">
   <img width="374" height="40" src="./assets/screenshots/footer_2021-05-16-221932_374x40_scrot.png">
 </p>
+
 
