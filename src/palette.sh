@@ -97,8 +97,8 @@ gen_idempotents () {
   C01="$(pastel mix ${!ds} crimson       -f 0.6 | pastel mix - deeppink          -f 0.7 | pastel saturate 0.08 | pastel format hex)"
   C02="$(pastel mix ${!ds} darkseagreen  -f 0.6 | pastel mix - mediumspringgreen -f 0.7 | pastel saturate 0.08 | pastel format hex)"
   C03="$(pastel mix ${!ds} orange        -f 0.6 | pastel mix - coral             -f 0.7 | pastel saturate 0.08 | pastel format hex)"
-  C04="$(pastel mix ${!ds} blue          -f 0.6 | pastel mix - deepskyblue       -f 0.7 | pastel saturate 0.08 | pastel format hex)"
-  C05="$(pastel mix ${!ds} indigo        -f 0.6 | pastel mix - slateblue         -f 0.7 | pastel saturate 0.08 | pastel format hex)"
+  C04="$(pastel mix ${!ds} blue          -f 0.6 | pastel mix - deepskyblue       -f 0.7 | pastel saturate 0.04 | pastel format hex)"
+  C05="$(pastel mix ${!ds} indigo        -f 0.6 | pastel mix - slateblue         -f 0.7 | pastel saturate 0.04 | pastel format hex)"
   C06="$(pastel mix ${!ds} darkturquoise -f 0.6 | pastel mix - deepskyblue       -f 0.7 | pastel saturate 0.08 | pastel format hex)"
 
   for i in {09..14}; do
@@ -134,7 +134,7 @@ gen_shades () {
     __print_hexes $(echo DL{0..9})
     __print_hexes $(echo LK{0..9})
     Demo_shades4; echo
-    printf '%10s %10s %10s %10s %10s %10s\n' "expoSin" "expoCos" "expoArc"  "expoArz"
+    printf '%10s %10s %10s %10s %10s %10s\n' "expoSqr" "sqrtNum" "expoArc" "expoArx" "expoArz"
   fi
 
   # local base=$(pastel darken "0.1" "$XBG" | pastel desaturate "0.2")
@@ -151,17 +151,23 @@ gen_shades () {
   for i in {0..9}; do
     local act1=lighten
     local act2=saturate
+    local j=$i
+    (( $i == 5 )) && j=1
 
-    local expoArc="0$(echo "scale=2; e(a($i))/2/10"     | bc -l)"
-    local expoArz="0$(echo "scale=2; e(a(5-$i))/10"     | bc -l)"
-    local expoSin="0$(echo "scale=2; e(s($i-2)*1.5)/10" | bc -l)"
-    local expoCos="0$(echo "scale=2; e(c($i-2))/10"     | bc -l)"
+    local expoSqr="0$(echo "scale=2; e(sqrt($i))/100"     | bc -l)"
+    # local sqrtNum="0$(echo "scale=2; sqrt($i+1)/10"     | bc -l)"
+    # local expoArc="0$(echo "scale=2; e(a($i))/2/10"     | bc -l)"
+    # local expoArx="0$(echo "scale=2; e(a($i))/3/10"     | bc -l)"
+    local expoArz="0$(echo "scale=2; e(a(5-$i))/10"       | bc -l)"
+    # local expoArz="0$(echo "scale=2; e(a(5-$i))/10"     | bc -l)"
+    # local expoSin="0$(echo "scale=2; e(s($i-2)*1.5)/10" | bc -l)"
+    # local expoCos="0$(echo "scale=2; e(c($i-2)/10"      | bc -l)"
 
-    declare -g "DL$i=$(__gen_shade $expoArz $expoSin $(pastel rotate -10 $WBG))"
-    declare -g "DK$i=$(__gen_shade $expoArz $expoCos $(pastel rotate   0 $WBG))"
-    declare -g "LK$i=$(__gen_shade $expoArz $expoArc $(pastel rotate  10 $WBG))"
+    declare -g "DK$i=$(__gen_shade $expoArz $expoSqr $SBG)"
+    declare -g "DL$i=$(__gen_shade $expoArz $expoSqr $WBG)"
+    declare -g "LK$i=$(__gen_shade $expoArz $expoSqr $EBG)"
 
-    (( "$DEBUG" )) && printf '%10s %10s %10s  %10s %10s %10s\n' "$expoSin" "$expoCos" "$expoArc" "$expoArz"
+    (( "$DEBUG" )) && printf '%10s %10s %10s  %10s %10s %10s\n' "$expoSqr" "$sqrtNum" "$expoArc" "$expoArx" "$expoArz"
   done
 
   if (( "$DEBUG" )); then

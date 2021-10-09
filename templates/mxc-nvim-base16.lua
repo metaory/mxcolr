@@ -1,7 +1,7 @@
 local base16 = {
   base00="${XBG}"; base01="${DK3}"; base02="${DK4}"; base03="${DK7}";
   base04="${LK5}"; base05="${DL6}"; base06="${DK8}"; base07="${DL9}";
-  base08="${C01}"; base09="${C09}"; base0A="${C03}"; base0B="${C10}";
+  base08="${C01}"; base09="${C03}"; base0A="${EBG}"; base0B="${C05}";
   base0C="${C02}"; base0D="${C04}"; base0E="${WBG}"; base0F="${SBG}";
 }
 return base16
