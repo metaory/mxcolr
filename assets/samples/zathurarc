@@ -1,0 +1,114 @@
+#  hyper @ mxc-v1.5
+
+set completion-fg            "#000000"
+set completion-bg            "#1c87f2"
+set completion-group-fg      "#000000"
+set completion-group-bg      "#64994c"
+set completion-highlight-fg  "#d6c2c2"
+set completion-highlight-bg  "#6c45e1"
+set default-fg               "#5656be"
+set default-bg               "#09090c"
+set inputbar-fg              "#1c87f2"
+set inputbar-bg              "#050506"
+set zoom-step                20
+set recolor                  true
+set recolor-keephue          true
+
+# set recolor-darkcolor 
+# set recolor-lightcolor 
+# set recolor-reverse-video false
+
+# guioptions
+#       Shows  or  hides  GUI elements.  If it contains 'c', the
+#       command line is displayed.  If it contains 's', the sta‐
+#       tusbar is displayed.  If it contains 'h', the horizontal
+#       scrollbar is displayed.  If it contains 'v', the  verti‐
+#       cal scrollbar is displayed.
+#       • Value type: String
+#       • Default value: s
+
+# notification-bg
+# notification-fg
+# notification-error-bg
+# notification-error-fg
+# notification-warning-bg
+# notification-warning-fg
+# tabbar-fg
+# tabbar-bg
+# tabbar-focus-fg
+# tabbar-focus-bg
+# show-scrollbars
+#       Defines  if  both the horizontal and vertical scrollbars
+#       should be shown or not.   Deprecated,  use  'guioptions'
+#       instead.
+# 
+#       • Value type: Boolean
+# 
+#       • Default value: false
+# 
+# show-h-scrollbar
+#       Defines  whether  to show/hide the horizontal scrollbar.
+#       Deprecated, use 'guioptions' instead.
+# 
+#       • Value type: Boolean
+# 
+#       • Default value: false
+# 
+# show-v-scrollbar
+#       Defines whether to  show/hide  the  vertical  scrollbar.
+#       Deprecated, use 'guioptions' instead.
+# 
+#       • Value type: Boolean
+# 
+#       • Default value: false
+# 
+# statusbar-bg
+#       Defines the background color of the statusbar
+# 
+#       • Value type: String
+# 
+#       • Default value: #000000
+# 
+# statusbar-fg
+#       Defines the foreground color of the statusbar
+# 
+#       • Value type: String
+# 
+#       • Default value: #FFFFFF
+# 
+# statusbar-h-padding
+#       Defines  the horizontal padding of the statusbar and no‐
+#       tificationbar
+# 
+#       • Value type: Integer
+# 
+#       • Default value: 8
+# 
+# statusbar-v-padding
+#       Defines the vertical padding of the statusbar and  noti‐
+#       ficationbar
+# 
+#       • Value type: Integer
+# 
+#       • Default value: 2
+# 
+# window-icon
+#       Defines the path for a icon to be used as window icon.
+# 
+#       • Value type: String
+# 
+#       • Default value:
+# 
+# window-height
+#       Defines the window height on startup
+# 
+#       • Value type: Integer
+# 
+#       • Default value: 600
+# 
+# window-width
+#       Defines the window width on startup
+# 
+#       • Value type: Integer
+# 
+#       • Default value: 800

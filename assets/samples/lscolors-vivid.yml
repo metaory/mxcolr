@@ -1,0 +1,135 @@
+colors:
+  # hyper @ mxc-v1.5
+  # Based on "snazzy" theme by sindresorhus
+  
+  background_color: '09090c'
+  white:            '7272d5'
+  black:            '000000'
+  mxc01:            'dc4f9d'
+  mxc02:            '6bd3ab'
+  mxc03:            'ea8773'
+  mxc04:            '4d90fd'
+  mxc05:            '5c56ce'
+  mxc06:            '4db5ed'
+  mxc09:            'e479b4'
+  mxc10:            '92dfc2'
+  mxc11:            'f1ad9f'
+  mxc12:            '7fb0fe'
+  mxc13:            '827ed9'
+  mxc14:            '7bc8f2'
+  mxc07:            '393975'
+  mxc08:            '262641'
+  mxc00:            '0e0e1b'
+  mxwbg:            '1c87f2'
+
+core:
+  regular_file: {}
+
+  directory:
+    foreground: mxwbg
+
+  executable_file:
+    foreground: mxc01
+    font-style: bold
+
+  symlink:
+    foreground: mxc05
+
+  broken_symlink:
+    foreground: black
+    background: mxc01
+  missing_symlink_target:
+    foreground: black
+    background: mxc01
+
+  fifo:
+    foreground: black
+    background: mxc04
+
+  socket:
+    foreground: black
+    background: mxc05
+
+  character_device:
+    foreground: mxc05
+    background: mxc00
+
+  block_device:
+    foreground: mxc06
+    background: mxc00
+
+  normal_text:
+    {}
+
+  other_writable:
+    {}
+
+  sticky:
+    {}
+
+  sticky_other_writable:
+    {}
+
+text:
+  special:
+    foreground: background_color
+    background: mxc03
+
+  todo:
+    font-style: bold
+
+  licenses:
+    foreground: mxc07
+
+  configuration:
+    foreground: mxc03
+
+  other:
+    foreground: mxc03
+
+markup:
+  foreground: mxc03
+
+programming:
+  source:
+    foreground: mxc02
+
+  tooling:
+    foreground: mxc10
+
+    continuous-integration:
+      foreground: mxc02
+
+media:
+  foreground: mxc14
+  font-style: italic
+
+  audio:
+    foreground: mxc07
+    font-style: italic
+
+  fonts:
+    foreground: mxc04
+
+  image:
+    foreground: mxc14
+    font-style: italic
+
+  video:
+    foreground: mxc14
+    font-style: italic
+
+
+office:
+  foreground: mxc01
+
+archives:
+  foreground: mxc06
+  font-style: underline
+
+executable:
+  foreground: mxc01
+  font-style: bold
+
+unimportant:
+  foreground: mxc08

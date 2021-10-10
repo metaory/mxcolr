@@ -1,0 +1,35 @@
+!  hyper @ mxc-v1.5
+
+! Add ↓ to your ~/.config/kitty/kitty.conf
+
+! include ~/.config/mxc/kitty-theme.conf
+! map kitty_mod+f12 remote_control set-colors "~/.config/mxc/kitty-theme.conf"
+
+*.color0:               #0e0e1b
+*.color1:               #dc4f9d
+*.color2:               #6bd3ab
+*.color3:               #ea8773
+*.color4:               #4d90fd
+*.color5:               #5c56ce
+*.color6:               #4db5ed
+*.color7:               #393975
+*.color8:               #262641
+*.color9:               #e479b4
+*.color10:              #92dfc2
+*.color11:              #f1ad9f
+*.color12:              #7fb0fe
+*.color13:              #827ed9
+*.color14:              #7bc8f2
+*.color15:              #7272d5
+*.color20:              #64994c
+*.color21:              #000000
+*.color30:              #1c87f2
+*.color31:              #000000
+*.color40:              #6c45e1
+*.color41:              #d6c2c2
+*.background:           #09090c
+*.foreground:           #5656be
+*.selection_background: #191925
+*.selection_foreground: #42a0ff
+*.cursor_text_color:    #000000
+*.cursor:               #42a0ff
