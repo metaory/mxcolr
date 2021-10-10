@@ -19,7 +19,7 @@ apply_spotify () {
 
   ! [ -e "$MXC_SPOTIFY_TMP" ] && InfoError "missing templates" && return 1
 
-  cp -v "$MXC_SPOTIFY_TMP" "$SPICETIFY_PATH"/Themes/$SPICETIFY_THEME/color.ini
+  cp -v $MXC_SPOTIFY_TMP ${SPICETIFY_PATH}/Themes/${SPICETIFY_THEME}/color.ini
 
   spicetify config current_theme Metafy
   spicetify config color_scheme mxc
