@@ -27,9 +27,10 @@ ApplyWallpaper () {
   cp -v "$HOME"/pics/wall/curr.png "$HOME"/pics/wall/hist/"${stamp}".png
   local tintColor;tintColor=$(lightest SBG WBG EBG)
   PromptWallpaperTint "$tintColor"
-  pastel paint -b "$EBG"  " ==> running convert fill $tintColor with tint value: [$REPLY]"
+  pastel paint -b "$EBG"  " ==> running convert -fill $tintColor with colorize value: [$REPLY]%"
 
-  convert "$HOME"/pics/wall/BASE.png -fill "${!tintColor}" -tint "$REPLY" "$HOME"/pics/wall/curr.png
+  # convert "$HOME"/pics/wall/BASE.png -fill "${!tintColor}" -tint "$REPLY" "$HOME"/pics/wall/curr.png
+  convert "$HOME"/pics/wall/BASE.png -fill "${!tintColor}" -colorize "$REPLY"% "$HOME"/pics/wall/curr.png
   InfoDone 
 }
 # ////////////////////////////  
