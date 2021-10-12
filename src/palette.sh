@@ -151,14 +151,12 @@ gen_shades () {
   for i in {0..9}; do
     local act1=lighten
     local act2=saturate
-    local j=$i
-    (( $i == 5 )) && j=1
 
     local expoSqr="0$(echo "scale=2; e(sqrt($i))/100"     | bc -l)"
     # local sqrtNum="0$(echo "scale=2; sqrt($i+1)/10"     | bc -l)"
     # local expoArc="0$(echo "scale=2; e(a($i))/2/10"     | bc -l)"
     # local expoArx="0$(echo "scale=2; e(a($i))/3/10"     | bc -l)"
-    local expoArz="0$(echo "scale=2; e(a(5-$i))/10"       | bc -l)"
+    local expoArz="0$(echo "scale=2; e(a(4-$i))/10"       | bc -l)"
     # local expoArz="0$(echo "scale=2; e(a(5-$i))/10"     | bc -l)"
     # local expoSin="0$(echo "scale=2; e(s($i-2)*1.5)/10" | bc -l)"
     # local expoCos="0$(echo "scale=2; e(c($i-2)/10"      | bc -l)"
