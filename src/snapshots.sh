@@ -26,6 +26,7 @@ ListSnapshots () {
   done
   echo;echo; pastel paint "$XFG" -n "select "; pastel paint "$XFG" -b -n "(0-$((total-1))): "
   read -r choice
+  # XXX if XOPT == random-snap ? choice="$((( RANDOM % $total ) + 1))"
   if ! [[ "$choice" =~ ^[0-9]+$ ]]; then 
     pastel paint "$C01" -b "($choice) numbers only "
     ListSnapshots
