@@ -158,6 +158,7 @@ Generate () {
     -D | demo-all     ) DemoAll                       ;;
     -i | init         ) . "$MXBASE"/plugins/2-tmux.sh ; apply_tmux 1 ; Demo_block ;;
     -l | list         ) ListSnapshots                 ;;
+    -r | random       ) ListSnapshots 1               ;;
     -s | save         ) SaveSnapshot                  ;;
     intro             ) MXIntro "$menu"               ;;
     --demo-image      ) SaveDemoImage                 ; exit ;;
