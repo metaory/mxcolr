@@ -32,6 +32,7 @@ Actions
     -d, demo                | basic demo
     -D, demo-all            | complete demo
     -l, list                | list all saved snapshots
+    -r, random              | pick a random snapshot
     -s, save                | save snapshot
      *                      | intro
 
