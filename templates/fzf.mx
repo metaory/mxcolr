@@ -1,9 +1,11 @@
 # $MXNAME @ $MXC_V
 
 export FZF_DEFAULT_OPTS=" \
-  --height 100% \
+  --height ${FZF_HEIGHTS:-100%} \
   --layout=reverse \
+  --info inline \
   --no-border \
+  --color=gutter:${DL1} \
   --color=fg:${DL7},bg:${DK2},hl:${WBG} \
   --color=fg+:${SBG},bg+:${DL2},hl+:${WBX} \
   --color=info:${EBG},prompt:${C08},pointer:${WBX} \

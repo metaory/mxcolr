@@ -12,7 +12,9 @@ OTHEME=$MXDIST/root.mx
 M_SEED=$MXTEMP/seed.mx
 O_SEED=$MXDIST/seed.mx
 
-if ! command -v pastel &> /dev/null; then echo "pastel not found."; echo " ==> https://github.com/sharkdp/pastel#installation"; exit 1; fi
+if ! command -v pastel &> /dev/null; then 
+  echo "pastel not found."; echo " ==> https://github.com/sharkdp/pastel#installation"; exit 1
+fi
 if ! command -v jq &> /dev/null; then echo "jq not found."; echo " ==> https://github.com/stedolan/jq"; exit 1; fi
 
 if [ -d "$MXLIB" ]; then . "$MXLIB"/lib.common.sh; else mlg () { echo "${FUNCNAME[1]}:${BASH_LINENO[1]} => ${*}" >> /tmp/mxsh.log; }; fi

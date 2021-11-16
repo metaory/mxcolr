@@ -25,12 +25,13 @@ ApplyWallpaper () {
   local base="$HOME"/pics/wall/BASE.png
   if ! [ -e "$base" ]; then InfoError "base wallpaper not found"; InfoError "$base"; return; fi
   cp -v "$HOME"/pics/wall/curr.png "$HOME"/pics/wall/hist/"${stamp}".png
-  local tintColor;tintColor=$(lightest SBG WBG EBG)
+  local tintColor;tintColor=$(darkest SBG WBG EBG)
   PromptWallpaperTint "$tintColor"
-  pastel paint -b "$EBG"  " ==> running convert -fill $tintColor with colorize value: [$REPLY]%"
+  pastel paint -b "$EBG"  " ==> running convert -fill $tintColor with -colorize value: [$REPLY]%"
 
   # convert "$HOME"/pics/wall/BASE.png -fill "${!tintColor}" -tint "$REPLY" "$HOME"/pics/wall/curr.png
   convert "$HOME"/pics/wall/BASE.png -fill "${!tintColor}" -colorize "$REPLY"% "$HOME"/pics/wall/curr.png
+  convert "$HOME"/pics/wall/curr.png -fill "${!tintColor}" -tint "$REPLY"% "$HOME"/pics/wall/curr.png
   InfoDone 
 }
 # ////////////////////////////  
