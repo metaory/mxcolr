@@ -137,7 +137,7 @@ MYIntro () {
 # ////////////////////////////  
 Demo () {
   if (( "$FORCE_UPDATE" )); then return; fi
-  Demo_mxname "$USER"; echo; echo
+  fll 2; Demo_mxname "$USER"; echo; echo
   Demo_block
   Demo_dot
   MXDotLine

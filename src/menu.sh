@@ -82,7 +82,7 @@ PromptContinue () {
 
 PromptWallpaperTint () {
   pastel paint -b -n -o 'black' "$WBX" "[${FUNCNAME[0]}]"
-  pastel paint -b -n "$C03"   " enter TINT value [0-1000]"
+  pastel paint -b -n "$C03"   " enter Fill value [0-1000]"
   pastel paint -b -n "$C02"   " default:($DEFAULT_TINT) "
   (( "$FORCE_UPDATE" )) && REPLY="$DEFAULT_TINT" && return
   read -r

@@ -31,9 +31,10 @@ Info "$MXC_VIM_TMP"
 apply_vim () {
   cp -v --backup "$MXC_VIM_TMP" "$MXC_VIM_OUT"
 
-  cp -v /tmp/mxc/mxc-nvim-base16.lua "$HOME/.config/nvim/lua/themes"
-  cp -v /tmp/mxc/mxc-nvim-colors.lua "$HOME/.config/nvim/lua/themes"
-  cp -v /tmp/mxc/vim-visual-multi_themes.vim "$HOME/.local/share/nvim/site/pack/packer/start/vim-visual-multi/autoload/vm/themes.vim"
+  cp -v /tmp/mxc/mxc-nvim-base16.lua ~/.config/nvim/lua/themes
+  cp -v /tmp/mxc/mxc-nvim-colors.lua ~/.config/nvim/lua/themes
+  cp -v /tmp/mxc/vim-visual-multi_themes.vim ~/.local/share/nvim/site/pack/packer/start/vim-visual-multi/autoload/vm/themes.vim
+  cp -v /tmp/mxc/palette.lua ~/.config/nvim/lua/mxc/palette.lua
   
   InfoDone "$MXC_VIM_OUT"
 }

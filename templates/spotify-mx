@@ -2,6 +2,7 @@
 ; $MXNAME @ $MXC_V
 text               = ${HLXFG}
 subtext            = ${HLC07}
+bg                 = ${HLDK2}
 main               = ${HLDK0}
 sidebar            = ${HLDK1}
 player             = ${HLXBG}
