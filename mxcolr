@@ -120,18 +120,44 @@ ReGenerate () {
   ApplyPlugs
 } 
 # ............................ #
+Shuffle () {
+  core=(SBG WBG EBG)
+  local old_SBG=$SBG
+  local old_WBG=$WBG
+  local old_EBG=$EBG
+
+  for i in ${core[@]}; do
+    local newSlot=$(shuf -n 1 -e ${core[@]})
+    local newCol="old_${newSlot}"
+
+    declare -g "$i=${!newCol}"
+
+    delete=$newSlot
+    core=( "${core[@]/$delete}" )
+
+    prnt $i "$i ---------------------"; echo
+  done
+
+  SaveSeed
+  UpdatePalette 
+  [[ -n "$TMUX" ]] && . "$MXBASE"/plugins/2-tmux.sh && apply_tmux
+
+  Generate 1
+}
+# ............................ #
 Generate () {
-  rm /tmp/mxc/*
-  GeneratePalette
+  rm /tmp/mxc/* &> /dev/null
+  ! (( "$1" )) && GeneratePalette
   [[ -n "$TMUX" ]] && . "$MXBASE"/plugins/2-tmux.sh && apply_tmux
   Demo
 
   PrompRand
   case $REPLY in
     k ) Info 'Keeping draft ·' ; SourcePlugs  ;;
+    s ) Info 'Shuffling ·····' ; Shuffle      ;;
     u ) Info 'Proceeding ····' ; ReGenerate   ;;
     U ) Info 'Forcing ·······' ; FORCE_UPDATE=1; ReGenerate   ;;
-    n ) Info 'Again ·········' ; Generate     ;;
+    n ) Info 'Again ·········' ; Generate;;
     d ) Info 'Full Demo ·····' ; DemoAll      ;;
     * ) Info 'Reverting ·····' ; Revert; ReGenerate 1 ;;
   esac
