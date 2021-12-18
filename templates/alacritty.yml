@@ -32,11 +32,11 @@ colors                :
    cyan               : '${CY6}'
    white              : '${DL7}'
   cursor              :
-    text              : CellBackground
-    cursor            : CellForeground
-  vi_mode_cursor      :
-    text              : CellBackground
+    text              : '${SFG}'
     cursor            : '${SBG}'
+  vi_mode_cursor      :
+    text              : '${EFG}'
+    cursor            : '${EBG}'
   selection           :
    text               : CellBackground
    background         : CellForeground
