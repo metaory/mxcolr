@@ -126,7 +126,8 @@ gen_idempotents () {
 gen_shades () {
   local darkestSeed;darkestSeed=$(darkest SBG WBG EBG)
   pastel paint -b -o "${!darkestSeed}" "$(pastel textcolor "${!darkestSeed}")" " darkest seed : ${darkestSeed} "
-  XBG="$(pastel set hsl-saturation   0.16 "${!darkestSeed}" | pastel set hsl-lightness 0.06 | pastel format hex)"
+  # XBG="$(pastel set hsl-saturation   0.16 "${!darkestSeed}" | pastel set hsl-lightness 0.06 | pastel format hex)"
+  XBG="$(pastel set hsl-saturation   0.16 "${WBG}" | pastel set hsl-lightness 0.06 | pastel format hex)"
   OBG="$(pastel lighten 0.08 "$XBG" | pastel saturate 0.04 | pastel format hex)"; # OBG="$(pastel desaturate  0.20 "$WBG" | pastel darken  0.30 | pastel format hex)"
 
   if (( "$DEBUG" )); then
@@ -179,7 +180,8 @@ gen_shades () {
   C00="$DL3"
   C08="$DK4"
   C07="$DL7"
-  XFG="$DK8"
+  # XFG="$DK8"
+  XFG="$(pastel set hsl-lightness 0.4 $XBG | pastel format hex)"
   C15="$LK9"
 
   InfoDone
