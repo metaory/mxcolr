@@ -44,11 +44,15 @@ for src in "$MXBASE"/src/*.sh; do . "$src"; done
 GetPlugName () { local BS="${BASH_SOURCE[1]}"; BS=${BS##*/}; BS="${BS::-3}"; BS="${BS:2}"; echo "$BS"; }
 SourcePlugs () { for plug in "$MXBASE"/plugins/*.sh; do . "$plug"; done; }
 # ##############################
+ApplyTmux () {
+  [[ -n "$TMUX" ]] && . "$MXBASE"/plugins/2-tmux.sh && apply_tmux
+}
+
 Revert () {
   rm /tmp/mxc/*
   UpdatePalette
   . "$OTHEME"
-  [[ -n "$TMUX" ]] && . "$MXBASE"/plugins/2-tmux.sh
+  ApplyTmux
   Demo
 }
 
@@ -140,7 +144,7 @@ Shuffle () {
 
   SaveSeed
   UpdatePalette 
-  [[ -n "$TMUX" ]] && . "$MXBASE"/plugins/2-tmux.sh && apply_tmux
+  ApplyTmux
 
   Generate 1
 }
@@ -148,7 +152,7 @@ Shuffle () {
 Generate () {
   rm /tmp/mxc/* &> /dev/null
   ! (( "$1" )) && GeneratePalette
-  [[ -n "$TMUX" ]] && . "$MXBASE"/plugins/2-tmux.sh && apply_tmux
+  ApplyTmux
   Demo
 
   PrompRand
@@ -191,6 +195,7 @@ Generate () {
     intro             ) MXIntro "$menu"               ;;
     --demo-image      ) SaveDemoImage                 ; exit ;;
     --gen-icon        ) GenIcon "$@"                  ; exit ;;
+    --shuffle         ) Shuffle  "$@"                 ;;
     --lorem           ) Lorem  "$@"                   ;;
     --lorem-cols      ) LoremCols                     ;;
     --darkest         ) darkest "$@"                  ;;
@@ -200,7 +205,6 @@ Generate () {
   esac
   mlg "━✔━━<MENU>━━┛"
 }
-# ............................ #
 
 # MXDotLine
 exit 0
