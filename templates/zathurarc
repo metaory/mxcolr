@@ -9,7 +9,7 @@ set completion-highlight-bg  "$EBG"
 set default-fg               "$XFG"
 set default-bg               "$XBG"
 set inputbar-fg              "$WBG"
-set inputbar-bg              "$DL0"
+set inputbar-bg              "$WK0"
 set zoom-step                20
 set recolor                  true
 set recolor-keephue          true

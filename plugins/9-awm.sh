@@ -31,7 +31,7 @@ ApplyWallpaper () {
 
   # convert "$HOME"/pics/wall/BASE.png -fill "${!tintColor}" -tint "$REPLY" "$HOME"/pics/wall/curr.png
   convert "$HOME"/pics/wall/BASE.png -fill "${!tintColor}" -colorize "$REPLY"% "$HOME"/pics/wall/curr.png
-  convert "$HOME"/pics/wall/curr.png -fill "${!tintColor}" -tint "1"% "$HOME"/pics/wall/curr.png
+  # convert "$HOME"/pics/wall/curr.png -fill "${!tintColor}" -tint "1"% "$HOME"/pics/wall/curr.png
   InfoDone 
 }
 # ////////////////////////////  

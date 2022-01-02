@@ -94,12 +94,12 @@ gen_random () {
 gen_idempotents () {
   local ds;ds=$(darkest SBG WBG EBG)
 
-  C01="$(pastel mix ${!ds} crimson       -f 0.6 | pastel mix - deeppink          -f 0.7 | pastel saturate 0.08 | pastel format hex)"
-  C02="$(pastel mix ${!ds} darkseagreen  -f 0.6 | pastel mix - mediumspringgreen -f 0.7 | pastel saturate 0.08 | pastel format hex)"
-  C03="$(pastel mix ${!ds} orange        -f 0.6 | pastel mix - coral             -f 0.7 | pastel saturate 0.08 | pastel format hex)"
-  C04="$(pastel mix ${!ds} blue          -f 0.6 | pastel mix - deepskyblue       -f 0.7 | pastel saturate 0.04 | pastel format hex)"
-  C05="$(pastel mix ${!ds} indigo        -f 0.6 | pastel mix - slateblue         -f 0.7 | pastel saturate 0.04 | pastel format hex)"
-  C06="$(pastel mix ${!ds} darkturquoise -f 0.6 | pastel mix - deepskyblue       -f 0.7 | pastel saturate 0.08 | pastel format hex)"
+  C01="$(pastel mix ${!ds} crimson       -f 0.5 | pastel mix - deeppink          -f 0.6 | pastel saturate 0.08 | pastel format hex)"
+  C02="$(pastel mix ${!ds} darkseagreen  -f 0.5 | pastel mix - mediumspringgreen -f 0.6 | pastel saturate 0.08 | pastel format hex)"
+  C03="$(pastel mix ${!ds} orange        -f 0.5 | pastel mix - coral             -f 0.6 | pastel saturate 0.08 | pastel format hex)"
+  C04="$(pastel mix ${!ds} blue          -f 0.5 | pastel mix - deepskyblue       -f 0.6 | pastel saturate 0.04 | pastel format hex)"
+  C05="$(pastel mix ${!ds} indigo        -f 0.5 | pastel mix - slateblue         -f 0.6 | pastel saturate 0.04 | pastel format hex)"
+  C06="$(pastel mix ${!ds} darkturquoise -f 0.5 | pastel mix - deepskyblue       -f 0.6 | pastel saturate 0.08 | pastel format hex)"
 
   for i in {09..14}; do
     local c="C0$(echo "$i - 8" | bc)"; c="${!c}"
@@ -162,9 +162,15 @@ gen_shades () {
     # local expoSin="0$(echo "scale=2; e(s($i-2)*1.5)/10" | bc -l)"
     # local expoCos="0$(echo "scale=2; e(c($i-2)/10"      | bc -l)"
 
+    # LEGACY SHADE NAMES
     declare -g "DK$i=$(__gen_shade $expoArz $expoSqr $SBG)"
     declare -g "DL$i=$(__gen_shade $expoArz $expoSqr $WBG)"
     declare -g "LK$i=$(__gen_shade $expoArz $expoSqr $EBG)"
+
+    # NEW SHADE NAMES
+    declare -g "SK$i=$(__gen_shade $expoArz $expoSqr $SBG)"
+    declare -g "WK$i=$(__gen_shade $expoArz $expoSqr $WBG)"
+    declare -g "EK$i=$(__gen_shade $expoArz $expoSqr $EBG)"
 
     (( "$DEBUG" )) && printf '%10s %10s %10s  %10s %10s %10s\n' "$expoSqr" "$sqrtNum" "$expoArc" "$expoArx" "$expoArz"
   done

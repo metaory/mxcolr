@@ -17,7 +17,7 @@ if ! command -v pastel &> /dev/null; then
 fi
 if ! command -v jq &> /dev/null; then echo "jq not found."; echo " ==> https://github.com/stedolan/jq"; exit 1; fi
 
-if [ -d "$MXLIB" ]; then . "$MXLIB"/lib.common.sh; else mlg () { echo "${FUNCNAME[1]}:${BASH_LINENO[1]} => ${*}" >> /tmp/mxsh.log; }; fi
+if [ -d "$MXLIB" ]; then . "$MXLIB"/lib.mxtrap.sh; else mlg () { echo "${FUNCNAME[1]}:${BASH_LINENO[1]} => ${*}" >> /tmp/mxsh.log; }; fi
 
 ! [ -e "$O_SEED" ] && cp -v "$MXBASE/assets/samples/seed.mx" "$O_SEED" 
 ! [ -e "$OTHEME" ] && cp -v "$MXBASE/assets/samples/root.mx" "$OTHEME" 
@@ -32,10 +32,13 @@ mkdir /tmp/{mxc,mxc_hist} 2>/dev/null || true
 
 # ########################################
 # VARIABLES ##############################
-MX_CC=(C{00..15}); MX_CX=(CX{1..6});MX_CY=(CY{1..6}); MX_CLK=(LK{0..9}); MX_CK=(DK{0..9}); MX_CL=(DL{0..9}) 
+MX_CC=(C{00..15}) ; MX_CX=(CX{1..6}) ; MX_CY=(CY{1..6}) ;
+MX_SK=(SK{0..9})  ; MX_WK=(WK{0..9}) ; MX_EK=(EK{0..9})
+# ...
+MX_SHADES=( "${MX_SK[@]}" "${MX_WK[@]}" "${MX_EK[@]}" )
 MX_CM=({S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G W{B,F}X)
 # ...
-MX_VARS=( "${MX_CC[@]}" "${MX_CX[@]}" "${MX_CY[@]}" "${MX_CLK[@]}" "${MX_CK[@]}" "${MX_CL[@]}" "${MX_CM[@]}" )
+MX_VARS=( "${MX_CC[@]}" "${MX_CX[@]}" "${MX_CY[@]}" "${MX_CM[@]}" "${MX_SHADES[@]}" )
 MX_TERM=( "${MX_VARS[@]/#/T}" )
 # mapfile -t MX_VARS <<<"$(eval echo \$\{MX_C{C,X,K,L,M}\[\@\]\}))"
 # ########################################
@@ -82,8 +85,7 @@ ApplyPlugs () {
   for plug_id in "${!plugs[@]}"; do
     local plugpath="${plugs[$plug_id]}"
     local pname="${plugpath##*/}";pname="${pname#*-}";pname="${pname%.*}"
-    local porder="${plugpath##*/}"
-    porder="${porder%-*}"
+    local porder="${plugpath##*/}";porder="${porder%-*}"
     local lastplug="${plugs[((plug_id - 1))]}"
     local nextplug="${plugs[((plug_id + 1))]}"
 
@@ -110,16 +112,16 @@ ReGenerate () {
   ReleaseSeed
   ReleaseTheme
   fillCols '▄'; fillCols '▀'; Demo
-  echo "FORCE_UPDATE $FORCE_UPDATE"
+
   (( "$1" )) && return
   (( "$FORCE_UPDATE" )) && InfoWarn "FORCE_UPDATE is ON"
   (( "$VERBOSE" )) && InfoWarn "VERBOSE is ON"
   [[ -n "$XOPT" ]] && InfoWarn "XOPT $XOPT"
-  # ............................ 
+
   ApplyTemplates
   ls "$MXTEMP" 
   (( "$TMP_ONLY" )) && InfoWarn "--tmp-only is set, exiting ..." && exit 0
-  # ............................ 
+
   PressToContinue "drafts ready" "$MXTEMP"
   ApplyPlugs
 } 

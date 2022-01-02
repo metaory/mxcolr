@@ -29,6 +29,8 @@ __prep () {
     -e "s/--mxc-fg:.+$/--mxc-fg: ${XFG};/" \
     -e "s/--mxc-bg:.+$/--mxc-bg: ${XBG};/" \
     -e "s/--mxc-bg:.+$/--mxc-bg: ${XBG};/" \
+    -e "s/--mxc-xbg:.+$/--mxc-xbg: ${XBG};/" \
+    -e "s/--mxc-xfg:.+$/--mxc-xfg: ${XFG};/" \
     -e "s/--mxc-sbg:.+$/--mxc-sbg: ${SBG};/" \
     -e "s/--mxc-wbg:.+$/--mxc-wbg: ${WBG};/" \
     -e "s/--mxc-ebg:.+$/--mxc-ebg: ${EBG};/" \

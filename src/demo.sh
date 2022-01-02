@@ -55,8 +55,8 @@ Demo_card () {
   fll 8; _head "$c"  0 '-b' ; prntlist 'prnt:sp_tiny' "${MX_CA[@]}" ; echo
   fll 8; _head "∕"   0      ; prntlist 'prnt:sp_tiny' "${MX_CB[@]}" ; echo
   fll 8; _head "$t"  0      ; prntlist 'prnt:sp_tiny' "${cy[@]}"    ; echo
-  fll 8; _head " "   0      ; prntlist 'prnt:sp_tiny' "${MX_CL[@]}" ; echo
-  fll 8; _head "██" 1      ; prntlist 'prnt:sp_tiny' "${MX_CK[@]}" ; echo
+  fll 8; _head " "   0      ; prntlist 'prnt:sp_tiny' "${MX_SK[@]}" ; echo
+  fll 8; _head "██" 1      ; prntlist 'prnt:sp_tiny' "${MX_WK[@]}" ; echo
 }
 # ##############################
 # Demo_shades()  {
@@ -66,16 +66,16 @@ Demo_card () {
 # Demo_shades1()  { fill 1 ; prntlist 'prnt:sp_lash' "${MX_CK[@]}"     ; pl '-' ; }j
 # Demo_shades2()  { fill 1 ; prntlist 'prnt:sp_pentagon' "${MX_CK[@]}" ; pl '-' ; }
 Demo_shades3()  { 
-  fill 0 ; printf 'DK ' ; prntlist 'prnt:sp_dotline' "${MX_CK[@]}"  ; pl '-'
-  fill 0 ; printf 'DL ' ; prntlist 'prnt:sp_dotline' "${MX_CK[@]}"  ; pl '-'
-  fill 0 ; printf 'LK ' ; prntlist 'prnt:sp_dotline' "${MX_CLK[@]}" ; pl '-'
+  fill 0 ; printf 'DK ' ; prntlist 'prnt:sp_dotline' "${MX_SK[@]}"  ; pl '-'
+  fill 0 ; printf 'DL ' ; prntlist 'prnt:sp_dotline' "${MX_WK[@]}"  ; pl '-'
+  fill 0 ; printf 'LK ' ; prntlist 'prnt:sp_dotline' "${MX_EK[@]}" ; pl '-'
 }
 Demo_shades4()  { 
   fill 3; for i in {0..9}; do printf '%s ' "$i"; done; echo
 
-  fill 0 ; printf 'DK ' ; prntlist 'prnt:sp_block_e' "${MX_CK[@]}"  ; pl '-'
-  fill 0 ; printf 'DL ' ; prntlist 'prnt:sp_block_e' "${MX_CL[@]}"  ; pl '-'
-  fill 0 ; printf 'LK ' ; prntlist 'prnt:sp_block_e' "${MX_CLK[@]}" ; pl '-'
+  fill 0 ; printf 'DK ' ; prntlist 'prnt:sp_block_e' "${MX_SK[@]}"  ; pl '-'
+  fill 0 ; printf 'DL ' ; prntlist 'prnt:sp_block_e' "${MX_WK[@]}"  ; pl '-'
+  fill 0 ; printf 'LK ' ; prntlist 'prnt:sp_block_e' "${MX_EK[@]}" ; pl '-'
 }
 
 Demo_mxname () {
@@ -98,9 +98,10 @@ Demo_dot () {
   fill 4 ; prntlist 'prnt:sp_dot' "${MX_CA[@]}" ; pl '-'
   fill 4 ; prntlist 'prnt:sp_dot' "${MX_CB[@]}" ; pl '-'
   fill 6 ; prntlist 'prnt:sp_dot' "${MX_CY[@]}" ; pl '-'
-  fill 2 ; prntlist 'prnt:sp_dot' "${MX_CK[@]}" ; pl '-'
-  fill 2 ; prntlist 'prnt:sp_dot' "${MX_CL[@]}" ; pl '-'
-  fill 2 ; prntlist 'prnt:sp_dot' "${MX_CLK[@]}" ; pl '-'
+
+  fill 2 ; prntlist 'prnt:sp_dot' "${MX_SK[@]}" ; pl '-'
+  fill 2 ; prntlist 'prnt:sp_dot' "${MX_WK[@]}" ; pl '-'
+  fill 2 ; prntlist 'prnt:sp_dot' "${MX_EK[@]}" ; pl '-'
 }
 # ##############################
 # ·╺━╸⏽ ●  ● ⏽╺━╸·
