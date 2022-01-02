@@ -5,32 +5,32 @@ colors                :
     foreground        : '${XFG}'
     bright_foreground : '${WBG}'
   normal              :
-    black             : '${DK2}'
+    black             : '${SK2}'
     red               : '${C01}'
     green             : '${C02}'
     yellow            : '${C03}'
     blue              : '${C04}'
     magenta           : '${C05}'
     cyan              : '${C06}'
-    white             : '${DK9}'
+    white             : '${SK9}'
   bright              :
-    black             : '${DL4}'
+    black             : '${WK4}'
     red               : '${CX1}'
     green             : '${CX2}'
     yel               : '${CX3}'
     blue              : '${CX4}'
     magenta           : '${CX5}'
     cyan              : '${CX6}'
-    white             : '${LK9}'
+    white             : '${EK9}'
   dim                 :
-   black              : '${DL3}'
+   black              : '${SK1}'
    red                : '${CY1}'
    green              : '${CY2}'
    yellow             : '${CY3}'
    blue               : '${CY4}'
    magenta            : '${CY5}'
    cyan               : '${CY6}'
-   white              : '${DL7}'
+   white              : '${WK7}'
   cursor              :
     text              : '${SFG}'
     cursor            : '${SBG}'
@@ -48,7 +48,7 @@ colors                :
      foreground: '${SFG}'
      background: '${SBG}'
     bar:
-     background: '${DK1}'
+     background: '${SK1}'
      foreground: '${WBG}'
   indexed_colors      :
     - { index         : 20, color      : '${SBG}' }

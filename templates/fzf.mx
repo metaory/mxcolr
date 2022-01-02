@@ -5,9 +5,9 @@ export FZF_DEFAULT_OPTS=" \
   --layout=reverse \
   --info inline \
   --no-border \
-  --color=gutter:${DL1} \
-  --color=fg:${DL7},bg:${DK2},hl:${WBG} \
-  --color=fg+:${SBG},bg+:${DL2},hl+:${WBX} \
+  --color=gutter:${WK1} \
+  --color=fg:${WK7},bg:${SK2},hl:${WBG} \
+  --color=fg+:${SBG},bg+:${WK2},hl+:${WBX} \
   --color=info:${EBG},prompt:${C08},pointer:${WBX} \
   --color=marker:${C01},spinner:${WBG},header:${C01}"
 

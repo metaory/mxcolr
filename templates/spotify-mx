@@ -2,18 +2,18 @@
 ; $MXNAME @ $MXC_V
 text               = ${HLXFG}
 subtext            = ${HLC07}
-bg                 = ${HLDK2}
-main               = ${HLDK0}
-sidebar            = ${HLDK1}
+bg                 = ${HLSK2}
+main               = ${HLSK0}
+sidebar            = ${HLSK1}
 player             = ${HLXBG}
-card               = ${HLDL2}
-shadow             = ${HLDL4}
+card               = ${HLWK2}
+shadow             = ${HLWK4}
 selected-row       = ${HLC05}
 button             = ${HLEBG}
 button-active      = ${HLWBG}
-button-disabled    = ${HLDK4}
+button-disabled    = ${HLSK4}
 tab-active         = ${HLSBG}
-notification       = ${HLDL2}
+notification       = ${HLWK2}
 notification-error = ${HLC01}
 misc               = ${HLC02}
 sbg                = ${HLSBG}
