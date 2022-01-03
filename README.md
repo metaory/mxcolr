@@ -224,6 +224,8 @@ Plugins
 - AwesomeWM `colors.lua`
 - LS_COLORS
 
+## There is a lite version of this project at [mxcolr-lite](https://github.com/metaory/mxcolr-lite)
+
 ***
 
 
