@@ -55,6 +55,8 @@ What about
 
 ## Not for the faint-hearted
 Only tested on Arch Linux, not advised for beginner users.
+
+### There is a lite version of this project at [mxcolr-lite](https://github.com/metaory/mxcolr-lite)
  
 Outputs
 =======
@@ -116,8 +118,6 @@ Basic Usage
 ===========
 Templates are the easiest way to produce scheme files for different apps, 
 every file in `./templates/{tpl}` will be parsed; scheme variables replaced; and placed in `~/.config/mxc/{tpl}`
-
-> There is a lite version of this project at [mxcolr-lite](https://github.com/metaory/mxcolr-lite)
 
 ### some apps that ONLY rely on template file
 - kitty  tpl:[kitty-theme.conf](./templates/kitty-theme.conf) out:[kitty-theme.conf](./assets/samples/kitty-theme.conf)

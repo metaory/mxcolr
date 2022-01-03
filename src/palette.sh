@@ -46,18 +46,11 @@ darkest () {
 # shellcheck disable=SC2034
 gen_random () {
   local attmp="${1:-1}"
-
-  # PressToContinue "XOPT $XOPT"
   local strategy="${XOPT:-lch}" ; [[ "$strategy" == 'lch' ]]   && strategy='lch_hue'
-  # local xcal='0.16'             ; [[ "$strategy" == 'vivid' ]] && xcal='0.08'
 
   WBG="$(pastel random -n 1 -s "$strategy" | pastel format hex)"
   SBG="$(pastel random -n 1 -s "$strategy" | pastel format hex)"
   EBG="$(pastel random -n 1 -s "$strategy" | pastel format hex)"
-
-  # WBG="$(pastel random -n 1 -s "$strategy" | pastel saturate     "$xcal" | pastel darken "$xcal" | pastel format hex)"
-  # SBG="$(pastel random -n 1 -s "$strategy" | pastel mix - "$WBG" -f 0.80 | pastel darken "$xcal" | pastel format hex)"
-  # EBG="$(pastel random -n 1 -s "$strategy" | pastel mix - "$WBG" -f 0.80 | pastel darken "$xcal" | pastel format hex)"
 
   local WBG_SAT; WBG_SAT="$(pastel format hsl-saturation "$WBG")"
   local SBG_SAT; SBG_SAT="$(pastel format hsl-saturation "$SBG")"
