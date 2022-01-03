@@ -49,7 +49,7 @@ gen_random () {
 
   # PressToContinue "XOPT $XOPT"
   local strategy="${XOPT:-lch}" ; [[ "$strategy" == 'lch' ]]   && strategy='lch_hue'
-  local xcal='0.16'             ; [[ "$strategy" == 'vivid' ]] && xcal='0.08'
+  # local xcal='0.16'             ; [[ "$strategy" == 'vivid' ]] && xcal='0.08'
 
   WBG="$(pastel random -n 1 -s "$strategy" | pastel format hex)"
   SBG="$(pastel random -n 1 -s "$strategy" | pastel format hex)"
