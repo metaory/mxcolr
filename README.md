@@ -167,11 +167,11 @@ aws cognito-idp set-ui-customization --user-pool-id $COGNITO_POOL_ID --css "$(ca
 
 generate
 --------
-![generate 1.4](./assets/screenshots/gifcast_220104143034.gif)
+![generate 1.4](./assets/screenshots/gifcast_220104143948.gif)
 
 update
 ------
-![update 1.5](./assets/screenshots/gifcast_220104143245.gif)
+![update 1.5](./assets/screenshots/gifcast_220104144035.gif)
 
 snapshot
 --------
