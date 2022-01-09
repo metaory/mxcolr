@@ -32,13 +32,13 @@ mkdir /tmp/{mxc,mxc_hist} 2>/dev/null || true
 
 # ########################################
 # VARIABLES ##############################
-MX_CC=(C{00..15}) ; MX_CX=(CX{1..6}) ; MX_CY=(CY{1..6}) ;
+MX_CC=(C{00..15}) ; MX_CX=(CX{1..6}) ; MX_CY=(CY{1..6}) ; MX_CF=(CF{1..6}) 
 MX_SK=(SK{0..9})  ; MX_WK=(WK{0..9}) ; MX_EK=(EK{0..9})
 # ...
 MX_SHADES=( "${MX_SK[@]}" "${MX_WK[@]}" "${MX_EK[@]}" )
 MX_CM=({S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G W{B,F}X)
 # ...
-MX_VARS=( "${MX_CC[@]}" "${MX_CX[@]}" "${MX_CY[@]}" "${MX_CM[@]}" "${MX_SHADES[@]}" )
+MX_VARS=( "${MX_CC[@]}" "${MX_CX[@]}" "${MX_CF[@]}" "${MX_CY[@]}" "${MX_CM[@]}" "${MX_SHADES[@]}" )
 MX_TERM=( "${MX_VARS[@]/#/T}" )
 # mapfile -t MX_VARS <<<"$(eval echo \$\{MX_C{C,X,K,L,M}\[\@\]\}))"
 # ########################################
@@ -47,9 +47,7 @@ for src in "$MXBASE"/src/*.sh; do . "$src"; done
 GetPlugName () { local BS="${BASH_SOURCE[1]}"; BS=${BS##*/}; BS="${BS::-3}"; BS="${BS:2}"; echo "$BS"; }
 SourcePlugs () { for plug in "$MXBASE"/plugins/*.sh; do . "$plug"; done; }
 # ##############################
-ApplyTmux () {
-  [[ -n "$TMUX" ]] && . "$MXBASE"/plugins/2-tmux.sh && apply_tmux
-}
+ApplyTmux () { [[ -n "$TMUX" ]] && . "$MXBASE"/plugins/2-tmux.sh && apply_tmux; }
 
 Revert () {
   rm /tmp/mxc/*
@@ -68,6 +66,7 @@ ApplyTemplates () {
       >(cat > "$MXDIST/$tpl") &> /dev/null; # XXX read from env/config
   done
 }
+
 ApplyPlugs () {
   cp -v "$MXDIST" /tmp/mxc_hist/"$(date +%s)" -r
   # shellcheck disable=SC2046
