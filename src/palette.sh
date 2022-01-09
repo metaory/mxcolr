@@ -25,7 +25,6 @@ sort_lightness () {
   echo "$highest:$lowest"
 }
 expandp () {
-  echo "1 $1"
   while [ "$1" ]; do
     pastel format hex "${!1}"
     shift
@@ -110,6 +109,9 @@ gen_idempotents () {
     local c="C0$i"; c="${!c}"
     declare -g "CX$i=$(pastel saturate    0.30 "$c" | pastel darken   0.04 | pastel format hex)"
     declare -g "CY$i=$(pastel desaturate  0.32 "$c" | pastel lighten  0.10 | pastel format hex)"
+
+    local cx="CX$i"; cx="${!cx}"
+    declare -g "CF$i=$(pastel textcolor $cx | pastel format hex)"
   done
 
   WFG="$(pastel textcolor "$WBG" | pastel darken 0.2 | pastel format hex)"
@@ -118,6 +120,15 @@ gen_idempotents () {
 
   InfoDone
 } 
+
+
+__gen_shade () {
+  pastel set hsl-saturation 0.01 "$3" | \
+    pastel set hsl-lightness 0.4 | \
+    pastel darken  $1 | \
+    pastel saturate  $2 | \
+    pastel format hex
+  }
 
 # shellcheck disable=SC2034
 gen_shades () {
@@ -135,29 +146,23 @@ gen_shades () {
     printf '%10s %10s %10s %10s %10s %10s\n' "expoSqr" "sqrtNum" "expoArc" "expoArx" "expoArz"
   fi
 
-  # local base=$(pastel darken "0.1" "$XBG" | pastel desaturate "0.2")
-      # pastel lighten "$3" "$base" | \
-
-  __gen_shade () {
-    pastel set hsl-saturation 0.01 "$3" | \
-      pastel set hsl-lightness 0.4 | \
-      pastel darken  $1 | \
-      pastel saturate  $2 | \
-      pastel format hex
-    }
-
   for i in {0..9}; do
     local act1=lighten
     local act2=saturate
+    # local j="$i"
+
+    # (( i > 7) )) && i * 2
+    # if (( $i > 7 )); echo "$i !!!!!!!!!!"; fi
+
+    # if [ "$i" -gt 7 ]; then
+    #   echo "$i !!!!!!!!!! $j"
+      # i=$(( i * 2 ))
+    #   echo "$i !!!!!!!!!< $j"
+    #   echo
+    # fi
 
     local expoSqr="0$(echo "scale=2; e(sqrt($i))/100"     | bc -l)"
-    # local sqrtNum="0$(echo "scale=2; sqrt($i+1)/10"     | bc -l)"
-    # local expoArc="0$(echo "scale=2; e(a($i))/2/10"     | bc -l)"
-    # local expoArx="0$(echo "scale=2; e(a($i))/3/10"     | bc -l)"
     local expoArz="0$(echo "scale=2; e(a(4-$i))/10"       | bc -l)"
-    # local expoArz="0$(echo "scale=2; e(a(5-$i))/10"     | bc -l)"
-    # local expoSin="0$(echo "scale=2; e(s($i-2)*1.5)/10" | bc -l)"
-    # local expoCos="0$(echo "scale=2; e(c($i-2)/10"      | bc -l)"
 
     # LEGACY SHADE NAMES
     declare -g "DK$i=$(__gen_shade $expoArz $expoSqr $SBG)"
@@ -174,18 +179,18 @@ gen_shades () {
 
   if (( "$DEBUG" )); then
     Demo_shades4
-    __print_hexes $(echo DK{0..9})
-    __print_hexes $(echo DL{0..9})
-    __print_hexes $(echo LK{0..9})
+    __print_hexes $(echo SK{0..9})
+    __print_hexes $(echo WK{0..9})
+    __print_hexes $(echo EK{0..9})
   fi
 
   OFG="$WBX"
   C00="$DL3"
-  C08="$DK4"
-  C07="$DL7"
+  C08="$SK4"
+  C07="$WK7"
   # XFG="$DK8"
   XFG="$(pastel set hsl-lightness 0.4 $XBG | pastel format hex)"
-  C15="$LK9"
+  C15="$EK9"
 
   InfoDone
 }

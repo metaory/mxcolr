@@ -44,6 +44,7 @@ local colors = {
   lightbg = "${WK1}",
   lightbg2 = "${SK1}",
   --
+  fullblack = "#000000",
   -- #########
   cx1 = "$CX1",
   cx2 = "$CX2",
@@ -51,13 +52,20 @@ local colors = {
   cx4 = "$CX4",
   cx5 = "$CX5",
   cx6 = "$CX6",
-  -- #########
+  --
   cy1 = "$CY1",
   cy2 = "$CY2",
   cy3 = "$CY3",
   cy4 = "$CY4",
   cy5 = "$CY5",
   cy6 = "$CY6",
+  --
+  cf1 = "$CF1",
+  cf2 = "$CF2",
+  cf3 = "$CF3",
+  cf4 = "$CF4",
+  cf5 = "$CF5",
+  cf6 = "$CF6",
   --
   c00 = "$C00",
   c01 = "$C01",
