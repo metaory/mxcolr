@@ -50,7 +50,7 @@ PressToContinue () {
 _slant_sep () { local s; s=''; [[ -n "$1" ]] && s='█'; pastel paint -n -o "${2:-black}" "${1:-$XBG}" "$s"; }
 
 PrompRand () {
-  pastel paint -n    -o "$WBG" "$WFG" "  "    ; _slant_sep "$WBG"                           ; _slant_sep
+  pastel paint -n    -o "$WBG" "$WFG" " ● "    ; _slant_sep "$WBG"                           ; _slant_sep
   pastel paint -n -b -o "black" "$C05" " [k]"  ; pastel paint -n -o "black" "$C07" "eep "    ; _slant_sep
   pastel paint -n -b -o "black" "$C02" " [*R]" ; pastel paint -n -o "black" "$C07" "evert "  ; _slant_sep
   pastel paint -n -b -o "black" "$C01" " [Uu]" ; pastel paint -n -o "black" "$C07" "pdate "  ; _slant_sep
