@@ -71,6 +71,8 @@ gen_random () {
   local X_fail;X_fail="$(diff_under "$SBG_HUE" "$EBG_HUE")"
   mlg "HU:: S $SBG_HUE - W $WBG_HUE - E $EBG_HUE"
   mlg "HX:: S $S_fail - E $E_fail - X $X_fail"
+  __logdistance="HU:: S $SBG_HUE - W $WBG_HUE - E $EBG_HUE"
+  __logattempts="$attmp"
 
   if (( S_fail || E_fail || X_fail )); then
     ! (( attmp % ATTMP_WARN_THRESHOLD )) && PressToContinue "failed $attmp attempts, still continue?"
@@ -147,32 +149,20 @@ gen_shades () {
   fi
 
   for i in {0..9}; do
-    local act1=lighten
-    local act2=saturate
-    # local j="$i"
-
-    # (( i > 7) )) && i * 2
-    # if (( $i > 7 )); echo "$i !!!!!!!!!!"; fi
-
-    # if [ "$i" -gt 7 ]; then
-    #   echo "$i !!!!!!!!!! $j"
-      # i=$(( i * 2 ))
-    #   echo "$i !!!!!!!!!< $j"
-    #   echo
-    # fi
+    # if [ "$i" -gt 7 ]; then fi
 
     local expoSqr="0$(echo "scale=2; e(sqrt($i))/100"     | bc -l)"
     local expoArz="0$(echo "scale=2; e(a(4-$i))/10"       | bc -l)"
-
-    # LEGACY SHADE NAMES
-    declare -g "DK$i=$(__gen_shade $expoArz $expoSqr $SBG)"
-    declare -g "DL$i=$(__gen_shade $expoArz $expoSqr $WBG)"
-    declare -g "LK$i=$(__gen_shade $expoArz $expoSqr $EBG)"
 
     # NEW SHADE NAMES
     declare -g "SK$i=$(__gen_shade $expoArz $expoSqr $SBG)"
     declare -g "WK$i=$(__gen_shade $expoArz $expoSqr $WBG)"
     declare -g "EK$i=$(__gen_shade $expoArz $expoSqr $EBG)"
+
+    # LEGACY SHADE NAMES
+    declare -g "DK$i=$(__gen_shade $expoArz $expoSqr $SBG)"
+    declare -g "DL$i=$(__gen_shade $expoArz $expoSqr $WBG)"
+    declare -g "LK$i=$(__gen_shade $expoArz $expoSqr $EBG)"
 
     (( "$DEBUG" )) && printf '%10s %10s %10s  %10s %10s %10s\n' "$expoSqr" "$sqrtNum" "$expoArc" "$expoArx" "$expoArz"
   done
@@ -205,7 +195,7 @@ GeneratePalette () {
 
   SaveSeed
   SaveTheme
-  InfoDone
+  InfoDone "$__logattempts $__logdistance"
 }
 ################################
 ################################
