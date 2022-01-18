@@ -6,10 +6,10 @@ export FZF_DEFAULT_OPTS=" \
   --info inline \
   --no-border \
   --color=gutter:${WK1} \
-  --color=fg:${WK7},bg:${SK2},hl:${WBG} \
-  --color=fg+:${SBG},bg+:${WK2},hl+:${WBX} \
+  --color=fg:${WK7},bg:${WK2},hl:${WBG} \
+  --color=fg+:${SBG},bg+:${WK1},hl+:${WBX} \
   --color=info:${EBG},prompt:${C08},pointer:${WBX} \
-  --color=marker:${C01},spinner:${WBG},header:${C01}"
+  --color=marker:${SBG},spinner:${WBG},header:${WBG}"
 
 
 # FZF_DEFAULT_OPTS='--height 40% --layout=reverse --no-border '
