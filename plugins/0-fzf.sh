@@ -7,7 +7,7 @@ MXC_FZF_OUT="${MXC_FZF_OUT:-"$HOME/.zprofile"}"
 
 FZF_COLOR_OPTS="$FZF_DEFAULT_OPTS \
   --color=fg:${XFG},bg:${XBG},hl:${WBG} \
-  --color=fg+:${SBG},bg+:${DK0},hl+:${WBX} \
+  --color=fg+:${SBG},bg+:${SK0},hl+:${WBX} \
   --color=info:${EBG},prompt:${C08},pointer:${WBX} \
   --color=marker:${C01},spinner:${WBG},header:${C01}"
 

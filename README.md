@@ -70,7 +70,7 @@ seed.mx
 Given the same `seed` file, its guaranteed the same `scheme file` be produced.
 
 Possible variables available in all templates or plugins are:
-- gui colors: `C00..C15`, `DK0..DK9`, `DL0..DL9`, `{S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G`
+- gui colors: `C00..C15`, `SK0..SK9`, `WK0..WK9`, `EK0..EK9`, `{S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G`
 - cterm ansi: all gui colors prefixed with `T`
 - gui hashless: all gui colors without the `#`. prefixed with `HL`
 
