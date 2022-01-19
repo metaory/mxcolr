@@ -37,12 +37,12 @@ __prep () {
     -e "s/--mxc-sfg:.+$/--mxc-sfg: ${SFG};/" \
     -e "s/--mxc-wfg:.+$/--mxc-wfg: ${WFG};/" \
     -e "s/--mxc-efg:.+$/--mxc-efg: ${EFG};/" \
-    -e "s/--mxc-border:.+$/--mxc-border: ${DK3};/" \
-    -e "s/--mxc-bg-dark:.+$/--mxc-bg-dark: ${DK1};/" \
-    -e "s/--mxc-bg-darker:.+$/--mxc-bg-darker: ${DK0};/" \
-    -e "s/--mxc-main-fg:.+$/--mxc-main-fg: ${DK7};/" \
-    -e "s/--mxc-fg-dark:.+$/--mxc-fg-dark: ${DK6};/" \
-    -e "s/--mxc-fg-light:.+$/--mxc-fg-light: ${DL5};/" \
+    -e "s/--mxc-border:.+$/--mxc-border: ${SK3};/" \
+    -e "s/--mxc-bg-dark:.+$/--mxc-bg-dark: ${SK1};/" \
+    -e "s/--mxc-bg-darker:.+$/--mxc-bg-darker: ${SK0};/" \
+    -e "s/--mxc-main-fg:.+$/--mxc-main-fg: ${SK7};/" \
+    -e "s/--mxc-fg-dark:.+$/--mxc-fg-dark: ${SK6};/" \
+    -e "s/--mxc-fg-light:.+$/--mxc-fg-light: ${WK5};/" \
     -e "s/--mxc-amber-fg:.+$/--mxc-amber-fg: ${WBG};/" \
     -e "s/--mxc-accent-fg:.+$/--mxc-accent-fg: ${SBG};/" \
     -e "s/--mxc-purple-dark:.+$/--mxc-purple-dark: ${EBG};/" \

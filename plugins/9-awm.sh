@@ -52,7 +52,7 @@ ApplyIcons () {
 
   Info "${#APP_ICONS[@]} APP_ICONS"
   for ico in "${APP_ICONS[@]}"; do
-    convert "$ico" -fill "${DL6}" -colorize 100%  "$ico"
+    convert "$ico" -fill "${WK6}" -colorize 100%  "$ico"
   done
   InfoDone "${#APP_ICONS[@]} APP_ICONS"
 
@@ -79,7 +79,7 @@ ApplyIcons () {
     echo "icon $icon "
     echo "path $path "
     
-    GenIcon "$icon" "$DL6" "$path" 128
+    GenIcon "$icon" "$WK6" "$path" 128
   done
 
 

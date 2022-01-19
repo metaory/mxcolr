@@ -125,12 +125,20 @@ gen_idempotents () {
 
 
 __gen_shade () {
-  pastel set hsl-saturation 0.01 "$3" | \
-    pastel set hsl-lightness 0.4 | \
-    pastel darken  $1 | \
-    pastel saturate  $2 | \
-    pastel format hex
-  }
+  local c="${!1}";
+  local k="${1:0:1}";
+
+  declare -g "${k}K0=$(pastel set hsl-saturation 0.01 "${c}" | pastel set hsl-lightness 0.05 | pastel format hex)"
+  declare -g "${k}K1=$(pastel set hsl-saturation 0.02 "${c}" | pastel set hsl-lightness 0.10 | pastel format hex)"
+  declare -g "${k}K2=$(pastel set hsl-saturation 0.04 "${c}" | pastel set hsl-lightness 0.15 | pastel format hex)"
+  declare -g "${k}K3=$(pastel set hsl-saturation 0.08 "${c}" | pastel set hsl-lightness 0.20 | pastel format hex)"
+  declare -g "${k}K4=$(pastel set hsl-saturation 0.16 "${c}" | pastel set hsl-lightness 0.25 | pastel format hex)"
+  declare -g "${k}K5=$(pastel set hsl-saturation 0.32 "${c}" | pastel set hsl-lightness 0.30 | pastel format hex)"
+  declare -g "${k}K6=$(pastel set hsl-saturation 0.40 "${c}" | pastel set hsl-lightness 0.35 | pastel format hex)"
+  declare -g "${k}K7=$(pastel set hsl-saturation 0.30 "${c}" | pastel set hsl-lightness 0.40 | pastel format hex)"
+  declare -g "${k}K8=$(pastel set hsl-saturation 0.20 "${c}" | pastel set hsl-lightness 0.45 | pastel format hex)"
+  declare -g "${k}K9=$(pastel set hsl-saturation 0.10 "${c}" | pastel set hsl-lightness 0.50 | pastel format hex)"
+}
 
 # shellcheck disable=SC2034
 gen_shades () {
@@ -138,34 +146,40 @@ gen_shades () {
   pastel paint -b -o "${!darkestSeed}" "$(pastel textcolor "${!darkestSeed}")" " darkest seed : ${darkestSeed} "
   # XBG="$(pastel set hsl-saturation   0.16 "${!darkestSeed}" | pastel set hsl-lightness 0.06 | pastel format hex)"
   XBG="$(pastel set hsl-saturation   0.16 "${WBG}" | pastel set hsl-lightness 0.06 | pastel format hex)"
+  XFG="$(pastel set hsl-lightness 0.4 $XBG | pastel format hex)"
   OBG="$(pastel lighten 0.08 "$XBG" | pastel saturate 0.04 | pastel format hex)"; # OBG="$(pastel desaturate  0.20 "$WBG" | pastel darken  0.30 | pastel format hex)"
 
   if (( "$DEBUG" )); then
-    __print_hexes $(echo DK{0..9})
-    __print_hexes $(echo DL{0..9})
-    __print_hexes $(echo LK{0..9})
+    __print_hexes $(echo SK{0..9})
+    __print_hexes $(echo WK{0..9})
+    __print_hexes $(echo EK{0..9})
     Demo_shades4; echo
     printf '%10s %10s %10s %10s %10s %10s\n' "expoSqr" "sqrtNum" "expoArc" "expoArx" "expoArz"
   fi
 
-  for i in {0..9}; do
-    # if [ "$i" -gt 7 ]; then fi
+# ########################################
 
-    local expoSqr="0$(echo "scale=2; e(sqrt($i))/100"     | bc -l)"
-    local expoArz="0$(echo "scale=2; e(a(4-$i))/10"       | bc -l)"
+  __gen_shade SBG
+  __gen_shade WBG
+  __gen_shade EBG
 
-    # NEW SHADE NAMES
-    declare -g "SK$i=$(__gen_shade $expoArz $expoSqr $SBG)"
-    declare -g "WK$i=$(__gen_shade $expoArz $expoSqr $WBG)"
-    declare -g "EK$i=$(__gen_shade $expoArz $expoSqr $EBG)"
-
-    # LEGACY SHADE NAMES
-    declare -g "DK$i=$(__gen_shade $expoArz $expoSqr $SBG)"
-    declare -g "DL$i=$(__gen_shade $expoArz $expoSqr $WBG)"
-    declare -g "LK$i=$(__gen_shade $expoArz $expoSqr $EBG)"
-
-    (( "$DEBUG" )) && printf '%10s %10s %10s  %10s %10s %10s\n' "$expoSqr" "$sqrtNum" "$expoArc" "$expoArx" "$expoArz"
-  done
+# ########################################
+# __gen_shade () {
+#   pastel set hsl-saturation 0.01 "$3" | \
+#     pastel set hsl-lightness 0.4 | \
+#     pastel darken  $1 | \
+#     pastel saturate  $2 | \
+#     pastel format hex
+#   }
+# for i in {0..9}; do
+#   local expoSqr="0$(echo "scale=2; e(sqrt($i))/100"     | bc -l)"
+#   local expoArz="0$(echo "scale=2; e(a(4-$i))/10"       | bc -l)"
+#   declare -g "SK$i=$(__gen_shade $expoArz $expoSqr $SBG)"
+#   declare -g "WK$i=$(__gen_shade $expoArz $expoSqr $WBG)"
+#   declare -g "EK$i=$(__gen_shade $expoArz $expoSqr $EBG)"
+#   (( "$DEBUG" )) && printf '%10s %10s %10s  %10s %10s %10s\n' "$expoSqr" "$sqrtNum" "$expoArc" "$expoArx" "$expoArz"
+# done
+# ########################################
 
   if (( "$DEBUG" )); then
     Demo_shades4
@@ -175,11 +189,9 @@ gen_shades () {
   fi
 
   OFG="$WBX"
-  C00="$DL3"
+  C00="$WK3"
   C08="$SK4"
   C07="$WK7"
-  # XFG="$DK8"
-  XFG="$(pastel set hsl-lightness 0.4 $XBG | pastel format hex)"
   C15="$EK9"
 
   InfoDone
@@ -220,4 +232,6 @@ UpdatePalette () {
 (( "$DEBUG" )) && gen_shades
 # (( "$DEBUG" )) && gen_idempotents
 # (( "$DEBUG" )) && Demo && Demo_slant && Demo_hexes
+
+    # if [ "$i" -gt 7 ]; then fi
 
