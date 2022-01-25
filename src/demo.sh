@@ -33,9 +33,9 @@ _title () {
   local fill; fill=$(printf "%0.s " $(seq 1 "$flen"))
   local out="${label}${fill}"
 
-  pastel paint "$DK0" -n "  ██"
-  pastel paint "$XFG" -n -i -o "$DK0" " ${out} "
-  pastel paint "$DK0"  "█"
+  pastel paint "$SK0" -n "  ██"
+  pastel paint "$XFG" -n -i -o "$SK0" " ${out} "
+  pastel paint "$SK0"  "█"
 }
 _head () {
   local s="${1}"
@@ -66,16 +66,16 @@ Demo_card () {
 # Demo_shades1()  { fill 1 ; prntlist 'prnt:sp_lash' "${MX_CK[@]}"     ; pl '-' ; }j
 # Demo_shades2()  { fill 1 ; prntlist 'prnt:sp_pentagon' "${MX_CK[@]}" ; pl '-' ; }
 Demo_shades3()  { 
-  fill 0 ; printf 'DK ' ; prntlist 'prnt:sp_dotline' "${MX_SK[@]}"  ; pl '-'
-  fill 0 ; printf 'DL ' ; prntlist 'prnt:sp_dotline' "${MX_WK[@]}"  ; pl '-'
-  fill 0 ; printf 'LK ' ; prntlist 'prnt:sp_dotline' "${MX_EK[@]}" ; pl '-'
+  fill 0 ; printf 'SK ' ; prntlist 'prnt:sp_dotline' "${MX_SK[@]}" ; pl '-'
+  fill 0 ; printf 'WK ' ; prntlist 'prnt:sp_dotline' "${MX_WK[@]}" ; pl '-'
+  fill 0 ; printf 'EK ' ; prntlist 'prnt:sp_dotline' "${MX_EK[@]}" ; pl '-'
 }
 Demo_shades4()  { 
   fill 3; for i in {0..9}; do printf '%s ' "$i"; done; echo
 
-  fill 0 ; printf 'DK ' ; prntlist 'prnt:sp_block_e' "${MX_SK[@]}"  ; pl '-'
-  fill 0 ; printf 'DL ' ; prntlist 'prnt:sp_block_e' "${MX_WK[@]}"  ; pl '-'
-  fill 0 ; printf 'LK ' ; prntlist 'prnt:sp_block_e' "${MX_EK[@]}" ; pl '-'
+  fill 0 ; printf 'SK ' ; prntlist 'prnt:sp_block_e' "${MX_SK[@]}" ; pl '-'
+  fill 0 ; printf 'WK ' ; prntlist 'prnt:sp_block_e' "${MX_WK[@]}" ; pl '-'
+  fill 0 ; printf 'EK ' ; prntlist 'prnt:sp_block_e' "${MX_EK[@]}" ; pl '-'
 }
 
 Demo_mxname () {
@@ -172,8 +172,10 @@ SaveDemoImage () {
 
 __print_hexes () {
   while [ "$1" ]; do
-    pastel paint -n -o "${!1}" "$(pastel textcolor "${!1}")" "${1}"
-    pastel paint -n "${!1}" "${!1}"
+    local tc="$(pastel textcolor "${!1}")"
+    local cc="${!1}"
+    pastel paint -n -o "${!1}" "${tc}" " ${1} "
+    pastel paint -n -o "#000" "${cc}" "${cc:(-6)}"
     printf ' '
     shift
   done
@@ -183,17 +185,14 @@ __print_hexes () {
 # shellcheck disable=SC2046
 Demo_hexes () {
   if (( "$FORCE_UPDATE" )); then return; fi
-  __print_hexes $(echo {S,W,W,W,W,E}BG)
   fillCols '━'
   __print_hexes $(echo CX{1..6})
   __print_hexes $(echo C{01..06})
   __print_hexes $(echo C{09..14})
   __print_hexes $(echo CY{1..6})
   fillCols '━'
-  __print_hexes $(echo XBG C0{0,8,7} C15 XFG)
-  __print_hexes $(echo SK{0..9})
-  __print_hexes $(echo WK{0..9})
-  __print_hexes $(echo EK{0..9})
+  __print_hexes $(echo {S,W,E}BG)
   fillCols '━'
+  for i in {1..9}; do __print_hexes SK${i} WK${i} EK${i}; done
 }
 
