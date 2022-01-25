@@ -128,16 +128,16 @@ __gen_shade () {
   local c="${!1}";
   local k="${1:0:1}";
 
-  declare -g "${k}K0=$(pastel set hsl-saturation 0.01 "${c}" | pastel set hsl-lightness 0.05 | pastel format hex)"
-  declare -g "${k}K1=$(pastel set hsl-saturation 0.02 "${c}" | pastel set hsl-lightness 0.10 | pastel format hex)"
-  declare -g "${k}K2=$(pastel set hsl-saturation 0.04 "${c}" | pastel set hsl-lightness 0.15 | pastel format hex)"
-  declare -g "${k}K3=$(pastel set hsl-saturation 0.08 "${c}" | pastel set hsl-lightness 0.20 | pastel format hex)"
-  declare -g "${k}K4=$(pastel set hsl-saturation 0.16 "${c}" | pastel set hsl-lightness 0.25 | pastel format hex)"
-  declare -g "${k}K5=$(pastel set hsl-saturation 0.32 "${c}" | pastel set hsl-lightness 0.30 | pastel format hex)"
-  declare -g "${k}K6=$(pastel set hsl-saturation 0.40 "${c}" | pastel set hsl-lightness 0.35 | pastel format hex)"
-  declare -g "${k}K7=$(pastel set hsl-saturation 0.30 "${c}" | pastel set hsl-lightness 0.40 | pastel format hex)"
-  declare -g "${k}K8=$(pastel set hsl-saturation 0.20 "${c}" | pastel set hsl-lightness 0.45 | pastel format hex)"
-  declare -g "${k}K9=$(pastel set hsl-saturation 0.10 "${c}" | pastel set hsl-lightness 0.50 | pastel format hex)"
+  declare -g "${k}K0=$(pastel set hsl-saturation 0.20 "${c}" | pastel set hsl-lightness 0.02 | pastel format hex)"
+  declare -g "${k}K1=$(pastel set hsl-saturation 0.15 "${c}" | pastel set hsl-lightness 0.04 | pastel format hex)"
+  declare -g "${k}K2=$(pastel set hsl-saturation 0.10 "${c}" | pastel set hsl-lightness 0.06 | pastel format hex)"
+  declare -g "${k}K3=$(pastel set hsl-saturation 0.15 "${c}" | pastel set hsl-lightness 0.08 | pastel format hex)"
+  declare -g "${k}K4=$(pastel set hsl-saturation 0.20 "${c}" | pastel set hsl-lightness 0.10 | pastel format hex)"
+  declare -g "${k}K5=$(pastel set hsl-saturation 0.18 "${c}" | pastel set hsl-lightness 0.15 | pastel format hex)"
+  declare -g "${k}K6=$(pastel set hsl-saturation 0.16 "${c}" | pastel set hsl-lightness 0.20 | pastel format hex)"
+  declare -g "${k}K7=$(pastel set hsl-saturation 0.14 "${c}" | pastel set hsl-lightness 0.40 | pastel format hex)"
+  declare -g "${k}K8=$(pastel set hsl-saturation 0.12 "${c}" | pastel set hsl-lightness 0.60 | pastel format hex)"
+  declare -g "${k}K9=$(pastel set hsl-saturation 0.10 "${c}" | pastel set hsl-lightness 0.80 | pastel format hex)"
 }
 
 # shellcheck disable=SC2034
@@ -188,11 +188,13 @@ gen_shades () {
     __print_hexes $(echo EK{0..9})
   fi
 
+  local k="${darkestSeed:0:1}";
   OFG="$WBX"
-  C00="$WK3"
-  C08="$SK4"
-  C07="$WK7"
-  C15="$EK9"
+  C00="${k}K3"; C00="${!C00}"
+  C08="${k}K6"; C08="${!C08}"
+  C07="${k}K7"; C07="${!C07}"
+  C15="${k}K8"; C15="${!C15}"
+  
 
   InfoDone
 }

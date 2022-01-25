@@ -6,7 +6,7 @@ export FZF_DEFAULT_OPTS=" \
   --info inline \
   --no-border \
   --color=gutter:${WK1} \
-  --color=fg:${WK7},bg:${WK2},hl:${WBG} \
+  --color=fg:${C07},bg:${XBG},hl:${WBG} \
   --color=fg+:${SBG},bg+:${WK1},hl+:${WBX} \
   --color=info:${EBG},prompt:${C08},pointer:${WBX} \
   --color=marker:${SBG},spinner:${WBG},header:${WBG}"
