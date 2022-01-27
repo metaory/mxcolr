@@ -96,7 +96,7 @@ gen_idempotents () {
   C02="$(pastel mix ${!ds} darkseagreen  -f 0.5 | pastel mix - mediumspringgreen -f 0.6 | pastel saturate 0.08 | pastel format hex)"
   C03="$(pastel mix ${!ds} orange        -f 0.5 | pastel mix - coral             -f 0.6 | pastel saturate 0.08 | pastel format hex)"
   C04="$(pastel mix ${!ds} blue          -f 0.5 | pastel mix - deepskyblue       -f 0.6 | pastel saturate 0.04 | pastel format hex)"
-  C05="$(pastel mix ${!ds} indigo        -f 0.5 | pastel mix - slateblue         -f 0.6 | pastel saturate 0.04 | pastel format hex)"
+  C05="$(pastel mix ${!ds} indigo        -f 0.5 | pastel mix - orchid            -f 0.6 | pastel saturate 0.04 | pastel format hex)"
   C06="$(pastel mix ${!ds} darkturquoise -f 0.5 | pastel mix - deepskyblue       -f 0.6 | pastel saturate 0.08 | pastel format hex)"
 
   for i in {09..14}; do
@@ -128,15 +128,15 @@ __gen_shade () {
   local c="${!1}";
   local k="${1:0:1}";
 
-  declare -g "${k}K0=$(pastel set hsl-saturation 0.20 "${c}" | pastel set hsl-lightness 0.02 | pastel format hex)"
-  declare -g "${k}K1=$(pastel set hsl-saturation 0.15 "${c}" | pastel set hsl-lightness 0.04 | pastel format hex)"
-  declare -g "${k}K2=$(pastel set hsl-saturation 0.10 "${c}" | pastel set hsl-lightness 0.06 | pastel format hex)"
-  declare -g "${k}K3=$(pastel set hsl-saturation 0.15 "${c}" | pastel set hsl-lightness 0.08 | pastel format hex)"
-  declare -g "${k}K4=$(pastel set hsl-saturation 0.20 "${c}" | pastel set hsl-lightness 0.10 | pastel format hex)"
-  declare -g "${k}K5=$(pastel set hsl-saturation 0.18 "${c}" | pastel set hsl-lightness 0.15 | pastel format hex)"
-  declare -g "${k}K6=$(pastel set hsl-saturation 0.16 "${c}" | pastel set hsl-lightness 0.20 | pastel format hex)"
-  declare -g "${k}K7=$(pastel set hsl-saturation 0.14 "${c}" | pastel set hsl-lightness 0.40 | pastel format hex)"
-  declare -g "${k}K8=$(pastel set hsl-saturation 0.12 "${c}" | pastel set hsl-lightness 0.60 | pastel format hex)"
+  declare -g "${k}K0=$(pastel set hsl-saturation 0.10 "${c}" | pastel set hsl-lightness 0.04 | pastel format hex)"
+  declare -g "${k}K1=$(pastel set hsl-saturation 0.11 "${c}" | pastel set hsl-lightness 0.08 | pastel format hex)"
+  declare -g "${k}K2=$(pastel set hsl-saturation 0.12 "${c}" | pastel set hsl-lightness 0.12 | pastel format hex)"
+  declare -g "${k}K3=$(pastel set hsl-saturation 0.13 "${c}" | pastel set hsl-lightness 0.16 | pastel format hex)"
+  declare -g "${k}K4=$(pastel set hsl-saturation 0.14 "${c}" | pastel set hsl-lightness 0.20 | pastel format hex)"
+  declare -g "${k}K5=$(pastel set hsl-saturation 0.14 "${c}" | pastel set hsl-lightness 0.30 | pastel format hex)"
+  declare -g "${k}K6=$(pastel set hsl-saturation 0.13 "${c}" | pastel set hsl-lightness 0.50 | pastel format hex)"
+  declare -g "${k}K7=$(pastel set hsl-saturation 0.12 "${c}" | pastel set hsl-lightness 0.60 | pastel format hex)"
+  declare -g "${k}K8=$(pastel set hsl-saturation 0.11 "${c}" | pastel set hsl-lightness 0.70 | pastel format hex)"
   declare -g "${k}K9=$(pastel set hsl-saturation 0.10 "${c}" | pastel set hsl-lightness 0.80 | pastel format hex)"
 }
 
@@ -145,7 +145,7 @@ gen_shades () {
   local darkestSeed;darkestSeed=$(darkest SBG WBG EBG)
   pastel paint -b -o "${!darkestSeed}" "$(pastel textcolor "${!darkestSeed}")" " darkest seed : ${darkestSeed} "
   # XBG="$(pastel set hsl-saturation   0.16 "${!darkestSeed}" | pastel set hsl-lightness 0.06 | pastel format hex)"
-  XBG="$(pastel set hsl-saturation   0.16 "${WBG}" | pastel set hsl-lightness 0.06 | pastel format hex)"
+  XBG="$(pastel set hsl-saturation   0.16 "${SBG}" | pastel set hsl-lightness 0.06 | pastel format hex)"
   XFG="$(pastel set hsl-lightness 0.4 $XBG | pastel format hex)"
   OBG="$(pastel lighten 0.08 "$XBG" | pastel saturate 0.04 | pastel format hex)"; # OBG="$(pastel desaturate  0.20 "$WBG" | pastel darken  0.30 | pastel format hex)"
 
@@ -190,9 +190,9 @@ gen_shades () {
 
   local k="${darkestSeed:0:1}";
   OFG="$WBX"
-  C00="${k}K3"; C00="${!C00}"
-  C08="${k}K6"; C08="${!C08}"
-  C07="${k}K7"; C07="${!C07}"
+  C00="${k}K2"; C00="${!C00}"
+  C08="${k}K4"; C08="${!C08}"
+  C07="${k}K6"; C07="${!C07}"
   C15="${k}K8"; C15="${!C15}"
   
 

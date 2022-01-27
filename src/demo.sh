@@ -193,6 +193,8 @@ Demo_hexes () {
   fillCols '━'
   __print_hexes $(echo {S,W,E}BG)
   fillCols '━'
+  __print_hexes C00 C08 C07 C15
+  fillCols '━'
   for i in {1..9}; do __print_hexes SK${i} WK${i} EK${i}; done
 }
 
