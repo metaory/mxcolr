@@ -148,13 +148,12 @@ put_header () {
 Lorem () {
   local s=''
   for t in $(seq 1 "${1:-300}"); do
-    (( RANDOM % 2 )) &&  s+='🮂'  ||  s+=' '; # '▂'
+    (( RANDOM % 2 )) &&  s+="${2:-▂}"  ||  s+=' '
   done
-  pastel paint "${DL5}" "$s"
-  # echo
+  pastel paint "${C05}" "$s"
 }
 
 LoremCols () {
-  Lorem "$(tput cols)"
+  Lorem "$(tput cols)" $1
 }
 

@@ -56,7 +56,8 @@ Demo_card () {
   fll 8; _head "∕"   0      ; prntlist 'prnt:sp_tiny' "${MX_CB[@]}" ; echo
   fll 8; _head "$t"  0      ; prntlist 'prnt:sp_tiny' "${cy[@]}"    ; echo
   fll 8; _head " "   0      ; prntlist 'prnt:sp_tiny' "${MX_SK[@]}" ; echo
-  fll 8; _head "██" 1      ; prntlist 'prnt:sp_tiny' "${MX_WK[@]}" ; echo
+  fll 8; _head " "   0      ; prntlist 'prnt:sp_tiny' "${MX_WK[@]}" ; echo
+  fll 8; _head "██" 1      ; prntlist 'prnt:sp_tiny' "${MX_EK[@]}" ; echo
 }
 # ##############################
 # Demo_shades()  {
@@ -99,9 +100,9 @@ Demo_dot () {
   fill 4 ; prntlist 'prnt:sp_dot' "${MX_CB[@]}" ; pl '-'
   fill 6 ; prntlist 'prnt:sp_dot' "${MX_CY[@]}" ; pl '-'
 
-  fill 2 ; prntlist 'prnt:sp_dot' "${MX_SK[@]}" ; pl '-'
-  fill 2 ; prntlist 'prnt:sp_dot' "${MX_WK[@]}" ; pl '-'
-  fill 2 ; prntlist 'prnt:sp_dot' "${MX_EK[@]}" ; pl '-'
+  fill 2 ; prntlist 'prnt:sp_dot' "${MX_SK[@]}" SBG ; pl '-'
+  fill 2 ; prntlist 'prnt:sp_dot' "${MX_WK[@]}" WBG ; pl '-'
+  fill 2 ; prntlist 'prnt:sp_dot' "${MX_EK[@]}" EBG ; pl '-'
 }
 # ##############################
 # ·╺━╸⏽ ●  ● ⏽╺━╸·
@@ -191,9 +192,9 @@ Demo_hexes () {
   __print_hexes $(echo C{09..14})
   __print_hexes $(echo CY{1..6})
   fillCols '━'
-  __print_hexes $(echo {S,W,E}BG)
-  fillCols '━'
   __print_hexes C00 C08 C07 C15
+  fillCols '━'
+  __print_hexes $(echo {S,W,E}BG)
   fillCols '━'
   for i in {1..9}; do __print_hexes SK${i} WK${i} EK${i}; done
 }

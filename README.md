@@ -17,15 +17,17 @@ Options
     --force                 | forcefull update
     --verbose               | verbose logs
     --tmp-only              | exit silently after placing temp files in /tmp/mxc
-    --gen-icon              | [char, path]
-    --lorem                 | [char, length]
-    --lorem-cols            | [char]
-    --darkest               | [colors]
-    --lightest              | [colors]
+
+Utilities
+=========
+    --gen-icon              | [char, path]; create image in path icon from the char
+    --lorem                 | [length, char]; print char randomely for the length 
+    --lorem-cols            | [char]; fill terminal column with char
+    --darkest               | [colors]; return darkest color of the list
+    --lightest              | [colors]; return lightest color of the list
 
 Actions
 =======
-    -i, init                | initial bootstrap
     -g, generate <strategy> | <vivid, lch> (Pastel randomization strategy) default is lch
     -u, update              | apply to all plugins
     -U, update-force        | force apply to all plugins without any prompts
@@ -48,8 +50,7 @@ What about
 ----------
 - [Pywal](https://github.com/dylanaraps/pywal): all about Wallpaper,, great documentation and support though. 
 > almost all [pywal-customization](https://github.com/dylanaraps/pywal/wiki/customization) can be easilly added
-- [Oomox](https://github.com/themix-project/oomox) plugins: possible,, to mxcolr oomox is yet another plugin for gtk theme and icon
- 
+- [Oomox](https://github.com/themix-project/oomox) plugins: possible,, to mxcolr, oomox is just another plugin for gtk theme and icon
  
 #### This repo goal is to be a tool for generating and previewing palettes and serve as a framework for patching any application with few keystrokes.
 
@@ -70,9 +71,36 @@ seed.mx
 Given the same `seed` file, its guaranteed the same `scheme file` be produced.
 
 Possible variables available in all templates or plugins are:
-- gui colors: `C00..C15`, `SK0..SK9`, `WK0..WK9`, `EK0..EK9`, `{S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G`
-- cterm ansi: all gui colors prefixed with `T`
-- gui hashless: all gui colors without the `#`. prefixed with `HL`
+```
+C00 C01 C02 C03 C04 C05 C06 C07 C08 C09 C10 C11 C12 C13 C14 C15
+    CX1 CX2 CX3 CX4 CX5 CX6 # extra saturated
+    CY1 CY2 CY3 CY4 CY5 CY6 # extra desaturated
+
+XBG OBG SBG WBG EBG # core colors
+XFG OFG SFG WFG EFG # core colors
+
+SK0 SK1 SK2 SK3 SK4 SK5 SK6 SK7 SK8 SK9 # shades
+WK0 WK1 WK2 WK3 WK4 WK5 WK6 WK7 WK8 WK9 # shades
+EK0 EK1 EK2 EK3 EK4 EK5 EK6 EK7 EK8 EK9 # shades
+```
+
+#### Variants
+- **gui** variant with their hex values
+- **gui hashless** variant with their hex values without leading `#`; prefixed with `HL`
+- **cterm** variant with their ansi-8bit values; prefixed with `T`
+
+#### examples:
+```
+echo "$C04 $WK6"
+#3b88df #6f7690
+
+echo "$HLC04 $HLWK6"
+3b88df 6f7690
+
+echo "$TC04 $TWK6"
+33 60
+```
+
 
 ENV Specifics
 =============
