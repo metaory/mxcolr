@@ -88,6 +88,10 @@ WK0 WK1 WK2 WK3 WK4 WK5 WK6 WK7 WK8 WK9 # shades
 EK0 EK1 EK2 EK3 EK4 EK5 EK6 EK7 EK8 EK9 # shades
 ```
 
+<p align="center">
+  <img src="./assets/screenshots/2022-01-29-163915_877x552_scrot.png">
+</p>
+
 #### Variants
 - **gui** variant with their hex values
 - **gui hashless** variant with their hex values without leading `#`; prefixed with `HL`
