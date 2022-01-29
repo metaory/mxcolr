@@ -1,7 +1,7 @@
 # mxcolr ▲
 
 <p align="center">
-  <img width="193" height="64" src="./assets/screenshots/2022-01-29-162432_492x442_scrot.png">
+  <img src="./assets/screenshots/2022-01-29-162432_492x442_scrot.png">
 </p>
 
 <p align="center">
