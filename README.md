@@ -12,10 +12,6 @@
   <img src="./assets/screenshots/2022-01-29-162818_2560x1080_scrot.png">
 </p>
 
-<p align="center">
-  <img src="./assets/screenshots/2022-01-29-163147_609x481_scrot.png">
-</p>
-
 Usage
 =====
     mxcolr [options] <action> [params]
