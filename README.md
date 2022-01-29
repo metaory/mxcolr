@@ -99,13 +99,13 @@ EK0 EK1 EK2 EK3 EK4 EK5 EK6 EK7 EK8 EK9 # shades
 
 #### examples:
 ```
-echo "$C04 $WK6"
+echo $C04 $WK6
 #3b88df #6f7690
 
-echo "$HLC04 $HLWK6"
+echo $HLC04 $HLWK6
 3b88df 6f7690
 
-echo "$TC04 $TWK6"
+echo $TC04 $TWK6
 33 60
 ```
 
