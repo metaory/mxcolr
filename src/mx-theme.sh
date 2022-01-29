@@ -3,7 +3,7 @@
 SaveTheme () {
   PopulateFileWith "$MTHEME"  'FLUSH' \
     "export \${c}=\'\${!c}\'" \
-    MXNAME MXC_V "${MX_VARS[@]}" "${MX_TERM[@]}"
+    MXNAME MXC_V "${MX_VARS[@]}" "${MX_TERM[@]}" "${MX_HLES[@]}"
 
   . "$MTHEME" && InfoDone "$MTHEME"
 }

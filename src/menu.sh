@@ -107,15 +107,17 @@ Options
     --force                 | forcefull update
     --verbose               | verbose logs
     --tmp-only              | exit silently after placing temp files in /tmp/mxc
-    --gen-icon              | [char, path]
-    --lorem                 | [char, length]
-    --lorem-cols            | [char]
-    --darkest               | [colors]
-    --lightest              | [colors]
+
+Utilities
+=========
+    --gen-icon              | [char, path]; create image in path icon from the char
+    --lorem                 | [length, char]; print char randomely for the length 
+    --lorem-cols            | [char]; fill terminal column with char
+    --darkest               | [colors]; return darkest color of the list
+    --lightest              | [colors]; return lightest color of the list
 
 Actions
 =======
-    -i, init                | initial bootstrap
     -g, generate <strategy> | <vivid, lch> (Pastel randomization strategy) default is lch
     -u, update              | apply to all plugins
     -U, update-force        | force apply to all plugins without any prompts
@@ -124,6 +126,7 @@ Actions
     -l, list                | list all saved snapshots
     -r, random              | pick a random snapshot
     -s, save                | save snapshot
+     *                      | intro
 
 EOF
 

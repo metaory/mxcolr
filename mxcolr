@@ -40,6 +40,7 @@ MX_CM=({S{B,F},W{B,F},E{B,F},X{B,F},O{B,F}}G W{B,F}X)
 # ...
 MX_VARS=( "${MX_CC[@]}" "${MX_CX[@]}" "${MX_CF[@]}" "${MX_CY[@]}" "${MX_CM[@]}" "${MX_SHADES[@]}" )
 MX_TERM=( "${MX_VARS[@]/#/T}" )
+MX_HLES=( "${MX_VARS[@]/#/HL}" )
 # mapfile -t MX_VARS <<<"$(eval echo \$\{MX_C{C,X,K,L,M}\[\@\]\}))"
 # ########################################
 for src in "$MXBASE"/src/*.sh; do . "$src"; done
@@ -198,7 +199,7 @@ Generate () {
     --gen-icon        ) GenIcon "$@"                  ; exit ;;
     --shuffle         ) Shuffle  "$@"                 ;;
     --lorem           ) Lorem  "$@"                   ;;
-    --lorem-cols      ) LoremCols                     ;;
+    --lorem-cols      ) LoremCols "$@"                ;;
     --darkest         ) darkest "$@"                  ;;
     --lightest        ) lightest "$@"                 ;;
     -xp               ) expandp "$@"                  ;;
