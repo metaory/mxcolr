@@ -9,7 +9,7 @@
 </p>
 
 <p align="center">
-  <img src="./assets/screenshots/2022-01-29-162818_2560x1080_scrot.png">
+  <img src="./assets/screenshots/2022-01-29-190221_2560x1080_scrot.png">
 </p>
 
 Usage
