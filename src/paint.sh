@@ -75,7 +75,7 @@ fillHead () {
   fill $space "$(( cols + ${#sep} ))" "$sep" "$XFG"; pl '-'
 }
 fillCols () { 
-  fill "$(($(tput cols)/2))" 0 "${1:-}" "${DL3}"
+  fill "$(($(tput cols)/2))" 0 "${1:-}" "${SK3}"
   pl '-'
 } 
 

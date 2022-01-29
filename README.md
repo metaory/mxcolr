@@ -8,6 +8,10 @@
   :warning: Warning! This is experimental! :warning:
 </p>
 
+<p align="center">
+  <img src="./assets/screenshots/2022-01-29-162000_2560x1080_scrot.png">
+</p>
+
 Usage
 =====
     mxcolr [options] <action> [params]
