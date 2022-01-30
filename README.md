@@ -246,7 +246,7 @@ Plugins
 -------
 - Xresources
 - Alacritty
-- Kitty
+- Kitty theme: [tmux-mxc](https://github.com/metaory/kitty-mxc)
 - Vim `colors.vim` Nvim `colors.lua`
 - Vimium
 - FZF
