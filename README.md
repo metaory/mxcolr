@@ -279,7 +279,7 @@ Plugins
           /  /:/      |  |:|       \  \:\     
          /__/:/       |__|:|        \  \:\    
          \__\/         \__\|         \__\/    
-             @ mxc-v1.6
+             @ mxc-v1.9
 
 <p align="center">
   <img width="374" height="40" src="./assets/screenshots/footer_2021-05-16-221932_374x40_scrot.png">
