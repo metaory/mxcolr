@@ -258,7 +258,7 @@ Plugins
 - GTK Theme
 - GTK Icon Theme
 - Wallpaper tint
-- Tmux
+- Tmux, theme: [tmux-mxc](https://github.com/metaory/tmux-mxc)
 - AwesomeWM `colors.lua`
 - LS_COLORS
 
