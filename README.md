@@ -79,7 +79,7 @@ Possible variables available in all templates or plugins are:
 C00 C01 C02 C03 C04 C05 C06 C07 C08 C09 C10 C11 C12 C13 C14 C15
     CX1 CX2 CX3 CX4 CX5 CX6 # extra saturated
     CY1 CY2 CY3 CY4 CY5 CY6 # extra desaturated
-    CF1 CF2 CF3 CF4 CF5 CF6 # textcolor on CX background
+    CF1 CF2 CF3 CF4 CF5 CF6 # fg color on CX bg
 
 XBG OBG SBG WBG EBG # core bg colors
 XFG OFG SFG WFG EFG # core fg colors
