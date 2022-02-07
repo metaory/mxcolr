@@ -52,14 +52,15 @@ gen_random () {
 }
 
 gen_idempotents () {
-  local ds;ds=$(darkest SBG WBG EBG)
+  # local ds;ds=$(darkest SBG WBG EBG)
+  local ds=SBG
 
-  C01="$(pastel mix ${!ds} crimson       -f 0.5 | pastel mix - deeppink          -f 0.6 | _ss 0.08 | _fh)"
-  C02="$(pastel mix ${!ds} darkseagreen  -f 0.5 | pastel mix - mediumspringgreen -f 0.6 | _ss 0.08 | _fh)"
-  C03="$(pastel mix ${!ds} orange        -f 0.5 | pastel mix - coral             -f 0.6 | _ss 0.08 | _fh)"
-  C04="$(pastel mix ${!ds} royalblue     -f 0.5 | pastel mix - deepskyblue       -f 0.6 | _ss 0.08 | _fh)"
-  C05="$(pastel mix ${!ds} indigo        -f 0.5 | pastel mix - orchid            -f 0.6 | _ss 0.08 | _fh)"
-  C06="$(pastel mix ${!ds} darkturquoise -f 0.5 | pastel mix - deepskyblue       -f 0.6 | _ss 0.08 | _fh)"
+  C01="$(pastel mix ${!ds} Crimson   -f 0.5 | pastel mix - HotPink     -f 0.4 | _ss 0.03 | _fh)"
+  C02="$(pastel mix ${!ds} Teal      -f 0.5 | pastel mix - MediumSpringGreen -f 0.4 | _ss 0.03 | _fh)"
+  C03="$(pastel mix ${!ds} Yellow    -f 0.5 | pastel mix - Coral             -f 0.4 | _ss 0.03 | _fh)"
+  C04="$(pastel mix ${!ds} RoyalBlue -f 0.5 | pastel mix - DeepSkyBlue       -f 0.4 | _ss 0.03 | _fh)"
+  C05="$(pastel mix ${!ds} SlateBlue -f 0.5 | pastel mix - Plum              -f 0.4 | _ss 0.03 | _fh)"
+  C06="$(pastel mix ${!ds} Cyan      -f 0.5 | pastel mix - Aquamarine        -f 0.4 | _ss 0.03 | _fh)"
 
   for i in {09..14}; do
     local c="C0$(echo "$i - 8" | bc)"; c="${!c}"
@@ -71,8 +72,8 @@ gen_idempotents () {
 
   for i in {1..6}; do
     local c="C0$i"; c="${!c}"
-    declare -g "CX$i=$(_ss 0.30 "$c" | _dd 0.04 | _fh)"
-    declare -g "CY$i=$(_ds 0.32 "$c" | _ll 0.10 | _fh)"
+    declare -g "CX$i=$(_ss 0.30 "$c" | _dd 0.02 | _fh)"
+    declare -g "CY$i=$(_ds 0.25 "$c" | _ll 0.10 | _fh)"
 
     local cx="CX$i"; cx="${!cx}"
     declare -g "CF$i=$(_tx $cx | _fh)"
@@ -133,7 +134,7 @@ gen_shades () {
   XFG="${k}K6"; XFG="${!XFG}"
 
   OBG="${k}K4"; OBG="${!OBG}"
-  OFG="${k}K8"; OFG="${!OFG}"
+  OFG="${k}K7"; OFG="${!OFG}"
 
   InfoDone
 }
