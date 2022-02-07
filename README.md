@@ -1,5 +1,7 @@
 # mxcolr ▲
 
+[![Join the chat at https://gitter.im/metaory/mxcolr](https://badges.gitter.im/metaory/mxcolr.svg)](https://gitter.im/metaory/mxcolr?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
+
 <p align="center">
   <img src="./assets/screenshots/2022-01-29-163127_318x127_scrot.png">
 </p>
