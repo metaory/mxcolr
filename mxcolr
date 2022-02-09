@@ -112,6 +112,7 @@ ReGenerate () {
   ReleaseSeed
   ReleaseTheme
   fillCols '▄'; fillCols '▀'; Demo
+  Demo_hexes
 
   (( "$1" )) && return
   (( "$FORCE_UPDATE" )) && InfoWarn "FORCE_UPDATE is ON"

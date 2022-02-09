@@ -104,6 +104,17 @@ Demo_dot () {
   fill 2 ; prntlist 'prnt:sp_dot' "${MX_WK[@]}" WBG ; pl '-'
   fill 2 ; prntlist 'prnt:sp_dot' "${MX_EK[@]}" EBG ; pl '-'
 }
+Demo_darkest () {
+  local darkestSeed;darkestSeed=$(darkest SBG WBG EBG)
+  local ulen="${#USER}"
+  local mlen="${#MXNAME}"
+  local flen=$((ulen+mlen-2))
+  local space; space=$(printf "%0.s " $(seq 1 "$flen"))
+
+  pastel paint -b -o "${!darkestSeed}" \
+    "$(_tx "${!darkestSeed}")" \
+    " darkest seed: ${darkestSeed}${space}"
+}
 # ##############################
 # ·╺━╸⏽ ●  ● ⏽╺━╸·
 MXDots-full () { prntlist 'prnt:sp_dot' "${MX_XX[@]}" ; pl ; }
@@ -130,7 +141,6 @@ MXIntro () {
 MYIntro () { 
   case $(( RANDOM % 3 )) in
     0 ) MXDotLine ;;
-    # 1 ) MXDotLine-full ;;
     1 ) LoremCols ;;
     2 ) Demo_block 0 0 ;;
   esac
@@ -139,6 +149,7 @@ MYIntro () {
 # ////////////////////////////  
 Demo () {
   if (( "$FORCE_UPDATE" )); then return; fi
+  fll 4; Demo_darkest
   fll 2; Demo_mxname "$USER"; echo; echo
   Demo_block
   Demo_dot
@@ -148,6 +159,7 @@ Demo () {
 DemoAll () {
   if (( "$FORCE_UPDATE" )); then return; fi
   Demo_card "$USER"
+  Demo_darkest
   Demo_hexes
   Demo_slant
   Demo_shades3

@@ -52,15 +52,15 @@ gen_random () {
 }
 
 gen_idempotents () {
-  # local ds;ds=$(darkest SBG WBG EBG)
-  local ds=SBG
+  local ds;ds=$(darkest SBG WBG EBG)
+  # local ds=SBG
 
-  C01="$(pastel mix ${!ds} Crimson   -f 0.5 | pastel mix - HotPink     -f 0.4 | _ss 0.03 | _fh)"
-  C02="$(pastel mix ${!ds} Teal      -f 0.5 | pastel mix - MediumSpringGreen -f 0.4 | _ss 0.03 | _fh)"
-  C03="$(pastel mix ${!ds} Yellow    -f 0.5 | pastel mix - Coral             -f 0.4 | _ss 0.03 | _fh)"
-  C04="$(pastel mix ${!ds} RoyalBlue -f 0.5 | pastel mix - DeepSkyBlue       -f 0.4 | _ss 0.03 | _fh)"
-  C05="$(pastel mix ${!ds} SlateBlue -f 0.5 | pastel mix - Plum              -f 0.4 | _ss 0.03 | _fh)"
-  C06="$(pastel mix ${!ds} Cyan      -f 0.5 | pastel mix - Aquamarine        -f 0.4 | _ss 0.03 | _fh)"
+  C01="$(pastel mix ${!ds} Crimson   -f 0.5 | pastel mix - HotPink           -f 0.4 | _ss 0.04 | _fh)"
+  C02="$(pastel mix ${!ds} Teal      -f 0.5 | pastel mix - MediumSpringGreen -f 0.4 | _ss 0.04 | _fh)"
+  C03="$(pastel mix ${!ds} Yellow    -f 0.5 | pastel mix - Coral             -f 0.4 | _ss 0.04 | _fh)"
+  C04="$(pastel mix ${!ds} RoyalBlue -f 0.5 | pastel mix - DodgerBlue        -f 0.4 | _ss 0.04 | _fh)"
+  C05="$(pastel mix ${!ds} Orchid    -f 0.5 | pastel mix - SlateBlue         -f 0.4 | _ss 0.04 | _fh)"
+  C06="$(pastel mix ${!ds} Cyan      -f 0.5 | pastel mix - DeepSkyBlue       -f 0.4 | _ss 0.04 | _fh)"
 
   for i in {09..14}; do
     local c="C0$(echo "$i - 8" | bc)"; c="${!c}"
