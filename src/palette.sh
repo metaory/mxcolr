@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ################################
-GEN_MIN_DISTANCE=30
+GEN_MIN_DISTANCE=20
 ATTMP_WARN_THRESHOLD=7
 ################################
 _fh () { pastel format hex $1; }
@@ -63,7 +63,7 @@ gen_random () {
   for seed_id in ${!seeds[@]}; do
     local seed=${seeds[$seed_id]}
     local preSeed
-    [ $seed_id -eq 0 ] && preSeed=EBG || preSeed="${seeds[((seed_id - 1))]}"
+    [ "$seed_id" -eq 0 ] && preSeed=EBG || preSeed="${seeds[((seed_id - 1))]}"
 
     local curHue=$(pastel format lch-hue ${!seed})
     (( $(echo "$curHue < 50" | bc) )) && curHue="$(echo "$curHue + 300" | bc)"
@@ -111,9 +111,10 @@ gen_idempotents () {
     declare -g "CF$i=$(_tx $cx | _fh)"
   done
 
-  WFG="$(_tx "$WBG" | _dd 0.2 | _fh)"
-  EFG="$(_tx "$EBG" | _dd 0.2 | _ss 0.20 | _fh)"
-  SFG="$(_tx "$SBG" | _dd 0.2 | _ss 0.20 | _fh)"
+  for s in S W E; do
+    local c="${s}BG"; c="${!c}"
+    declare -g "${s}FG=$(_tx $c | _dd 0.2 | _ss 0.20 | _fh)"
+  done
 
   InfoDone
 } 
@@ -136,27 +137,13 @@ __gen_shade () {
 
 # shellcheck disable=SC2034
 gen_shades () {
-  local darkestSeed;darkestSeed=$(darkest SBG WBG EBG)
-  pastel paint -b -o "${!darkestSeed}" "$(_tx "${!darkestSeed}")" " darkest seed : ${darkestSeed} "
-
-  if (( "$DEBUG" )); then 
-    __print_hexes $(echo SK{0..9})
-    __print_hexes $(echo WK{0..9})
-    __print_hexes $(echo EK{0..9})
-    Demo_shades4; echo
-  fi
+  local darkest_seed;darkest_seed=$(darkest SBG WBG EBG)
+  local k="${darkest_seed:0:1}";
 
   __gen_shade SBG
   __gen_shade WBG
   __gen_shade EBG
 
-  if (( "$DEBUG" )); then Demo_shades4
-    __print_hexes $(echo SK{0..9})
-    __print_hexes $(echo WK{0..9})
-    __print_hexes $(echo EK{0..9})
-  fi
-
-  local k="${darkestSeed:0:1}";
   C00="${k}K2"; C00="${!C00}"
   C08="${k}K5"; C08="${!C08}"
   C07="${k}K6"; C07="${!C07}"
@@ -192,6 +179,7 @@ UpdatePalette () {
   gen_ansi
   set_hexless
 
+  # SaveSeed
   SaveTheme
   InfoDone
 }
@@ -199,4 +187,10 @@ UpdatePalette () {
 (( "$DEBUG" )) && gen_shades
 # (( "$DEBUG" )) && gen_idempotents
 # (( "$DEBUG" )) && Demo && Demo_slant && Demo_hexes
+# if (( "$DEBUG" )); then 
+#   __print_hexes $(echo SK{0..9})
+#   __print_hexes $(echo WK{0..9})
+#   __print_hexes $(echo EK{0..9})
+#   Demo_shades4; echo
+# fi
 

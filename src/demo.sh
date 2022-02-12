@@ -107,7 +107,7 @@ Demo_dot () {
 Demo_hue () {
   for seed in SBG WBG EBG; do
     local hue=$(pastel format lch-hue ${!seed})
-    pastel paint -b -n  "${!seed}" " $hue "
+    pastel paint -b -n  "${!seed}" "H$hue "
   done
   echo
 }
@@ -156,10 +156,9 @@ MYIntro () {
 # ////////////////////////////  
 Demo () {
   if (( "$FORCE_UPDATE" )); then return; fi
-  fll 4; Demo_hue
-  fillCols
   fll 4; Demo_darkest
   fll 2; Demo_mxname "$USER"; echo
+  fll 4; Demo_hue
   Demo_block
   Demo_dot
   MXDotLine
