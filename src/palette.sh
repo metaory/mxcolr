@@ -1,6 +1,9 @@
 #!/usr/bin/env bash
 
 ################################
+GEN_MIN_DISTANCE=30
+ATTMP_WARN_THRESHOLD=7
+################################
 _fh () { pastel format hex $1; }
 _tx () { pastel textcolor $1; }
 _ss () { pastel saturate $1 $2; }
@@ -9,6 +12,12 @@ _dd () { pastel darken $1 $2; }
 _ll () { pastel lighten $1 $2; }
 _hs () { pastel set hsl-saturation  $1 $2; }
 _hl () { pastel set hsl-lightness  $1 $2; }
+################################
+diff_real () { echo "df=($1 - $2); if (df < 0) { df=df* -1}; print df" | bc -l; }
+diff_under () {
+  local diff; diff=$(diff_real "$1" "$2")
+  echo "$diff < $GEN_MIN_DISTANCE" | bc -l
+}
 ################################
 
 sort_lightness () {
@@ -43,13 +52,36 @@ darkest () {
 }
 
 # shellcheck disable=SC2034
-gen_random () {
+gen_random () { 
+  local attmp="${1:-1}"
   local strategy="${XOPT:-lch}" ; [[ "$strategy" == 'lch' ]]   && strategy='lch_hue'
+  local redo=0
+  local seeds=( SBG WBG EBG )
 
-  WBG="$(pastel random -n 1 -s "$strategy" | _fh)"
-  SBG="$(pastel random -n 1 -s "$strategy" | _fh)"
-  EBG="$(pastel random -n 1 -s "$strategy" | _fh)"
-}
+  for seed in ${seeds[@]}; do declare -g "${seed}=$(pastel random -n 1 -s "$strategy" | _fh)"; done
+
+  for seed_id in ${!seeds[@]}; do
+    local seed=${seeds[$seed_id]}
+    local preSeed
+    [ $seed_id -eq 0 ] && preSeed=EBG || preSeed="${seeds[((seed_id - 1))]}"
+
+    local curHue=$(pastel format lch-hue ${!seed})
+    (( $(echo "$curHue < 50" | bc) )) && curHue="$(echo "$curHue + 300" | bc)"
+
+    local preHue=$(pastel format lch-hue ${!preSeed})
+    (( $(echo "$preHue < 50" | bc) )) && preHue="$(echo "$preHue + 300" | bc)"
+
+    local hueDiffCheck;hueDiffCheck="$(diff_under "$curHue" "$preHue")"
+    (( hueDiffCheck )) && redo=1
+  done
+
+  if (( redo )); then
+    ! (( attmp % ATTMP_WARN_THRESHOLD )) && PressToContinue "failed $attmp attempts, still continue?"
+    gen_random $((++attmp))
+  else
+    fillCols ' ▪'; InfoDone "${strategy^^} generated, after $attmp attempts,proceeding"; return
+  fi
+ }
 
 gen_idempotents () {
   local ds;ds=$(darkest SBG WBG EBG)
