@@ -104,6 +104,13 @@ Demo_dot () {
   fill 2 ; prntlist 'prnt:sp_dot' "${MX_WK[@]}" WBG ; pl '-'
   fill 2 ; prntlist 'prnt:sp_dot' "${MX_EK[@]}" EBG ; pl '-'
 }
+Demo_hue () {
+  for seed in SBG WBG EBG; do
+    local hue=$(pastel format lch-hue ${!seed})
+    pastel paint -b -n  "${!seed}" " $hue "
+  done
+  echo
+}
 Demo_darkest () {
   local darkestSeed;darkestSeed=$(darkest SBG WBG EBG)
   local ulen="${#USER}"
@@ -149,8 +156,10 @@ MYIntro () {
 # ////////////////////////////  
 Demo () {
   if (( "$FORCE_UPDATE" )); then return; fi
+  fll 4; Demo_hue
+  fillCols
   fll 4; Demo_darkest
-  fll 2; Demo_mxname "$USER"; echo; echo
+  fll 2; Demo_mxname "$USER"; echo
   Demo_block
   Demo_dot
   MXDotLine
