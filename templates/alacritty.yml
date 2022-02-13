@@ -32,8 +32,8 @@ colors                :
    cyan               : '${CY6}'
    white              : '${WK7}'
   cursor              :
-    text              : '${SFG}'
-    cursor            : '${SBG}'
+    text              : '${CF4}'
+    cursor            : '${CX4}'
   vi_mode_cursor      :
     text              : '${EFG}'
     cursor            : '${EBG}'

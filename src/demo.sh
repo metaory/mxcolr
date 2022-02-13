@@ -104,23 +104,25 @@ Demo_dot () {
   fill 2 ; prntlist 'prnt:sp_dot' "${MX_WK[@]}" WBG ; pl '-'
   fill 2 ; prntlist 'prnt:sp_dot' "${MX_EK[@]}" EBG ; pl '-'
 }
-Demo_hue () {
+Demo_format () {
+  local format=${1:-hex}
   for seed in SBG WBG EBG; do
-    local hue=$(pastel format lch-hue ${!seed})
-    pastel paint -b -n  "${!seed}" "H$hue "
+    local hue=$(pastel format $format ${!seed})
+    pastel paint -b -n  "${!seed}" "$hue "
   done
-  echo
+  pastel paint $C08 ${format::8}
 }
-Demo_darkest () {
-  local darkestSeed;darkestSeed=$(darkest SBG WBG EBG)
+Demo_spectrum () {
+  local angle=${1:-darkest}
+  local seed;seed=$($angle SBG WBG EBG)
   local ulen="${#USER}"
   local mlen="${#MXNAME}"
   local flen=$((ulen+mlen-2))
   local space; space=$(printf "%0.s " $(seq 1 "$flen"))
 
-  pastel paint -b -o "${!darkestSeed}" \
-    "$(_tx "${!darkestSeed}")" \
-    " darkest seed: ${darkestSeed}${space}"
+  pastel paint -b -o "${!seed}" \
+    "$(_tx "${!seed}")" \
+    " ${angle::7} seed: ${seed}${space}"
 }
 # ##############################
 # ·╺━╸⏽ ●  ● ⏽╺━╸·
@@ -156,9 +158,15 @@ MYIntro () {
 # ////////////////////////////  
 Demo () {
   if (( "$FORCE_UPDATE" )); then return; fi
-  fll 4; Demo_darkest
+  (( "$1" )) && echo "[TOTAL_ATTEMPTS] $TOTAL_ATTEMPTS"
+  # fll 5; Demo_hue
+  fll 5; Demo_format lch-hue
+  fll 4; Demo_spectrum darkest
   fll 2; Demo_mxname "$USER"; echo
-  fll 4; Demo_hue
+  fll 4; Demo_spectrum lightest
+  fll 5; Demo_format lch-lightness
+  # fll 5; Demo_light
+
   Demo_block
   Demo_dot
   MXDotLine

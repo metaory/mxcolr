@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 SaveSeed () {
-  Info " Save Temp Seed"  
+  Info " Save Temp Seed"  
 
   MXNAME="MXC_${MXC_V}"
 

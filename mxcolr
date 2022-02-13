@@ -146,17 +146,14 @@ Shuffle () {
   done
 
   SaveSeed
-  UpdatePalette 
-  ApplyTmux
-
   Generate 1
 }
 # ............................ #
 Generate () {
-  rm /tmp/mxc/* &> /dev/null
+  ! (( "$1" )) && rm /tmp/mxc/* &> /dev/null
   ! (( "$1" )) && GeneratePalette
   ApplyTmux
-  Demo
+  Demo 1
 
   PrompRand
   case $REPLY in
