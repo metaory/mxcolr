@@ -67,6 +67,9 @@ gen_random () {
     local preSeed
     [ "$seed_id" -eq 0 ] && preSeed=EBG || preSeed="${seeds[((seed_id - 1))]}"
 
+    (( $(echo "$(pastel format lch-chroma ${!seed}) > 80" | bc) )) &&
+      declare -g "${seed}=$(pastel set chroma 60 ${!seed} | _fh)" && echo reduced chroma.
+
     local curHue=$(pastel format lch-hue ${!seed})
     # (( $(echo "$curHue < 50" | bc) )) && curHue="$(echo "$curHue + 300" | bc)"
 
@@ -75,7 +78,6 @@ gen_random () {
 
     local hueDiffCheck;hueDiffCheck="$(diff_under "$curHue" "$preHue")"
     (( hueDiffCheck )) && redo=1
-    # echo "$curHue $preHue $hueDiffCheck $redo"
   done
 
   if (( redo )); then
@@ -83,8 +85,7 @@ gen_random () {
     gen_random $((++attmp))
   else
     declare -g "TOTAL_ATTEMPTS=$attmp"
-    local wbg_light=$(pastel format lch-lightness ${WBG})
-    (( $(echo "$wbg_light < 40" | bc) )) && declare -g "WBG=$(_ll 0.4 $WBG | _fh)"
+    (( $(echo "$(pastel format lch-lightness ${WBG}) < 40" | bc) )) && declare -g "WBG=$(_ll 0.2 $WBG | _fh)"
     fillCols ' ▪'; InfoDone "${strategy^^} generated, after $attmp attempts,proceeding"
     return
   fi
@@ -94,7 +95,7 @@ gen_idempotents () {
   local ds;ds=$(darkest SBG WBG EBG)
   # local ds=SBG
 
-  C01="$(pastel mix ${!ds} Crimson   -f 0.5 | pastel mix - HotPink           -f 0.4 | _ss 0.04 | _fh)"
+  C01="$(pastel mix ${!ds} Crimson   -f 0.5 | pastel mix - PaleVioletRed     -f 0.4 | _ss 0.04 | _fh)"
   C02="$(pastel mix ${!ds} Teal      -f 0.5 | pastel mix - MediumSpringGreen -f 0.4 | _ss 0.04 | _fh)"
   C03="$(pastel mix ${!ds} Yellow    -f 0.5 | pastel mix - Coral             -f 0.4 | _ss 0.04 | _fh)"
   C04="$(pastel mix ${!ds} RoyalBlue -f 0.5 | pastel mix - DodgerBlue        -f 0.4 | _ss 0.04 | _fh)"
@@ -112,7 +113,7 @@ gen_idempotents () {
   for i in {1..6}; do
     local c="C0$i"; c="${!c}"
     declare -g "CX$i=$(_ss 0.30 "$c" | _dd 0.02 | _fh)"
-    declare -g "CY$i=$(_ds 0.25 "$c" | _ll 0.10 | _fh)"
+    declare -g "CY$i=$(_ds 0.30 "$c" | _ll 0.10 | _fh)"
 
     local cx="CX$i"; cx="${!cx}"
     declare -g "CF$i=$(_tx $cx | _fh)"

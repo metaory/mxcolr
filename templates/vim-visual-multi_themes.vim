@@ -135,7 +135,7 @@ fun! s:Themes.mxc()
   hi! VM_Extend guibg=$SBG guifg=$SFG
   hi! VM_Cursor guibg=$EBG guifg=$EFG
   hi! VM_Insert guibg=$WBG guifg=$WFG
-  hi! VM_Mono   guibg=$CX3 guifg=$C00
+  hi! VM_Mono   guibg=$CX4 guifg=$CF4
 endfun
 
   " execute 'hi! VM_Extend guibg='.g:mxc_g_sbg.' guifg='.g:mxc_g_sfg

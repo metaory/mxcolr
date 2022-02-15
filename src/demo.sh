@@ -107,10 +107,12 @@ Demo_dot () {
 Demo_format () {
   local format=${1:-hex}
   for seed in SBG WBG EBG; do
-    local hue=$(pastel format $format ${!seed})
-    pastel paint -b -n  "${!seed}" "$hue "
+    local val=$(pastel format $format ${!seed})
+    local slen=$((7-${#val}))
+    local space; space=$(printf "%0.s " $(seq 1 "$slen"))
+    pastel paint -b -n  "${!seed}" "▏${val}${space}"
   done
-  pastel paint $C08 ${format::8}
+  pastel paint $C08 "░ ${format}"
 }
 Demo_spectrum () {
   local angle=${1:-darkest}
@@ -159,13 +161,15 @@ MYIntro () {
 Demo () {
   if (( "$FORCE_UPDATE" )); then return; fi
   (( "$1" )) && echo "[TOTAL_ATTEMPTS] $TOTAL_ATTEMPTS"
-  # fll 5; Demo_hue
-  fll 5; Demo_format lch-hue
+
+  fll 4; Demo_format hsl-saturation
+  fll 4; Demo_format lch-hue
+  fll 4; Demo_format lch-lightness
+  fll 4; Demo_format lch-chroma
+  echo
   fll 4; Demo_spectrum darkest
   fll 2; Demo_mxname "$USER"; echo
   fll 4; Demo_spectrum lightest
-  fll 5; Demo_format lch-lightness
-  # fll 5; Demo_light
 
   Demo_block
   Demo_dot
@@ -174,9 +178,7 @@ Demo () {
 }
 DemoAll () {
   if (( "$FORCE_UPDATE" )); then return; fi
-  Demo_card "$USER"
-  Demo_darkest
-  Demo_hexes
+  # Demo_card "$USER"
   Demo_slant
   Demo_shades3
   Demo_shades4
@@ -184,6 +186,7 @@ DemoAll () {
   Demo_dot_slant
   MXDotLine
   fillCols
+  Demo_hexes
 }
 SaveDemoImage () {
   if command -v kitty && command -v scrot &> /dev/null; then

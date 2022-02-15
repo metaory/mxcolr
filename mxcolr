@@ -201,11 +201,10 @@ Generate () {
     --darkest         ) darkest "$@"                  ;;
     --lightest        ) lightest "$@"                 ;;
     -xp               ) expandp "$@"                  ;;
-    *                 ) PrintMenu                     ; exit ;;
+    *                 ) PrintMenu                     ;;
   esac
   mlg "━✔━━<MENU>━━┛"
 }
 
-# MXDotLine
 exit 0
 

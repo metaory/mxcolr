@@ -34,22 +34,24 @@ colors                :
   cursor              :
     text              : '${CF4}'
     cursor            : '${CX4}'
+    # text            : CellBackground
+    # cursor          : CellForeground
   vi_mode_cursor      :
     text              : '${EFG}'
     cursor            : '${EBG}'
   selection           :
    text               : CellBackground
    background         : CellForeground
-  search:
-    matches:
-     foreground: '${EFG}'
-     background: '${EBG}'
-    focused_match:
-     foreground: '${SFG}'
-     background: '${SBG}'
-    bar:
-     background: '${SK1}'
-     foreground: '${WBG}'
+  search              :
+    matches           :
+     foreground       : '${EFG}'
+     background       : '${EBG}'
+    focused_match     :
+     foreground       : '${SFG}'
+     background       : '${SBG}'
+    bar               :
+     background       : '${SK1}'
+     foreground       : '${WBG}'
   indexed_colors      :
     - { index         : 20, color      : '${SBG}' }
     - { index         : 21, color      : '${SFG}' }
