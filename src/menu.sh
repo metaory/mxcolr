@@ -47,7 +47,7 @@ PressToContinue () {
   pl '-'
 }
 
-_slant_sep () { local s; s=''; [[ -n "$1" ]] && s='█'; pastel paint -n -o "${2:-black}" "${1:-$XBG}" "$s"; }
+_slant_sep () { local s; s=''; [[ -n "$1" ]] && s='█'; pastel paint -n -o "${2:-black}" "${1:-$XBG}" "$s"; }
 
 PrompRand () {
   pastel paint -n    -o "$WBG" "$WFG" " ● "    ; _slant_sep "$WBG"                           ; _slant_sep
@@ -58,9 +58,9 @@ PrompRand () {
   pastel paint -n -b -o "black" "$C03" " [n]"  ; pastel paint -n -o "black" "$C07" "ext "    ; _slant_sep
   pastel paint -n -b -o "black" "$C06" " [d]"  ; pastel paint -n -o "black" "$C07" "emo"     ; _slant_sep "black" "$XBG"
   read -n 1 -r -s
-  pastel paint -o "$XBG" "$SBG" -b -n "█"
+  pastel paint -o "$XBG" "$SBG" -b -n "█"
   pastel paint -o "$SBG"  "$SFG" -b -n "$REPLY"
-  pastel paint -o "$XBG" "$SBG" -b    "█"
+  pastel paint -o "$XBG" "$SBG" -b    "█"
 }
 
 PromptConfirm () {
