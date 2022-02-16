@@ -94,6 +94,7 @@ XBG OBG # main bg colors
 XFG OFG # main fg colors
 ```
 
+#### sample:
 <p align="center">
   <img src="./assets/screenshots/2022-01-29-163915_877x552_scrot.png">
 </p>
