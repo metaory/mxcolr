@@ -83,12 +83,15 @@ C00 C01 C02 C03 C04 C05 C06 C07 C08 C09 C10 C11 C12 C13 C14 C15
     CY1 CY2 CY3 CY4 CY5 CY6 # extra desaturated
     CF1 CF2 CF3 CF4 CF5 CF6 # fg color on CX bg
 
-XBG OBG SBG WBG EBG # core bg colors
-XFG OFG SFG WFG EFG # core fg colors
+SBG WBG EBG # seed bg colors
+SFG WFG EFG # seed fg colors
 
-SK0 SK1 SK2 SK3 SK4 SK5 SK6 SK7 SK8 SK9 # shades
-WK0 WK1 WK2 WK3 WK4 WK5 WK6 WK7 WK8 WK9 # shades
-EK0 EK1 EK2 EK3 EK4 EK5 EK6 EK7 EK8 EK9 # shades
+SK0 SK1 SK2 SK3 SK4 SK5 SK6 SK7 SK8 SK9 # S shades
+WK0 WK1 WK2 WK3 WK4 WK5 WK6 WK7 WK8 WK9 # W shades
+EK0 EK1 EK2 EK3 EK4 EK5 EK6 EK7 EK8 EK9 # E shades
+
+XBG OBG # main bg colors 
+XFG OFG # main fg colors
 ```
 
 <p align="center">
