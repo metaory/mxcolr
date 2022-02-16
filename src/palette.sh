@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ################################
-GEN_MIN_DISTANCE=20
+GEN_MIN_DISTANCE=30
 ATTMP_WARN_THRESHOLD=7
 ################################
 _fh () { pastel format hex $1; }
@@ -65,19 +65,23 @@ gen_random () {
   for seed_id in ${!seeds[@]}; do
     local seed=${seeds[$seed_id]}
     local preSeed
-    [ "$seed_id" -eq 0 ] && preSeed=EBG || preSeed="${seeds[((seed_id - 1))]}"
-
-    (( $(echo "$(pastel format lch-chroma ${!seed}) > 80" | bc) )) &&
-      declare -g "${seed}=$(pastel set chroma 60 ${!seed} | _fh)" && echo reduced chroma.
+    [ "$seed_id" -eq 0 ] && 
+      preSeed="${seeds[((${#seeds} - 1))]}" || 
+      preSeed="${seeds[((seed_id - 1))]}"
 
     local curHue=$(pastel format lch-hue ${!seed})
-    # (( $(echo "$curHue < 50" | bc) )) && curHue="$(echo "$curHue + 300" | bc)"
-
     local preHue=$(pastel format lch-hue ${!preSeed})
-    # (( $(echo "$preHue < 50" | bc) )) && preHue="$(echo "$preHue + 300" | bc)"
 
-    local hueDiffCheck;hueDiffCheck="$(diff_under "$curHue" "$preHue")"
-    (( hueDiffCheck )) && redo=1
+    # Chroma boundaries
+    (( $(echo "$(pastel format lch-chroma ${!seed}) > 80" | bc) )) &&
+      declare -g "${seed}=$(pastel set chroma 60 ${!seed} | _fh)"
+
+    # Lightness boundaries
+    (( $(echo "$(pastel format lch-lightness ${!seed}) > 70" | bc) )) &&
+      declare -g "${seed}=$(pastel set lightness 60 ${!seed} | _fh)"
+
+    # Distance boundaries 
+    (( $(diff_under "$curHue" "$preHue") )) && redo=1
   done
 
   if (( redo )); then
@@ -85,7 +89,6 @@ gen_random () {
     gen_random $((++attmp))
   else
     declare -g "TOTAL_ATTEMPTS=$attmp"
-    (( $(echo "$(pastel format lch-lightness ${WBG}) < 40" | bc) )) && declare -g "WBG=$(_ll 0.2 $WBG | _fh)"
     fillCols ' ▪'; InfoDone "${strategy^^} generated, after $attmp attempts,proceeding"
     return
   fi
@@ -93,7 +96,6 @@ gen_random () {
 
 gen_idempotents () {
   local ds;ds=$(darkest SBG WBG EBG)
-  # local ds=SBG
 
   C01="$(pastel mix ${!ds} Crimson   -f 0.5 | pastel mix - PaleVioletRed     -f 0.4 | _ss 0.04 | _fh)"
   C02="$(pastel mix ${!ds} Teal      -f 0.5 | pastel mix - MediumSpringGreen -f 0.4 | _ss 0.04 | _fh)"
