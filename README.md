@@ -150,7 +150,7 @@ css / less for web/electron apps
 ***
 
 <p align="center">
-  <img src="./assets/screenshots/2021-09-17-082344_331x303_scrot.png">
+  <img src="./assets/screenshots/2022-02-16-100414_1018x822_scrot.png">
 </p>
 
 Basic Usage
@@ -206,7 +206,7 @@ aws cognito-idp set-ui-customization --user-pool-id $COGNITO_POOL_ID --css "$(ca
 
 generate
 --------
-![generate 1.4](./assets/screenshots/gifcast_220104143948.gif)
+![generate 1.4](./assets/screenshots/gifcast_220216100211.gif)
 
 update
 ------
