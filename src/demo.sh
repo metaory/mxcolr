@@ -109,8 +109,8 @@ Demo_format () {
   for seed in SBG WBG EBG; do
     local val=$(pastel format $format ${!seed})
     local slen=$((7-${#val}))
-    local space; space=$(printf "%0.s " $(seq 1 "$slen"))
-    pastel paint -b -n  "${!seed}" "▏${val}${space}"
+    local space=$(printf "%0.s " $(seq 1 "$slen"))
+    pastel paint -b -n "${!seed}" "▏${val}${space}"
   done
   pastel paint $C08 "░ ${format}"
 }
