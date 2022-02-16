@@ -77,7 +77,7 @@ seed.mx
 Given the same `seed` file, its guaranteed the same `scheme file` be produced.
 
 Possible variables available in all templates or plugins are:
-```
+```bash
 C00 C01 C02 C03 C04 C05 C06 C07 C08 C09 C10 C11 C12 C13 C14 C15
     CX1 CX2 CX3 CX4 CX5 CX6 # extra saturated
     CY1 CY2 CY3 CY4 CY5 CY6 # extra desaturated
@@ -101,7 +101,7 @@ EK0 EK1 EK2 EK3 EK4 EK5 EK6 EK7 EK8 EK9 # shades
 - **cterm** variant with their ansi-8bit values; prefixed with `T`
 
 #### examples:
-```
+```bash
 echo $C04 $WK6
 #3b88df #6f7690
 
@@ -198,7 +198,7 @@ will exit silently after placing temp files in `/tmp/mxc`
 
 ### for example:
 using this template: [cognito-ui.css](./templates/cognito-ui.css) 
-```
+```bash
 mxcolr --tmp-only update
 aws cognito-idp set-ui-customization --user-pool-id $COGNITO_POOL_ID --css "$(cat /tmp/mxc/cognito-ui.css)"
 ```
