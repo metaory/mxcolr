@@ -212,23 +212,7 @@ generate
 --------
 ![generate 1.4](./assets/screenshots/gifcast_220216100211.gif)
 
-update
-------
-![update 1.5](./assets/screenshots/gifcast_220104144035.gif)
-
-snapshot
---------
-![snapshot](./assets/screenshots/snapshot_210523132148.gif)
-  
-***
-  
-![screenshot](./assets/screenshots/2021-09-17-084207_2560x1080_scrot.png)
-  
-![screenshot](./assets/screenshots/2021-05-10-021854_1920x1080_scrot.png)
-
-![screenshot](./assets/screenshots/2021-05-13-155549_1920x1080_scrot.png)
-
-![screenshot](./assets/screenshots/2021-05-13-172453_1920x1080_scrot.png)
+### Check Wiki for more screenshots
 
 ***
 
