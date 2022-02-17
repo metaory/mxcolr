@@ -41,7 +41,7 @@ PressToContinue () {
   local fn; fn="${FUNCNAME[1]}"
   pastel paint -b -n -o 'black' "$WBX" "[${fn}]"
   pastel paint -b -n "$C03"   " press any key to continue"
-  pastel paint -b -n "$C01"   "  "; MXDots; MXSep; pl
+  pastel paint -b -n "$C01"   " ⋯ "; MXDots; MXSep; pl
   if (( "$FORCE_UPDATE" )); then REPLY='y'; pl '-'; return; fi
   read -n 1 -r -s
   pl '-'

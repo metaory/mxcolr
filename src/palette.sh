@@ -4,20 +4,17 @@
 GEN_MIN_DISTANCE=30
 ATTMP_WARN_THRESHOLD=7
 ################################
-_fh () { pastel format hex $1; }
-_tx () { pastel textcolor $1; }
-_ss () { pastel saturate $1 $2; }
-_ds () { pastel desaturate $1 $2; }
-_dd () { pastel darken $1 $2; }
-_ll () { pastel lighten $1 $2; }
-_hs () { pastel set hsl-saturation  $1 $2; }
-_hl () { pastel set hsl-lightness  $1 $2; }
+_format () { pastel format $*; }
+_formathex () { pastel format hex $*; }
+_textcolor () { pastel textcolor $*; }
+_saturate () { pastel saturate $*; }
+_desaturate () { pastel desaturate $*; }
+_saturation () { pastel set hsl-saturation  $*; }
+_lightness () { pastel set hsl-lightness  $*; }
+_lighten () { pastel lighten $*; }
+_darken () { pastel darken $*; }
 ################################
-diff_real () { echo "df=($1 - $2); if (df < 0) { df=df* -1}; print df" | bc -l; }
-diff_under () {
-  local diff; diff=$(diff_real "$1" "$2")
-  echo "$diff < $GEN_MIN_DISTANCE" | bc -l
-}
+_diff_real () { echo "df=($1 - $2); if (df < 0) { df=df* -1}; print df" | bc -l; }
 ################################
 
 sort_lightness () {
@@ -25,7 +22,7 @@ sort_lightness () {
   local L=100;local lowest
 
   while [ "$1" ]; do
-    local l; l=$(pastel format lch-lightness "${!1}")
+    local l; l=$(_format lch-lightness "${!1}")
     (( $(echo "$l < $L" | bc) )) && L="$l" && lowest="$1"
     (( $(echo "$l > $H" | bc) )) && H="$l" && highest="$1"
     shift
@@ -36,52 +33,55 @@ sort_lightness () {
 
 expandp () {
   while [ "$1" ]; do
-    pastel format hex "${!1}"
+    _format hex "${!1}"
     shift
   done
 }
 ################################
 lightest () {
   local l; l=$(sort_lightness "$@" | cut -d':' -f1)
-  pastel paint "$(_tx "${!l}")" -o "${!l}" "${l}"
+  pastel paint "$(_textcolor "${!l}")" -o "${!l}" "${l}"
 }
 ################################
 darkest () {
   local d; d=$(sort_lightness "$@" | cut -d':' -f2)
-  pastel paint "$(_tx "${!d}")" -o "${!d}" "${d}"
+  pastel paint "$(_textcolor "${!d}")" -o "${!d}" "${d}"
 }
 
 # shellcheck disable=SC2034
-gen_random () { 
+gen_random () {
   local attmp="${1:-1}"
   local strategy="${XOPT:-lch}" ; [[ "$strategy" == 'lch' ]] && strategy='lch_hue'
   local redo=0
   local seeds=( SBG WBG EBG )
 
-  for seed in ${seeds[@]}; do 
-    declare -g "${seed}=$(pastel random -n 1 -s "$strategy" | _fh)"
+  for seed in ${seeds[@]}; do
+    declare -g "${seed}=$(pastel random -n 1 -s "$strategy" | _formathex)"
   done
-  
+
   for seed_id in ${!seeds[@]}; do
     local seed=${seeds[$seed_id]}
-    local preSeed
-    [ "$seed_id" -eq 0 ] && 
-      preSeed="${seeds[((${#seeds} - 1))]}" || 
-      preSeed="${seeds[((seed_id - 1))]}"
+    local pre
+    (( seed_id )) &&
+      pre="${seeds[((seed_id - 1))]}" ||
+      pre="${seeds[((${#seeds} - 1))]}"
 
-    local curHue=$(pastel format lch-hue ${!seed})
-    local preHue=$(pastel format lch-hue ${!preSeed})
+    local curChroma=$(_format lch-chroma ${!seed})
+    local curLightness=$(_format lch-lightness ${!seed})
+    local curHue=$(_format lch-hue ${!seed})
+    local preHue=$(_format lch-hue ${!pre})
+    local diffHue; diffHue=$(_diff_real "$curHue" "$preHue")
 
     # Chroma boundaries
-    (( $(echo "$(pastel format lch-chroma ${!seed}) > 80" | bc) )) &&
-      declare -g "${seed}=$(pastel set chroma 60 ${!seed} | _fh)"
+    (( $(echo "$curChroma > 80" | bc) )) &&
+      declare -g "${seed}=$(pastel set chroma 60 ${!seed} | _formathex)"
 
     # Lightness boundaries
-    (( $(echo "$(pastel format lch-lightness ${!seed}) > 70" | bc) )) &&
-      declare -g "${seed}=$(pastel set lightness 60 ${!seed} | _fh)"
+    (( $(echo "$curLightness > 70" | bc) )) &&
+      declare -g "${seed}=$(pastel set lightness 60 ${!seed} | _formathex)"
 
-    # Distance boundaries 
-    (( $(diff_under "$curHue" "$preHue") )) && redo=1
+    # Hue Distance boundaries
+    (( $(echo "$diffHue < $MIN_HUE_DISTANCE" | bc -l) )) && redo=1
   done
 
   if (( redo )); then
@@ -97,33 +97,33 @@ gen_random () {
 gen_idempotents () {
   local ds;ds=$(darkest SBG WBG EBG)
 
-  C01="$(pastel mix ${!ds} Crimson   -f 0.5 | pastel mix - PaleVioletRed     -f 0.4 | _ss 0.04 | _fh)"
-  C02="$(pastel mix ${!ds} Teal      -f 0.5 | pastel mix - MediumSpringGreen -f 0.4 | _ss 0.04 | _fh)"
-  C03="$(pastel mix ${!ds} Yellow    -f 0.5 | pastel mix - Coral             -f 0.4 | _ss 0.04 | _fh)"
-  C04="$(pastel mix ${!ds} RoyalBlue -f 0.5 | pastel mix - DodgerBlue        -f 0.4 | _ss 0.04 | _fh)"
-  C05="$(pastel mix ${!ds} Orchid    -f 0.5 | pastel mix - SlateBlue         -f 0.4 | _ss 0.04 | _fh)"
-  C06="$(pastel mix ${!ds} Cyan      -f 0.5 | pastel mix - DeepSkyBlue       -f 0.4 | _ss 0.04 | _fh)"
+  C01="$(pastel mix ${!ds} Crimson   -f 0.5 | pastel mix - PaleVioletRed     -f 0.4 | _saturate 0.04 | _formathex)"
+  C02="$(pastel mix ${!ds} Teal      -f 0.5 | pastel mix - MediumSpringGreen -f 0.4 | _saturate 0.04 | _formathex)"
+  C03="$(pastel mix ${!ds} Yellow    -f 0.5 | pastel mix - Coral             -f 0.4 | _saturate 0.04 | _formathex)"
+  C04="$(pastel mix ${!ds} RoyalBlue -f 0.5 | pastel mix - DodgerBlue        -f 0.4 | _saturate 0.04 | _formathex)"
+  C05="$(pastel mix ${!ds} Plum      -f 0.5 | pastel mix - SlateBlue         -f 0.4 | _saturate 0.04 | _formathex)"
+  C06="$(pastel mix ${!ds} Cyan      -f 0.5 | pastel mix - DeepSkyBlue       -f 0.4 | _saturate 0.04 | _formathex)"
 
   for i in {09..14}; do
     local c="C0$(echo "$i - 8" | bc)"; c="${!c}"
-    declare -g "C$i=$(_ll 0.10 "$c" | _fh)"
+    declare -g "C$i=$(_lighten 0.10 "$c" | _formathex)"
   done
 
-  WBX="$(_ss  0.30 "$WBG" | _ll 0.10 | _fh)"
-  WFX="$(_tx "$WBX" | _dd 0.20 | _fh)"
+  WBX="$(_saturate  0.30 "$WBG" | _lighten 0.10 | _formathex)"
+  WFX="$(_textcolor      "$WBX" | _darken 0.20  | _formathex)"
 
   for i in {1..6}; do
     local c="C0$i"; c="${!c}"
-    declare -g "CX$i=$(_ss 0.30 "$c" | _dd 0.02 | _fh)"
-    declare -g "CY$i=$(_ds 0.30 "$c" | _ll 0.10 | _fh)"
+    declare -g "CX$i=$(_saturate   0.30 "$c" | _darken  0.02 | _formathex)"
+    declare -g "CY$i=$(_desaturate 0.30 "$c" | _lighten 0.10 | _formathex)"
 
     local cx="CX$i"; cx="${!cx}"
-    declare -g "CF$i=$(_tx $cx | _fh)"
+    declare -g "CF$i=$(_textcolor $cx | _formathex)"
   done
 
   for s in S W E; do
     local c="${s}BG"; c="${!c}"
-    declare -g "${s}FG=$(_tx $c | _dd 0.2 | _ss 0.20 | _fh)"
+    declare -g "${s}FG=$(_textcolor $c | _darken 0.2 | _saturate 0.20 | _formathex)"
   done
 
   InfoDone
@@ -133,16 +133,16 @@ __gen_shade () {
   local c="${!1}";
   local k="${1:0:1}";
 
-  declare -g "${k}K0=$(_hs 0.10 "${c}" | _hl 0.04 | _fh)"
-  declare -g "${k}K1=$(_hs 0.11 "${c}" | _hl 0.08 | _fh)"
-  declare -g "${k}K2=$(_hs 0.12 "${c}" | _hl 0.12 | _fh)"
-  declare -g "${k}K3=$(_hs 0.13 "${c}" | _hl 0.16 | _fh)"
-  declare -g "${k}K4=$(_hs 0.14 "${c}" | _hl 0.20 | _fh)"
-  declare -g "${k}K5=$(_hs 0.14 "${c}" | _hl 0.30 | _fh)"
-  declare -g "${k}K6=$(_hs 0.13 "${c}" | _hl 0.50 | _fh)"
-  declare -g "${k}K7=$(_hs 0.12 "${c}" | _hl 0.60 | _fh)"
-  declare -g "${k}K8=$(_hs 0.11 "${c}" | _hl 0.70 | _fh)"
-  declare -g "${k}K9=$(_hs 0.10 "${c}" | _hl 0.80 | _fh)"
+  declare -g "${k}K0=$(_saturation 0.10 "${c}" | _lightness 0.04 | _formathex)"
+  declare -g "${k}K1=$(_saturation 0.11 "${c}" | _lightness 0.08 | _formathex)"
+  declare -g "${k}K2=$(_saturation 0.12 "${c}" | _lightness 0.12 | _formathex)"
+  declare -g "${k}K3=$(_saturation 0.13 "${c}" | _lightness 0.16 | _formathex)"
+  declare -g "${k}K4=$(_saturation 0.14 "${c}" | _lightness 0.20 | _formathex)"
+  declare -g "${k}K5=$(_saturation 0.14 "${c}" | _lightness 0.30 | _formathex)"
+  declare -g "${k}K6=$(_saturation 0.13 "${c}" | _lightness 0.50 | _formathex)"
+  declare -g "${k}K7=$(_saturation 0.12 "${c}" | _lightness 0.60 | _formathex)"
+  declare -g "${k}K8=$(_saturation 0.11 "${c}" | _lightness 0.70 | _formathex)"
+  declare -g "${k}K9=$(_saturation 0.10 "${c}" | _lightness 0.80 | _formathex)"
 }
 
 # shellcheck disable=SC2034
@@ -170,7 +170,7 @@ gen_shades () {
 
 # #################
 ################################
-GeneratePalette () { 
+GeneratePalette () {
   gen_random
   gen_idempotents
   gen_shades
@@ -197,7 +197,7 @@ UpdatePalette () {
 (( "$DEBUG" )) && gen_shades
 # (( "$DEBUG" )) && gen_idempotents
 # (( "$DEBUG" )) && Demo && Demo_slant && Demo_hexes
-# if (( "$DEBUG" )); then 
+# if (( "$DEBUG" )); then
 #   __print_hexes $(echo SK{0..9})
 #   __print_hexes $(echo WK{0..9})
 #   __print_hexes $(echo EK{0..9})

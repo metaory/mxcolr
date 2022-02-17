@@ -123,7 +123,7 @@ Demo_spectrum () {
   local space; space=$(printf "%0.s " $(seq 1 "$flen"))
 
   pastel paint -b -o "${!seed}" \
-    "$(_tx "${!seed}")" \
+    "$(pastel textcolor "${!seed}")" \
     " ${angle::7} seed: ${seed}${space}"
 }
 # ##############################

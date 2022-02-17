@@ -13,7 +13,7 @@ sp_line_top_begin='┏╸━'       ; sp_line_top_middl='━╸'      ; sp_line_
 sp_line_begin='╺╸'           ; sp_line_middl='··'         ; sp_line_close='·╺╸'
 sp_line_top_begin='┏╸'       ; sp_line_top_middl='·'      ; sp_line_top_close='·╺┓'       ; #   
 sp_cross_begin=' '           ; sp_cross_middl=' '         ; sp_cross_close=' '
-sp_dot_begin=' '             ; sp_dot_middl=' ⬤'           ; sp_dot_close='  '
+sp_dot_begin=' '             ; sp_dot_middl=' '           ; sp_dot_close=' '
 sp_lash_begin='●'            ; sp_lash_middl='●'          ; sp_lash_close='●●'
 sp_dotline_begin='╸⏽'         ; sp_dotline_middl='●⏽'       ; sp_dotline_close='╺'
 sp_lash_begin='╸⏽'           ; sp_lash_middl='●⏽'          ; sp_lash_close='●╺'
