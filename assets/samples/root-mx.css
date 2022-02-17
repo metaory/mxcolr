@@ -1,0 +1,51 @@
+:root {
+  --mxc-c00: #0e0e1b;
+  --mxc-c01: #dc4f9d;
+  --mxc-c02: #6bd3ab;
+  --mxc-c03: #ea8773;
+  --mxc-c04: #4d90fd;
+  --mxc-c05: #5c56ce;
+  --mxc-c06: #4db5ed;
+  --mxc-c07: #393975;
+  --mxc-c08: #262641;
+  --mxc-c09: #e479b4;
+  --mxc-c10: #92dfc2;
+  --mxc-c11: #f1ad9f;
+  --mxc-c12: #7fb0fe;
+  --mxc-c13: #827ed9;
+  --mxc-c14: #7bc8f2;
+  --mxc-c15: #7272d5;
+
+  --mxc-sbg: #64994c;
+  --mxc-sfg: #000000;
+  --mxc-wbg: #1c87f2;
+  --mxc-wfg: #000000;
+  --mxc-ebg: #6c45e1;
+  --mxc-efg: #d6c2c2;
+  --mxc-xbg: #09090c;
+  --mxc-xfg: #5656be;
+  --mxc-obg: #191925;
+  --mxc-ofg: #42a0ff;
+
+  --mxc-dk0: #000000;
+  --mxc-dk1: #07070e;
+  --mxc-dk2: #0e0e1b;
+  --mxc-dk3: #1c1c2c;
+  --mxc-dk4: #262641;
+  --mxc-dk5: #323253;
+  --mxc-dk6: #3e3e66;
+  --mxc-dk7: #4e4e7e;
+  --mxc-dk8: #5b5b90;
+  --mxc-dk9: #6b6b9f;
+
+  --mxc-dl0: #050506;
+  --mxc-dl1: #10101a;
+  --mxc-dl2: #141429;
+  --mxc-dl3: #181830;
+  --mxc-dl4: #282853;
+  --mxc-dl5: #393975;
+  --mxc-dl6: #3f3fa2;
+  --mxc-dl7: #5656be;
+  --mxc-dl8: #7272d5;
+  --mxc-dl9: #9999e1;
+}
