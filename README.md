@@ -214,6 +214,8 @@ generate
 
 ### Check Wiki for more screenshots
 
+[Screenshots](https://github.com/metaory/mxcolr/wiki/Screenshots)
+
 ***
 
 Requirements
