@@ -227,6 +227,6 @@ Demo_hexes () {
   fillCols '━'
   __print_hexes $(echo {S,W,E}BG)
   fillCols '━'
-  for i in {1..9}; do __print_hexes SK${i} WK${i} EK${i}; done
+  for i in {0..9}; do __print_hexes SK${i} WK${i} EK${i}; done
 }
 
