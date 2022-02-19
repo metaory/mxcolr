@@ -48,13 +48,20 @@ for src in "$MXBASE"/src/*.sh; do . "$src"; done
 GetPlugName () { local BS="${BASH_SOURCE[1]}"; BS=${BS##*/}; BS="${BS::-3}"; BS="${BS:2}"; echo "$BS"; }
 SourcePlugs () { for plug in "$MXBASE"/plugins/*.sh; do . "$plug"; done; }
 # ##############################
-ApplyTmux () { [[ -n "$TMUX" ]] && . "$MXBASE"/plugins/2-tmux.sh && apply_tmux; }
+TerminalPreview () {
+  [[ -n "$TMUX" ]] &&
+    . "$MXBASE"/plugins/2-tmux.sh &&
+    apply_tmux
+  [[ -n "$ALACRITTY_SOCKET" ]] &&
+    ApplyTemplates &&
+    cp -v /tmp/mxc/alacritty.yml ~/.config/mxc/alacritty.yml
+}
 
 Revert () {
   rm /tmp/mxc/*
   UpdatePalette
   . "$OTHEME"
-  ApplyTmux
+  TerminalPreview
   Demo
 }
 
@@ -152,7 +159,7 @@ Shuffle () {
 Generate () {
   ! (( "$1" )) && rm /tmp/mxc/* &> /dev/null
   ! (( "$1" )) && GeneratePalette
-  ApplyTmux
+  TerminalPreview
   Demo 1
 
   PrompRand
