@@ -1,7 +1,7 @@
 #!/usr/bin/env bash
 
 ################################
-GEN_MIN_DISTANCE=30
+MIN_HUE_DISTANCE=40
 ATTMP_WARN_THRESHOLD=7
 ################################
 _format () { pastel format $*; }
