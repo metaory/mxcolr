@@ -82,9 +82,6 @@ SaveSnapshot () {
   for sid in "${!snapshots[@]}"; do
     local snap=${snapshots[$sid]}; mlg "$snap"
 
-    [ -e "$snap"/mx-seed ]  && mv "$snap"/mx-seed  "$snap"/seed.mx; # legacy name
-    [ -e "$snap"/theme.mx ] && mv "$snap"/theme.mx "$snap"/root.mx; # legacy name
-
     if (diff "$O_SEED" "$snap"/seed.mx &>/dev/null); then
       mlg "snap exists $snap"
       . "$snap"/root.mx

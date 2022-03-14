@@ -47,15 +47,15 @@ ApplyIcons () {
   mapfile -t APP_ICONS <<<$(find "$AWESOME_THEME_PATH"/icons/apps -name "*.png" -type f 2> /dev/null)
   mapfile -t LAYOUT_ICONS <<<$(find "$AWESOME_THEME_PATH"/icons/layout -name "*.png" -type f 2> /dev/null)
 
-  local darkest;darkest=$(darkest SBG WBG EBG)
-  local k="${darkest:0:1}";
-  local shade="${k}K6"; shade="${!shade}"
+  # local darkest;darkest=$(darkest SBG WBG EBG)
+  # local k="${darkest:0:1}";
+  # local shade="${k}K6"; shade="${!shade}"
   # local tg_tray_icon=/usr/share/pixmaps/telegram.png
   # [ -w "$tg_tray_icon" ] && APP_ICONS+=("$tg_tray_icon")
 
   Info "${#APP_ICONS[@]} APP_ICONS"
   for ico in "${APP_ICONS[@]}"; do
-    convert "$ico" -fill "${shade}" -colorize 100%  "$ico"
+    convert "$ico" -fill "${WBG}" -colorize 100%  "$ico"
   done
   InfoDone "${#APP_ICONS[@]} APP_ICONS"
 

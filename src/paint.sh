@@ -150,7 +150,7 @@ Lorem () {
   for t in $(seq 1 "${1:-300}"); do
     (( RANDOM % 2 )) &&  s+="${2:-▂}"  ||  s+=' '
   done
-  pastel paint "${C05}" "$s"
+  pastel paint "${WBG}" "$s"
 }
 
 LoremCols () {
