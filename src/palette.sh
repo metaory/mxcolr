@@ -53,14 +53,16 @@ gen_random () {
   local attmp="${1:-1}"
   local strategy="${XOPT:-lch}" ; [[ "$strategy" == 'lch' ]] && strategy='lch_hue'
   local redo=0
+
   local seeds=( SBG WBG EBG )
 
-  for seed in ${seeds[@]}; do
-    declare -g "${seed}=$(pastel random -n 1 -s "$strategy" | _formathex)"
-  done
+  local randoms=( $(pastel random -n 3 -s "$strategy" | pastel sort-by chroma | _formathex) )
 
   for seed_id in ${!seeds[@]}; do
     local seed=${seeds[$seed_id]}
+
+    declare -g "$seed=${randoms[$seed_id]}"
+
     local pre
     (( seed_id )) &&
       pre="${seeds[((seed_id - 1))]}" ||
