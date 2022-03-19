@@ -10,7 +10,7 @@
   :warning: Warning! This is experimental! :warning:
 </p>
 
-## There is a version 2 of this project at [mxcolr-v2](https://github.com/metaory/mxcolr-v2)
+## There is a simplified version 2 of this project at [mxcolr-v2](https://github.com/metaory/mxcolr-v2)
 
 <p align="center">
   <img src="./assets/screenshots/2022-01-29-190221_2560x1080_scrot.png">
