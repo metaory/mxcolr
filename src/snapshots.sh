@@ -13,25 +13,20 @@ ListSnapshots () {
     . "$snap"/root.mx
     local filllen=$(( 16 - ${#MXNAME} - ${#sid}))
 
-    if ! (( $1 )); then
-      # ! (( sid % brk )) && echo
-      # printf ' '
-      MXSep "$(printf " %03d\n" $sid)"
-      # if diff "$O_SEED" "$snap"/seed.mx &>/dev/null; then
-      MXDots
-      MXSep
-        Demo_mxname "$sid"
-        pastel paint -n $EBG "$(printf "%0.s▒" $(seq 1 $filllen)) "
-        pastel paint -n $SBG "${MXNAME:0:3}"
-        pastel paint -n $WBG "${MXNAME:3:6}"
-        pastel paint    $EBG "${MXNAME:(-3)}"
-        pastel paint $C08 "$(printf "%0.s░" $(seq 1 $COLUMNS))"
+    # ! (( sid % brk )) && echo
+    MXSep "$(printf " %03d\n" $sid)"
+    # if diff "$O_SEED" "$snap"/seed.mx &>/dev/null; then Demo_block; fi
+    MXDots
+    MXSep
+    Demo_mxname "$sid"
+    pastel paint -n $EBG "$(printf "%0.s▒" $(seq 1 $filllen)) "
+    pastel paint -n $SBG "${MXNAME:0:3}"
+    pastel paint -n $WBG "${MXNAME:3:6}"
+    pastel paint    $EBG "${MXNAME:(-3)}"
+    pastel paint $C08 "$(printf "%0.s░" $(seq 1 $COLUMNS))"
 
       # (diff "$O_SEED" "$snap"/seed.mx &>/dev/null  && ( Demo_mxname "$sid" ))  || pastel paint -o "$XBG" -b -n "$XFG" "$(printf '%#2d\n' "$sid")"
-      # MXDots
-      # MXSep
-    fi
-  done
+    done
 
   echo;echo; pastel paint "$XFG" -n "select "; pastel paint "$XFG" -b -n "(0-$((total-1))): "
 
