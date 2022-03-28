@@ -26,10 +26,10 @@ sp_line_bo2_begin='┗╸'        ; sp_line_bo2_middl='╺╸'      ; sp_line_bo
 sp_box_begin='■'              ; sp_box_middl='■'            ; sp_box_close='■'
 sp_box2_begin='█🮈'            ; sp_box2_middl='▍'           ; sp_box2_close='▍█'
 
-# \\\\\\\\\\\\\\\\\\\\\\\\\\\\  
+# \\\\\\\\\\\\\\\\\\\\\\\\\\\\
 prnt (){
   char="${2:-}"
-  pastel paint -o "$XBG" -n "${!1:-red}" "$char" 
+  pastel paint -o "$XBG" -n "${!1:-red}" "$char"
 }
 pl () {
   [ $# -eq 0 ] && printf ' ' && return
@@ -40,13 +40,13 @@ pl () {
     s=''
     op='-b'
     c='XBG'
-  else 
+  else
    op='-n'
   fi
   pastel paint -o "$o" "$op" "${!c:-red}" "$s"
 }
 fll ()  { printf "%0.s${2:- }" $(seq 1 "${1:-1}"); }
-flll () { 
+flll () {
   local n="$1";n=$((n-1))
   local tx;tx="$(printf "%0.s${2:- }" $(seq 1 "$n"))"
   pastel paint "${3:-$C00}" "$tx"
@@ -64,7 +64,7 @@ fill () {
 
   pastel paint "${c}" -o "${b}" -n "$_filler"
 }
-fillHead () { 
+fillHead () {
   local s=" ${1:-} "
   local slen=$((${#s}))
   local sep='╺╸·╺╸'
@@ -74,10 +74,10 @@ fillHead () {
   pastel paint -n -o "$XBG" -b "${XFG}" "$s"
   fill $space "$(( cols + ${#sep} ))" "$sep" "$XFG"; pl '-'
 }
-fillCols () { 
+fillCols () {
   fill "$(($(tput cols)/2))" 0 "${1:-}" "${SK3}"
   pl '-'
-} 
+}
 
 # "$(tput cols)" "${1:-·}" "${2:-$C00}"; }
 # fillCols () { pl "$(tput cols)" "${1:-·}" "${2:-$C00}"; }
@@ -91,12 +91,12 @@ prntlist () {
   sp_close="${spmap}_close"
   shift
   list=("$@")
-  for i in "${!list[@]}"; do 
-    if (( i == 0 )); then  
+  for i in "${!list[@]}"; do
+    if (( i == 0 )); then
       $fname "${list[$i]}" "${!sp_begin}"
       continue
     fi
-    if (( i + 1 == ${#list[@]} )); then 
+    if (( i + 1 == ${#list[@]} )); then
       $fname "${list[$i]}" "${!sp_close}"
       continue
     fi
@@ -121,7 +121,7 @@ get_header () {
   local name="$MXNAME @ $MXC_V"; local _f=$(( ${#name} / 2 + 2 ))
   asciiart="$header"
 
-  if ! (( "$3" )); then 
+  if ! (( "$3" )); then
       asciiart="$(sed "s/^.*/${comment_char}&/p" <<< "$header")"
   fi
   asciiart="$(sed "s/[[:graph:]]/${comment_char}/g" <<< "$asciiart")"
@@ -133,7 +133,7 @@ get_header () {
 
 put_header () {
   local des="$1"; shift
-  local esc="${1:-·}" 
+  local esc="${1:-·}"
   header=$(get_header "$esc" "MXC" 1)
   echo "local header = {" > "$des"
   while read -r i

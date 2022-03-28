@@ -1,27 +1,35 @@
 #!/usr/bin/env bash
+COLUMNS=${COLUMNS:-$(tput cols)}
 
 ListSnapshots () {
   local snapshots=("$MXSNAP"/*)
+  local total="${#snapshots[@]}"
+  # local slen;slen="$(MXDots)";slen="${#slen}"
+  # local brk; brk=$COLUMNS;brk=$((brk/(slen * 2)))
 
-  total="${#snapshots[@]}"
-  local slen;slen="$(MXDots)";slen="${#slen}"
   for sid in "${!snapshots[@]}"; do
     local snap=${snapshots[$sid]}; mlg "$snap"
 
-    [ -e "$snap"/mx-seed ]  && mv "$snap"/mx-seed  "$snap"/seed.mx; # legacy name
-    [ -e "$snap"/theme.mx ] && mv "$snap"/theme.mx "$snap"/root.mx; # legacy name
-
     . "$snap"/root.mx
-    local slabel; slabel="$(basename "$snap" | cut -d'_' -f2-3)"
-    local brk; brk=$(tput cols);brk=$((brk/(slen * 2)))
-    if ! (( $1 )); then 
-      ! (( sid % brk )) && echo
-      printf ' '
+    local filllen=$(( 16 - ${#MXNAME} - ${#sid}))
+
+    if ! (( $1 )); then
+      # ! (( sid % brk )) && echo
+      # printf ' '
+      MXSep "$(printf " %03d\n" $sid)"
+      # if diff "$O_SEED" "$snap"/seed.mx &>/dev/null; then
+      MXDots
       MXSep
-      (diff "$O_SEED" "$snap"/seed.mx &>/dev/null  && ( Demo_mxname "$sid" )) \
-        || pastel paint -o "$XBG" -b -n "$XFG" "$(printf '%#2d\n' "$sid")"
-              MXDots
-              MXSep
+        Demo_mxname "$sid"
+        pastel paint -n $EBG "$(printf "%0.s▒" $(seq 1 $filllen)) "
+        pastel paint -n $SBG "${MXNAME:0:3}"
+        pastel paint -n $WBG "${MXNAME:3:6}"
+        pastel paint    $EBG "${MXNAME:(-3)}"
+        pastel paint $C08 "$(printf "%0.s░" $(seq 1 $COLUMNS))"
+
+      # (diff "$O_SEED" "$snap"/seed.mx &>/dev/null  && ( Demo_mxname "$sid" ))  || pastel paint -o "$XBG" -b -n "$XFG" "$(printf '%#2d\n' "$sid")"
+      # MXDots
+      # MXSep
     fi
   done
 
@@ -33,7 +41,7 @@ ListSnapshots () {
     read -r choice
   fi
 
-  if ! [[ "$choice" =~ ^[0-9]+$ ]]; then 
+  if ! [[ "$choice" =~ ^[0-9]+$ ]]; then
     pastel paint "$C01" -b "($choice) numbers only "
     ListSnapshots
     return

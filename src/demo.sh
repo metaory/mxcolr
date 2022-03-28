@@ -5,8 +5,8 @@ MX_CA=(C{00..07})
 MX_CB=(C{08..15})
 
 ################################
-# ////////////////////////////  
-# ////////////////////////////  
+# ////////////////////////////
+# ////////////////////////////
 Demo_block () {
   [[ -z $2 ]] && { fill 8 ; pl "${MX_XX[0]}" "${1-${MXNAME:0:2}}" ; pl "${MX_XX[1]}"  "${MXNAME:2:4}" ;pl "${MX_XX[2]}" "${MXNAME:8:16}"; pl '-'; }
   fill 5 ; pl "${MX_XX[0]}"   " ▄▄" ; prntlist 'prnt:sp_block_d' "${MX_XX[@]}" ; pl "${MX_XX[-1]}" '▀▀' ; pl '-'
@@ -46,7 +46,7 @@ _head () {
   local bg="$WBG"
   local fg="$WFG"
   (( $2 )) && bg="$XBG" && fg="$WBG"
-  pastel paint -n -o "$bg" "$fg" "$out" 
+  pastel paint -n -o "$bg" "$fg" "$out"
 }
 Demo_card () {
   local s="${1:-$MXNAME}"; local c="${2:-}"; local t="${3:-}"
@@ -66,12 +66,12 @@ Demo_card () {
 # }
 # Demo_shades1()  { fill 1 ; prntlist 'prnt:sp_lash' "${MX_CK[@]}"     ; pl '-' ; }j
 # Demo_shades2()  { fill 1 ; prntlist 'prnt:sp_pentagon' "${MX_CK[@]}" ; pl '-' ; }
-Demo_shades3()  { 
+Demo_shades3()  {
   fill 0 ; printf 'SK ' ; prntlist 'prnt:sp_dotline' "${MX_SK[@]}" ; pl '-'
   fill 0 ; printf 'WK ' ; prntlist 'prnt:sp_dotline' "${MX_WK[@]}" ; pl '-'
   fill 0 ; printf 'EK ' ; prntlist 'prnt:sp_dotline' "${MX_EK[@]}" ; pl '-'
 }
-Demo_shades4()  { 
+Demo_shades4()  {
   fill 3; for i in {0..9}; do printf '%s ' "$i"; done; echo
 
   fill 0 ; printf 'SK ' ; prntlist 'prnt:sp_block_e' "${MX_SK[@]}" ; pl '-'
@@ -144,20 +144,20 @@ __randmico () { shuf -n 1 -e $(cat ~/mxx/mico/uni-etc); }
 
 MXMico () { ( (( RANDOM % 2 )) &&  MXDots ) || __randmico; }
 
-MXIntro () { 
+MXIntro () {
   fll 4; pastel paint "$C08" -n "${1:-NA}ms"
-   (( RANDOM % 2 )) &&  MXDotLine || Demo_block 0 0 
+   (( RANDOM % 2 )) &&  MXDotLine || Demo_block 0 0
 }
 
-MYIntro () { 
+MYIntro () {
   case $(( RANDOM % 3 )) in
     0 ) MXDotLine ;;
     1 ) LoremCols ;;
     2 ) Demo_block 0 0 ;;
   esac
 }
-# ////////////////////////////  
-# ////////////////////////////  
+# ////////////////////////////
+# ////////////////////////////
 Demo () {
   if (( "$FORCE_UPDATE" )); then return; fi
   (( "$1" )) && echo "[TOTAL_ATTEMPTS] $TOTAL_ATTEMPTS"

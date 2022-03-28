@@ -3,6 +3,7 @@
 DEFAULT_TINT=${DEFAULT_TINT:-10}
 
 _paint () { pastel paint -b "${2:-$WBG}" "${1:-NA}"; }
+  # tput sc
 _info () {
   local ico; local cf; local cc; # ; local lvl=$1 # ; local on
   # ! [[ $2 =~ ^[0-9]+$ ]] && lvl=0
@@ -24,6 +25,7 @@ _info () {
   local fill_len ; fill_len=$((19-${#src}))
   local fill     ; fill="$(printf '%0.s ' $(seq 1 ${fill_len}))"
 
+  # tput rc; tput el
   pastel paint -b -n -o 'black' "${cf}" "[${src}]"
   pastel paint -b -n    "$cc"   "${fill}${1##*/}"
   pastel paint -b       "$cc"   " ${ico} "

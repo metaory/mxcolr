@@ -34,7 +34,7 @@ apply_vim () {
   # cp -v /tmp/mxc/mxc-nvim-base16.lua ~/.config/nvim/lua/themes
   # cp -v /tmp/mxc/mxc-nvim-colors.lua ~/.config/nvim/lua/themes
   cp -v /tmp/mxc/vim-visual-multi_themes.vim ~/.local/share/nvim/site/pack/packer/opt/vim-visual-multi/autoload/vm/themes.vim
-  cp -v /tmp/mxc/palette.lua ~/.config/nvim/lua/cosmic/theme/integrated/mxc-palette.lua
+  # cp -v /tmp/mxc/palette.lua ~/.config/nvim/lua/cosmic/theme/integrated/mxc-palette.lua
   cp -v /tmp/mxc/palette.lua ~/.config/nvim/lua/mxc/palette.lua
   cp -v /tmp/mxc/mxc-nvim-base16.lua ~/.config/nvim/lua/mxc
   cp -v /tmp/mxc/mxc-nvim-colors.lua ~/.config/nvim/lua/mxc

@@ -57,9 +57,11 @@ TerminalPreview () {
   [[ -n "$TMUX" ]] &&
     . "$MXBASE"/plugins/2-tmux.sh &&
     apply_tmux
+
   [[ -n "$ALACRITTY_SOCKET" ]] &&
     ApplyTemplates &&
-    cp -v /tmp/mxc/alacritty.yml ~/.config/mxc/alacritty.yml
+    cp -v /tmp/mxc/alacritty.yml ~/.config/mxc/alacritty.yml &&
+    cp -v /tmp/mxc/* ~/.config/mxc-v2 # XXX Temporary << forward compatibility
 }
 
 Revert () {
@@ -76,8 +78,9 @@ ApplyTemplates () {
     local tpl="${tpl_path##*/}"
     envsubst < "$tpl_path" | tee \
       >(cat > /tmp/mxc/"$tpl") \
-      >(cat > "$MXDIST/$tpl") &> /dev/null; # XXX read from env/config
+      >(cat > "$MXDIST/$tpl") &> /dev/null
   done
+  # cp ~/.config/mxc ~/.config/mxc-v2 -rv; # XXX Temporary <<
 }
 
 ApplyPlugs () {
