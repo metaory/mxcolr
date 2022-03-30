@@ -59,8 +59,9 @@ PrompRand () {
   pastel paint -n -b -o "black" "$C04" " [s]"  ; pastel paint -n -o "black" "$C07" "huffle " ; _slant_sep
   pastel paint -n -b -o "black" "$C03" " [n]"  ; pastel paint -n -o "black" "$C07" "ext "    ; _slant_sep
   pastel paint -n -b -o "black" "$C06" " [d]"  ; pastel paint -n -o "black" "$C07" "emo"     ; _slant_sep "black" "$XBG"
+  echo
   read -n 1 -r -s
-  pastel paint -o "$XBG" "$SBG" -b -n "█"
+  pastel paint -o "$XBG" "$SBG" -b -n " █"
   pastel paint -o "$SBG"  "$SFG" -b -n "$REPLY"
   pastel paint -o "$XBG" "$SBG" -b    "█"
 }

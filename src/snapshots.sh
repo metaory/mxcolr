@@ -23,7 +23,7 @@ ListSnapshots () {
     pastel paint -n $SBG "${MXNAME:0:3}"
     pastel paint -n $WBG "${MXNAME:3:6}"
     pastel paint    $EBG "${MXNAME:(-3)}"
-    pastel paint $C08 "$(printf "%0.s░" $(seq 1 $COLUMNS))"
+    # pastel paint $C08 "$(printf "%0.s░" $(seq 1 $COLUMNS))"
 
       # (diff "$O_SEED" "$snap"/seed.mx &>/dev/null  && ( Demo_mxname "$sid" ))  || pastel paint -o "$XBG" -b -n "$XFG" "$(printf '%#2d\n' "$sid")"
     done
