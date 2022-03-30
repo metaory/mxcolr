@@ -218,6 +218,21 @@ generate
 
 [Screenshots](https://github.com/metaory/mxcolr/wiki/Screenshots)
 
+### Save current theme
+```
+mxcolr save
+```
+
+### List saved themes
+```
+mxcolr list
+```
+Snapshot list
+-------------
+<p align="center">
+  <img src="https://github.com/metaory/mxcolr-v2/wiki/assets/2022-03-30-110239_1284x840_scrot.png">
+</p>
+
 ***
 
 Requirements
