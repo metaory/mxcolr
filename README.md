@@ -253,23 +253,23 @@ Optional Requirements
 
 Plugins
 -------
-- Xresources
-- Alacritty
-- Kitty theme: [kitty-mxc](https://github.com/metaory/kitty-mxc)
-- Vim `colors.vim` Nvim `colors.lua`
-- Vimium
-- FZF
-- Spotify
-- Slack
-- Ranger
-- P10k
-- Zathura
-- GTK Theme
-- GTK Icon Theme
-- Wallpaper tint
-- Tmux, theme: [tmux-mxc](https://github.com/metaory/tmux-mxc)
-- AwesomeWM `colors.lua`
-- LS_COLORS
+- [X] Xresources
+- [X] Alacritty
+- [X] Kitty theme: [kitty-mxc](https://github.com/metaory/kitty-mxc)
+- [X] Vim `colors.vim` Nvim `colors.lua`
+- [X] Vimium
+- [X] FZF
+- [X] Spotify
+- [ ] Slack
+- [X] Ranger
+- [X] P10k
+- [X] Zathura
+- [X] GTK Theme
+- [X] GTK Icon Theme
+- [X] Wallpaper tint
+- [X] Tmux, theme: [tmux-mxc](https://github.com/metaory/tmux-mxc)
+- [X] AwesomeWM `colors.lua`
+- [X] LS_COLORS
 
 ## There is a lite version of this project at [mxcolr-lite](https://github.com/metaory/mxcolr-lite)
 

@@ -19,11 +19,11 @@ fun! vm#themes#init() abort
     let out = execute('highlight Search')
     if match(out, ' links to ') >= 0
       let hi = substitute(out, '^.*links to ', '', '')
-      let g:Vm.search_hi = "hi! link Search " . hi
+      let g:Vm.search_hi = "link Search " . hi
     else
       let hi = strtrans(substitute(out, '^.*xxx ', '', ''))
       let hi = substitute(hi, '\^.', '', 'g')
-      let g:Vm.search_hi = "hi! Search " . hi
+      let g:Vm.search_hi = "Search " . hi
     endif
 
     call vm#themes#search_highlight()
@@ -66,10 +66,11 @@ endfun
 
 fun! vm#themes#search_highlight() abort
   " Init Search highlight.
-  let g:Vm.Search = g:VM_highlight_matches == 'underline' ? 'hi Search term=underline cterm=underline gui=underline' :
-        \           g:VM_highlight_matches == 'red'       ? 'hi Search ctermfg=196 guifg=#ff0000' :
-        \           g:VM_highlight_matches =~ '^hi!\? '   ? g:VM_highlight_matches
-        \                                                 : 'hi Search term=underline cterm=underline gui=underline'
+  let hl = g:VM_highlight_matches
+  let g:Vm.Search = hl == 'underline' ? 'Search term=underline cterm=underline gui=underline' :
+        \           hl == 'red'       ? 'Search ctermfg=196 guifg=#ff0000' :
+        \           hl =~ '^hi!\? '   ? substitute(g:VM_highlight_matches, '^hi!\?', '', '')
+        \                             : 'Search term=underline cterm=underline gui=underline'
 endfun
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
@@ -128,23 +129,16 @@ endfun
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 let s:Themes._light = ['sand', 'paper', 'lightblue1', 'lightblue2', 'lightpurple1', 'lightpurple2']
-let s:Themes._dark = ['iceblue', 'ocean', 'mxc', 'neon', 'purplegray', 'nord', 'codedark', 'spacegray', 'olive', 'sand']
+let s:Themes._dark = ['mxc', 'iceblue', 'ocean', 'neon', 'purplegray', 'nord', 'codedark', 'spacegray', 'olive', 'sand']
 
 """""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
+
 fun! s:Themes.mxc()
   hi! VM_Extend guibg=$SBG guifg=$SFG
   hi! VM_Cursor guibg=$EBG guifg=$EFG
   hi! VM_Insert guibg=$WBG guifg=$WFG
   hi! VM_Mono   guibg=$CX4 guifg=$CF4
 endfun
-
-  " execute 'hi! VM_Extend guibg='.g:mxc_g_sbg.' guifg='.g:mxc_g_sfg
-  " execute 'hi! VM_Cursor guibg='.g:mxc_g_ebg.' guifg='.g:mxc_g_efg
-  " execute 'hi! VM_Insert guibg='.g:mxc_g_wbg.' guifg='.g:mxc_g_wfg
-  " execute 'hi! VM_Mono   guibg='.g:mxc_g_cx3.' guifg='.g:mxc_g_c00
-
-
-"""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""""
 
 fun! s:Themes.iceblue()
   hi! VM_Extend ctermbg=24                   guibg=#005f87

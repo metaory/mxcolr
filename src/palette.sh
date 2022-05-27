@@ -102,13 +102,13 @@ gen_idempotents () {
   C01="$(pastel mix ${!ds} Crimson   -f 0.5 | pastel mix - PaleVioletRed     -f 0.4 | _saturate 0.04 | _formathex)"
   C02="$(pastel mix ${!ds} Teal      -f 0.5 | pastel mix - MediumSpringGreen -f 0.4 | _saturate 0.04 | _formathex)"
   C03="$(pastel mix ${!ds} Yellow    -f 0.5 | pastel mix - Coral             -f 0.4 | _saturate 0.04 | _formathex)"
-  C04="$(pastel mix ${!ds} RoyalBlue -f 0.5 | pastel mix - DodgerBlue        -f 0.4 | _saturate 0.04 | _formathex)"
+  C04="$(pastel mix ${!ds} RoyalBlue -f 0.5 | pastel mix - DodgerBlue        -f 0.4 | _saturate 0.12 | _formathex)"
   C05="$(pastel mix ${!ds} Plum      -f 0.5 | pastel mix - SlateBlue         -f 0.4 | _saturate 0.04 | _formathex)"
   C06="$(pastel mix ${!ds} Cyan      -f 0.5 | pastel mix - DeepSkyBlue       -f 0.4 | _saturate 0.04 | _formathex)"
 
   for i in {09..14}; do
     local c="C0$(echo "$i - 8" | bc)"; c="${!c}"
-    declare -g "C$i=$(_lighten 0.10 "$c" | _formathex)"
+    declare -g "C$i=$(_lighten 0.08 "$c" | _formathex)"
   done
 
   WBX="$(_saturate  0.30 "$WBG" | _lighten 0.10 | _formathex)"
@@ -135,11 +135,11 @@ __gen_shade () {
   local c="${!1}";
   local k="${1:0:1}";
 
-  declare -g "${k}K0=$(_saturation 0.10 "${c}" | _lightness 0.04 | _formathex)"
-  declare -g "${k}K1=$(_saturation 0.11 "${c}" | _lightness 0.08 | _formathex)"
-  declare -g "${k}K2=$(_saturation 0.12 "${c}" | _lightness 0.12 | _formathex)"
-  declare -g "${k}K3=$(_saturation 0.13 "${c}" | _lightness 0.16 | _formathex)"
-  declare -g "${k}K4=$(_saturation 0.14 "${c}" | _lightness 0.20 | _formathex)"
+  declare -g "${k}K0=$(_saturation 0.09 "${c}" | _lightness 0.04 | _formathex)"
+  declare -g "${k}K1=$(_saturation 0.10 "${c}" | _lightness 0.08 | _formathex)"
+  declare -g "${k}K2=$(_saturation 0.11 "${c}" | _lightness 0.12 | _formathex)"
+  declare -g "${k}K3=$(_saturation 0.12 "${c}" | _lightness 0.16 | _formathex)"
+  declare -g "${k}K4=$(_saturation 0.13 "${c}" | _lightness 0.20 | _formathex)"
   declare -g "${k}K5=$(_saturation 0.14 "${c}" | _lightness 0.30 | _formathex)"
   declare -g "${k}K6=$(_saturation 0.13 "${c}" | _lightness 0.50 | _formathex)"
   declare -g "${k}K7=$(_saturation 0.12 "${c}" | _lightness 0.60 | _formathex)"
@@ -196,8 +196,8 @@ UpdatePalette () {
   InfoDone
 }
 
-(( "$DEBUG" )) && gen_shades
-# (( "$DEBUG" )) && gen_idempotents
+# (( "$DEBUG" )) && gen_shades && Demo_shades4
+(( "$DEBUG" )) && gen_idempotents && DemoAll
 # (( "$DEBUG" )) && Demo && Demo_slant && Demo_hexes
 # if (( "$DEBUG" )); then
 #   __print_hexes $(echo SK{0..9})

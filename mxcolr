@@ -172,13 +172,14 @@ Generate () {
 
   PrompRand
   case $REPLY in
-    k ) Info 'Keeping draft ·' ; SourcePlugs  ;;
-    s ) Info 'Shuffling ·····' ; Shuffle      ;;
-    u ) Info 'Proceeding ····' ; ReGenerate   ;;
-    U ) Info 'Forcing ·······' ; FORCE_UPDATE=1; ReGenerate   ;;
-    n ) Info 'Again ·········' ; Generate;;
-    d ) Info 'Full Demo ·····' ; DemoAll      ;;
-    * ) Info 'Reverting ·····' ; Revert; ReGenerate 1 ;;
+    k   ) Info 'Keeping draft ·' ; SourcePlugs  ;;
+    s   ) Info 'Shuffling ·····' ; Shuffle      ;;
+    u   ) Info 'Proceeding ····' ; ReGenerate   ;;
+    U   ) Info 'Forcing ·······' ; FORCE_UPDATE=1; ReGenerate   ;;
+    ' ' ) Info 'Again ·········' ; Generate;;
+    n   ) Info 'Again ·········' ; Generate;;
+    d   ) Info 'Full Demo ·····' ; DemoAll      ;;
+    *   ) Info 'Reverting ·····' ; Revert; ReGenerate 1 ;;
   esac
   mlg "━✔━━━┛"
 } # ............................ #

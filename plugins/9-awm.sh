@@ -6,7 +6,7 @@ AWESOME_THEME_PATH=~/.config/awesome/themes/$AWESOME_THEME
 WALLPAPER_BASE_PATH=~/pics/wall/BASE.png
 
 ################################
-notify () { 
+notify () {
   if command -v notify-send &> /dev/null; then
     notify-send "${1}"
   else
@@ -30,11 +30,12 @@ ApplyWallpaper () {
   pastel paint -b "$EBG"  " ==> running convert -fill $tintColor with -colorize value: [$REPLY]%"
 
   # convert "$HOME"/pics/wall/BASE.png -fill "${!tintColor}" -tint "$REPLY" "$HOME"/pics/wall/curr.png
-  convert "$HOME"/pics/wall/BASE.png -fill "${!tintColor}" -colorize "$REPLY"% "$HOME"/pics/wall/curr.png
+  convert ~/pics/wall/BASE-1.png -fill "${!tintColor}" -colorize "$REPLY"% ~/pics/wall/curr-1.png
+  convert ~/pics/wall/BASE-2.png -fill "${!tintColor}" -colorize "$REPLY"% ~/pics/wall/curr-2.png
   # convert "$HOME"/pics/wall/curr.png -fill "${!tintColor}" -tint "1"% "$HOME"/pics/wall/curr.png
-  InfoDone 
+  InfoDone
 }
-# ////////////////////////////  
+# ////////////////////////////
 ################################
 ApplyIcons () {
   ! [ -d $AWESOME_THEME_PATH ] && InfoIgnore "Awesome Theme $AWESOME_THEME not found." "$AWESOME_THEME_PATH" && return
@@ -47,9 +48,9 @@ ApplyIcons () {
   mapfile -t APP_ICONS <<<$(find "$AWESOME_THEME_PATH"/icons/apps -name "*.png" -type f 2> /dev/null)
   mapfile -t LAYOUT_ICONS <<<$(find "$AWESOME_THEME_PATH"/icons/layout -name "*.png" -type f 2> /dev/null)
 
-  # local darkest;darkest=$(darkest SBG WBG EBG)
-  # local k="${darkest:0:1}";
-  # local shade="${k}K6"; shade="${!shade}"
+  local darkest;darkest=$(darkest SBG WBG EBG)
+  local k="${darkest:0:1}";
+  local shade="${k}K6"; shade="${!shade}"
   # local tg_tray_icon=/usr/share/pixmaps/telegram.png
   # [ -w "$tg_tray_icon" ] && APP_ICONS+=("$tg_tray_icon")
 
@@ -75,21 +76,21 @@ ApplyIcons () {
   declare -A customIcons
   customIcons[/usr/share/pixmaps/steam_tray_mono.png]=''
   customIcons[/usr/share/icons/hicolor/48x48/apps/telegram.png]=''
-  
+
   for x in "${!customIcons[@]}"; do
     icon="${customIcons[$x]}"; path="${x}"
     ! [ -w $path ] && continue
     echo "icon $icon "
     echo "path $path "
-    
+
     GenIcon "$icon" "$shade" "$path" 128
   done
 
 
   InfoDone
 }
-# ////////////////////////////  
-# ////////////////////////////  
+# ////////////////////////////
+# ////////////////////////////
 
 RestartAWM () {
   PromptContinue; if [[ ! "$REPLY" =~ ^[Yy]$ ]]; then return; fi
