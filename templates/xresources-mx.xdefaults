@@ -102,3 +102,25 @@
 *.ek7: $EK7
 *.ek8: $EK8
 *.ek9: $EK9
+
+xscreensaver-auth.default.Dialog.foreground:                     $SK3
+xscreensaver-auth.default.Dialog.background:                     $SK0
+xscreensaver-auth.default.Dialog.button.foreground:              $SK6
+xscreensaver-auth.default.Dialog.button.background:              $SK0
+xscreensaver-auth.default.Dialog.logo.background:                $SK0
+xscreensaver-auth.default.Dialog.text.foreground:                $WK9
+xscreensaver-auth.default.Dialog.text.background:                $SK0
+xscreensaver-auth.default.Dialog.error.foreground:               $CX1
+! xscreensaver-auth.default.Dialog.topShadowColor:                 $SBG
+xscreensaver-auth.default.Dialog.bottomShadowColor:              $WBG
+xscreensaver-auth.default.Dialog.shadowWidth:                    0
+xscreensaver-auth.default.Dialog.logo.width:                     10
+xscreensaver-auth.default.Dialog.logo.height:                    10
+xscreensaver-auth.default.Dialog.thermometer.foreground:         $SK2
+xscreensaver-auth.default.Dialog.thermometer.background:         $SK0
+xscreensaver-auth.default.Dialog.thermometer.width:              48
+xscreensaver-auth.default.Dialog.borderColor:                    $SK0
+xscreensaver-auth.default.Dialog.borderWidth:                    32
+xscreensaver-auth.default.Dialog.internalPadding:                0
+
+
